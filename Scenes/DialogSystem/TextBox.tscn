@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://vu586py46jou"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = 215.0
+offset_right = -110.0
+offset_bottom = -225.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBox"]
+layout_mode = 0
+offset_top = 100.0
+offset_right = 1068.0
+offset_bottom = 280.0
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor "
+scroll_active = false
+shortcut_keys_enabled = false
+language = "es"
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogBox"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 340
