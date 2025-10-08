@@ -43,7 +43,7 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 51
 theme_override_font_sizes/bold_font_size = 51
 bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet, [b]consectetur[/b] adipiscing elit, sed do eiusmod tempor "
+text = "[color=#fffffff]Lorem ipsum dolor sit amet, [b]consectetur adipiscing elit[/b], sed do eiusmod tempor "
 scroll_active = false
 shortcut_keys_enabled = false
 language = "es"
