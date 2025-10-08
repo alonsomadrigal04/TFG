@@ -17,7 +17,7 @@ public partial class TextTyper : Control
 
     public override void _Ready()
     {
-        WriteText("HOLA [b]Alonso[/b] Madrigalaa Hernandez y esto es una prueba", null,3f);
+        WriteText("Hola, soy [b] una [i] prueba[/i] y [wave amp=50.0 freq=5.0 connected=1]espero[/wave][/b] que funcione, bien.", null,0.02f);
     }
 
     public async void WriteText(string text, Character speaker, float textSpeed = textSpeedDefaul)
@@ -27,11 +27,11 @@ public partial class TextTyper : Control
         dialogBox.Text = "";
 
         string colorVisible = "[color=#ffffffff]";
-        string colorHidden = "[color=#ffff00]";
+        string colorHidden = "[color=#ffffff00]";
         string colorEnd = "[/color]";
 
         Stack<string> tagStack = new();
-        string cleanText = ""; 
+        string cleanText = "";
 
         int i = 0;
         while (i < text.Length)
@@ -42,6 +42,9 @@ public partial class TextTyper : Control
                 if (closingBracket != -1)
                 {
                     string tag = text.Substring(i, closingBracket - i + 1);
+                    string tagContent = tag.Trim('[', ']');
+                    string tagName = tagContent.Split(' ')[0];
+
                     if (tag.StartsWith("[/"))
                     {
                         if (tagStack.Count > 0)
@@ -49,7 +52,7 @@ public partial class TextTyper : Control
                     }
                     else
                     {
-                        tagStack.Push(tag);
+                        tagStack.Push(tagName);
                     }
 
                     cleanText += tag;
@@ -58,15 +61,17 @@ public partial class TextTyper : Control
                 }
             }
 
-            await ToSignal(GetTree().CreateTimer(textSpeed), "timeout");
+            if (text[i] != ' ' && text[i] != '\n' && text[i] != '\t')
+            {
+                await ToSignal(GetTree().CreateTimer(textSpeed), "timeout");
+            }
 
             string visiblePart = cleanText + text[i];
 
             string closingTags = "";
             foreach (string openTag in tagStack)
             {
-                string tagName = openTag.Trim('[', ']');
-                closingTags = "[/" + tagName + "]" + closingTags;
+                closingTags += "[/" + openTag + "]";
             }
 
             string visibleText = $"{colorVisible}{visiblePart}{closingTags}{colorEnd}";
@@ -74,15 +79,16 @@ public partial class TextTyper : Control
 
             dialogBox.Text = visibleText + hiddenText;
 
+            if (text[i] != ' ' && text[i] != '\n' && text[i] != '\t')
+            {
+                audioModule.PlaySound(sound, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
+            }
+
             cleanText += text[i];
             i++;
         }
 
         audioModule.StopAll();
     }
-
-
-
-
 
 }

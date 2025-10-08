@@ -42,6 +42,8 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 51
 theme_override_font_sizes/bold_font_size = 51
+theme_override_font_sizes/bold_italics_font_size = 51
+theme_override_font_sizes/italics_font_size = 51
 bbcode_enabled = true
 text = "[color=#fffffff]Lorem ipsum dolor sit amet, [b]consectetur adipiscing elit[/b], sed do eiusmod tempor "
 scroll_active = false
