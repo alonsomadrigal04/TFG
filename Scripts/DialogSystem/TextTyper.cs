@@ -8,10 +8,16 @@ using System.Globalization;
 
 public partial class TextTyper : Control
 {
+    [ExportGroup("Audio")]
     [Export] MultiaudioPlayerModule audioModule;
     [Export] AudioStream sound;
+    [ExportGroup("Text Boxes")]
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
+    [ExportGroup("preset parameters ")]
+    [Export] public string waveParams = "amp=50.0 freq=5.0 connected=1";
+    [Export] public string shakeParams = "rate=10.0 level=10.0 connected=1";
+
 
     const float textSpeedDefaul = 0.1f;
     static readonly Character characterDefault = Character.Default;
@@ -19,7 +25,7 @@ public partial class TextTyper : Control
 
     public override void _Ready()
     {
-        WriteText("[speed s=0.5]Hola[/speed], soy [b]una[i] prueba[/i] y espero.[/b] Que funcione [speed s=0.01]bien.[/speed]", null, 0.04f);
+        WriteText("[speed s=0.5]Hola[/speed], [w]soy[/w] [b]una[i] prueba[/i] y espero.[/b] Que funcione [speed s=0.01]bien.[/speed]", null, 0.04f);
     }
 
     public async void WriteText(string text, Character speaker, float textSpeed = textSpeedDefaul)
@@ -60,23 +66,48 @@ public partial class TextTyper : Control
                             var parts = tagContent.Split(' ');
                             foreach (var part in parts)
                             {
-                                if (part.StartsWith("s="))
+                                if (part.StartsWith("s=") &&
+                                    float.TryParse(part.AsSpan(2), NumberStyles.Float, CultureInfo.InvariantCulture, out float sValue))
                                 {
-                                    if (float.TryParse(part.AsSpan(2), NumberStyles.Float, CultureInfo.InvariantCulture, out float sValue))
-                                    {
-                                        newSpeed = sValue;
-                                    }
-
+                                    newSpeed = sValue;
                                 }
                             }
 
                             speedStack.Push(currentSpeed);
                             currentSpeed = newSpeed;
                         }
+                        else if (speedStack.Count > 0)
+                            currentSpeed = speedStack.Pop();
+
+                        i = closingBracket + 1;
+                        continue;
+                    }
+
+                    if (baseTagName == "w" || baseTagName == "s")
+                    {
+                        string expandedTag;
+
+                        if (!isClosingTag)
+                        {
+                            expandedTag = baseTagName == "w"
+                                ? $"[wave {waveParams}]"
+                                : $"[shake {shakeParams}]";
+                        }
                         else
                         {
-                            if (speedStack.Count > 0)
-                                currentSpeed = speedStack.Pop();
+                            expandedTag = baseTagName == "w" ? "[/wave]" : "[/shake]";
+                        }
+
+                        cleanText += expandedTag;
+
+                        if (isClosingTag)
+                        {
+                            if (tagStack.Count > 0)
+                                tagStack.Pop();
+                        }
+                        else
+                        {
+                            tagStack.Push(expandedTag);
                         }
 
                         i = closingBracket + 1;
@@ -103,7 +134,8 @@ public partial class TextTyper : Control
             string closingTags = "";
             foreach (string openTag in tagStack)
             {
-                closingTags += "[/" + openTag + "]";
+                string tagName = openTag.Split(' ')[0].TrimStart('[');
+                closingTags += "[/" + tagName + "]";
             }
 
             string visibleText = $"{colorVisible}{visiblePart}{closingTags}{colorEnd}";
@@ -113,14 +145,10 @@ public partial class TextTyper : Control
 
             float waitTime = GetWaitTimeForChar(text[i], currentSpeed);
             if (waitTime > 0)
-            {
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
-            }
 
             if (!char.IsWhiteSpace(text[i]))
-            {
                 audioModule.PlaySound(sound, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
-            }
 
             cleanText += text[i];
             i++;
@@ -128,6 +156,7 @@ public partial class TextTyper : Control
 
         audioModule.StopAll();
     }
+
 
 
     static float GetWaitTimeForChar(char c, float baseSpeed)
