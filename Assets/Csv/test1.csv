@@ -1,6 +1,8 @@
 ﻿uid;type;speaker;text;next
-d1;say;Jaime;[b]¡Hola! Soy Jaime Altozano ¿quieres saber cuanto vale tu coche?;
-d2;say;Alonso;[speed s=0.1]…[/speed];
-d3;say;Alonso;[speed s=0.08]No estoy seguro Jaime.[/speed];
-d4;say;Jaime;IMPERDONABLE;d1
-;;;;
+d1;say;Alonso;Ah… Estoy destruido. Creo que me tomaré un Cola-Cao antes de dormir.;
+d2;say;Karl;Hey, piece of shit!;
+d3;say;Alonso;Karl ¿tienes que ser tan desagradable?;
+d4;say;Alonso;Estoy muy [s]cansado[/s], no vengas a molestarme.;
+d5;say;Karl;What's with that [speed s=0.1]reaction[/speed], Jambo?;
+d6;say;Karl;I just wanted to say that I've already cleaned the bathroom.;
+d7;say;Alonso;Menos mal…;

@@ -15,8 +15,13 @@ public partial class TextTyper : Control
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
     [ExportGroup("preset parameters ")]
+    [Export] float speedMultiplier = 1.2f;
     [Export] public string waveParams = "amp=50.0 freq=5.0 connected=1";
     [Export] public string shakeParams = "rate=10.0 level=10.0 connected=1";
+
+    bool isTyping;
+    bool skipRequested = false;
+
 
 
     const float textSpeedDefaul = 0.01f;
@@ -32,6 +37,7 @@ public partial class TextTyper : Control
     public async void WriteText(string text, string speaker, float textSpeed = textSpeedDefaul)
     {
         //speaker ??= characterDefault;
+        isTyping = true;
         nameBox.Text = speaker/*.Name*/;
         dialogBox.Text = "";
 
@@ -156,6 +162,12 @@ public partial class TextTyper : Control
         }
 
         audioModule.StopAll();
+        isTyping = false;
+    }
+
+    void CompleteText()
+    {
+        
     }
 
 
