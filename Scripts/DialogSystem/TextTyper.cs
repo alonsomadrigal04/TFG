@@ -19,19 +19,20 @@ public partial class TextTyper : Control
     [Export] public string shakeParams = "rate=10.0 level=10.0 connected=1";
 
 
-    const float textSpeedDefaul = 0.1f;
+    const float textSpeedDefaul = 0.01f;
     static readonly Character characterDefault = Character.Default;
-    Dictionary<string, AudioStream> speakerSounds;
+    readonly Dictionary<string, AudioStream> speakerSounds;
 
-    public override void _Ready()
+    /// <summary>
+    /// Writes text to the dialog box with a typing effect. 
+    /// </summary>
+    /// <param name="text">The text to display.</param>
+    /// <param name="speaker">The speaker's name.</param>
+    /// <param name="textSpeed">The speed of the typing effect.</param>
+    public async void WriteText(string text, string speaker, float textSpeed = textSpeedDefaul)
     {
-        WriteText("[speed s=0.5]Hola[/speed], [w]soy[/w] [b]una[i] prueba[/i] y espero.[/b] Que funcione [speed s=0.01]bien.[/speed]", null, 0.04f);
-    }
-
-    public async void WriteText(string text, Character speaker, float textSpeed = textSpeedDefaul)
-    {
-        speaker ??= characterDefault;
-        nameBox.Text = speaker.Name;
+        //speaker ??= characterDefault;
+        nameBox.Text = speaker/*.Name*/;
         dialogBox.Text = "";
 
         string colorVisible = "[color=#ffffffff]";

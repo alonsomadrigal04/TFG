@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dchwp1pat8lg2"]
+
+[ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
+[ext_resource type="PackedScene" uid="uid://vu586py46jou" path="res://Scenes/DialogSystem/TextBox.tscn" id="2_50ct6"]
+[ext_resource type="Script" uid="uid://dpwatcc7gusv3" path="res://Scripts/DialogSystem/DialogManager.cs" id="2_hb2xm"]
+
+[node name="TestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameManager" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_r5l72")
+dialogManagerPath = NodePath("../DialogManager")
+
+[node name="DialogManager" type="Control" parent="." node_paths=PackedStringArray("textTyper")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_hb2xm")
+textTyper = NodePath("../DialogBox")
+
+[node name="DialogBox" parent="." instance=ExtResource("2_50ct6")]
+layout_mode = 1

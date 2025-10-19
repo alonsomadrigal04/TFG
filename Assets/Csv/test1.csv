@@ -1,0 +1,6 @@
+﻿uid;type;speaker;text;next
+d1;say;Jaime;[b]¡Hola! Soy Jaime Altozano ¿quieres saber cuanto vale tu coche?;
+d2;say;Alonso;[speed s=0.1]…[/speed];
+d3;say;Alonso;[speed s=0.08]No estoy seguro Jaime.[/speed];
+d4;say;Jaime;IMPERDONABLE;d1
+;;;;
