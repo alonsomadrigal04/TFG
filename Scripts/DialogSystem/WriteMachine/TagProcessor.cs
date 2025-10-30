@@ -7,8 +7,8 @@ using Godot;
 public class TagProcessor()
 {
     public readonly Stack<float> speedStack = new();
-    public readonly Stack<string> effectStack = new();
-    private float currentSpeed = 0.05f;
+    private readonly Stack<string> effectStack = new();
+    private float currentSpeed = 0.02f;
     public float CurrentSpeed => currentSpeed;
 
     readonly string waveParams = "amp=50.0 freq=5.0 connected=1";
@@ -35,13 +35,16 @@ public class TagProcessor()
     {
         switch (token.Content)
         {
-            case "wave":
+            case "w":
                 effectStack.Push("wave");
                 return $"[wave {waveParams}]";
 
-            case "shake":
+            case "s":
                 effectStack.Push("shake");
                 return $"[shake {shakeParams}]";
+            case "b":
+                effectStack.Push("b");
+                return "[b]";
 
             case "speed":
                 if (token.Parameters != null && token.Parameters.TryGetValue("s", out string? sValue) &&
@@ -61,12 +64,15 @@ public class TagProcessor()
     {
         switch (token.Content)
         {
-            case "wave":
+            case "w":
                 effectStack.Pop();
                 return "[/wave]";
-            case "shake":
+            case "s":
                 effectStack.Pop();
                 return "[/shake]";
+            case "b":
+                effectStack.Pop();
+                return "[/b]";
             case "speed":
                 if (speedStack.Count > 0)
                     currentSpeed = speedStack.Pop();

@@ -42,7 +42,9 @@ public partial class DialogManager : Node
     /// <param name="uid">The unique identifier of the dialog line.</param>
     public void StartDialog(string uid)
     {
-        if (dialogLines.TryGetValue(uid, out var line))
+        if (textTyper.isTyping) 
+            textTyper.skipRequested = true;
+        else if (dialogLines.TryGetValue(uid, out var line))
         {
             currentLine = line;
             textTyper.WriteText(line.Text, line.Speaker, 0.05f);

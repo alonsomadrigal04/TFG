@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 
 
 public partial class TextTyper : Control
@@ -19,8 +20,8 @@ public partial class TextTyper : Control
     [Export] float speedMultiplier = 1.2f;
 
 
-    bool isTyping;
-    bool skipRequested = false;
+    public bool isTyping;
+    public bool skipRequested = false;
     TagProcessor tagProcessor;
 
     public override void _EnterTree()
@@ -45,67 +46,92 @@ public partial class TextTyper : Control
         nameBox.Text = speaker;
         dialogBox.Text = "";
 
-        string colorVisible = "[color=#ffffffff]", colorHidden = "[color=#ffffff00]", colorEnd = "[/color]", cleanText = "";
-
+        string cleanText = "";
         var tokens = TagParser.Parse(text);
 
-        int i = 0;
-        while (i < tokens.Count)
+        for (int i = 0; i < tokens.Count; i++)
         {
             var token = tokens[i];
 
+            if (skipRequested)
+            {
+                cleanText = CompleteAllTokens(tokens, i, cleanText);
+                skipRequested = false;
+                break;
+            }
+
             if (token is TextToken textToken)
             {
-                int charIndex = 0;
-                while (charIndex < textToken.Content.Length)
-                {
-                    char c = textToken.Content[charIndex];
-                    string visiblePart = cleanText + c;
-                    string closingTags = BuildClosingTags(tagProcessor.ActiveEffects);
-
-                    string remainingText = textToken.Content[(charIndex + 1)..];
-                    for (int j = i + 1; j < tokens.Count; j++)
-                    {
-                        if (tokens[j] is TextToken t)
-                            remainingText += t.Content;
-                    }
-
-                    string visibleText = $"{colorVisible}{visiblePart}{closingTags}{colorEnd}";
-                    string hiddenText = $"{colorHidden}{remainingText}{colorEnd}";
-
-                    dialogBox.Text = visibleText + hiddenText;
-
-                    float waitTime = GetWaitTimeForChar(c, tagProcessor.CurrentSpeed);
-                    if (waitTime > 0)
-                        await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
-
-                    if (!char.IsWhiteSpace(c))
-                        audioModule.PlaySound(sound, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
-
-                    cleanText += c;
-                    charIndex++;
-                }
+                cleanText = await WriteTextToken(textToken, cleanText, tokens, i);
             }
-            else if (token is OpenTagToken open)
+            else
             {
-                string openText = tagProcessor.HandleOpenTag(open);
-                if (openText != null)
-                    cleanText += openText;
+                ProcessTag(token, ref cleanText);
             }
-            else if (token is CloseTagToken close)
-            {
-                string closeText = tagProcessor.HandleCloseTag(close);
-                if (closeText != null)
-                    cleanText += closeText;
-            }
-
-            i++;
         }
+
+        string closingTags = BuildClosingTags(tagProcessor.ActiveEffects);
+        dialogBox.Text = $"[color=#ffffffff]{cleanText}{closingTags}[/color]";
 
         audioModule.StopAll();
         isTyping = false;
     }
 
+    private async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex)
+    {
+        int charIndex = 0;
+        while (charIndex < textToken.Content.Length)
+        {
+            char c = textToken.Content[charIndex];
+            string visiblePart = cleanText + c;
+            string closingTags2 = BuildClosingTags(tagProcessor.ActiveEffects);
+            string remainingText = BuildRemainingText(tokens, tokenIndex, charIndex + 1);
+
+            dialogBox.Text = $"[color=#ffffffff]{visiblePart}{closingTags2}[/color]" +
+                            $"[color=#ffffff00]{remainingText}[/color]";
+
+            float waitTime = GetWaitTimeForChar(c, tagProcessor.CurrentSpeed);
+            if (waitTime > 0)
+                await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
+
+            if (!char.IsWhiteSpace(c))
+                audioModule.PlaySound(sound, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
+
+            cleanText += c;
+            charIndex++;
+        }
+
+        return cleanText;
+    }
+
+    private string BuildRemainingText(List<TagToken> tokens, int currentTokenIndex, int charIndexInToken)
+    {
+        string remainingText = "";
+
+        if (tokens[currentTokenIndex] is TextToken t)
+            remainingText = t.Content[charIndexInToken..];
+
+        for (int j = currentTokenIndex + 1; j < tokens.Count; j++)
+            if (tokens[j] is TextToken t2)
+                remainingText += t2.Content;
+
+        return remainingText;
+    }
+
+    private void ProcessTag(TagToken token, ref string cleanText)
+    {
+        switch(token)
+        {
+            case OpenTagToken open:
+                string openText = tagProcessor.HandleOpenTag(open);
+                if (openText != null) cleanText += openText;
+                break;
+            case CloseTagToken close:
+                string closeText = tagProcessor.HandleCloseTag(close);
+                if (closeText != null) cleanText += closeText;
+                break;
+        }
+    }
 
     private static string BuildClosingTags(IEnumerable<string> tagStack)
     {
@@ -122,12 +148,23 @@ public partial class TextTyper : Control
 
         return closingTags.ToString();
     }
-
-    void CompleteText()
+    private string CompleteAllTokens(List<TagToken> tokens, int currentIndex, string cleanText)
     {
-        
-    }
+        for (int j = currentIndex; j < tokens.Count; j++)
+        {
+            var token = tokens[j];
+            if (token is TextToken textToken)
+            {
+                cleanText += textToken.Content;
+            }
+            else
+            {
+                ProcessTag(token, ref cleanText);
+            }
+        }
 
+        return cleanText;
+    }
 
     static float GetWaitTimeForChar(char c, float baseSpeed)
     {
