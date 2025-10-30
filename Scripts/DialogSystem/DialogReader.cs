@@ -5,7 +5,6 @@ public class DialogReader
 {
     private readonly Dictionary<string, DialogLine> lines = [];
     private readonly List<string> orderedUids = [];
-    private bool isSpeaking;
 
     public Dictionary<string, DialogLine> LoadFromCSV(string path)
     {

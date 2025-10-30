@@ -17,6 +17,9 @@ public partial class DialogManager : Node
         reader = new DialogReader();
     }
 
+    /// <summary>
+    /// Starts a dialog scene by loading dialog lines from a CSV file.
+    /// </summary>
     public void StartDialogScene(string sceneName)
     {
         string path = $"res://Assets/Csv/{sceneName}.csv";
@@ -33,6 +36,10 @@ public partial class DialogManager : Node
         }
     }
 
+    /// <summary>
+    /// Starts a dialog line given its UID. 
+    /// </summary>
+    /// <param name="uid">The unique identifier of the dialog line.</param>
     public void StartDialog(string uid)
     {
         if (dialogLines.TryGetValue(uid, out var line))
@@ -46,6 +53,9 @@ public partial class DialogManager : Node
         }
     }
 
+    /// <summary>
+    /// Handles the request to proceed to the next line of dialog. 
+    /// </summary>
     public void OnNextRequested()
     {
         if (currentLine == null)
