@@ -1,10 +1,11 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public class DialogReader
 {
-    private readonly Dictionary<string, DialogLine> lines = [];
-    private readonly List<string> orderedUids = [];
+    private readonly Dictionary<string, DialogLine> lines = new Dictionary<string, DialogLine>();
+    private readonly List<string> orderedUids = new List<string>();
 
     public Dictionary<string, DialogLine> LoadFromCSV(string path)
     {
@@ -38,10 +39,11 @@ public class DialogReader
             {
                 Uid = parts[0].Trim(),
                 Type = parts[1].Trim(),
-                Speaker = parts[2].Trim(),
+                Speaker = CharacterDatabase.GetCharacter(parts[2].Trim()),
                 Text = parts[3].Trim(),
                 Next = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[4].Trim()
             };
+
 
             lines[dialogLine.Uid] = dialogLine;
             orderedUids.Add(dialogLine.Uid);
@@ -52,5 +54,5 @@ public class DialogReader
         return lines;
     }
 
-    public List<string> GetOrderedUids() => [.. orderedUids];
+    public List<string> GetOrderedUids() => new List<string>(orderedUids);
 }

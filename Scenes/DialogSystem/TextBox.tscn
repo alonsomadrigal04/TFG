@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://vu586py46jou"]
+[gd_scene load_steps=3 format=3 uid="uid://vu586py46jou"]
 
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/DialogSystem/WriteMachine/TextTyper.cs" id="1_1hl6y"]
-[ext_resource type="AudioStream" uid="uid://ctxajejr2j70q" path="res://Assets/Sounds/pickupCoin.wav" id="2_s4oty"]
 [ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="3_u2kc5"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("audioModule", "dialogBox", "nameBox")]
@@ -18,7 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1hl6y")
 audioModule = NodePath("MultiaudioPlayerModule")
-sound = ExtResource("2_s4oty")
 dialogBox = NodePath("DialogBox/MarginContainer/DialogText")
 nameBox = NodePath("DialogBox/MarginContainer2/SpeakerName")
 
@@ -64,13 +62,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.42600003
 anchor_bottom = 0.26200002
-offset_right = 0.34698486
+offset_right = 613.032
 offset_bottom = 0.1349945
 theme_override_constants/margin_left = 20
 
 [node name="SpeakerName" type="RichTextLabel" parent="DialogBox/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
 text = "JAIME ALTOZANO"
 scroll_active = false
 

@@ -12,7 +12,7 @@ public partial class TextTyper : Control
 {
     [ExportGroup("Audio")]
     [Export] MultiaudioPlayerModule audioModule;
-    [Export] AudioStream sound;
+    //[Export] AudioStream sound;
     [ExportGroup("Text Boxes")]
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
@@ -29,21 +29,10 @@ public partial class TextTyper : Control
         tagProcessor = new TagProcessor();
     }
 
-
-    const float textSpeedDefaul = 0.01f;
-    static readonly Character characterDefault = Character.Default;
-    readonly Dictionary<string, AudioStream> speakerSounds;
-
-    /// <summary>
-    /// Writes text to the dialog box with a typing effect. 
-    /// </summary>
-    /// <param name="text">The text to display.</param>
-    /// <param name="speaker">The speaker's name.</param>
-    /// <param name="textSpeed">The speed of the typing effect.</param>
-    public async void WriteText(string text, string speaker, float textSpeed = textSpeedDefaul)
+    public async void WriteText(string text, Character speaker)
     {
         isTyping = true;
-        nameBox.Text = speaker;
+        nameBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{speaker.Name}[/color]";
         dialogBox.Text = "";
         skipRequested = false;
 
@@ -56,7 +45,7 @@ public partial class TextTyper : Control
 
             if (token is TextToken textToken)
             {
-                cleanText = await WriteTextToken(textToken, cleanText, tokens, i);
+                cleanText = await WriteTextToken(textToken, cleanText, tokens, i, speaker);
             }
             else
             {
@@ -65,13 +54,13 @@ public partial class TextTyper : Control
         }
 
         string closingTags = BuildClosingTags(tagProcessor.ActiveEffects);
-        dialogBox.Text = $"[color=#ffffffff]{cleanText}{closingTags}[/color]";
+        dialogBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{cleanText}{closingTags}[/color]";
 
         audioModule.StopAll();
         isTyping = false;
     }
 
-    private async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex)
+    private async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex, Character speaker)
     {
         int charIndex = 0;
         while (charIndex < textToken.Content.Length)
@@ -82,7 +71,8 @@ public partial class TextTyper : Control
             string closingTags2 = BuildClosingTags(tagProcessor.ActiveEffects);
             string remainingText = BuildRemainingText(tokens, tokenIndex, charIndex + 1);
 
-            dialogBox.Text = $"[color=#ffffffff]{visiblePart}{closingTags2}[/color]" +
+
+            dialogBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{visiblePart}{closingTags2}[/color]" +
                              $"[color=#ffffff00]{remainingText}[/color]";
 
             float waitTime = skipRequested ? 0 : GetWaitTimeForChar(c, tagProcessor.CurrentSpeed);;
@@ -91,7 +81,7 @@ public partial class TextTyper : Control
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
             if (!char.IsWhiteSpace(c))
-                audioModule.PlaySound(sound, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
+                audioModule.PlaySound(speaker.VoiceSample, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
 
             cleanText += c;
             charIndex++;

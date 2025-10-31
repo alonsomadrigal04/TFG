@@ -47,7 +47,7 @@ public partial class DialogManager : Node
         else if (dialogLines.TryGetValue(uid, out var line))
         {
             currentLine = line;
-            textTyper.WriteText(line.Text, line.Speaker, 0.05f);
+            textTyper.WriteText(line.Text, line.Speaker);
         }
         else
         {

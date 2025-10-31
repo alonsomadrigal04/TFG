@@ -8,6 +8,8 @@ public partial class GameManager : Node
 
     public override void _Ready()
     {
+        CharacterDatabase.LoadFromJson("Data\\Characters.json");
+
         dialogManager = GetNode<DialogManager>(dialogManagerPath);
 
         dialogManager.StartDialogScene("test1");

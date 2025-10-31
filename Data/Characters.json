@@ -1,0 +1,10 @@
+{
+    "Karl": {
+        "voice_sample": "res://Audio/Voices/Karl.wav",
+        "color": "#ff9900"
+    },
+    "Alonso": {
+        "voice_sample": "res://Audio/Voices/Alonso.wav",
+        "color": "#66ccff"
+    }
+}
