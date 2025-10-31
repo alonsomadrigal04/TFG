@@ -1,14 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://vu586py46jou"]
 
-[ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/DialogSystem/TextTyper.cs" id="1_1hl6y"]
+[ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/DialogSystem/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 [ext_resource type="AudioStream" uid="uid://ctxajejr2j70q" path="res://Assets/Sounds/pickupCoin.wav" id="2_s4oty"]
 [ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="3_u2kc5"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("audioModule", "dialogBox", "nameBox")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.080000006
+anchor_top = 0.29900002
+anchor_right = 0.906
+anchor_bottom = 0.68700004
+offset_left = -102.40001
+offset_top = -215.28001
+offset_right = 120.31995
+offset_bottom = 225.35999
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1hl6y")

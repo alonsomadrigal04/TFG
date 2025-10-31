@@ -45,6 +45,7 @@ public partial class TextTyper : Control
         isTyping = true;
         nameBox.Text = speaker;
         dialogBox.Text = "";
+        skipRequested = false;
 
         string cleanText = "";
         var tokens = TagParser.Parse(text);
@@ -52,13 +53,6 @@ public partial class TextTyper : Control
         for (int i = 0; i < tokens.Count; i++)
         {
             var token = tokens[i];
-
-            if (skipRequested)
-            {
-                cleanText = CompleteAllTokens(tokens, i, cleanText);
-                skipRequested = false;
-                break;
-            }
 
             if (token is TextToken textToken)
             {
@@ -82,15 +76,17 @@ public partial class TextTyper : Control
         int charIndex = 0;
         while (charIndex < textToken.Content.Length)
         {
+
             char c = textToken.Content[charIndex];
             string visiblePart = cleanText + c;
             string closingTags2 = BuildClosingTags(tagProcessor.ActiveEffects);
             string remainingText = BuildRemainingText(tokens, tokenIndex, charIndex + 1);
 
             dialogBox.Text = $"[color=#ffffffff]{visiblePart}{closingTags2}[/color]" +
-                            $"[color=#ffffff00]{remainingText}[/color]";
+                             $"[color=#ffffff00]{remainingText}[/color]";
 
-            float waitTime = GetWaitTimeForChar(c, tagProcessor.CurrentSpeed);
+            float waitTime = skipRequested ? 0 : GetWaitTimeForChar(c, tagProcessor.CurrentSpeed);;
+
             if (waitTime > 0)
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
@@ -103,6 +99,7 @@ public partial class TextTyper : Control
 
         return cleanText;
     }
+
 
     private string BuildRemainingText(List<TagToken> tokens, int currentTokenIndex, int charIndexInToken)
     {
@@ -147,23 +144,6 @@ public partial class TextTyper : Control
         }
 
         return closingTags.ToString();
-    }
-    private string CompleteAllTokens(List<TagToken> tokens, int currentIndex, string cleanText)
-    {
-        for (int j = currentIndex; j < tokens.Count; j++)
-        {
-            var token = tokens[j];
-            if (token is TextToken textToken)
-            {
-                cleanText += textToken.Content;
-            }
-            else
-            {
-                ProcessTag(token, ref cleanText);
-            }
-        }
-
-        return cleanText;
     }
 
     static float GetWaitTimeForChar(char c, float baseSpeed)
