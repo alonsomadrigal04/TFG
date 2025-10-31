@@ -1,8 +1,13 @@
 ﻿uid;type;speaker;text;next
-d1;say;Alonso;Ah Estoy [b]destruido[/b]. Creo que me tomaré un Cola-Cao antes de dormir.;
-d2;say;Karl;Hey, piece of shit!;
-d3;say;Alonso;Karl ¿tienes que ser tan desagradable?;
-d4;say;Alonso;Estoy muy [s]cansado[/s], no vengas a molestarme.;
-d5;say;Karl;What's with that [speed s=0.1]reaction[/speed], Jambo?;
-d6;say;Karl;I just wanted to say that I've already cleaned the bathroom.;
-d7;say;Alonso;Menos mal…;
+d1;say;Alonso;Vale, Nuria, explícame qué demonios hiciste con ese pick de Yuumi en ranked.;
+d2;say;Nuria;Ey, era [b]estrategia[/b]. La idea era escalar con el Ezreal y jugar al poke.;
+d3;say;Saúl;¿Poke? Si ni llegabais a la línea sin gastar todos los summoners.;
+d4;say;Nuria;A ver, Saúl, no contábamos con un Lee Sin enemigo que invadiera nivel dos.;
+d5;say;Alonso;Y yo intentando wardear sin trinket… un desastre.;
+d6;say;Saúl;Os lo dije, había que hacer [b]trackeo de jungla[/b]. Si el Lee empieza blue, minuto 2:45 está en bot.;
+d7;say;Nuria;Lo sé, lo sé. Pero Alonso pingueaba cada dos segundos el dragón.;
+d8;say;Alonso;Porque era [s]free[/s], Nuria. Si hubiéramos tenido prioridad, ese dragón era nuestro.;
+d9;say;Saúl;Prioridad dice… Si el Ezreal farmeó bajo torre toda la fase de líneas.;
+d10;say;Nuria;Bueno, al menos ganamos el último teamfight con mi ulti a tiempo.;
+d11;say;Alonso;Eso sí, te salió perfecta. Literalmente nos salvaste del ace.;
+d12;say;Saúl;Confirmo. Pero la próxima, si vas Yuumi, avisa para que mutee el chat desde el inicio.;

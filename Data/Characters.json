@@ -6,5 +6,13 @@
     "Alonso": {
         "voice_sample": "res://Audio/Voices/Alonso.wav",
         "color": "#66ccff"
+    },
+    "Nuria": {
+        "voice_sample": "res://Audio/Voices/Nuria.wav",
+        "color": "#28ad5b"
+    },
+    "Saúl": {
+        "voice_sample": "res://Audio/Voices/Karl.wav",
+        "color": "#ff9900"
     }
 }
