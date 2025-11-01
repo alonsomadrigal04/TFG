@@ -39,7 +39,7 @@ public class DialogReader
             {
                 Uid = parts[0].Trim(),
                 Type = parts[1].Trim(),
-                Speaker = CharacterDatabase.GetCharacter(parts[2].Trim()),
+                Speaker = parts[1].Trim() == "say" ? CharacterDatabase.GetCharacter(parts[2].Trim()) : null,
                 Text = parts[3].Trim(),
                 Next = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[4].Trim()
             };

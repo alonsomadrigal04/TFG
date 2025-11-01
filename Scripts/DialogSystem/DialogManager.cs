@@ -6,6 +6,7 @@ using System.Linq;
 public partial class DialogManager : Node
 {
     private DialogReader reader;
+    [Export] private ChoiceMaker choiceMaker;
     [Export] private TextTyper textTyper;
 
     private Dictionary<string, DialogLine> dialogLines;
@@ -26,7 +27,7 @@ public partial class DialogManager : Node
         dialogLines = reader.LoadFromCSV(path);
         orderedUids = reader.GetOrderedUids();
 
-        if (orderedUids.Count > 0)
+        if (orderedUids.Count > 0 )
         {
             StartDialog(orderedUids[0]);
         }
@@ -47,12 +48,23 @@ public partial class DialogManager : Node
         else if (dialogLines.TryGetValue(uid, out var line))
         {
             currentLine = line;
-            textTyper.WriteText(line.Text, line.Speaker);
+
+            switch (line.Type.ToLower())
+            {
+                case "say":
+                    textTyper.WriteText(line.Text, line.Speaker);
+                    break;
+
+                case "choice":
+                    choiceMaker.ShowChoices(line);
+                    break;
+
+                default:
+                    GD.PrintErr($"Unknown dialog line type: {line.Type}");
+                    break;
+            }
         }
-        else
-        {
-            GD.PrintErr($"The line with UID {uid} was not found");
-        }
+
     }
 
     /// <summary>
