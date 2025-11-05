@@ -8,6 +8,7 @@ public partial class ChoiceMaker : Node
     [Export] AudioStream impact;
 
     [ExportGroup("Options")]
+    [Export] AnimationPlayer animationPlayer;
     [Export] HBoxContainer optionsContainer;
     [Export] ShaderMaterial optionShader;
     [Export] int separation;
@@ -28,8 +29,11 @@ public partial class ChoiceMaker : Node
         //animationPlayer.Play("IntroQuestion");
     }
 
-    void SetUpOptions(DialogLine line)
+    async void SetUpOptions(DialogLine line)
     {
+        SetActiveShaders();
+        animationPlayer.Play("IntroQuestion");
+        await ToSignal(GetTree().CreateTimer(0.8f), "timeout");
         string[] texts = line.Text.Split('|', StringSplitOptions.TrimEntries);
         foreach (var c in texts)
         {
@@ -40,33 +44,80 @@ public partial class ChoiceMaker : Node
 
     }
 
-    void CreateOptionButton(string optionText, int optionsQuantity)
+    void SetActiveShaders()
     {
-        float spacing = 40f;
-        float totalSpacing = spacing * (optionsQuantity - 1);
-        float availableWidth = optionsContainer.Size.X - totalSpacing;
-        float buttonWidth = availableWidth / optionsQuantity;
+        shaderBack.Visible = true;
+        grayBack.Visible = true;
+    }
+
+    void CreateOptionButton(string optionText, int totalOptions)
+    {
+        float buttonWidth = CalculateButtonWidth(totalOptions);
         float buttonHeight = optionsContainer.Size.Y;
+        optionsContainer.AddThemeConstantOverride("separation", 40);
 
-        Button button = new()
+        var wrapper = CreateWrapper(buttonWidth, buttonHeight);
+        var button = CreateButton(optionText, buttonWidth, buttonHeight);
+        var overlay = CreateShaderOverlay(buttonWidth, buttonHeight);
+
+        button.AddChild(overlay);
+        wrapper.AddChild(button);
+        optionsContainer.AddChild(wrapper);
+
+        AnimateButtonEntry(button, wrapper.GetIndex());
+    }
+
+    float CalculateButtonWidth(int totalOptions)
+    {
+        const float spacing = 40f;
+        float totalSpacing = spacing * (totalOptions - 1);
+        float availableWidth = optionsContainer.Size.X - totalSpacing;
+        return availableWidth / totalOptions;
+    }
+
+    Control CreateWrapper(float width, float height)
+    {
+        return new Control
         {
-            Text = optionText,
-            CustomMinimumSize = new Vector2(buttonWidth, buttonHeight),
+            CustomMinimumSize = new Vector2(width, height)
         };
+    }
 
-        ColorRect colorRect = new()
+    Button CreateButton(string text, float width, float height)
+    {
+        return  new Button
         {
-            CustomMinimumSize = new Vector2(buttonWidth, buttonHeight),
+            Text = text,
+            CustomMinimumSize = new Vector2(width, height),
+            PivotOffset = new Vector2(width / 2, height / 2)
+        }.FontSize(46);
+    }
+
+    ColorRect CreateShaderOverlay(float width, float height)
+    {
+        return new ColorRect
+        {
+            CustomMinimumSize = new Vector2(width, height),
             Material = optionShader,
             MouseFilter = Control.MouseFilterEnum.Pass
         };
-
-        button.AddThemeFontSizeOverride("font_size", 46);
-        button.CustomMinimumSize = new Vector2(buttonWidth, buttonHeight);
-        optionsContainer.AddThemeConstantOverride("separation", (int)spacing);
-        button.AddChild(colorRect);
-        optionsContainer.AddChild(button);
     }
+
+    void AnimateButtonEntry(Button button, int index)
+    {
+        Tween tween = CreateTween()
+            .SetTrans(Tween.TransitionType.Expo)
+            .SetEase(Tween.EaseType.Out);
+
+        button.Position = new Vector2(0, -1000);
+        button.RotationDegrees = -10f;
+
+        float delay = 0.1f * index;
+        tween.TweenProperty(button, "position", Vector2.Zero, 0.5f).SetDelay(delay);
+        tween.Parallel().TweenProperty(button, "rotation_degrees", 0f, 0.5f).SetDelay(delay);
+    }
+
+
 
 
 
