@@ -85,12 +85,14 @@ public partial class ChoiceMaker : Node
 
     Button CreateButton(string text, float width, float height)
     {
-        return  new Button
+        var button = new Button
         {
             Text = text,
             CustomMinimumSize = new Vector2(width, height),
             PivotOffset = new Vector2(width / 2, height / 2)
-        }.FontSize(46);
+        };
+        button.SetFontSize(46);
+        return button;
     }
 
     ColorRect CreateShaderOverlay(float width, float height)
