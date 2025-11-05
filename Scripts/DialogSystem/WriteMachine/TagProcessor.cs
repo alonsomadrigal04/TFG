@@ -12,7 +12,7 @@ public class TagProcessor()
     public float CurrentSpeed => currentSpeed;
 
     readonly string waveParams = "amp=50.0 freq=5.0 connected=1";
-    readonly string shakeParams = "rate=10.0 level=10.0 connected=1";
+    readonly string shakeParams = "rate=15.0 level=20.0 connected=1";
 
     /// <summary>
     /// Procesa un token y actualiza el contexto de efectos (velocidad, animaciones, etc.)

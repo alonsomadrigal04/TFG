@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/DialogSystem/ChoiceMaker.cs" id="4_ak5v8"]
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Shader" uid="uid://2337j62ed6t7" path="res://Shaders/DinamicVignette.gdshader" id="5_x033f"]
+[ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
-[ext_resource type="Script" uid="uid://bee21j6y4ltqk" path="res://Scripts/Utility/ConvertToButton.cs" id="7_d3awe"]
 [ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="8_d3awe"]
 
 [sub_resource type="Animation" id="Animation_ak5v8"]
@@ -311,16 +311,15 @@ textTyper = NodePath("../DialogBox")
 [node name="DialogBox" parent="." instance=ExtResource("2_50ct6")]
 layout_mode = 1
 
-[node name="ChoiceMaker" type="Control" parent="." node_paths=PackedStringArray("animationPlayer", "multiaudioPlayerModule", "Option1", "Option2", "shaderBack", "grayBack")]
+[node name="ChoiceMaker" type="Control" parent="." node_paths=PackedStringArray("multiaudioPlayerModule", "optionsContainer", "shaderBack", "grayBack")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_ak5v8")
-animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
 multiaudioPlayerModule = NodePath("../MultiaudioPlayerModule")
 impact = ExtResource("5_oho3u")
-Option1 = NodePath("../ChoiceLayout/Option 1/TextOp1")
-Option2 = NodePath("../ChoiceLayout/Option 2/TextOp2")
+optionsContainer = NodePath("../ChoiceLayout/HBoxContainer")
+optionShader = ExtResource("6_d3awe")
 shaderBack = NodePath("../ChoiceLayout/Shader")
 grayBack = NodePath("../ChoiceLayout/Gray")
 
@@ -328,6 +327,18 @@ grayBack = NodePath("../ChoiceLayout/Gray")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChoiceLayout"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 4.0750003
+anchor_right = 32.0
+anchor_bottom = 12.375001
+offset_left = 52.0
+offset_top = 51.999985
+offset_right = -52.0
+offset_bottom = 9.9999695
+alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ChoiceLayout"]
 libraries = {
@@ -348,16 +359,27 @@ layout_mode = 0
 offset_right = 1272.0
 offset_bottom = 720.0
 
+[node name="BigQuestionMark" type="RichTextLabel" parent="ChoiceLayout"]
+visible = false
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+pivot_offset = Vector2(626.7686, 379.19916)
+theme_override_colors/default_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/normal_font_size = 521
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Option 1" type="ColorRect" parent="ChoiceLayout"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -13.85
-anchor_top = 2.7250001
-anchor_right = -1.575
-anchor_bottom = 14.075001
+visible = false
+layout_mode = 0
+offset_left = -554.0
+offset_top = 109.0
+offset_right = -554.0
+offset_bottom = 706.0
 pivot_offset = Vector2(245.99994, 227)
 color = Color(0.24313726, 0.24313726, 0.24313726, 0.9529412)
-script = ExtResource("7_d3awe")
 
 [node name="GrayBack" type="ColorRect" parent="ChoiceLayout/Option 1"]
 material = SubResource("ShaderMaterial_rdbpf")
@@ -378,11 +400,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Option 2" type="ColorRect" parent="ChoiceLayout"]
+visible = false
 layout_mode = 0
 offset_left = 1379.0
 offset_top = 109.0
-offset_right = 1870.0006
-offset_bottom = 563.0
+offset_right = 1379.0
+offset_bottom = 706.0
 pivot_offset = Vector2(246, 216)
 color = Color(0.24313726, 0.24313726, 0.24313726, 0.9529412)
 
@@ -401,17 +424,6 @@ offset_bottom = 423.0
 theme_override_font_sizes/normal_font_size = 41
 bbcode_enabled = true
 text = "Option 2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BigQuestionMark" type="RichTextLabel" parent="ChoiceLayout"]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-pivot_offset = Vector2(626.7686, 379.19916)
-theme_override_colors/default_color = Color(1, 1, 1, 0)
-theme_override_font_sizes/normal_font_size = 521
-text = "?"
 horizontal_alignment = 1
 vertical_alignment = 1
 

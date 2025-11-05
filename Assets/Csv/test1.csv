@@ -1,6 +1,19 @@
 ﻿uid;type;speaker;text;next
-d1;say;Alonso;¿Entonces eres del Barça o del Madrid?;
-d2;choice;;Barça|Madrid;
+d1;say;Alonso;¿Entonces eres del Top o de Jungla?;
+d2;choice;;Top|Jungla|Otros|Karl;d2_a1
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
 ;;;;
 ;;;;
 d2_a1;say;Alonso;¿Madrilista? Pues menuda mierda colega.;

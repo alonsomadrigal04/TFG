@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://digt2mqxcxth3"]
+
+[ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="1_snpxr"]
+
+[node name="OptionButton" type="Button"]
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "I'M AN OPTION"
+
+[node name="Mark" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("1_snpxr")
+layout_mode = 0
+offset_right = 416.0
+offset_bottom = 416.0

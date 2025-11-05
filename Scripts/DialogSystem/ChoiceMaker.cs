@@ -4,51 +4,72 @@ using System;
 
 public partial class ChoiceMaker : Node
 {
-    [Export] AnimationPlayer animationPlayer;
     [Export] MultiaudioPlayerModule multiaudioPlayerModule;
     [Export] AudioStream impact;
 
     [ExportGroup("Options")]
-    [Export] RichTextLabel Option1;
-    [Export] RichTextLabel Option2;
+    [Export] HBoxContainer optionsContainer;
+    [Export] ShaderMaterial optionShader;
+    [Export] int separation;
 
     [ExportGroup("Animated Objects")]
     [Export] ColorRect shaderBack;
     [Export] ColorRect grayBack;
 
-    // Guarda las líneas siguientes asociadas a cada opción
     private string[] nextOptions;
 
-    // Llama al DialogManager para avanzar a la línea escogida
-    public Action<string> OnOptionSelected;
 
     public void ShowChoices(DialogLine line)
     {
-        ActivateChoiceUI();
-        multiaudioPlayerModule.PlaySound(impact);
+        //multiaudioPlayerModule.PlaySound(impact);
 
         SetUpOptions(line);
 
-        animationPlayer.Play("IntroQuestion");
-    }
-
-    void ActivateChoiceUI()
-    {
-        shaderBack.Visible = true;
-        grayBack.Visible = true;
+        //animationPlayer.Play("IntroQuestion");
     }
 
     void SetUpOptions(DialogLine line)
     {
         string[] texts = line.Text.Split('|', StringSplitOptions.TrimEntries);
-        Option1.Text = texts.Length > 0 ? texts[0] : "";
-        Option2.Text = texts.Length > 1 ? texts[1] : "";
+        foreach (var c in texts)
+        {
+            CreateOptionButton(c, texts.Length);
+        }
 
-        nextOptions = line.Next?.Split('|', StringSplitOptions.TrimEntries) ?? Array.Empty<string>();
+        nextOptions = line.Next?.Split('|', StringSplitOptions.TrimEntries) ?? [];
 
-        Option1.Connect("gui_input", new Callable(this, nameof(OnOption1Selected)));
-        Option2.Connect("gui_input", new Callable(this, nameof(OnOption2Selected)));
     }
+
+    void CreateOptionButton(string optionText, int optionsQuantity)
+    {
+        float spacing = 40f;
+        float totalSpacing = spacing * (optionsQuantity - 1);
+        float availableWidth = optionsContainer.Size.X - totalSpacing;
+        float buttonWidth = availableWidth / optionsQuantity;
+        float buttonHeight = optionsContainer.Size.Y;
+
+        Button button = new()
+        {
+            Text = optionText,
+            CustomMinimumSize = new Vector2(buttonWidth, buttonHeight),
+        };
+
+        ColorRect colorRect = new()
+        {
+            CustomMinimumSize = new Vector2(buttonWidth, buttonHeight),
+            Material = optionShader,
+            MouseFilter = Control.MouseFilterEnum.Pass
+        };
+
+        button.AddThemeFontSizeOverride("font_size", 46);
+        button.CustomMinimumSize = new Vector2(buttonWidth, buttonHeight);
+        optionsContainer.AddThemeConstantOverride("separation", (int)spacing);
+        button.AddChild(colorRect);
+        optionsContainer.AddChild(button);
+    }
+
+
+
 
     void OnOption1Selected(InputEvent @event)
     {
@@ -73,20 +94,9 @@ public partial class ChoiceMaker : Node
 
         string nextUid = nextOptions.Length > optionIndex ? nextOptions[optionIndex] : null;
 
-        HideChoiceUI();
 
-        if (!string.IsNullOrEmpty(nextUid))
-            OnOptionSelected?.Invoke(nextUid);
+        // if (!string.IsNullOrEmpty(nextUid))
+        //     OnOptionSelected?.Invoke(nextUid);
     }
 
-    void HideChoiceUI()
-    {
-        Option1.Visible = false;
-        Option2.Visible = false;
-        shaderBack.Visible = false;
-        grayBack.Visible = false;
-
-        Option1.Disconnect("gui_input", new Callable(this, nameof(OnOption1Selected)));
-        Option2.Disconnect("gui_input", new Callable(this, nameof(OnOption2Selected)));
-    }
 }
