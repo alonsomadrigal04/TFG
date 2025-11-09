@@ -120,10 +120,6 @@ public partial class ChoiceMaker : Node
     }
 
 
-
-
-
-
     void OnOption1Selected(InputEvent @event)
     {
         if (!IsClick(@event)) return;
@@ -143,13 +139,9 @@ public partial class ChoiceMaker : Node
 
     void ProcessSelection(int optionIndex)
     {
-        //animationPlayer.Play("OutQuestion");
 
         string nextUid = nextOptions.Length > optionIndex ? nextOptions[optionIndex] : null;
 
-
-        // if (!string.IsNullOrEmpty(nextUid))
-        //     OnOptionSelected?.Invoke(nextUid);
     }
 
 }
