@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class DialogReader
 {
-    private readonly Dictionary<string, DialogLine> lines = new Dictionary<string, DialogLine>();
-    private readonly List<string> orderedUids = new List<string>();
+    private readonly Dictionary<string, DialogLine> lines = [];
+    private readonly List<string> orderedUids = [];
 
     public Dictionary<string, DialogLine> LoadFromCSV(string path)
     {
@@ -54,5 +54,5 @@ public class DialogReader
         return lines;
     }
 
-    public List<string> GetOrderedUids() => new List<string>(orderedUids);
+    public List<string> GetOrderedUids() => [.. orderedUids];
 }

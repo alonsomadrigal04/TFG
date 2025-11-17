@@ -1,6 +1,6 @@
 ﻿uid;type;speaker;text;next
 d1;say;Alonso;¿Entonces eres del Top o de Jungla?;
-d2;choice;;Top|Jungla|Otros|Karl;d2_a1
+d2;choice;;Top|Jungla;d2_a1
 ;;;;
 ;;;;
 ;;;;

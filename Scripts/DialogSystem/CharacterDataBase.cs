@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CharacterDatabase
 {
@@ -30,7 +31,7 @@ public class CharacterDatabase
         string json = FileAccess.GetFileAsString(path);
         var data = Json.ParseString(json).AsGodotDictionary();
 
-        foreach (string key in data.Keys)
+        foreach (string key in data.Keys.Select(v => (string)v))
         {
             var entry = (Godot.Collections.Dictionary)data[key];
             var character = new Character(key, GD.Load<AudioStream>(entry.GetValueOrDefault("voice_sample", "").ToString()))

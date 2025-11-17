@@ -212,6 +212,7 @@ impact = ExtResource("5_oho3u")
 animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
 optionsContainer = NodePath("../ChoiceLayout/HBoxContainer")
 optionShader = ExtResource("6_d3awe")
+separation = 40
 shaderBack = NodePath("../ChoiceLayout/Shader")
 grayBack = NodePath("../ChoiceLayout/Gray")
 
@@ -241,9 +242,11 @@ anchor_top = 4.0750003
 anchor_right = 32.0
 anchor_bottom = 12.375001
 offset_left = 52.0
-offset_top = 51.999985
+offset_top = 113.999985
 offset_right = -52.0
-offset_bottom = 9.9999695
+offset_bottom = -52.00003
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ChoiceLayout"]

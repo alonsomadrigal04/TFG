@@ -25,8 +25,6 @@ public partial class ChoiceMaker : Node
         //multiaudioPlayerModule.PlaySound(impact);
 
         SetUpOptions(line);
-
-        //animationPlayer.Play("IntroQuestion");
     }
 
     async void SetUpOptions(DialogLine line)
@@ -54,7 +52,7 @@ public partial class ChoiceMaker : Node
     {
         float buttonWidth = CalculateButtonWidth(totalOptions);
         float buttonHeight = optionsContainer.Size.Y;
-        optionsContainer.AddThemeConstantOverride("separation", 40);
+        optionsContainer.AddThemeConstantOverride("separation", separation);
 
         var wrapper = CreateWrapper(buttonWidth, buttonHeight);
         var button = CreateButton(optionText, buttonWidth, buttonHeight);
@@ -75,7 +73,7 @@ public partial class ChoiceMaker : Node
         return availableWidth / totalOptions;
     }
 
-    Control CreateWrapper(float width, float height)
+    static Control CreateWrapper(float width, float height)
     {
         return new Control
         {
@@ -83,13 +81,16 @@ public partial class ChoiceMaker : Node
         };
     }
 
-    Button CreateButton(string text, float width, float height)
+    static Button CreateButton(string text, float width, float height)
     {
-        var button = new Button
+        // TODO: Change this to make the parameters to modify this parametres in the constructor of ChoiceButton
+        var button = new ChoiceButton
         {
             Text = text,
             CustomMinimumSize = new Vector2(width, height),
-            PivotOffset = new Vector2(width / 2, height / 2)
+            PivotOffset = new Vector2(width / 2, height / 2),
+            SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter | Control.SizeFlags.Expand,
+            SizeFlagsVertical = Control.SizeFlags.ShrinkCenter
         };
         button.SetFontSize(46);
         return button;
@@ -139,9 +140,7 @@ public partial class ChoiceMaker : Node
 
     void ProcessSelection(int optionIndex)
     {
-
         string nextUid = nextOptions.Length > optionIndex ? nextOptions[optionIndex] : null;
-
     }
 
 }
