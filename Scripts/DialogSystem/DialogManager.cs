@@ -13,10 +13,23 @@ public partial class DialogManager : Node
     private List<string> orderedUids;
     private DialogLine currentLine;
 
+    private bool isInChoiceMode = false;
+
+
     public override void _EnterTree()
     {
         reader = new DialogReader();
+        choiceMaker.ChoiceSelected += OnChoiceSelected;
     }
+
+    private void OnChoiceSelected(string nextUid)
+    {
+        isInChoiceMode = false;
+        StartDialog(nextUid);
+
+        GD.Print(nextUid);
+    }
+
 
     /// <summary>
     /// Starts a dialog scene by loading dialog lines from a CSV file.
@@ -58,6 +71,7 @@ public partial class DialogManager : Node
                     break;
 
                 case "choice":
+                    isInChoiceMode = true;
                     choiceMaker.ShowChoices(line);
                     break;
 
@@ -75,6 +89,8 @@ public partial class DialogManager : Node
     public void OnNextRequested()
     {
         if (currentLine == null)
+            return;
+        if(isInChoiceMode)
             return;
 
         string nextUid = currentLine.Next;

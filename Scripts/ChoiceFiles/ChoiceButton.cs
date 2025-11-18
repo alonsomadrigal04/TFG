@@ -2,8 +2,9 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class ChoiceButton() : Button
+public partial class ChoiceButton : Button
 {
+    [Signal] public delegate void SelectedSignalEventHandler(int uid);
     [Export] private float hoverShakeAmount = 1f;
     [Export] private float hoverShakeSpeed = 0.01f;
     [Export] private float clickScale = 0.9f;
@@ -43,6 +44,7 @@ public partial class ChoiceButton() : Button
     private void OnPressed()
     {
         AnimateClick();
+        EmitSignal(nameof(SelectedSignal), Uid);
     }
 
 

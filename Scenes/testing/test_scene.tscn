@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dchwp1pat8lg2"]
+[gd_scene load_steps=15 format=3 uid="uid://dchwp1pat8lg2"]
 
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
@@ -171,9 +171,86 @@ tracks/5/keys = {
 "values": [Color(0.50980395, 0.50980395, 0.50980395, 0.7882353)]
 }
 
+[sub_resource type="Animation" id="Animation_lipur"]
+resource_name = "OutQuestion"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigQuestionMark:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigQuestionMark:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BigQuestionMark:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BigQuestionMark:theme_override_colors/default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shader:material:shader_parameter/vignette_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7.450581e-09, 0.43333334),
+"transitions": PackedFloat32Array(1, 0.13869627),
+"update": 0,
+"values": [0.48800002318, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Gray:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(-5.9604645e-08, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.50980395, 0.50980395, 0.50980395, 0.78431374), Color(0.50980395, 0.50980395, 0.50980395, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x033f"]
 _data = {
 &"IntroQuestion": SubResource("Animation_ak5v8"),
+&"OutQuestion": SubResource("Animation_lipur"),
 &"RESET": SubResource("Animation_x033f")
 }
 

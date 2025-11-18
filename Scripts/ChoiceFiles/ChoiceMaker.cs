@@ -6,6 +6,8 @@ using System.Linq;
 public partial class ChoiceMaker : Node
 {
     [Export] MultiaudioPlayerModule multiaudioPlayerModule;
+    public event Action<string> ChoiceSelected;
+
     [Export] AudioStream impact;
 
     [ExportGroup("Options")]
@@ -19,6 +21,7 @@ public partial class ChoiceMaker : Node
     [Export] ColorRect grayBack;
 
     private string[] nextOptions;
+    private Button[] currentButtons;
 
 
     public void ShowChoices(DialogLine line)
@@ -59,12 +62,31 @@ public partial class ChoiceMaker : Node
         var button = CreateButton(optionText, buttonWidth, buttonHeight, i);
         var overlay = CreateShaderOverlay(buttonWidth, buttonHeight);
 
+        _ = currentButtons.Append(button);
+
+        button.SelectedSignal += ProcessSelection;
+
         button.AddChild(overlay);
         wrapper.AddChild(button);
         optionsContainer.AddChild(wrapper);
 
         AnimateButtonEntry(button, wrapper.GetIndex());
     }
+
+    private void ProcessSelection(int uid)
+    {
+        //TODO: activate HideAnimation
+        AnimateButtonExit();
+        string nextUid = nextOptions[uid];
+        ChoiceSelected?.Invoke(nextUid);
+    }
+
+    private void AnimateButtonExit()
+    {
+        animationPlayer.Play("OutQuestion");
+
+    }
+
 
     float CalculateButtonWidth(int totalOptions)
     {
@@ -82,7 +104,7 @@ public partial class ChoiceMaker : Node
         };
     }
 
-    static Button CreateButton(string text, float width, float height, int uid)
+    static ChoiceButton CreateButton(string text, float width, float height, int uid)
     {
         // TODO: all this parametres should be in the default constructor of this class
         var button = new ChoiceButton
