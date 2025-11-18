@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class ChoiceButton : Button
+public partial class ChoiceButton() : Button
 {
     [Export] private float hoverShakeAmount = 1f;
     [Export] private float hoverShakeSpeed = 0.01f;
@@ -10,6 +10,8 @@ public partial class ChoiceButton : Button
 
     private Vector2 baseScale;
     private Vector2 basePosition;
+
+    public int Uid;
 
     private Tween hoverTween;
     private Tween clickTween;

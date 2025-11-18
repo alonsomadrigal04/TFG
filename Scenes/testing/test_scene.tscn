@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dchwp1pat8lg2"]
+[gd_scene load_steps=14 format=3 uid="uid://dchwp1pat8lg2"]
 
+[ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
 [ext_resource type="PackedScene" uid="uid://vu586py46jou" path="res://Scenes/DialogSystem/TextBox.tscn" id="2_50ct6"]
 [ext_resource type="Script" uid="uid://dpwatcc7gusv3" path="res://Scripts/DialogSystem/DialogManager.cs" id="2_hb2xm"]
-[ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/DialogSystem/ChoiceMaker.cs" id="4_ak5v8"]
+[ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/ChoiceFiles/ChoiceMaker.cs" id="4_ak5v8"]
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
@@ -183,6 +184,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
+layout_mode = 1
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0

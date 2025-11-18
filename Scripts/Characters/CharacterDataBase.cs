@@ -38,10 +38,9 @@ public class CharacterDatabase
             {
                 TextColor = new Color(entry.GetValueOrDefault("color", "#ffffff").ToString())
             };
-            GD.Print(character.TextColor);
             RegisterCharacter(character);
         }
 
-        GD.Print($"[CharacterDatabase] Loaded {characters.Count} characters.");
+        DebugService.Register("Qty characters in BBDD", () => characters.Count.ToString());
     }
 }

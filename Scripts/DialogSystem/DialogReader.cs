@@ -50,7 +50,7 @@ public class DialogReader
             index++;
         }
 
-        GD.Print($"Loaded {lines.Count} dialog lines from CSV.");
+        DebugService.Register("Qty of lines", () => lines.Count.ToString());
         return lines;
     }
 

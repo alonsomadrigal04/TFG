@@ -49,10 +49,12 @@ public partial class DialogManager : Node
         {
             currentLine = line;
 
+
             switch (line.Type.ToLower())
             {
                 case "say":
                     textTyper.WriteText(line.Text, line.Speaker);
+                    DebugService.Register("Last speaker", () => line.Speaker.Name);
                     break;
 
                 case "choice":

@@ -1,6 +1,7 @@
 using Game.Common.Modules;
 using Godot;
 using System;
+using System.Linq;
 
 public partial class ChoiceMaker : Node
 {
@@ -33,9 +34,9 @@ public partial class ChoiceMaker : Node
         animationPlayer.Play("IntroQuestion");
         await ToSignal(GetTree().CreateTimer(0.8f), "timeout");
         string[] texts = line.Text.Split('|', StringSplitOptions.TrimEntries);
-        foreach (var c in texts)
+        for(int i = 0; i < texts.Length; i++)
         {
-            CreateOptionButton(c, texts.Length);
+            CreateOptionButton(texts[i], texts.Length, i);
         }
 
         nextOptions = line.Next?.Split('|', StringSplitOptions.TrimEntries) ?? [];
@@ -48,14 +49,14 @@ public partial class ChoiceMaker : Node
         grayBack.Visible = true;
     }
 
-    void CreateOptionButton(string optionText, int totalOptions)
+    void CreateOptionButton(string optionText, int totalOptions, int i)
     {
         float buttonWidth = CalculateButtonWidth(totalOptions);
         float buttonHeight = optionsContainer.Size.Y;
         optionsContainer.AddThemeConstantOverride("separation", separation);
 
         var wrapper = CreateWrapper(buttonWidth, buttonHeight);
-        var button = CreateButton(optionText, buttonWidth, buttonHeight);
+        var button = CreateButton(optionText, buttonWidth, buttonHeight, i);
         var overlay = CreateShaderOverlay(buttonWidth, buttonHeight);
 
         button.AddChild(overlay);
@@ -81,16 +82,17 @@ public partial class ChoiceMaker : Node
         };
     }
 
-    static Button CreateButton(string text, float width, float height)
+    static Button CreateButton(string text, float width, float height, int uid)
     {
-        // TODO: Change this to make the parameters to modify this parametres in the constructor of ChoiceButton
+        // TODO: all this parametres should be in the default constructor of this class
         var button = new ChoiceButton
         {
             Text = text,
             CustomMinimumSize = new Vector2(width, height),
             PivotOffset = new Vector2(width / 2, height / 2),
             SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter | Control.SizeFlags.Expand,
-            SizeFlagsVertical = Control.SizeFlags.ShrinkCenter
+            SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
+            Uid = uid
         };
         button.SetFontSize(46);
         return button;
@@ -120,27 +122,5 @@ public partial class ChoiceMaker : Node
         tween.Parallel().TweenProperty(button, "rotation_degrees", 0f, 0.5f).SetDelay(delay);
     }
 
-
-    void OnOption1Selected(InputEvent @event)
-    {
-        if (!IsClick(@event)) return;
-        ProcessSelection(0);
-    }
-
-    void OnOption2Selected(InputEvent @event)
-    {
-        if (!IsClick(@event)) return;
-        ProcessSelection(1);
-    }
-
-    bool IsClick(InputEvent @event)
-    {
-        return @event is InputEventMouseButton mouse && mouse.Pressed && mouse.ButtonIndex == MouseButton.Left;
-    }
-
-    void ProcessSelection(int optionIndex)
-    {
-        string nextUid = nextOptions.Length > optionIndex ? nextOptions[optionIndex] : null;
-    }
 
 }
