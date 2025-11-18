@@ -85,6 +85,11 @@ public partial class ChoiceMaker : Node
     {
         animationPlayer.Play("OutQuestion");
 
+        foreach(var c in  )
+        {
+            //TODO
+        }
+
     }
 
 
