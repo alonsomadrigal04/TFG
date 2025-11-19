@@ -29,7 +29,7 @@ public partial class ChoiceMaker : Node
 
     public void ShowChoices(DialogLine line)
     {
-        //multiaudioPlayerModule.PlaySound(impact);
+        multiaudioPlayerModule.PlaySound(impact);
 
         SetUpOptions(line);
     }
@@ -63,7 +63,7 @@ public partial class ChoiceMaker : Node
 
         var wrapper = CreateWrapper(buttonWidth, buttonHeight);
         var button = CreateButton(optionText, buttonWidth, buttonHeight, i);
-        var overlay = CreateShaderOverlay(buttonWidth, buttonHeight);
+        var overlay = CreateShaderOverlay();
 
         currentButtons.Add(button);
 
@@ -71,16 +71,37 @@ public partial class ChoiceMaker : Node
 
         button.AddChild(overlay);
         wrapper.AddChild(button);
+        
         optionsContainer.AddChild(wrapper);
+
+        SetButtonTextSize();
 
         AnimateButtonEntry(button, wrapper.GetIndex());
     }
+
+    private void SetButtonTextSize()
+    {
+        int count = currentButtons.Count;
+        if (count == 0)
+            return;
+
+        float baseSize = 48f;
+        float scale = 1f / Mathf.Sqrt(count);
+        float finalSize = Mathf.Round(baseSize * scale);
+
+        foreach (var c in currentButtons)
+        {
+            c.SetFontSize((int)finalSize);
+        }
+    }
+
 
     void ProcessSelection(int uid)
     {
         AnimateOutChoice();
         string nextUid = nextOptions[uid];
         ChoiceSelected?.Invoke(nextUid);
+
     }
 
     void AnimateOutChoice()
@@ -89,7 +110,6 @@ public partial class ChoiceMaker : Node
 
         for(int i = 0; i < currentButtons.Count; i++)
         {
-            GD.Print(currentButtons[i]);
             AnimateExitButtons(currentButtons[i], i);
         }
 
@@ -124,23 +144,33 @@ public partial class ChoiceMaker : Node
             SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
             Uid = uid
         };
-        button.SetFontSize(46);
         return button;
     }
 
-    ColorRect CreateShaderOverlay(float width, float height)
+    ColorRect CreateShaderOverlay()
     {
-        return new ColorRect
+        var overlay = new ColorRect
         {
-            CustomMinimumSize = new Vector2(width, height),
+            AnchorLeft = 0,
+            AnchorTop = 0,
+            AnchorRight = 1,
+            AnchorBottom = 1,
+
+            OffsetLeft = 0,
+            OffsetTop = 0,
+            OffsetRight = 0,
+            OffsetBottom = 0,
+
             Material = optionShader,
             MouseFilter = Control.MouseFilterEnum.Pass
         };
+
+        return overlay;
     }
 
     void AnimateExitButtons(Button button, int index)
     {
-        buttonExitTween?.Kill();
+        GD.Print(index);
 
         buttonExitTween = CreateTween()
             .SetTrans(Tween.TransitionType.Expo)
@@ -149,7 +179,21 @@ public partial class ChoiceMaker : Node
         buttonExitTween.TweenProperty(button, "position", new Vector2(button.Position.X, 1000), 0.5f).SetDelay(delay);
         buttonExitTween.Parallel().TweenProperty(button, "rotation_degrees", -10f, 0.5f).SetDelay(delay);
 
+        if (index == currentButtons.Count - 1)
+        {
+            buttonExitTween.TweenCallback(Callable.From(ClearButtons));
+        }
+
     }
+
+    void ClearButtons()
+    {
+        foreach (var b in currentButtons)
+            b.GetParent().QueueFree();
+
+        currentButtons.Clear();
+    }
+
 
     void AnimateButtonEntry(Button button, int index)
     {

@@ -1,15 +1,23 @@
 ﻿uid;type;speaker;text;next
-d1;say;Alonso;¿Entonces eres del Top o de Jungla?;
-d2;choice;;Top|Jungla;d2_a1|d2_b1
+d1;say;Alonso;¿Entonces sois main del LoL o solo venís a fardar de skins?;d1_c1
 ;;;;
+d1_c1;choice;;Main Top|Main Jungla|Main Mid|Main ADC|Juego ARAM;d1_top1|d1_jg1|d1_mid1|d1_adc1|d1_aram1
 ;;;;
+d1_top1;say;Nuria;Main Top… claro, otro que se cree tanque y luego se muere en río minuto dos.;d1_top2
+d1_top2;choice;;Protestar|Aceptar el destino;d1_topA|d1_topB
+d1_topA;say;Saúl;Sí sí, protesta, pero cuando te gankean tres ya no protestas tanto.;END
+d1_topB;say;Karl;Aceptarlo es sabio. Más sabio que tus builds de piedra solar.;END
 ;;;;
+d1_jg1;say;Saúl;¿Jungla? Ah sí, el rol que desaparece diez minutos y vuelve con cara de “no era mi culpa”.;d1_jg2
+d1_jg2;choice;;Prometo gank|No pienso gankear;d1_jgA|d1_jgB
+d1_jgA;say;Alonso;Lo apunto: otra promesa que no se cumplirá.;END
+d1_jgB;say;Nuria;Por lo menos eres honesto. Malo, pero honesto.;END
 ;;;;
-d2_a1;say;Alonso;¿Madrilista? Pues menuda mierda colega.;
-d2_a2;say;Alonso;Seguro que eres de Badajoz.;
-d2_a3;say;Alonso;Esos son los peores.;
+d1_mid1;say;Nuria;Mid… interesante. El clásico “si muero es culpa del jungla, si gano soy un genio”.;END
 ;;;;
+d1_adc1;say;Karl;ADC… otro mártir del sistema. Mucho daño, cero movilidad y cien quejas.;d1_adc2
+d1_adc2;choice;;Culpar al support|Culparse a sí mismo;d1_adcA|d1_adcB
+d1_adcA;say;Saúl;Obvio, siempre es culpa del support. Firmado: todos los ADC del universo.;END
+d1_adcB;say;Nuria;¿Asumir responsabilidad? Qué concepto tan novedoso.;END
 ;;;;
-d2_b1;say;Alonso;¿Barna? Pues menuda mierda colega.;
-d2_b2;say;Alonso;Seguro que eres de Uelva.;
-d2_b3;say;Alonso;Esos huelen mal.;
+d1_aram1;say;Alonso;ARAM… o sea, LoL pero sin pensar. Respeto esa filosofía vital.;END

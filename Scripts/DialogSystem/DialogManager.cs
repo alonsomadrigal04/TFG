@@ -26,8 +26,6 @@ public partial class DialogManager : Node
     {
         isInChoiceMode = false;
         StartDialog(nextUid);
-
-        GD.Print(nextUid);
     }
 
 
@@ -95,6 +93,10 @@ public partial class DialogManager : Node
 
         string nextUid = currentLine.Next;
 
+        if(nextUid == "END")
+        {
+            EndDialog();
+        }
         if (!string.IsNullOrEmpty(nextUid) && dialogLines.ContainsKey(nextUid))
         {
             StartDialog(nextUid);
@@ -109,7 +111,12 @@ public partial class DialogManager : Node
         }
         else
         {
-            GD.Print("End of dialogue.");
+            EndDialog();
         }
+    }
+
+    private void EndDialog()
+    {
+        GD.Print("End of dialogue.");
     }
 }
