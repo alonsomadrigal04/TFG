@@ -4,7 +4,7 @@ using System.Linq;
 
 public static class DebugService
 {
-    private static readonly Dictionary<string, Func<string>> entries = [];
+     static readonly Dictionary<string, Func<string>> entries = [];
 
     public static void Register(string key, Func<string> getter)
     {

@@ -7,8 +7,8 @@ using Godot;
 public class TagProcessor()
 {
     public readonly Stack<float> speedStack = new();
-    private readonly Stack<string> effectStack = new();
-    private float currentSpeed = 0.02f;
+     readonly Stack<string> effectStack = new();
+     float currentSpeed = 0.02f;
     public float CurrentSpeed => currentSpeed;
 
     readonly string waveParams = "amp=50.0 freq=5.0 connected=1";

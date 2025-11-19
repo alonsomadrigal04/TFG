@@ -1,7 +1,9 @@
 using Game.Common.Modules;
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 
 public partial class ChoiceMaker : Node
 {
@@ -20,8 +22,9 @@ public partial class ChoiceMaker : Node
     [Export] ColorRect shaderBack;
     [Export] ColorRect grayBack;
 
-    private string[] nextOptions;
-    private Button[] currentButtons;
+    string[] nextOptions;
+    List<Button> currentButtons = [];
+    Tween buttonExitTween;
 
 
     public void ShowChoices(DialogLine line)
@@ -62,7 +65,7 @@ public partial class ChoiceMaker : Node
         var button = CreateButton(optionText, buttonWidth, buttonHeight, i);
         var overlay = CreateShaderOverlay(buttonWidth, buttonHeight);
 
-        _ = currentButtons.Append(button);
+        currentButtons.Add(button);
 
         button.SelectedSignal += ProcessSelection;
 
@@ -73,21 +76,21 @@ public partial class ChoiceMaker : Node
         AnimateButtonEntry(button, wrapper.GetIndex());
     }
 
-    private void ProcessSelection(int uid)
+    void ProcessSelection(int uid)
     {
-        //TODO: activate HideAnimation
-        AnimateButtonExit();
+        AnimateOutChoice();
         string nextUid = nextOptions[uid];
         ChoiceSelected?.Invoke(nextUid);
     }
 
-    private void AnimateButtonExit()
+    void AnimateOutChoice()
     {
         animationPlayer.Play("OutQuestion");
 
-        foreach(var c in  )
+        for(int i = 0; i < currentButtons.Count; i++)
         {
-            //TODO
+            GD.Print(currentButtons[i]);
+            AnimateExitButtons(currentButtons[i], i);
         }
 
     }
@@ -133,6 +136,19 @@ public partial class ChoiceMaker : Node
             Material = optionShader,
             MouseFilter = Control.MouseFilterEnum.Pass
         };
+    }
+
+    void AnimateExitButtons(Button button, int index)
+    {
+        buttonExitTween?.Kill();
+
+        buttonExitTween = CreateTween()
+            .SetTrans(Tween.TransitionType.Expo)
+            .SetEase(Tween.EaseType.In);
+        float delay = 0.1f * index;
+        buttonExitTween.TweenProperty(button, "position", new Vector2(button.Position.X, 1000), 0.5f).SetDelay(delay);
+        buttonExitTween.Parallel().TweenProperty(button, "rotation_degrees", -10f, 0.5f).SetDelay(delay);
+
     }
 
     void AnimateButtonEntry(Button button, int index)

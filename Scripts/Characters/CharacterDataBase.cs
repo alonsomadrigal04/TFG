@@ -4,7 +4,7 @@ using System.Linq;
 
 public class CharacterDatabase
 {
-    private static readonly Dictionary<string, Character> characters = [];
+    static readonly Dictionary<string, Character> characters = [];
 
     public static void RegisterCharacter(Character character)
     {

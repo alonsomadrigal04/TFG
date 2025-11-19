@@ -5,15 +5,15 @@ using System.Linq;
 
 public partial class DialogManager : Node
 {
-    private DialogReader reader;
-    [Export] private ChoiceMaker choiceMaker;
-    [Export] private TextTyper textTyper;
+    DialogReader reader;
+    [Export] ChoiceMaker choiceMaker;
+    [Export] TextTyper textTyper;
 
-    private Dictionary<string, DialogLine> dialogLines;
-    private List<string> orderedUids;
-    private DialogLine currentLine;
+    Dictionary<string, DialogLine> dialogLines;
+    List<string> orderedUids;
+     DialogLine currentLine;
 
-    private bool isInChoiceMode = false;
+     bool isInChoiceMode = false;
 
 
     public override void _EnterTree()
@@ -22,7 +22,7 @@ public partial class DialogManager : Node
         choiceMaker.ChoiceSelected += OnChoiceSelected;
     }
 
-    private void OnChoiceSelected(string nextUid)
+     void OnChoiceSelected(string nextUid)
     {
         isInChoiceMode = false;
         StartDialog(nextUid);

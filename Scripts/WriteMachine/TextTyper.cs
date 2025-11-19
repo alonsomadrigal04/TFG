@@ -60,7 +60,7 @@ public partial class TextTyper : Control
         isTyping = false;
     }
 
-    private async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex, Character speaker)
+     async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex, Character speaker)
     {
         int charIndex = 0;
         while (charIndex < textToken.Content.Length)
@@ -91,7 +91,7 @@ public partial class TextTyper : Control
     }
 
 
-    private string BuildRemainingText(List<TagToken> tokens, int currentTokenIndex, int charIndexInToken)
+     string BuildRemainingText(List<TagToken> tokens, int currentTokenIndex, int charIndexInToken)
     {
         string remainingText = "";
 
@@ -105,7 +105,7 @@ public partial class TextTyper : Control
         return remainingText;
     }
 
-    private void ProcessTag(TagToken token, ref string cleanText)
+     void ProcessTag(TagToken token, ref string cleanText)
     {
         switch(token)
         {
@@ -120,7 +120,7 @@ public partial class TextTyper : Control
         }
     }
 
-    private static string BuildClosingTags(IEnumerable<string> tagStack)
+     static string BuildClosingTags(IEnumerable<string> tagStack)
     {
         if (!tagStack.Any())
             return string.Empty;

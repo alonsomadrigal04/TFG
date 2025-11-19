@@ -5,17 +5,17 @@ using System;
 public partial class ChoiceButton : Button
 {
     [Signal] public delegate void SelectedSignalEventHandler(int uid);
-    [Export] private float hoverShakeAmount = 1f;
-    [Export] private float hoverShakeSpeed = 0.01f;
-    [Export] private float clickScale = 0.9f;
+    [Export] float hoverShakeAmount = 1f;
+    [Export] float hoverShakeSpeed = 0.01f;
+    [Export] float clickScale = 0.9f;
 
-    private Vector2 baseScale;
-    private Vector2 basePosition;
+    Vector2 baseScale;
+    Vector2 basePosition;
 
     public int Uid;
 
-    private Tween hoverTween;
-    private Tween clickTween;
+    Tween hoverTween;
+    Tween clickTween;
 
     public override void _Ready()
     {
@@ -24,31 +24,31 @@ public partial class ChoiceButton : Button
         ConnectSignals();
     }
 
-    private void ConnectSignals()
+    void ConnectSignals()
     {
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
         Pressed += OnPressed;
     }
 
-    private void OnMouseEntered()
+    void OnMouseEntered()
     {
         StartHoverShake();
     }
 
-    private void OnMouseExited()
+    void OnMouseExited()
     {
         StopHoverShake();
     }
 
-    private void OnPressed()
+    void OnPressed()
     {
         AnimateClick();
         EmitSignal(nameof(SelectedSignal), Uid);
     }
 
 
-    private void StartHoverShake()
+    void StartHoverShake()
     {
         StopHoverShake();
 
@@ -67,7 +67,7 @@ public partial class ChoiceButton : Button
         .SetDelay(hoverShakeSpeed);
     }
 
-    private void StopHoverShake()
+    void StopHoverShake()
     {
         hoverTween?.Kill();
 
@@ -75,7 +75,7 @@ public partial class ChoiceButton : Button
     }
 
 
-    private void AnimateClick()
+    void AnimateClick()
     {
         clickTween?.Kill();
         clickTween = CreateTween();

@@ -3,8 +3,8 @@ using System;
 
 public partial class GameManager : Node
 {
-    [Export] private NodePath dialogManagerPath;
-    private DialogManager dialogManager;
+    [Export] NodePath dialogManagerPath;
+    DialogManager dialogManager;
 
     public override void _Ready()
     {
