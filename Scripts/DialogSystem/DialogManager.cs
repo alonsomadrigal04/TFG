@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 
 public partial class DialogManager : Node
 {
@@ -96,8 +97,9 @@ public partial class DialogManager : Node
         if(nextUid == "END")
         {
             EndDialog();
+            return;
         }
-        if (!string.IsNullOrEmpty(nextUid) && dialogLines.ContainsKey(nextUid))
+        else if (!string.IsNullOrEmpty(nextUid) && dialogLines.ContainsKey(nextUid))
         {
             StartDialog(nextUid);
             return;
@@ -112,6 +114,7 @@ public partial class DialogManager : Node
         else
         {
             EndDialog();
+            return;
         }
     }
 
