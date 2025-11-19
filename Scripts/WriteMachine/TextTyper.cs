@@ -60,7 +60,7 @@ public partial class TextTyper : Control
         isTyping = false;
     }
 
-     async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex, Character speaker)
+    async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex, Character speaker)
     {
         int charIndex = 0;
         while (charIndex < textToken.Content.Length)

@@ -1,3 +1,5 @@
+using Components;
+using Game.Common.Modules;
 using Godot;
 using System;
 
@@ -5,23 +7,33 @@ using System;
 public partial class ChoiceButton : Button
 {
     [Signal] public delegate void SelectedSignalEventHandler(int uid);
-    [Export] float hoverShakeAmount = 1f;
-    [Export] float hoverShakeSpeed = 0.01f;
-    [Export] float clickScale = 0.9f;
+    float hoverShakeAmount = 15f;
+    float hoverShakeSpeed = 1f;
+    float clickScale = 0.9f;
 
     Vector2 baseScale;
     Vector2 basePosition;
+    float baseRotation;
 
     public int Uid;
 
     Tween hoverTween;
     Tween clickTween;
 
+    AudioStream hoverSound;
+    AudioStream pressSound;
+
+
     public override void _Ready()
     {
         baseScale = Scale;
         basePosition = Position;
+        baseRotation = RotationDegrees;
         ConnectSignals();
+
+        pressSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/press.wav");
+        hoverSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/Hover2.wav");
+
     }
 
     void ConnectSignals()
@@ -44,6 +56,7 @@ public partial class ChoiceButton : Button
     void OnPressed()
     {
         AnimateClick();
+        AudioManager.PlayAudio(pressSound);
         EmitSignal(nameof(SelectedSignal), Uid);
     }
 
@@ -51,20 +64,21 @@ public partial class ChoiceButton : Button
     void StartHoverShake()
     {
         StopHoverShake();
+        Vector2 originalPosition = Position;
+
+        AudioManager.PlayAudio(hoverSound);
 
         hoverTween = CreateTween();
         hoverTween.SetLoops();
-        hoverTween.SetTrans(Tween.TransitionType.Cubic);
+        hoverTween.SetTrans(Tween.TransitionType.Quad)
+                .SetEase(Tween.EaseType.InOut);
 
-        hoverTween.TweenCallback(Callable.From(() =>
-        {
-            Vector2 randomOffset = new(
-                (float)GD.RandRange(-hoverShakeAmount, hoverShakeAmount),
-                (float)GD.RandRange(-hoverShakeAmount, hoverShakeAmount)
-            );
-            Position = basePosition + randomOffset;
-        }))
-        .SetDelay(hoverShakeSpeed);
+        // hoverTween.TweenProperty(this, "position", Position + new Vector2(Position.X, Position.Y + hoverShakeAmount), hoverShakeSpeed);
+        // hoverTween.TweenProperty(this, "position", originalPosition + new Vector2(Position.X, Position.Y - hoverShakeAmount), hoverShakeSpeed);
+
+        hoverTween.TweenProperty(this, "rotation_degrees", RotationDegrees + 5f, hoverShakeSpeed);
+        hoverTween.TweenProperty(this, "rotation_degrees", RotationDegrees - 10f, hoverShakeSpeed);
+
     }
 
     void StopHoverShake()
@@ -72,6 +86,7 @@ public partial class ChoiceButton : Button
         hoverTween?.Kill();
 
         Position = basePosition;
+        RotationDegrees = baseRotation;
     }
 
 
