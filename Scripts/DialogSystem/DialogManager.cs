@@ -60,12 +60,13 @@ public partial class DialogManager : Node
         else if (dialogLines.TryGetValue(uid, out var line))
         {
             currentLine = line;
-
-
-            switch (line.Type.ToLower())
+            string[] typePortions = line.Type.Split('/', StringSplitOptions.TrimEntries);
+            switch (typePortions[0].ToLower())
             {
                 case "say":
                     textTyper.WriteText(line.Text, line.Speaker);
+                    // if(typePortions.Length > 1)
+                    //     FlavourAnimator.Instance.PlayFlavour(typePortions[1]);
                     DebugService.Register("Last speaker", () => line.Speaker.Name);
                     break;
 

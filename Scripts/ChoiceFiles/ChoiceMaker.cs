@@ -1,3 +1,4 @@
+using Components;
 using Game.Common.Modules;
 using Godot;
 using System;
@@ -7,10 +8,10 @@ using System.Runtime.ExceptionServices;
 
 public partial class ChoiceMaker : Node
 {
-    [Export] MultiaudioPlayerModule multiaudioPlayerModule;
     public event Action<string> ChoiceSelected;
 
     [Export] AudioStream impact;
+    [Export] AudioStream soft;
 
     [ExportGroup("Options")]
     [Export] AnimationPlayer animationPlayer;
@@ -29,15 +30,29 @@ public partial class ChoiceMaker : Node
 
     public void ShowChoices(DialogLine line)
     {
-        multiaudioPlayerModule.PlaySound(impact);
-
-        SetUpOptions(line);
+        string[] optionType = line.Type.Split('/', StringSplitOptions.TrimEntries);
+        if(optionType.Length == 1)
+            GD.PrintErr("Choice subType not declarated: try choice/Impact, choice/Soft");
+        SetUpOptions(line, optionType[1]);
     }
 
-    async void SetUpOptions(DialogLine line)
+    async void SetUpOptions(DialogLine line, string optionType)
     {
-        SetActiveShaders();
-        animationPlayer.Play("IntroQuestion");
+        switch (optionType)
+        {
+            case "Impact":
+                SetActiveShaders();
+                AudioManager.PlayAudio(impact);
+                animationPlayer.Play("IntroQuestion");
+                break;
+            case "Soft":
+                SetActiveShaders();
+                AudioManager.PlayAudio(soft);
+                animationPlayer.Play("IntroQuestion"); // TODO: create a Soft Animation
+                break;
+            default:
+                break;
+        }
         await ToSignal(GetTree().CreateTimer(0.8f), "timeout");
         string[] texts = line.Text.Split('|', StringSplitOptions.TrimEntries);
         for(int i = 0; i < texts.Length; i++)

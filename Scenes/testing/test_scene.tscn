@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dchwp1pat8lg2"]
+[gd_scene load_steps=21 format=3 uid="uid://dchwp1pat8lg2"]
 
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
@@ -8,7 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
+[ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
 [ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="8_d3awe"]
+[ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
+[ext_resource type="AudioStream" uid="uid://cdvrc3ns1oa07" path="res://Audio/Sounds/FlavourSounds/question.wav" id="12_abms1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oho3u"]
 shader = ExtResource("6_x033f")
@@ -254,6 +257,114 @@ _data = {
 &"RESET": SubResource("Animation_x033f")
 }
 
+[sub_resource type="Animation" id="Animation_abms1"]
+resource_name = "question"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestionMark:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(787, 75), Vector2(863, 39.999996)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("QuestionMark:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.15009831]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("QuestionMark:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("QuestionMark:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.13333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.23, 1.23)]
+}
+
+[sub_resource type="Animation" id="Animation_f12dq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestionMark:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(787, 75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("QuestionMark:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("QuestionMark:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("QuestionMark:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f12dq"]
+_data = {
+&"RESET": SubResource("Animation_f12dq"),
+&"question": SubResource("Animation_abms1")
+}
+
 [node name="TestScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -264,6 +375,7 @@ grow_vertical = 2
 
 [node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
 layout_mode = 1
+enable = false
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0
@@ -282,14 +394,20 @@ textTyper = NodePath("../DialogBox")
 
 [node name="DialogBox" parent="." instance=ExtResource("2_50ct6")]
 layout_mode = 1
+anchor_top = 0.5
+anchor_right = 0.91600007
+anchor_bottom = 0.90000004
+offset_top = -217.0
+offset_right = 107.5199
+offset_bottom = 215.0
 
-[node name="ChoiceMaker" type="Control" parent="." node_paths=PackedStringArray("multiaudioPlayerModule", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
+[node name="ChoiceMaker" type="Control" parent="." node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_ak5v8")
-multiaudioPlayerModule = NodePath("../MultiaudioPlayerModule")
 impact = ExtResource("5_oho3u")
+soft = ExtResource("7_5t315")
 animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
 optionsContainer = NodePath("../ChoiceLayout/HBoxContainer")
 optionShader = ExtResource("6_d3awe")
@@ -345,7 +463,27 @@ theme_override_font_sizes/normal_font_size = 521
 text = "?"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="MultiaudioPlayerModule" type="Node" parent="."]
 script = ExtResource("8_d3awe")
 metadata/_custom_type_script = "uid://b1kqhsfkrse3k"
+
+[node name="FlavourAnimationModule" type="Node" parent="." node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("11_n1mmy")
+animationPlayer = NodePath("FlavourAnimatorPlayer")
+questionAudio = ExtResource("12_abms1")
+
+[node name="FlavourAnimatorPlayer" type="AnimationPlayer" parent="FlavourAnimationModule"]
+libraries = {
+&"": SubResource("AnimationLibrary_f12dq")
+}
+
+[node name="QuestionMark" type="RichTextLabel" parent="FlavourAnimationModule"]
+offset_left = 787.0
+offset_top = 75.0
+offset_right = 855.0
+offset_bottom = 292.00003
+pivot_offset = Vector2(34, 109)
+theme_override_font_sizes/normal_font_size = 156
+text = "?"

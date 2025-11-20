@@ -12,7 +12,6 @@ public partial class TextTyper : Control
 {
     [ExportGroup("Audio")]
     [Export] MultiaudioPlayerModule audioModule;
-    //[Export] AudioStream sound;
     [ExportGroup("Text Boxes")]
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
