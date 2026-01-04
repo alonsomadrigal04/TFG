@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class DialogReader
 {
@@ -39,7 +40,7 @@ public class DialogReader
             {
                 Uid = parts[0].Trim(),
                 Type = parts[1].Trim(),
-                Speaker = parts[1].Trim() == "say" ? CharacterDatabase.GetCharacter(parts[2].Trim()) : null,
+                Speaker = GetCharacterName(parts),
                 Text = parts[3].Trim(),
                 Next = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[4].Trim()
             };
@@ -52,6 +53,23 @@ public class DialogReader
 
         DebugService.Register("Qty of lines", () => lines.Count.ToString());
         return lines;
+    }
+
+    private Character GetCharacterName(string[] parts)
+    {
+        //TODO: SOLVE THIS
+        string[] subTypes = parts[1].Trim().Split('/');
+        if (subTypes.Length > 1 && subTypes[0] == "say")
+        {
+            return CharacterDatabase.GetCharacter(parts[2].Trim());
+        }
+        else if (subTypes.Length <= 1 && parts[1] == "say")
+        {
+            return CharacterDatabase.GetCharacter(parts[2].Trim());
+        }
+
+        return null;
+
     }
 
     public List<string> GetOrderedUids() => [.. orderedUids];

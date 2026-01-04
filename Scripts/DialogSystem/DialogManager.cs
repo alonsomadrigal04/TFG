@@ -65,8 +65,8 @@ public partial class DialogManager : Node
             {
                 case "say":
                     textTyper.WriteText(line.Text, line.Speaker);
-                    // if(typePortions.Length > 1)
-                    //     FlavourAnimator.Instance.PlayFlavour(typePortions[1]);
+                    if(typePortions.Length > 1)
+                        FlavourAnimator.Instance.PlayFlavour(typePortions[1]);
                     DebugService.Register("Last speaker", () => line.Speaker.Name);
                     break;
 

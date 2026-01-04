@@ -14,22 +14,6 @@ public class TagProcessor()
     readonly string waveParams = "amp=50.0 freq=5.0 connected=1";
     readonly string shakeParams = "rate=15.0 level=20.0 connected=1";
 
-    /// <summary>
-    /// Procesa un token y actualiza el contexto de efectos (velocidad, animaciones, etc.)
-    /// </summary>
-    public void ProcessToken(TagToken token)
-    {
-        switch (token)
-        {
-            case OpenTagToken openTag:
-                HandleOpenTag(openTag);
-                break;
-
-            case CloseTagToken closeTag:
-                HandleCloseTag(closeTag);
-                break;
-        }
-    }
 
     public string? HandleOpenTag(OpenTagToken token)
     {

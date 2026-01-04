@@ -3,9 +3,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class TagParser
+public class TagParser
 {
-
     public static List<TagToken> Parse(string text)
     {
         List<TagToken> tagTokenList = [];
@@ -65,79 +64,3 @@ public partial class TagParser
     }
 
 }
-
-
-
-
-
-
-/*
-                if (baseTagName == "speed")
-                {
-                    if (!isClosingTag)
-                    {
-                        float newSpeed = currentSpeed;
-                        var parts = tagContent.Split(' ');
-                        foreach (var part in parts)
-                        {
-                            if (part.StartsWith("s=") &&
-                                float.TryParse(part.AsSpan(2), NumberStyles.Float, CultureInfo.InvariantCulture, out float sValue))
-                            {
-                                newSpeed = sValue;
-                            }
-                        }
-
-                        speedStack.Push(currentSpeed);
-                        currentSpeed = newSpeed;
-                    }
-                    else if (speedStack.Count > 0)
-                        currentSpeed = speedStack.Pop();
-
-                    i = closingBracket + 1;
-                    continue;
-                }
-
-                if (baseTagName == "w" || baseTagName == "s")
-                {
-                    string expandedTag;
-
-                    if (!isClosingTag)
-                    {
-                        expandedTag = baseTagName == "w"
-                            ? $"[wave {waveParams}]"
-                            : $"[shake {shakeParams}]";
-                    }
-                    else
-                    {
-                        expandedTag = baseTagName == "w" ? "[/wave]" : "[/shake]";
-                    }
-
-                    cleanText += expandedTag;
-
-                    if (isClosingTag)
-                    {
-                        if (tagStack.Count > 0)
-                            tagStack.Pop();
-                    }
-                    else
-                    {
-                        tagStack.Push(expandedTag);
-                    }
-
-                    i = closingBracket + 1;
-                    continue;
-                }
-
-                if (isClosingTag)
-                {
-                    if (tagStack.Count > 0)
-                        tagStack.Pop();
-                }
-                else
-                {
-                    tagStack.Push(tagName);
-                }
-
-                cleanText += tag;
-                i = closingBracket + 1;
-                continue;*/
