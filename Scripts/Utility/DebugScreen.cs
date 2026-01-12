@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class DebugScreen : Control
 {
     [Export] bool enable = true;
-     Label label;
+    Label label;
 
     public override void _Ready()
     {

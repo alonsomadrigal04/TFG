@@ -39,10 +39,11 @@ public class DialogReader
             DialogLine dialogLine = new()
             {
                 Uid = parts[0].Trim(),
-                Type = parts[1].Trim(),
+                Code = parts[1].Trim(),
+                Type = parts[2].Trim(),
                 Speaker = GetCharacterName(parts),
-                Text = parts[3].Trim(),
-                Next = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[4].Trim()
+                Text = parts[4].Trim(),
+                Next = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[5].Trim()
             };
 
 
@@ -57,13 +58,12 @@ public class DialogReader
 
     private Character GetCharacterName(string[] parts)
     {
-        //TODO: SOLVE THIS
-        string[] subTypes = parts[1].Trim().Split('/');
+        string[] subTypes = parts[2].Trim().Split('/');
         if (subTypes.Length > 1 && subTypes[0] == "say")
         {
             return CharacterDatabase.GetCharacter(parts[2].Trim());
         }
-        else if (subTypes.Length <= 1 && parts[1] == "say")
+        else if (subTypes.Length <= 1 && parts[2] == "say")
         {
             return CharacterDatabase.GetCharacter(parts[2].Trim());
         }

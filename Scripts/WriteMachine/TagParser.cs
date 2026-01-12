@@ -37,7 +37,7 @@ public class TagParser
                             if (param.Length == 2)
                                 parameters[param[0]] = param[1];
                         }
-
+ 
                         tagTokenList.Add(new OpenTagToken(baseTagName, parameters));
                     }
 

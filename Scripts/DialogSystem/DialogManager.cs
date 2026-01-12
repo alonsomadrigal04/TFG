@@ -12,9 +12,9 @@ public partial class DialogManager : Node
 
     Dictionary<string, DialogLine> dialogLines;
     List<string> orderedUids;
-     DialogLine currentLine;
+    DialogLine currentLine;
 
-     bool isInChoiceMode = false;
+    bool isInChoiceMode = false;
 
 
     public override void _EnterTree()
@@ -23,7 +23,7 @@ public partial class DialogManager : Node
         choiceMaker.ChoiceSelected += OnChoiceSelected;
     }
 
-     void OnChoiceSelected(string nextUid)
+    void OnChoiceSelected(string nextUid)
     {
         isInChoiceMode = false;
         StartDialog(nextUid);
@@ -60,6 +60,11 @@ public partial class DialogManager : Node
         else if (dialogLines.TryGetValue(uid, out var line))
         {
             currentLine = line;
+            if(line.Code != "")
+            {
+                CodeProcessor.RunCode(line.Code);
+            }
+
             string[] typePortions = line.Type.Split('/', StringSplitOptions.TrimEntries);
             switch (typePortions[0].ToLower())
             {

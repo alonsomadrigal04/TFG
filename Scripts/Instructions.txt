@@ -1,0 +1,3 @@
+Instructions
+To add a new Tag on a text:
+1. In TagProcessor.cs add a new case in HandleOpenTag

@@ -6,6 +6,7 @@ using System;
 public class DialogLine
 {
     public string Uid { get; set; }
+    public string Code {get; set;}
     public string Type { get; set; }    
     public Character Speaker { get; set; }
     public string Text { get; set;}

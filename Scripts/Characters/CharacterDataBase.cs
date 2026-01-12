@@ -34,12 +34,17 @@ public class CharacterDatabase
         foreach (string key in data.Keys.Select(v => (string)v))
         {
             var entry = (Godot.Collections.Dictionary)data[key];
-            var character = new Character(key, GD.Load<AudioStream>(entry.GetValueOrDefault("voice_sample", "").ToString()))
+            var portraitSet = ResourceLoader.Load<CharacterPortraitSet>($"res://Assets/Portraits/{key}/{key}Portraits.tres");
+            var character = new Character(key)
             {
-                TextColor = new Color(entry.GetValueOrDefault("color", "#ffffff").ToString())
+                VoiceSample = GD.Load<AudioStream>(entry.GetValueOrDefault("voice_sample", "").ToString()),
+                TextColor = new Color(entry.GetValueOrDefault("color", "#ffffff").ToString()),
+                Portraits =  portraitSet?.Portraits ?? []
             };
+            
             RegisterCharacter(character);
         }
+
 
         DebugService.Register("Qty characters in BBDD", () => characters.Count.ToString());
     }
