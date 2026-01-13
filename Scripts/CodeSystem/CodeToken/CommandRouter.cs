@@ -4,5 +4,19 @@ using System.Collections.Generic;
 
 public class CommandRouter
 {
-    public List<ICommandHandler> commandHandlers;
+    List<ICommandHandler> commandHandlers = [
+        new CameraHandler(),
+        new CharacterHanlder()
+    ];
+
+    public ICommandHandler GetHandler(CommandToken token)
+    {
+        foreach (var handler in commandHandlers){
+            if(handler.Supportedverbs.Contains(token.Verb))
+                return handler;
+        }
+        GD.PushError($"[CommandRouter] '{token.Verb}' is not recognized");
+        return null;
+    }
+
 }

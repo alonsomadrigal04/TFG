@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 
 public partial class DialogManager : Node
@@ -63,6 +64,7 @@ public partial class DialogManager : Node
             if(line.Code != "")
             {
                 CodeProcessor.RunCode(line.Code);
+                return;
             }
 
             string[] typePortions = line.Type.Split('/', StringSplitOptions.TrimEntries);

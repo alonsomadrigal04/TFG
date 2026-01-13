@@ -1,21 +1,38 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
 public class CameraHandler : ICommandHandler
 {
-    public bool CanHandle(CommandToken token)
+    public HashSet<string> Supportedverbs => supportedVerbs;
+    static readonly HashSet<string> supportedVerbs =
+    [
+        "zoom",
+        "shake"
+    ];
+
+    public void Execute(CommandToken commandToken)
     {
-        switch (token.Verb)
+        switch (commandToken.Verb)
         {
-            case "Zoom":
-            break;
+            case "zoom":
+                Zoom(commandToken);
+                break;
+            case "shake":
+                Shake(commandToken);
+                break;
             default:
-            break;
+                break;
         }
-        return false;
     }
 
-    public void Execute()
+    private void Shake(CommandToken commandToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Zoom(CommandToken commandToken)
     {
         throw new NotImplementedException();
     }

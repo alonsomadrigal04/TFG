@@ -1,8 +1,9 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public interface ICommandHandler
 {
-    public bool CanHandle(CommandToken token); // Maybe this will replaced for some dicctionary or a GetHandle method
-    public void Execute();
+    public HashSet<string> Supportedverbs {get;}
+    public void Execute(CommandToken commandToken);
 }
