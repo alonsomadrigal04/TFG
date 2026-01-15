@@ -1,5 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dchwp1pat8lg2"]
 
+[ext_resource type="Script" uid="uid://c2ew51eyjlbgx" path="res://Scripts/API/CharacterStage.cs" id="1_0fon4"]
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
 [ext_resource type="PackedScene" uid="uid://vu586py46jou" path="res://Scenes/DialogSystem/TextBox.tscn" id="2_50ct6"]
@@ -12,7 +13,6 @@
 [ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="8_d3awe"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
 [ext_resource type="AudioStream" uid="uid://cdvrc3ns1oa07" path="res://Audio/Sounds/FlavourSounds/question.wav" id="12_abms1"]
-[ext_resource type="Texture2D" uid="uid://leggi1whkbf8" path="res://Assets/Portraits/Alonso/1900x1900-000000-80-0-0.jpg" id="13_f12dq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oho3u"]
 shader = ExtResource("6_x033f")
@@ -398,6 +398,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="API\'s" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharacterStage" type="Control" parent="API\'s"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0fon4")
+
+[node name="Control" type="Control" parent="API\'s"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
 layout_mode = 1
 enable = false
@@ -513,12 +529,3 @@ offset_bottom = 291.99963
 pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 525.0
-offset_top = 75.0
-offset_right = 2425.0
-offset_bottom = 1975.0
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("13_f12dq")

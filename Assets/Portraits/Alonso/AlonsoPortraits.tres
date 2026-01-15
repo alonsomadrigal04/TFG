@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CharacterPortraitSet" load_steps=3 format=3 uid="uid://c5yjhjfjjjxpg"]
 
-[ext_resource type="Texture2D" uid="uid://leggi1whkbf8" path="res://Assets/Portraits/Alonso/1900x1900-000000-80-0-0.jpg" id="1_3o18s"]
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_3o18s"]
 [ext_resource type="Script" uid="uid://b2obmv4nui3pe" path="res://Scripts/Characters/CharacterPortraitSet.cs" id="2_4vcts"]
 
 [resource]

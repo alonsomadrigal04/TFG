@@ -61,11 +61,11 @@ public class DialogReader
         string[] subTypes = parts[2].Trim().Split('/');
         if (subTypes.Length > 1 && subTypes[0] == "say")
         {
-            return CharacterDatabase.GetCharacter(parts[2].Trim());
+            return CharacterDatabase.GetCharacter(parts[3].Trim());
         }
         else if (subTypes.Length <= 1 && parts[2] == "say")
         {
-            return CharacterDatabase.GetCharacter(parts[2].Trim());
+            return CharacterDatabase.GetCharacter(parts[3].Trim());
         }
 
         return null;

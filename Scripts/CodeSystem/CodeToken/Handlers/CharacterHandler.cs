@@ -33,8 +33,7 @@ public class CharacterHanlder : ICommandHandler
     private void SummonCharacter(CommandToken commandToken)
     {
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
-
-        
+        CharacterStage.Instance.CharacterAppears(character, ToolKit.Center);
     }
 
     private void MoveCharacter(CommandToken commandToken)

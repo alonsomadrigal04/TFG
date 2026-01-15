@@ -13,6 +13,7 @@ public class CharacterDatabase
 
     public static Character GetCharacter(string name)
     {
+        name = char.ToUpper(name[0]) + name[1..];
         if (characters.TryGetValue(name, out var character))
             return character;
 
