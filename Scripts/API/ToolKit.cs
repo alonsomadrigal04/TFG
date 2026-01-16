@@ -19,6 +19,8 @@ public static partial class ToolKit
         Center   = new Vector2(size.X * 0.5f,  y);
         Right    = new Vector2(size.X * 0.75f, y);
         FarRight = new Vector2(size.X * 0.9f,  y);
+
+        
     }
 
 }

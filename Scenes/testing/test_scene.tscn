@@ -403,16 +403,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CharacterStage" type="Control" parent="API\'s"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CharacterStage" type="Node" parent="API\'s"]
 script = ExtResource("1_0fon4")
-
-[node name="Control" type="Control" parent="API\'s"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+appearTime = 3.725
 
 [node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
 layout_mode = 1
@@ -529,3 +522,13 @@ offset_bottom = 291.99963
 pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

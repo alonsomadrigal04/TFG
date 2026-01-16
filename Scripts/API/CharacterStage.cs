@@ -5,8 +5,10 @@ using System;
 public partial class CharacterStage : Node
 {
     public static CharacterStage Instance {get; private set;}
-    Dictionary<Character, TextureRect> charactersInScene = new Dictionary<Character, TextureRect>();
-    [Export] float appearingIntensity = 20f;
+    Dictionary<Character, TextureRect> charactersInScene = [];
+
+    [Export(PropertyHint.Range, "0,20,0.1")]
+    float appearingIntensity = 5f;
     [Export] float appearTime = 0.3f;
 
     public override void _Ready()
@@ -51,22 +53,25 @@ public partial class CharacterStage : Node
         TextureRect newPortrait = new()
         {
             Texture = newCharacter.Portraits[0],
-            //PivotOffset = new Vector2(Size.X / 2, Size.Y / 2),
-            Position = summonPosition.Value,
             Modulate = new Color(1, 1, 1, 0),
-            Scale = Vector2.One * 0.05f
+            Scale = Vector2.One  * (1f / (1f + appearingIntensity))
         };
+        newPortrait.ResetSize();
+
+        newPortrait.PivotOffset = newPortrait.Size / 2;
+        newPortrait.Position = summonPosition.Value - (newPortrait.Size / 2);
 
         charactersInScene[newCharacter] = newPortrait;
 
         CallDeferred(nameof(AddAndAnimate), newPortrait);
     }
 
-    void AddAndAnimate(TextureRect portrait)
+    private void AddAndAnimate(TextureRect portrait)
     {
         AddChild(portrait);
         AppearAnimation(portrait);
     }
+
 
     void AppearAnimation(TextureRect portrait)
     {

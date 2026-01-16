@@ -30,18 +30,18 @@ public class CharacterHanlder : ICommandHandler
         }
     }
 
-    private void SummonCharacter(CommandToken commandToken)
+    void SummonCharacter(CommandToken commandToken)
     {
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
-        CharacterStage.Instance.CharacterAppears(character, ToolKit.Center);
+        CharacterStage.Instance.CharacterAppears(character);
     }
 
-    private void MoveCharacter(CommandToken commandToken)
+    void MoveCharacter(CommandToken commandToken)
     {
         throw new NotImplementedException();
     }
 
-    private void ChangePortrait(CommandToken commandToken)
+    void ChangePortrait(CommandToken commandToken)
     {
         throw new NotImplementedException();
     }
