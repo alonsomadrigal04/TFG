@@ -2,10 +2,12 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class CharacterStage : Control
+public partial class CharacterStage : Node
 {
     public static CharacterStage Instance {get; private set;}
     Dictionary<Character, TextureRect> charactersInScene = new Dictionary<Character, TextureRect>();
+    [Export] float appearingIntensity = 20f;
+    [Export] float appearTime = 0.3f;
 
     public override void _Ready()
     {
@@ -39,34 +41,43 @@ public partial class CharacterStage : Control
     public void CharacterAppears(Character newCharacter, Vector2? summonPosition = null)
     {
         summonPosition ??= ToolKit.Center;
-        if(charactersInScene.ContainsKey(newCharacter))
-            GD.PushError($"[CharacterStage] {newCharacter} is already in the scene");
-            
-        TextureRect newPortrait = new(){
-            Texture = newCharacter.Portraits[0],
-            PivotOffset = new Vector2(Size.X/2, Size.Y/2),
-            Position = summonPosition.Value,
-            Modulate = new Color(1f, 1f, 1f, 0f)
-            //TODO: Add Scale or  Size
-        };
 
-        AppearAnimation(newPortrait);
+        if (charactersInScene.ContainsKey(newCharacter))
+        {
+            GD.PushError($"[CharacterStage] {newCharacter} is already in the scene");
+            return;
+        }
+
+        TextureRect newPortrait = new()
+        {
+            Texture = newCharacter.Portraits[0],
+            //PivotOffset = new Vector2(Size.X / 2, Size.Y / 2),
+            Position = summonPosition.Value,
+            Modulate = new Color(1, 1, 1, 0),
+            Scale = Vector2.One * 0.05f
+        };
 
         charactersInScene[newCharacter] = newPortrait;
 
-        //TODO: This will be in another Node container or smthing
-        CallDeferred("add_child", newPortrait);
-
+        CallDeferred(nameof(AddAndAnimate), newPortrait);
     }
 
-    private void AppearAnimation(TextureRect newPortrait)
+    void AddAndAnimate(TextureRect portrait)
+    {
+        AddChild(portrait);
+        AppearAnimation(portrait);
+    }
+
+    void AppearAnimation(TextureRect portrait)
     {
         Tween tween = CreateTween();
 
-        // TODO: finish this
-        tween.SetTrans(Tween.TransitionType.Linear);
-        tween.TweenProperty(newPortrait, "modulate:a", 255f, 0.3f);
-        tween.SetTrans(Tween.TransitionType.Elastic).SetParallel();
+        tween.TweenProperty(portrait, "modulate:a", 1f, appearTime);
 
+        tween.Parallel()
+            .TweenProperty(portrait, "scale", Vector2.One, appearTime)
+            .SetTrans(Tween.TransitionType.Elastic)
+            .SetEase(Tween.EaseType.Out);
     }
+
 }
