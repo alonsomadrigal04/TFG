@@ -7,7 +7,7 @@ public class CharacterHanlder : ICommandHandler
     public HashSet<string> Supportedverbs => supportedVerbs;
     public HashSet<string> supportedVerbs = [
         "is",
-        "move",
+        "moves",
         "appears",
         "disappears"
     ];
@@ -19,7 +19,7 @@ public class CharacterHanlder : ICommandHandler
             case "is":
                 ChangePortrait(commandToken);
                 break;
-            case "move":
+            case "moves":
                 MoveCharacter(commandToken);
                 break;
             case "appears":
@@ -49,7 +49,9 @@ public class CharacterHanlder : ICommandHandler
 
     void MoveCharacter(CommandToken commandToken)
     {
-        throw new NotImplementedException();
+        ScreenPosition position = ToolKit.FromArguments(commandToken);
+        Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
+        CharacterStage.Instance.MovePortrait(character, position);
     }
 
     void ChangePortrait(CommandToken commandToken)

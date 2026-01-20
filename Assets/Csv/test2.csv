@@ -2,4 +2,5 @@
 d1;;say;Alonso;[w]Tomas[/w] es [b]literalmente[/b] muy gay;
 d2;;say;Alonso;huh?;
 a1;Alonso appears right;;;;
-a2;Alonso disappears;;;;
+a2;Alonso moves left;;;;
+a3;Alonso disappears;;;;

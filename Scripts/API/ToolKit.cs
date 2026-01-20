@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public static partial class ToolKit
 {
-    static readonly Dictionary<ScreenPosition, float> XPositions = [];
+    static public readonly Dictionary<ScreenPosition, float> XPositions = [];
     public static void InitializePositions(Vector2 ScreenSize)
     {
         var size = ScreenSize;

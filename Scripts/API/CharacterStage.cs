@@ -24,7 +24,7 @@ public partial class CharacterStage : Node
         Instance = this;
     }
 
-    public void MovePortrait(Character character, Vector2 newDirection)
+    public void MovePortrait(Character character, ScreenPosition position)
     {
         if(!charactersInScene.ContainsKey(character)) {
             GD.PrintErr($"[CharacterStage] {character} not in the Scene");
@@ -32,18 +32,16 @@ public partial class CharacterStage : Node
         }
 
         TextureRect portrait = charactersInScene[character];
-        MoveAnimation(portrait, newDirection);        
+        MoveAnimation(portrait, position);        
     }
 
-    void MoveAnimation(TextureRect portrait, Vector2 newDirection)
+    void MoveAnimation(TextureRect portrait, ScreenPosition newDirection)
     {
+        // TODO: This kinda sucks the endobjective of the tween shouln't acces the dictionary directly
         Tween tween = CreateTween();
-
-        tween
-        .SetTrans(Tween.TransitionType.Back)
-        .SetEase(Tween.EaseType.Out);
-
-        tween.TweenProperty(portrait, "position", newDirection, 0.2f);
+        tween.SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
+        tween.TweenProperty(portrait, "anchor_left", ToolKit.XPositions[newDirection], 0.3f);
+        tween.SetParallel().TweenProperty(portrait, "anchor_right", ToolKit.XPositions[newDirection], 0.3f);
     }
 
     /// <summary>
