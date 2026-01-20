@@ -10,6 +10,10 @@ public partial class CharacterStage : Node
     [Export(PropertyHint.Range, "0,20,0.1")]
     float appearingIntensity = 5f;
     [Export] float appearTime = 0.3f;
+    [Export] float disAppearTime = 0.3f;
+    [Export] int portraitLayer = -1;
+
+    Dictionary<Character, Tween> activeTweens = [];
 
     public override void _Ready()
     {
@@ -22,8 +26,10 @@ public partial class CharacterStage : Node
 
     public void MovePortrait(Character character, Vector2 newDirection)
     {
-        if(!charactersInScene.ContainsKey(character))
-            GD.PushError($"[CharacterStage] {character} not in the Scene");
+        if(!charactersInScene.ContainsKey(character)) {
+            GD.PrintErr($"[CharacterStage] {character} not in the Scene");
+            return;
+        }
 
         TextureRect portrait = charactersInScene[character];
         MoveAnimation(portrait, newDirection);        
@@ -40,13 +46,16 @@ public partial class CharacterStage : Node
         tween.TweenProperty(portrait, "position", newDirection, 0.2f);
     }
 
-    public void CharacterAppears(Character newCharacter, Vector2? summonPosition = null)
+    /// <summary>
+    /// Makes a character appear on the stage.
+    /// </summary>
+    /// <param name="newCharacter">The character to appear.</param>
+    /// <param name="screenPosition">The position on the screen where the character should appear.</param>
+    public void CharacterAppears(Character newCharacter, ScreenPosition screenPosition)
     {
-        summonPosition ??= ToolKit.Center;
-
-        if (charactersInScene.ContainsKey(newCharacter))
+        if (IsCharacterInScene(newCharacter))
         {
-            GD.PushError($"[CharacterStage] {newCharacter} is already in the scene");
+            GD.PrintErr($"[CharacterStage] {newCharacter.Name} is already in the scene");
             return;
         }
 
@@ -59,14 +68,46 @@ public partial class CharacterStage : Node
         newPortrait.ResetSize();
 
         newPortrait.PivotOffset = newPortrait.Size / 2;
-        newPortrait.Position = summonPosition.Value - (newPortrait.Size / 2);
+        newPortrait.ZIndex = portraitLayer;
+        ToolKit.SetPosition(newPortrait, screenPosition);
+
 
         charactersInScene[newCharacter] = newPortrait;
 
         CallDeferred(nameof(AddAndAnimate), newPortrait);
     }
 
-    private void AddAndAnimate(TextureRect portrait)
+    public void CharacterDisappears(Character character)
+    {
+        if (!IsCharacterInScene(character))
+        {
+            GD.PrintErr($"[CharacterStage] {character.Name} is not in the Scene");
+            return;
+        }
+        TextureRect textureToDestroy = charactersInScene[character];
+        DisapearAnimation(textureToDestroy, character);
+    }
+
+    void DisapearAnimation(TextureRect textureToDestroy, Character character)
+    {
+        Tween tween = CreateTween();
+
+        tween.SetTrans(Tween.TransitionType.Cubic)
+            .SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(textureToDestroy, "scale", textureToDestroy.Scale * 0.75f, disAppearTime);
+        tween.Parallel()
+            .TweenProperty(textureToDestroy, "modulate:a", 0f, disAppearTime);
+
+        tween.TweenCallback(Callable.From(() =>
+        {
+            charactersInScene.Remove(character);
+            textureToDestroy.QueueFree();
+        }));
+    }
+
+
+    void AddAndAnimate(TextureRect portrait)
     {
         AddChild(portrait);
         AppearAnimation(portrait);
@@ -84,5 +125,7 @@ public partial class CharacterStage : Node
             .SetTrans(Tween.TransitionType.Elastic)
             .SetEase(Tween.EaseType.Out);
     }
+
+    public bool IsCharacterInScene(Character character) => charactersInScene.ContainsKey(character);
 
 }

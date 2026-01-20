@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://vu586py46jou"]
 
-[ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/DialogSystem/WriteMachine/TextTyper.cs" id="1_1hl6y"]
+[ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 [ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="3_u2kc5"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("audioModule", "dialogBox", "nameBox")]
 layout_mode = 3
 anchor_left = 0.080000006
 anchor_top = 0.29900002
-anchor_right = 0.906
-anchor_bottom = 0.68700004
+anchor_right = 0.92
+anchor_bottom = 0.70100003
 offset_left = -102.40001
 offset_top = -215.28001
-offset_right = 120.31995
-offset_bottom = 225.35999
+offset_right = 102.400024
+offset_bottom = 215.27997
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1hl6y")
@@ -31,8 +31,6 @@ offset_left = -0.40000916
 offset_top = -0.28001404
 offset_right = 0.4000244
 offset_bottom = 0.9999695
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogBox"]
 layout_mode = 1
@@ -60,9 +58,9 @@ language = "es"
 [node name="MarginContainer2" type="MarginContainer" parent="DialogBox"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.42600003
+anchor_right = 1.0
 anchor_bottom = 0.26200002
-offset_right = 613.032
+offset_right = -4.592041
 offset_bottom = 0.1349945
 theme_override_constants/margin_left = 20
 

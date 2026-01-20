@@ -8,7 +8,8 @@ public class CharacterHanlder : ICommandHandler
     public HashSet<string> supportedVerbs = [
         "is",
         "move",
-        "appears"
+        "appears",
+        "disappears"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -24,16 +25,26 @@ public class CharacterHanlder : ICommandHandler
             case "appears":
                 SummonCharacter(commandToken);
                 break;
+            case "disappears":
+                QuitCharacter(commandToken);
+                break;
             default:
                 break;
             
         }
     }
 
-    void SummonCharacter(CommandToken commandToken)
+    void QuitCharacter(CommandToken commandToken)
     {
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
-        CharacterStage.Instance.CharacterAppears(character);
+        CharacterStage.Instance.CharacterDisappears(character);
+    }
+
+    void SummonCharacter(CommandToken commandToken)
+    {
+        ScreenPosition position = ToolKit.FromArguments(commandToken);
+        Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
+        CharacterStage.Instance.CharacterAppears(character, position);
     }
 
     void MoveCharacter(CommandToken commandToken)
@@ -45,4 +56,6 @@ public class CharacterHanlder : ICommandHandler
     {
         throw new NotImplementedException();
     }
+
+
 }

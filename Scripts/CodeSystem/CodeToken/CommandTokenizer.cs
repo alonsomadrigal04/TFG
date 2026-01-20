@@ -11,7 +11,7 @@ public static class CommandTokenizer
         string[] tokens = rawCommandLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
         if (tokens.Length < 2)
-            GD.PushError($"[Command Tokenizer]: '{rawCommandLine}' is not taking a Subject and a Verb");
+            GD.PrintErr($"[Command Tokenizer]: '{rawCommandLine}' is not taking a Subject and a Verb");
     
         string subject = tokens[0];
         string verb = tokens[1];

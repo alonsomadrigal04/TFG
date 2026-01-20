@@ -405,7 +405,7 @@ offset_bottom = 40.0
 
 [node name="CharacterStage" type="Node" parent="API\'s"]
 script = ExtResource("1_0fon4")
-appearTime = 3.725
+appearingIntensity = 0.3
 
 [node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
 layout_mode = 1
@@ -428,12 +428,10 @@ textTyper = NodePath("../DialogBox")
 
 [node name="DialogBox" parent="." instance=ExtResource("2_50ct6")]
 layout_mode = 1
-anchor_top = 0.5
-anchor_right = 0.91600007
-anchor_bottom = 0.90000004
-offset_top = -217.0
-offset_right = 107.5199
-offset_bottom = 215.0
+anchor_top = 0.497
+anchor_bottom = 0.89900005
+offset_top = -214.84
+offset_bottom = 215.71997
 
 [node name="ChoiceMaker" type="Control" parent="." node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 anchors_preset = 0
@@ -522,13 +520,3 @@ offset_bottom = 291.99963
 pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2

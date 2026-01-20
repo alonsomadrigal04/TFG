@@ -15,7 +15,7 @@ public class CommandRouter
             if(handler.Supportedverbs.Contains(token.Verb))
                 return handler;
         }
-        GD.PushError($"[CommandRouter] '{token.Verb}' is not recognized");
+        GD.PrintErr($"[CommandRouter] '{token.Verb}' is not recognized");
         return null;
     }
 

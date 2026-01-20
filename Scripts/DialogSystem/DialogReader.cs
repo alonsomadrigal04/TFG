@@ -46,7 +46,8 @@ public class DialogReader
                 Next = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[5].Trim()
             };
 
-
+            if(dialogLine.Uid == "")
+                GD.PrintErr($"[DialogReader] line {index + 1} doesn't have an UID");
             lines[dialogLine.Uid] = dialogLine;
             orderedUids.Add(dialogLine.Uid);
             index++;
