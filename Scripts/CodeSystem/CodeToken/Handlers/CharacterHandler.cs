@@ -9,7 +9,8 @@ public class CharacterHanlder : ICommandHandler
         "is",
         "moves",
         "appears",
-        "disappears"
+        "disappears",
+        "flips"
     ];
 
     public void Execute(CommandToken commandToken)

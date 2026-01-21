@@ -26,7 +26,7 @@ public partial class CharacterStage : Node
 
     public void MovePortrait(Character character, ScreenPosition position)
     {
-        if(!charactersInScene.ContainsKey(character)) {
+        if(!IsCharacterInScene(character)) {
             GD.PrintErr($"[CharacterStage] {character} not in the Scene");
             return;
         }
@@ -37,11 +37,10 @@ public partial class CharacterStage : Node
 
     void MoveAnimation(TextureRect portrait, ScreenPosition newDirection)
     {
-        // TODO: This kinda sucks the endobjective of the tween shouln't acces the dictionary directly
         Tween tween = CreateTween();
         tween.SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
         tween.TweenProperty(portrait, "anchor_left", ToolKit.XPositions[newDirection], 0.3f);
-        tween.SetParallel().TweenProperty(portrait, "anchor_right", ToolKit.XPositions[newDirection], 0.3f);
+        tween.SetParallel().TweenProperty(portrait, "anchor_right", ToolKit.GetAnchorPosition(newDirection), 0.3f);
     }
 
     /// <summary>
@@ -104,13 +103,11 @@ public partial class CharacterStage : Node
         }));
     }
 
-
     void AddAndAnimate(TextureRect portrait)
     {
         AddChild(portrait);
         AppearAnimation(portrait);
     }
-
 
     void AppearAnimation(TextureRect portrait)
     {
@@ -126,4 +123,26 @@ public partial class CharacterStage : Node
 
     public bool IsCharacterInScene(Character character) => charactersInScene.ContainsKey(character);
 
+    public void AnimateTalking(Character speaker)
+    {
+        if (IsCharacterInScene(speaker))
+        {
+            TextureRect textureRect = charactersInScene[speaker];
+            TalkAnimation(textureRect);
+        }
+        GD.PrintErr($"[CharacterStage] {speaker.Name} is not on the scene");
+    }
+
+    private void TalkAnimation(TextureRect portrait)
+    {
+        Tween tween = CreateTween();
+
+        tween.SetTrans(Tween.TransitionType.Cubic);
+        tween.TweenProperty(portrait, "anchor_bottom", portrait.AnchorBottom - 0.3f, 0.2f);
+        tween.SetParallel().TweenProperty(portrait, "anchor_top", portrait.AnchorTop - 0.3f, 0.2f);
+
+        tween.TweenProperty(portrait, "anchor_bottom", portrait.AnchorBottom + 0.3f, 0.2f);
+        tween.SetParallel().TweenProperty(portrait, "anchor_top", portrait.AnchorTop + 0.3f, 0.2f);
+
+    }
 }

@@ -16,6 +16,8 @@ public partial class DialogManager : Node
     DialogLine currentLine;
 
     bool isInChoiceMode = false;
+    Character LastSpeaker = null;
+
 
 
     public override void _EnterTree()
@@ -71,10 +73,7 @@ public partial class DialogManager : Node
             switch (typePortions[0].ToLower())
             {
                 case "say":
-                    textTyper.WriteText(line.Text, line.Speaker);
-                    if(typePortions.Length > 1)
-                        FlavourAnimator.Instance.PlayFlavour(typePortions[1]);
-                    DebugService.Register("Last speaker", () => line.Speaker.Name);
+                    ProcessDialogLine(line, typePortions);
                     break;
 
                 case "choice":
@@ -88,6 +87,19 @@ public partial class DialogManager : Node
             }
         }
 
+    }
+
+    void ProcessDialogLine(DialogLine line, string[] typePortions)
+    {
+        if(LastSpeaker == null || line.Speaker != LastSpeaker)
+        {
+            LastSpeaker ??= line.Speaker;
+            CharacterStage.Instance.AnimateTalking(line.Speaker);
+        }
+        textTyper.WriteText(line.Text, line.Speaker);
+        if (typePortions.Length > 1)
+            FlavourAnimator.Instance.PlayFlavour(typePortions[1]);
+        DebugService.Register("Last speaker", () => line.Speaker.Name);
     }
 
     /// <summary>

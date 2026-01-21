@@ -5,11 +5,8 @@ using System.Collections.Generic;
 public static partial class ToolKit
 {
     static public readonly Dictionary<ScreenPosition, float> XPositions = [];
-    public static void InitializePositions(Vector2 ScreenSize)
+    public static void InitializePositions()
     {
-        var size = ScreenSize;
-        float y = size.Y * 0.5f;
-
         XPositions[ScreenPosition.FarLeft]  = 0.1f;
         XPositions[ScreenPosition.Left]     = 0.25f;
         XPositions[ScreenPosition.Center]   = 0.5f;
@@ -35,6 +32,20 @@ public static partial class ToolKit
         control.OffsetTop = -control.Size.Y / 2;
         control.OffsetLeft = -control.Size.X / 2;
         control.OffsetRight = control.Size.X / 2;
+    }
+
+    /// <summary>
+    /// Gets the anchor position for a given screen position.
+    /// </summary>
+    /// <param name="screenPosition">The screen position enum value.</param>
+    /// <returns>The anchor position as a float.</returns>
+    public static float GetAnchorPosition(ScreenPosition screenPosition)
+    {
+        if (XPositions.TryGetValue(screenPosition, out float value))
+            return value;
+        else
+            GD.PrintErr($"[ToolKit] the {screenPosition} position is not recognized");
+        return 0;
     }
 
     /// <summary>

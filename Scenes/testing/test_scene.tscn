@@ -409,7 +409,6 @@ appearingIntensity = 0.3
 
 [node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
 layout_mode = 1
-enable = false
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0

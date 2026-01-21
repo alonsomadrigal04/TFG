@@ -9,7 +9,7 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         CharacterDatabase.LoadFromJson("Data\\Characters.json");
-        ToolKit.InitializePositions(GetViewport().GetVisibleRect().Size);
+        ToolKit.InitializePositions();
 
         dialogManager = GetNode<DialogManager>(dialogManagerPath);
 

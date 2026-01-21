@@ -1,6 +1,6 @@
 ﻿uid;code;type;speaker;text;next
-d1;;say;Alonso;[w]Tomas[/w] es [b]literalmente[/b] muy gay;
-d2;;say;Alonso;huh?;
-a1;Alonso appears right;;;;
-a2;Alonso moves left;;;;
+d1;Alonso appears left;;;;
+d2;;say;Alonso;[w]Jesus[/w] es [b]literalmente[/b] muy gay;
+a1;;say;Alonso;huh?;
+a2;Alonso moves center;;;;
 a3;Alonso disappears;;;;

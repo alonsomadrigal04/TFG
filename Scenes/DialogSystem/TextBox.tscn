@@ -20,6 +20,14 @@ audioModule = NodePath("MultiaudioPlayerModule")
 dialogBox = NodePath("DialogBox/MarginContainer/DialogText")
 nameBox = NodePath("DialogBox/MarginContainer2/SpeakerName")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 198.0
+offset_right = 1196.0
+offset_bottom = 520.0
+color = Color(0.34509805, 0.37254903, 0.6784314, 0.11764706)
+
 [node name="DialogBox" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -31,6 +39,12 @@ offset_left = -0.40000916
 offset_top = -0.28001404
 offset_right = 0.4000244
 offset_bottom = 0.9999695
+
+[node name="ColorRect2" type="ColorRect" parent="DialogBox"]
+layout_mode = 0
+offset_right = 1076.0
+offset_bottom = 76.0
+color = Color(0.34509805, 0.37254903, 0.6784314, 0.11764706)
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogBox"]
 layout_mode = 1
