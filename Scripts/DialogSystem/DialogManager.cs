@@ -66,7 +66,7 @@ public partial class DialogManager : Node
             if(line.Code != "")
             {
                 CodeProcessor.RunCode(line.Code);
-                return;
+                //return;
             }
 
             string[] typePortions = line.Type.Split('/', StringSplitOptions.TrimEntries);

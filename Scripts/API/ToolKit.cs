@@ -14,6 +14,8 @@ public static partial class ToolKit
         XPositions[ScreenPosition.FarRight] = 0.9f;
     }
 
+    public static Vector2 GetPosition(ScreenPosition screenPosition) => new(XPositions[screenPosition], 0.5f);
+
     /// <summary>
     /// Sets the position of a Control node based on a predefined screen position.
     /// </summary>

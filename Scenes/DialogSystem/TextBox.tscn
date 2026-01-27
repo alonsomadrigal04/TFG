@@ -21,11 +21,15 @@ dialogBox = NodePath("DialogBox/MarginContainer/DialogText")
 nameBox = NodePath("DialogBox/MarginContainer2/SpeakerName")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 198.0
-offset_right = 1196.0
-offset_bottom = 520.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.275
+anchor_right = 0.934
+anchor_bottom = 0.72200006
+offset_left = 0.23999786
+offset_right = 0.47998047
+offset_bottom = 0.15997314
 color = Color(0.34509805, 0.37254903, 0.6784314, 0.11764706)
 
 [node name="DialogBox" type="Panel" parent="."]
@@ -41,9 +45,11 @@ offset_right = 0.4000244
 offset_bottom = 0.9999695
 
 [node name="ColorRect2" type="ColorRect" parent="DialogBox"]
-layout_mode = 0
-offset_right = 1076.0
-offset_bottom = 76.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.26200002
+offset_bottom = 0.019996643
 color = Color(0.34509805, 0.37254903, 0.6784314, 0.11764706)
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogBox"]

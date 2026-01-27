@@ -5,15 +5,17 @@ using System;
 public partial class CharacterStage : Node
 {
     public static CharacterStage Instance {get; private set;}
-    Dictionary<Character, TextureRect> charactersInScene = [];
+    public static Dictionary<Character, TextureRect> CharactersInScene {get; private set;} = [];
 
     [Export(PropertyHint.Range, "0,20,0.1")]
-    float appearingIntensity = 5f;
+    float appearingIntensity = 5f; // TODO: This variable not seems to do things propetly
     [Export] float appearTime = 0.3f;
     [Export] float disAppearTime = 0.3f;
     [Export] int portraitLayer = -1;
 
     Dictionary<Character, Tween> activeTweens = [];
+    [Export] float bobIntensity = 50f;
+
 
     public override void _Ready()
     {
@@ -31,7 +33,7 @@ public partial class CharacterStage : Node
             return;
         }
 
-        TextureRect portrait = charactersInScene[character];
+        TextureRect portrait = CharactersInScene[character];
         MoveAnimation(portrait, position);        
     }
 
@@ -69,7 +71,7 @@ public partial class CharacterStage : Node
         ToolKit.SetPosition(newPortrait, screenPosition);
 
 
-        charactersInScene[newCharacter] = newPortrait;
+        CharactersInScene[newCharacter] = newPortrait;
 
         CallDeferred(nameof(AddAndAnimate), newPortrait);
     }
@@ -81,7 +83,7 @@ public partial class CharacterStage : Node
             GD.PrintErr($"[CharacterStage] {character.Name} is not in the Scene");
             return;
         }
-        TextureRect textureToDestroy = charactersInScene[character];
+        TextureRect textureToDestroy = CharactersInScene[character];
         DisapearAnimation(textureToDestroy, character);
     }
 
@@ -98,7 +100,7 @@ public partial class CharacterStage : Node
 
         tween.TweenCallback(Callable.From(() =>
         {
-            charactersInScene.Remove(character);
+            CharactersInScene.Remove(character);
             textureToDestroy.QueueFree();
         }));
     }
@@ -121,14 +123,15 @@ public partial class CharacterStage : Node
             .SetEase(Tween.EaseType.Out);
     }
 
-    public bool IsCharacterInScene(Character character) => charactersInScene.ContainsKey(character);
+    public bool IsCharacterInScene(Character character) => CharactersInScene.ContainsKey(character);
 
     public void AnimateTalking(Character speaker)
     {
         if (IsCharacterInScene(speaker))
         {
-            TextureRect textureRect = charactersInScene[speaker];
+            TextureRect textureRect = CharactersInScene[speaker];
             TalkAnimation(textureRect);
+            return;
         }
         GD.PrintErr($"[CharacterStage] {speaker.Name} is not on the scene");
     }
@@ -136,13 +139,14 @@ public partial class CharacterStage : Node
     private void TalkAnimation(TextureRect portrait)
     {
         Tween tween = CreateTween();
+        Vector2 originalPosition= portrait.Position;
 
         tween.SetTrans(Tween.TransitionType.Cubic);
-        tween.TweenProperty(portrait, "anchor_bottom", portrait.AnchorBottom - 0.3f, 0.2f);
-        tween.SetParallel().TweenProperty(portrait, "anchor_top", portrait.AnchorTop - 0.3f, 0.2f);
+        tween.TweenProperty(portrait, "position", originalPosition + new Vector2(0, -bobIntensity), 0.1f);
 
-        tween.TweenProperty(portrait, "anchor_bottom", portrait.AnchorBottom + 0.3f, 0.2f);
-        tween.SetParallel().TweenProperty(portrait, "anchor_top", portrait.AnchorTop + 0.3f, 0.2f);
+        tween.TweenProperty(portrait, "position", originalPosition, 0.1f);
+
+        portrait.Position = originalPosition;
 
     }
 }

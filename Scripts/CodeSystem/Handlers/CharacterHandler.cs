@@ -35,20 +35,20 @@ public class CharacterHanlder : ICommandHandler
         }
     }
 
-    void QuitCharacter(CommandToken commandToken)
+    static void QuitCharacter(CommandToken commandToken)
     {
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
         CharacterStage.Instance.CharacterDisappears(character);
     }
 
-    void SummonCharacter(CommandToken commandToken)
+    static void SummonCharacter(CommandToken commandToken)
     {
         ScreenPosition position = ToolKit.FromArguments(commandToken);
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
         CharacterStage.Instance.CharacterAppears(character, position);
     }
 
-    void MoveCharacter(CommandToken commandToken)
+    static void MoveCharacter(CommandToken commandToken)
     {
         ScreenPosition position = ToolKit.FromArguments(commandToken);
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);

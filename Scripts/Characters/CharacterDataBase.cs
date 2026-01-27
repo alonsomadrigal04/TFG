@@ -4,21 +4,30 @@ using System.Linq;
 
 public class CharacterDatabase
 {
-    static readonly Dictionary<string, Character> characters = [];
+    static readonly Dictionary<string, Character> characterDatabase = [];
 
     public static void RegisterCharacter(Character character)
     {
-        characters[character.Name] = character;
+        characterDatabase[character.Name] = character;
     }
+    public static bool IsCharacterRegistred(string character) => characterDatabase.ContainsKey(character);
 
     public static Character GetCharacter(string name)
     {
         name = char.ToUpper(name[0]) + name[1..];
-        if (characters.TryGetValue(name, out var character))
+        if (characterDatabase.TryGetValue(name, out var character))
             return character;
 
         GD.PrintErr($"[CharacterDatabase] Character not found: {name}");
         return null;
+    }
+    public static bool TryGetCharacter(string characterString, out Character character)
+    {
+        character = null;
+        if (!IsCharacterRegistred(characterString))
+            return false;
+        character = characterDatabase[characterString];
+        return true;
     }
 
     public static void LoadFromJson(string path)
@@ -47,6 +56,6 @@ public class CharacterDatabase
         }
 
 
-        DebugService.Register("Qty characters in BBDD", () => characters.Count.ToString());
+        DebugService.Register("Qty characters in BBDD", () => characterDatabase.Count.ToString());
     }
 }

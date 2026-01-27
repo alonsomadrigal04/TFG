@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dchwp1pat8lg2"]
+[gd_scene load_steps=23 format=3 uid="uid://dchwp1pat8lg2"]
 
 [ext_resource type="Script" uid="uid://c2ew51eyjlbgx" path="res://Scripts/API/CharacterStage.cs" id="1_0fon4"]
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
 [ext_resource type="PackedScene" uid="uid://vu586py46jou" path="res://Scenes/DialogSystem/TextBox.tscn" id="2_50ct6"]
+[ext_resource type="Script" uid="uid://cp3tqugnaasms" path="res://Scripts/API/CameraStage.cs" id="2_fx65t"]
 [ext_resource type="Script" uid="uid://dpwatcc7gusv3" path="res://Scripts/DialogSystem/DialogManager.cs" id="2_hb2xm"]
 [ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/ChoiceFiles/ChoiceMaker.cs" id="4_ak5v8"]
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
@@ -398,26 +399,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="API\'s" type="Control" parent="."]
+[node name="GeneralLayout" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="API\'s" type="Control" parent="GeneralLayout"]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CharacterStage" type="Node" parent="API\'s"]
+[node name="CharacterStage" type="Node" parent="GeneralLayout/API\'s"]
 script = ExtResource("1_0fon4")
 appearingIntensity = 0.3
 
-[node name="DebugScreen" parent="." instance=ExtResource("1_d3awe")]
-layout_mode = 1
+[node name="CameraStage" type="Node" parent="GeneralLayout/API\'s" node_paths=PackedStringArray("camera2D")]
+script = ExtResource("2_fx65t")
+camera2D = NodePath("../../../Camera")
 
-[node name="GameManager" type="Control" parent="."]
+[node name="DebugScreen" parent="GeneralLayout" instance=ExtResource("1_d3awe")]
+
+[node name="GameManager" type="Control" parent="GeneralLayout"]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_r5l72")
 dialogManagerPath = NodePath("../DialogManager")
 
-[node name="DialogManager" type="Control" parent="." node_paths=PackedStringArray("choiceMaker", "textTyper")]
+[node name="DialogManager" type="Control" parent="GeneralLayout" node_paths=PackedStringArray("choiceMaker", "textTyper")]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -425,14 +435,14 @@ script = ExtResource("2_hb2xm")
 choiceMaker = NodePath("../ChoiceMaker")
 textTyper = NodePath("../DialogBox")
 
-[node name="DialogBox" parent="." instance=ExtResource("2_50ct6")]
-layout_mode = 1
+[node name="DialogBox" parent="GeneralLayout" instance=ExtResource("2_50ct6")]
 anchor_top = 0.497
 anchor_bottom = 0.89900005
 offset_top = -214.84
 offset_bottom = 215.71997
 
-[node name="ChoiceMaker" type="Control" parent="." node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
+[node name="ChoiceMaker" type="Control" parent="GeneralLayout" node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -446,26 +456,27 @@ separation = 40
 shaderBack = NodePath("../ChoiceLayout/Shader")
 grayBack = NodePath("../ChoiceLayout/Gray")
 
-[node name="ChoiceLayout" type="Control" parent="."]
+[node name="ChoiceLayout" type="Control" parent="GeneralLayout"]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Gray" type="ColorRect" parent="ChoiceLayout"]
+[node name="Gray" type="ColorRect" parent="GeneralLayout/ChoiceLayout"]
 visible = false
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.50980395, 0.50980395, 0.50980395, 0.7882353)
 
-[node name="Shader" type="ColorRect" parent="ChoiceLayout"]
+[node name="Shader" type="ColorRect" parent="GeneralLayout/ChoiceLayout"]
 visible = false
 material = SubResource("ShaderMaterial_oho3u")
 layout_mode = 0
 offset_right = 1272.0
 offset_bottom = 720.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ChoiceLayout"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/ChoiceLayout"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 4.0750003
@@ -479,12 +490,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ChoiceLayout"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GeneralLayout/ChoiceLayout"]
 libraries = {
 &"": SubResource("AnimationLibrary_x033f")
 }
 
-[node name="BigQuestionMark" type="RichTextLabel" parent="ChoiceLayout"]
+[node name="BigQuestionMark" type="RichTextLabel" parent="GeneralLayout/ChoiceLayout"]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -496,9 +507,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="MultiaudioPlayerModule" type="Node" parent="."]
-script = ExtResource("8_d3awe")
-metadata/_custom_type_script = "uid://b1kqhsfkrse3k"
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(642, 358)
 
 [node name="FlavourAnimationModule" type="Node" parent="." node_paths=PackedStringArray("animationPlayer")]
 script = ExtResource("11_n1mmy")
@@ -519,3 +529,7 @@ offset_bottom = 291.99963
 pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
+
+[node name="MultiaudioPlayerModule" type="Node" parent="."]
+script = ExtResource("8_d3awe")
+metadata/_custom_type_script = "uid://b1kqhsfkrse3k"
