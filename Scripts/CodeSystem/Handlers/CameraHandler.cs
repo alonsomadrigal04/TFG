@@ -7,7 +7,7 @@ public class CameraHandler : ICommandHandler
     public HashSet<string> Supportedverbs => supportedVerbs;
     static readonly HashSet<string> supportedVerbs =
     [
-        "zoom at",
+        "zoom",
         "shake"
     ];
 
@@ -15,7 +15,7 @@ public class CameraHandler : ICommandHandler
     {
         switch (commandToken.Verb)
         {
-            case "zoom at":
+            case "zoom":
                 Zoom(commandToken);
                 break;
             case "shake":
@@ -42,9 +42,9 @@ public class CameraHandler : ICommandHandler
         CameraStage.Instance.CameraZoom(zoomPosition, seconds);
     }
 
-    private bool TryParseZoomArgs(CommandToken commandToken, out Vector2 zoomPosition, out float seconds)
+    private bool TryParseZoomArgs(CommandToken commandToken, out Vector2 zoomPosition, out float duration)
     {
-        seconds = 1f;
+        duration = 1f;
         if(CharacterDatabase.TryGetCharacter(commandToken.Subject, out Character character))
         {
             TextureRect portraitZoomed = CharacterStage.CharactersInScene[character];
@@ -52,13 +52,25 @@ public class CameraHandler : ICommandHandler
         }
         else
         {
-            ScreenPosition parsedScreenPosition = ToolKit.ParseEnum<ScreenPosition>(commandToken.Subject);
-            zoomPosition = ToolKit.GetPosition(parsedScreenPosition);
+            ScreenPosition parsedScreenPosition = ToolKit.ParseEnum<ScreenPosition>(commandToken.Subject); // TODO: If you write wrong a type trhow a non controled error
+            zoomPosition = ToolKit.GetPosition(parsedScreenPosition); 
         }
 
-        if(commandToken.Arguments.Count > 1)
-            GD.PrintErr("[CameraHanlder] No overload for too many arguments");
-
+        if (commandToken.Arguments.Count > 1)
+            GD.PrintErr("[CameraHanlder] overload for too many arguments");
+        else if (commandToken.Arguments.Count == 1)
+        {
+            string arg = commandToken.Arguments[0];
+            if (arg.EndsWith('s'))
+            {
+                if(!float.TryParse(arg[..^1], out duration))
+                {
+                    GD.PrintErr($"[CameraHandler] Invalid duration value: {arg}");
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     static bool TryParseShakeArgs(CommandToken token, out float duration, out int intensity)

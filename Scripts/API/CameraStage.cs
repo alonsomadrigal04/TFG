@@ -47,5 +47,13 @@ public partial class CameraStage : Node
 
     public void CameraZoom(Vector2 zoomPosition, float seconds)
     {
+        Tween tween = CreateTween();
+
+        tween.SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.InOut);
+
+        tween.TweenProperty(camera2D, "zoom", 1.5f, 0.2f);
+        tween.SetParallel().TweenProperty(camera2D, "position", zoomPosition, seconds);
+
     }
 }

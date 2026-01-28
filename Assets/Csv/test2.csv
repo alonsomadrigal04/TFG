@@ -1,7 +1,8 @@
 ﻿uid;code;type;speaker;text;next
 d1;Alonso appears left;;;;
-d2;Camera shake  3i;say;Alonso;[w]Jesus[/w] es [b]literalmente[/b] muy gay;
+d2;;say;Alonso;[w]Jesus[/w] es [b]literalmente[/b] muy gay;
 a1;;say;Alonso;huh?;
-a2;Alonso moves center;;;;
-a3;Camera shake  3i;;;;
-a4;Alonso disappears;;;;
+a2;Camera zoom at Alonso;;;;
+a3;Alonso moves center;;;;
+a4;Camera shake  3i;;;;
+a5;Alonso disappears;;;;
