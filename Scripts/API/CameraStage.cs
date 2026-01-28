@@ -5,7 +5,10 @@ using Godot.Collections;
 public partial class CameraStage : Node
 {
     public static CameraStage Instance { get; private set; }
-    [Export] Camera2D camera2D; // TODO: consider change this to GetViewport()
+
+    [Export] Control layerDialogBox;
+    [Export] Control layerBackground;
+
 
     public override void _Ready()
     {
@@ -19,9 +22,15 @@ public partial class CameraStage : Node
 
     public void CameraShake(float duration = 0.01f, float intensity = 1f)
     {
+        AnimateShake(duration, intensity, layerDialogBox);
+        //AnimateShake(duration, intensity, layerBackground);
+    }
+
+    private void AnimateShake(float duration, float intensity, Control canvasToAnimate)
+    {
         Tween tween = CreateTween();
 
-        Vector2 basePosition = camera2D.Position;
+        Vector2 basePosition = canvasToAnimate.Position;
         int shakes = 4;
 
         tween.SetTrans(Tween.TransitionType.Sine)
@@ -35,14 +44,14 @@ public partial class CameraStage : Node
             ) * (intensity * 0.1f) * 100f;
 
             tween.TweenProperty(
-                camera2D,
+                canvasToAnimate,
                 "position",
                 basePosition + offset,
-                duration/shakes
+                duration / shakes
             );
         }
 
-        tween.TweenProperty(camera2D, "position", basePosition, 0.05f);
+        tween.TweenProperty(canvasToAnimate, "position", basePosition, 0.05f);
     }
 
     public void CameraZoom(Vector2 zoomPosition, float seconds)
@@ -52,8 +61,10 @@ public partial class CameraStage : Node
         tween.SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.InOut);
 
-        tween.TweenProperty(camera2D, "zoom", 1.5f, 0.2f);
-        tween.SetParallel().TweenProperty(camera2D, "position", zoomPosition, seconds);
+        layerDialogBox.PivotOffset = zoomPosition;
+
+        tween.TweenProperty(layerDialogBox, "scale", new Vector2(1.2f, 1.2f), 0.2f);
+        //tween.SetParallel().TweenProperty(camera2D, "position", zoomPosition, seconds);
 
     }
 }

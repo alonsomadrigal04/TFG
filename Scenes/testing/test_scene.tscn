@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dchwp1pat8lg2"]
 
 [ext_resource type="Script" uid="uid://c2ew51eyjlbgx" path="res://Scripts/API/CharacterStage.cs" id="1_0fon4"]
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_c7igj"]
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
 [ext_resource type="PackedScene" uid="uid://vu586py46jou" path="res://Scenes/DialogSystem/TextBox.tscn" id="2_50ct6"]
@@ -399,53 +400,83 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GeneralLayout" type="CanvasLayer" parent="." unique_id=1610666286]
-follow_viewport_enabled = true
+[node name="Background" type="CanvasLayer" parent="." unique_id=907658383]
 
-[node name="API\'s" type="Control" parent="GeneralLayout" unique_id=600769001]
+[node name="GeneralLayout" type="CanvasLayer" parent="." unique_id=1610666286]
+
+[node name="DialogSystem" type="Control" parent="GeneralLayout" unique_id=128116944]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 341)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem" unique_id=1169188027]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 242.0
+offset_right = 334.0
+offset_bottom = 370.0
+texture = ExtResource("1_c7igj")
+
+[node name="API\'s" type="Control" parent="GeneralLayout/DialogSystem" unique_id=600769001]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_lock_ = true
 
-[node name="CharacterStage" type="Node" parent="GeneralLayout/API\'s" unique_id=501401635]
+[node name="CharacterStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=501401635]
 script = ExtResource("1_0fon4")
 appearingIntensity = 0.3
 
-[node name="CameraStage" type="Node" parent="GeneralLayout/API\'s" unique_id=988545879 node_paths=PackedStringArray("camera2D")]
+[node name="CameraStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=988545879 node_paths=PackedStringArray("layerDialogBox")]
 script = ExtResource("2_fx65t")
-camera2D = NodePath("../../../Camera")
+layerDialogBox = NodePath("../..")
 
-[node name="DebugScreen" parent="GeneralLayout" unique_id=1007317109 instance=ExtResource("1_d3awe")]
+[node name="DebugScreen" parent="GeneralLayout/DialogSystem" unique_id=1007317109 instance=ExtResource("1_d3awe")]
+layout_mode = 1
+metadata/_edit_lock_ = true
 
-[node name="GameManager" type="Control" parent="GeneralLayout" unique_id=755278611]
-layout_mode = 3
+[node name="GameManager" type="Control" parent="GeneralLayout/DialogSystem" unique_id=755278611]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_r5l72")
 dialogManagerPath = NodePath("../DialogManager")
+metadata/_edit_lock_ = true
 
-[node name="DialogManager" type="Control" parent="GeneralLayout" unique_id=1319027079 node_paths=PackedStringArray("choiceMaker", "textTyper")]
-layout_mode = 3
+[node name="DialogManager" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1319027079 node_paths=PackedStringArray("choiceMaker", "textTyper")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_hb2xm")
 choiceMaker = NodePath("../ChoiceMaker")
 textTyper = NodePath("../DialogBox")
+metadata/_edit_lock_ = true
 
-[node name="DialogBox" parent="GeneralLayout" unique_id=350530710 instance=ExtResource("2_50ct6")]
-anchor_top = 0.497
-anchor_bottom = 0.89900005
-offset_top = -214.84
-offset_bottom = 215.71997
+[node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 instance=ExtResource("2_50ct6")]
+layout_mode = 1
+anchor_left = 0.067
+anchor_top = 0.47400004
+anchor_right = 0.934
+anchor_bottom = 0.92100006
+offset_left = -85.76
+offset_top = -198.28003
+offset_right = 84.47998
+offset_bottom = 199.87994
+metadata/_edit_lock_ = true
 
-[node name="ChoiceMaker" type="Control" parent="GeneralLayout" unique_id=1185339650 node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ChoiceMaker" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1185339650 node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_ak5v8")
 impact = ExtResource("5_oho3u")
 soft = ExtResource("7_5t315")
@@ -455,28 +486,32 @@ optionShader = ExtResource("6_d3awe")
 separation = 40
 shaderBack = NodePath("../ChoiceLayout/Shader")
 grayBack = NodePath("../ChoiceLayout/Gray")
+metadata/_edit_lock_ = true
 
-[node name="ChoiceLayout" type="Control" parent="GeneralLayout" unique_id=131375595]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ChoiceLayout" type="Control" parent="GeneralLayout/DialogSystem" unique_id=131375595]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="Gray" type="ColorRect" parent="GeneralLayout/ChoiceLayout" unique_id=1808876110]
+[node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1808876110]
 visible = false
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.50980395, 0.50980395, 0.50980395, 0.7882353)
 
-[node name="Shader" type="ColorRect" parent="GeneralLayout/ChoiceLayout" unique_id=596100438]
+[node name="Shader" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=596100438]
 visible = false
 material = SubResource("ShaderMaterial_oho3u")
 layout_mode = 0
 offset_right = 1272.0
 offset_bottom = 720.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/ChoiceLayout" unique_id=930759866]
+[node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=930759866]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 4.0750003
@@ -490,10 +525,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GeneralLayout/ChoiceLayout" unique_id=748270983]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=748270983]
 libraries/ = SubResource("AnimationLibrary_x033f")
 
-[node name="BigQuestionMark" type="RichTextLabel" parent="GeneralLayout/ChoiceLayout" unique_id=1188170206]
+[node name="BigQuestionMark" type="RichTextLabel" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1188170206]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -504,9 +539,6 @@ text = "?"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
-
-[node name="Camera" type="Camera2D" parent="." unique_id=1269643322]
-anchor_mode = 0
 
 [node name="FlavourAnimationModule" type="Node" parent="." unique_id=280782029 node_paths=PackedStringArray("animationPlayer")]
 script = ExtResource("11_n1mmy")

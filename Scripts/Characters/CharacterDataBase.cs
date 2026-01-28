@@ -23,10 +23,11 @@ public class CharacterDatabase
     }
     public static bool TryGetCharacter(string characterString, out Character character)
     {
+        string name = char.ToUpper(characterString[0]) + characterString[1..];
         character = null;
-        if (!IsCharacterRegistred(characterString))
+        if (!IsCharacterRegistred(name))
             return false;
-        character = characterDatabase[characterString];
+        character = characterDatabase[name];
         return true;
     }
 

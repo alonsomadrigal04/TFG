@@ -44,23 +44,14 @@ public class CameraHandler : ICommandHandler
 
     private bool TryParseZoomArgs(CommandToken commandToken, out Vector2 zoomPosition, out float duration)
     {
-        duration = 1f;
-        if(CharacterDatabase.TryGetCharacter(commandToken.Subject, out Character character))
-        {
-            TextureRect portraitZoomed = CharacterStage.CharactersInScene[character];
-            zoomPosition = portraitZoomed.Position;
-        }
-        else
-        {
-            ScreenPosition parsedScreenPosition = ToolKit.ParseEnum<ScreenPosition>(commandToken.Subject); // TODO: If you write wrong a type trhow a non controled error
-            zoomPosition = ToolKit.GetPosition(parsedScreenPosition); 
-        }
-
-        if (commandToken.Arguments.Count > 1)
+        zoomPosition = ToolKit.GetPosition(ScreenPosition.Center);
+        if(commandToken.Arguments.Count < 1)
+            GD.PushError($"[CameraHanlder] No overload for few arguments");
+        else if (commandToken.Arguments.Count > 2)
             GD.PrintErr("[CameraHanlder] overload for too many arguments");
-        else if (commandToken.Arguments.Count == 1)
+        else if (commandToken.Arguments.Count == 2)
         {
-            string arg = commandToken.Arguments[0];
+            string arg = commandToken.Arguments[1];
             if (arg.EndsWith('s'))
             {
                 if(!float.TryParse(arg[..^1], out duration))
@@ -69,7 +60,24 @@ public class CameraHandler : ICommandHandler
                     return false;
                 }
             }
+            else
+            {
+                GD.PrintErr($"[CameraHandler] Invalid duration value: {arg}");
+            }
         }
+
+        duration = 1f;
+        if(CharacterDatabase.TryGetCharacter(commandToken.Arguments[0], out Character character))
+        {
+            TextureRect portraitZoomed = CharacterStage.CharactersInScene[character];
+            zoomPosition = portraitZoomed.Position;
+        }
+        else
+        {
+            ScreenPosition parsedScreenPosition = ToolKit.ParseEnum<ScreenPosition>(commandToken.Arguments[0]); // TODO: If you write wrong a type trhow a non controled error
+            zoomPosition = ToolKit.GetPosition(parsedScreenPosition); 
+        }
+
         return true;
     }
 
