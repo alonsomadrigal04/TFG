@@ -118,6 +118,18 @@ public static class GodotExtensions
         return spawn;
     }
 
+    /// <summary>
+    /// Sets all offset anchors of a Control node to zero.
+    /// </summary>
+    /// <param name="node">The Control node whose offset anchors will be set to zero.</param>
+    public static void SetAnchorOffsetToZero(this Control node)
+    {
+        node.OffsetBottom = 0f;
+        node.OffsetLeft = 0f;
+        node.OffsetRight = 0f;
+        node.OffsetTop = 0f;
+    }
+
     ///<summary>Asynchronously waits until a given condition becomes true, checking once per frame.
     /// This is <see cref="Engine.TimeScale"/> dependant.</summary>
     ///<param name="tree">The current <see cref="SceneTree"/> used to yield each frame.</param>
@@ -141,4 +153,5 @@ public static class GodotExtensions
             elapsed += tree.Root.GetProcessDeltaTime();
         }
     }
+
 }

@@ -8,7 +8,8 @@ public class CameraHandler : ICommandHandler
     static readonly HashSet<string> supportedVerbs =
     [
         "zoom",
-        "shake"
+        "shake",
+        "reset"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -21,9 +22,23 @@ public class CameraHandler : ICommandHandler
             case "shake":
                 Shake(commandToken);
                 break;
+            case "reset":
+                Reset(commandToken);
+                break;
             default:
                 break;
         }
+    }
+
+    void Reset(CommandToken commandToken)
+    {
+            Vector2 resetPosition = ToolKit.GetScreenPosition(ScreenPosition.Center);
+        if(commandToken.Arguments.Count != 0)
+        {
+            resetPosition = CharacterStage.GetCharacterPosition(commandToken, resetPosition);
+        }
+
+        CameraStage.Instance.ResetCamera(resetPosition);
     }
 
     void Shake(CommandToken commandToken)
@@ -42,9 +57,10 @@ public class CameraHandler : ICommandHandler
         CameraStage.Instance.CameraZoom(zoomPosition, seconds);
     }
 
-    private bool TryParseZoomArgs(CommandToken commandToken, out Vector2 zoomPosition, out float duration)
+    bool TryParseZoomArgs(CommandToken commandToken, out Vector2 zoomPosition, out float duration)
     {
         zoomPosition = ToolKit.GetPosition(ScreenPosition.Center);
+        duration = 0.02f;
         if(commandToken.Arguments.Count < 1)
             GD.PushError($"[CameraHanlder] No overload for few arguments");
         else if (commandToken.Arguments.Count > 2)
@@ -66,7 +82,6 @@ public class CameraHandler : ICommandHandler
             }
         }
 
-        duration = 1f;
         if(CharacterDatabase.TryGetCharacter(commandToken.Arguments[0], out Character character))
         {
             TextureRect portraitZoomed = CharacterStage.CharactersInScene[character];
@@ -81,7 +96,7 @@ public class CameraHandler : ICommandHandler
         return true;
     }
 
-    static bool TryParseShakeArgs(CommandToken token, out float duration, out int intensity)
+    bool TryParseShakeArgs(CommandToken token, out float duration, out int intensity)
     {
         duration = 0.2f;
         intensity = 4;

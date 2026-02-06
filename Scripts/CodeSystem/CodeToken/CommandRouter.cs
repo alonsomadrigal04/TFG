@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public class CommandRouter
 {
-    List<ICommandHandler> commandHandlers = [
+    readonly List<ICommandHandler> commandHandlers = [
         new CameraHandler(),
-        new CharacterHanlder()
+        new CharacterHanlder(),
+        new BackgroundHandler()
+
     ];
 
     public ICommandHandler GetHandler(CommandToken token)

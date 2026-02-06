@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using Utility;
 
 public partial class CharacterStage : Node
 {
@@ -15,6 +16,7 @@ public partial class CharacterStage : Node
 
     Dictionary<Character, Tween> activeTweens = [];
     [Export] float bobIntensity = 50f;
+    [Export] Control characterContainer;
 
 
     public override void _Ready()
@@ -61,19 +63,22 @@ public partial class CharacterStage : Node
         TextureRect newPortrait = new()
         {
             Texture = newCharacter.Portraits[0],
-            Modulate = new Color(1, 1, 1, 0),
-            Scale = Vector2.One  * (1f / (1f + appearingIntensity))
+            Modulate = new Color(1, 1, 1, 0)
         };
+
         newPortrait.ResetSize();
 
         newPortrait.PivotOffset = newPortrait.Size / 2;
         newPortrait.ZIndex = portraitLayer;
         ToolKit.SetPosition(newPortrait, screenPosition);
+        newPortrait.SetAnchorOffsetToZero();
 
+        newPortrait.Scale = Vector2.One  * (1f / (1f + appearingIntensity));
 
         CharactersInScene[newCharacter] = newPortrait;
 
         CallDeferred(nameof(AddAndAnimate), newPortrait);
+
     }
 
     public void CharacterDisappears(Character character)
@@ -107,7 +112,7 @@ public partial class CharacterStage : Node
 
     void AddAndAnimate(TextureRect portrait)
     {
-        AddChild(portrait);
+        characterContainer.AddChild(portrait);
         AppearAnimation(portrait);
     }
 
@@ -148,5 +153,16 @@ public partial class CharacterStage : Node
 
         portrait.Position = originalPosition;
 
+    }
+
+    public static Vector2 GetCharacterPosition(CommandToken commandToken, Vector2 resetPosition)
+    {
+        if (CharacterDatabase.TryGetCharacter(commandToken.Arguments[0], out Character character))
+        {
+            TextureRect portraitZoomed = CharactersInScene[character];
+            resetPosition = portraitZoomed.Position;
+        }
+
+        return resetPosition;
     }
 }

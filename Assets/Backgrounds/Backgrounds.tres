@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BackgroundLibrary" format=3 uid="uid://dtymbagrj41u1"]
+
+[ext_resource type="Script" uid="uid://dl73rfdou75xc" path="res://Scripts/API/Backgrounds/BackgroundLibrary.cs" id="1_2ju31"]
+[ext_resource type="Texture2D" uid="uid://cdqli2p5bvu30" path="res://Assets/Backgrounds/Images/llanurasQuebradas.jpg" id="1_71815"]
+
+[resource]
+script = ExtResource("1_2ju31")
+BackgroundsStored = Dictionary[String, Texture2D]({
+"LlanurasQuebradas": ExtResource("1_71815")
+})
+metadata/_custom_type_script = "uid://dl73rfdou75xc"

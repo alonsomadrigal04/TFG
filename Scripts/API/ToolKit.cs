@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Resources;
 
 public static partial class ToolKit
 {
@@ -16,6 +17,25 @@ public static partial class ToolKit
 
     public static Vector2 GetPosition(ScreenPosition screenPosition) => new(XPositions[screenPosition], 0.5f);
 
+    public static Vector2 GetScreenPosition(ScreenPosition screenPosition)
+    {
+        if (!XPositions.TryGetValue(screenPosition, out float xNorm))
+        {
+            GD.PrintErr($"[ToolKit] the {screenPosition} position is not recognized");
+            return Vector2.Zero;
+        }
+
+        Vector2 screenSize = DisplayServer.WindowGetSize();
+
+        return new Vector2(
+            screenSize.X * xNorm,
+            screenSize.Y * 0.5f
+        );
+    }
+
+
+
+
     /// <summary>
     /// Sets the position of a Control node based on a predefined screen position.
     /// </summary>
@@ -27,13 +47,12 @@ public static partial class ToolKit
 
         control.AnchorLeft = x;
         control.AnchorRight = x;
-        control.AnchorBottom = 0.5f;
-        control.AnchorTop = 0.5f;
+        control.AnchorBottom = 0.35f;
+        control.AnchorTop = 0.35f;
+
     
-        control.OffsetBottom = control.Size.Y / 2;
-        control.OffsetTop = -control.Size.Y / 2;
-        control.OffsetLeft = -control.Size.X / 2;
-        control.OffsetRight = control.Size.X / 2;
+        control.PivotOffset = control.Size / 2;
+        control.Position = Vector2.Zero;
     }
 
     /// <summary>
