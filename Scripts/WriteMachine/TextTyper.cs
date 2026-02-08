@@ -13,9 +13,8 @@ public partial class TextTyper : Control
     [ExportGroup("Text Boxes")]
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
-    [ExportGroup("preset parameters ")]
-    [Export] float speedMultiplier = 1.2f;
-
+    [Export] AudioManager sounds;
+    AudioStreamRandomizer audioStreamRandomizer;
 
     public bool isTyping;
     public bool skipRequested = false;
@@ -23,6 +22,12 @@ public partial class TextTyper : Control
 
     public override void _EnterTree()
     {
+        audioStreamRandomizer = new AudioStreamRandomizer
+        {
+            RandomPitchSemitones = 5
+        };
+        sounds.Talk.Stream = audioStreamRandomizer;
+
         tagProcessor = new TagProcessor();
         dialogBox.Text = "";
         nameBox.Text = "";
@@ -34,6 +39,10 @@ public partial class TextTyper : Control
         nameBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{speaker.Name}[/color]";
         dialogBox.Text = "";
         skipRequested = false;
+        
+        if(audioStreamRandomizer.StreamsCount >= 1)
+            audioStreamRandomizer.RemoveStream(0);
+        audioStreamRandomizer.AddStream(0, speaker.VoiceSample);
 
         string cleanText = "";
         var tokens = TagParser.Parse(text);
@@ -79,8 +88,8 @@ public partial class TextTyper : Control
             if (waitTime > 0)
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
-            //if (!char.IsWhiteSpace(c))
-                //audioModule.PlaySound(speaker.VoiceSample, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
+            if (!char.IsWhiteSpace(c))
+                sounds.Talk.Play();
 
             cleanText += c;
             charIndex++;

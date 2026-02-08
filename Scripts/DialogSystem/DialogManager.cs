@@ -120,7 +120,7 @@ public partial class DialogManager : Node
             return;
 
         string nextUid = currentLine.Next;
-        //sounds.NextSentence.Play();
+        sounds.NextSentence.Play();
 
         if(nextUid == "END")
         {

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dlk6gg7wgvgox"
-path="res://.godot/imported/Alonso.wav-bdde61bbb40620dc606b719955e73a72.sample"
+uid="uid://dp4gfkp0uh8iq"
+path="res://.godot/imported/flash.wav-1a7a573b68f27216209fb814f5a74dab.sample"
 
 [deps]
 
-source_file="res://Audio/Voices/Alonso.wav"
-dest_files=["res://.godot/imported/Alonso.wav-bdde61bbb40620dc606b719955e73a72.sample"]
+source_file="res://Audio/Sounds/flash.wav"
+dest_files=["res://.godot/imported/flash.wav-1a7a573b68f27216209fb814f5a74dab.sample"]
 
 [params]
 

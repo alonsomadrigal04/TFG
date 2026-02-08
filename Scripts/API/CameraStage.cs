@@ -8,6 +8,7 @@ public partial class CameraStage : Node
 
     [Export] Control layerDialogBox;
     [Export] Control layerBackground;
+    [Export] AudioManager sounds;
 
 
     public override void _Ready()
@@ -22,7 +23,7 @@ public partial class CameraStage : Node
 
     public void CameraShake(float duration = 0.01f, float intensity = 1f)
     {
-        //TODO: cool sound
+        sounds.Shake.Play();
         AnimateShake(duration, intensity, layerDialogBox);
     }
 

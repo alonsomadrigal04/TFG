@@ -84,6 +84,7 @@ public partial class BackgroundStage : Node
     public async void FlashTransition(Texture2D newBg)
     {
         //TODO: Cool sounds
+        sounds.Flash.Play();
         await flashTransition.PlayFlash(() =>
         {
             imageFrame.Texture = newBg;

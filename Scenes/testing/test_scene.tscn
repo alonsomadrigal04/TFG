@@ -21,7 +21,9 @@
 [ext_resource type="Script" uid="uid://66wwtsxguf58" path="res://Scripts/AudioManager.cs" id="19_fml5s"]
 [ext_resource type="AudioStream" uid="uid://odxfbcs8ta2c" path="res://Audio/Sounds/flashBack.wav" id="19_st2a4"]
 [ext_resource type="AudioStream" uid="uid://bpuy6lgehnrsn" path="res://Audio/Sounds/Impact2.ogg" id="20_0rqdt"]
+[ext_resource type="AudioStream" uid="uid://dp4gfkp0uh8iq" path="res://Audio/Sounds/flash.wav" id="20_12ppt"]
 [ext_resource type="AudioStream" uid="uid://bs2rmf7k3b1re" path="res://Audio/Sounds/NextSentence.wav" id="20_qgo6h"]
+[ext_resource type="AudioStream" uid="uid://bos70rcos6hng" path="res://Audio/Sounds/exclamation.wav" id="20_uq5m1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgo6h"]
 shader = ExtResource("3_fml5s")
@@ -489,9 +491,10 @@ script = ExtResource("1_0fon4")
 appearingIntensity = 0.3
 characterContainer = NodePath("../CharacterContainer")
 
-[node name="CameraStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=988545879 node_paths=PackedStringArray("layerDialogBox")]
+[node name="CameraStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=988545879 node_paths=PackedStringArray("layerDialogBox", "sounds")]
 script = ExtResource("2_fx65t")
 layerDialogBox = NodePath("../..")
+sounds = NodePath("../../../../Node")
 
 [node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("blurTransition", "flashTransition", "imageFrame", "sepiaFilter", "sounds")]
 script = ExtResource("3_0fon4")
@@ -529,7 +532,7 @@ dialogueBox = NodePath("../DialogBox")
 sounds = NodePath("../../../Node")
 metadata/_edit_lock_ = true
 
-[node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 instance=ExtResource("2_50ct6")]
+[node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 node_paths=PackedStringArray("sounds") instance=ExtResource("2_50ct6")]
 visible = false
 layout_mode = 1
 anchor_left = 0.067
@@ -540,7 +543,7 @@ offset_left = -85.76
 offset_top = -198.28003
 offset_right = 84.47998
 offset_bottom = 199.87994
-metadata/_edit_lock_ = true
+sounds = NodePath("../../../Node")
 
 [node name="ChoiceMaker" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1185339650 node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 layout_mode = 1
@@ -631,22 +634,34 @@ pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
 
-[node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("Hover", "Press", "Talk", "Impact", "Flashback", "NextSentence")]
+[node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence")]
 script = ExtResource("19_fml5s")
 Hover = NodePath("Hover")
 Press = NodePath("Press")
+Shake = NodePath("Shake")
 Talk = NodePath("Talk")
 Impact = NodePath("Impact")
 Flashback = NodePath("FlashBack")
+Flash = NodePath("Flash")
 NextSentence = NodePath("NextSentence")
 
 [node name="Talk" type="AudioStreamPlayer2D" parent="Node" unique_id=1423005477]
 bus = &"Voices"
 
+[node name="Flash" type="AudioStreamPlayer2D" parent="Node" unique_id=1153603871]
+stream = ExtResource("20_12ppt")
+volume_db = -8.851
+bus = &"SFX"
+
+[node name="Shake" type="AudioStreamPlayer2D" parent="Node" unique_id=1127677662]
+stream = ExtResource("20_uq5m1")
+volume_db = -13.0
+bus = &"SFX"
+
 [node name="NextSentence" type="AudioStreamPlayer2D" parent="Node" unique_id=1376746039]
 stream = ExtResource("20_qgo6h")
 volume_db = -16.0
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="FlashBack" type="AudioStreamPlayer2D" parent="Node" unique_id=344085264]
 stream = ExtResource("19_st2a4")

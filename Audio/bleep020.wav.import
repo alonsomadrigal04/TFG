@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dlk6gg7wgvgox"
-path="res://.godot/imported/Alonso.wav-bdde61bbb40620dc606b719955e73a72.sample"
+uid="uid://djs7rnotcw4md"
+path="res://.godot/imported/bleep020.wav-89a7a3d288517d90211962e146a55684.sample"
 
 [deps]
 
-source_file="res://Audio/Voices/Alonso.wav"
-dest_files=["res://.godot/imported/Alonso.wav-bdde61bbb40620dc606b719955e73a72.sample"]
+source_file="res://Audio/bleep020.wav"
+dest_files=["res://.godot/imported/bleep020.wav-89a7a3d288517d90211962e146a55684.sample"]
 
 [params]
 
