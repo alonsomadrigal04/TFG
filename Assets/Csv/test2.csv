@@ -1,10 +1,12 @@
 ﻿uid;code;type;speaker;text;next
-d1;Alonso appears left;;;;
+d1;LlanurasQuebradas bg;;;;
 d2;;say;Alonso;[w]Jesus[/w] es [b]literalmente[/b] muy gay;
+d3;Alonso appears left;;;;
 a1;;say;Alonso;huh?;
-a43;llanurasQuebradas bg;;;;
-a2;Camera zoom Alonso;;;;
-a3;Alonso moves center;;;;
-a4;Camera reset;;;;
-a5;Camera shake  3i;;;;
-a6;Alonso disappears;;;;
+a2;LlanurasQuebradas bg;;;;
+a3;negro flashback;;;;
+a4;Camera zoom Alonso;;;;
+a5;Alonso moves center;;;;
+a6;Camera reset;;;;
+a7;Camera shake  3i;;;;
+a8;Alonso disappears;;;;

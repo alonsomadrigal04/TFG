@@ -22,11 +22,11 @@ public partial class CameraStage : Node
 
     public void CameraShake(float duration = 0.01f, float intensity = 1f)
     {
+        //TODO: cool sound
         AnimateShake(duration, intensity, layerDialogBox);
-        //AnimateShake(duration, intensity, layerBackground);
     }
 
-    private void AnimateShake(float duration, float intensity, Control canvasToAnimate)
+    public void AnimateShake(float duration, float intensity, Control canvasToAnimate)
     {
         Tween tween = CreateTween();
 

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://baxpljelgcvfm"]
+
+[ext_resource type="Shader" uid="uid://cvfmubqck2t8l" path="res://Scenes/testing/Zoom_Blur_Transition.gdshader" id="1_yv22q"]
+
+[resource]
+shader = ExtResource("1_yv22q")
+shader_parameter/progress = 0.0
+shader_parameter/blur_strength = 0.3
+shader_parameter/samples = 20
+shader_parameter/blur_center = Vector2(0.5, 0.5)

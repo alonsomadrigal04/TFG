@@ -1,20 +1,33 @@
 [gd_scene format=3 uid="uid://dchwp1pat8lg2"]
 
 [ext_resource type="Script" uid="uid://c2ew51eyjlbgx" path="res://Scripts/API/CharacterStage.cs" id="1_0fon4"]
+[ext_resource type="Script" uid="uid://cmgiev8ih3hnf" path="res://Scripts/Utility/ScreenFlash.cs" id="1_571ua"]
+[ext_resource type="Material" uid="uid://baxpljelgcvfm" path="res://Shaders/blurTrans.tres" id="1_c7igj"]
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="1_d3awe"]
 [ext_resource type="Script" uid="uid://cdg4q3jx0krqk" path="res://Scripts/GameManager.cs" id="1_r5l72"]
 [ext_resource type="PackedScene" uid="uid://vu586py46jou" path="res://Scenes/DialogSystem/TextBox.tscn" id="2_50ct6"]
 [ext_resource type="Script" uid="uid://cp3tqugnaasms" path="res://Scripts/API/CameraStage.cs" id="2_fx65t"]
 [ext_resource type="Script" uid="uid://dpwatcc7gusv3" path="res://Scripts/DialogSystem/DialogManager.cs" id="2_hb2xm"]
 [ext_resource type="Script" uid="uid://bf32lw2rbxmpp" path="res://Scripts/API/Backgrounds/BackgroundStage.cs" id="3_0fon4"]
+[ext_resource type="Shader" uid="uid://bnexcwx6ebdcd" path="res://Scenes/testing/sepiafilter.gdshader" id="3_fml5s"]
 [ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/ChoiceFiles/ChoiceMaker.cs" id="4_ak5v8"]
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
+[ext_resource type="Script" uid="uid://bp2hw26koj5ly" path="res://Scripts/API/UiStage.cs" id="6_qhtgt"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
 [ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
-[ext_resource type="Script" uid="uid://b1kqhsfkrse3k" path="res://Scripts/Utility/MultiaudioPlayerModule.cs" id="8_d3awe"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
 [ext_resource type="AudioStream" uid="uid://cdvrc3ns1oa07" path="res://Audio/Sounds/FlavourSounds/question.wav" id="12_abms1"]
+[ext_resource type="AudioStream" uid="uid://odxfbcs8ta2c" path="res://Audio/Sounds/flashBack.wav" id="19_st2a4"]
+[ext_resource type="AudioStream" uid="uid://bpuy6lgehnrsn" path="res://Audio/Sounds/Impact2.ogg" id="20_0rqdt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgo6h"]
+shader = ExtResource("3_fml5s")
+shader_parameter/sepia_strength = 1.0
+shader_parameter/time_scale = 1.5
+shader_parameter/wave_intensity = -0.005
+shader_parameter/grain_strength = 0.0800000038
+shader_parameter/vignette_strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oho3u"]
 shader = ExtResource("6_x033f")
@@ -80,7 +93,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Shader:material:shader_parameter/vignette_size")
+tracks/4/path = NodePath("CanvasLayer/Shader:material:shader_parameter/vignette_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -156,7 +169,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Shader:material:shader_parameter/vignette_size")
+tracks/4/path = NodePath("CanvasLayer/Shader:material:shader_parameter/vignette_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -231,7 +244,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Shader:material:shader_parameter/vignette_size")
+tracks/4/path = NodePath("CanvasLayer/Shader:material:shader_parameter/vignette_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -412,9 +425,38 @@ offset_left = -640.0
 offset_top = -341.28003
 offset_right = 640.0
 offset_bottom = 378.71997
-metadata/_edit_lock_ = true
+
+[node name="ShadersTop" type="CanvasLayer" parent="." unique_id=281383518]
+layer = 15
+
+[node name="ScreenFlash" type="ColorRect" parent="ShadersTop" unique_id=376911720]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_571ua")
+DefaultAlpha = 1.0
+metadata/_custom_type_script = "uid://cmgiev8ih3hnf"
+
+[node name="SepiaFilter" type="ColorRect" parent="ShadersTop" unique_id=1847024985]
+visible = false
+material = SubResource("ShaderMaterial_qgo6h")
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="ShadersBottom" type="CanvasLayer" parent="." unique_id=99557676]
+
+[node name="ColorRect" type="ColorRect" parent="ShadersBottom" unique_id=1641160413]
+visible = false
+z_index = 1
+material = ExtResource("1_c7igj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GeneralLayout" type="CanvasLayer" parent="." unique_id=1610666286]
+layer = 10
 
 [node name="DialogSystem" type="Control" parent="GeneralLayout" unique_id=128116944]
 layout_mode = 3
@@ -449,9 +491,17 @@ characterContainer = NodePath("../CharacterContainer")
 script = ExtResource("2_fx65t")
 layerDialogBox = NodePath("../..")
 
-[node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("imageFrame")]
+[node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("blurTransition", "flashTransition", "imageFrame", "sepiaFilter")]
 script = ExtResource("3_0fon4")
+timeTransition = 0.6
+blurTransition = NodePath("../../../../ShadersBottom/ColorRect")
+flashTransition = NodePath("../../../../ShadersTop/ScreenFlash")
 imageFrame = NodePath("../../../../Background/BgFrame")
+sepiaFilter = NodePath("../../../../ShadersTop/SepiaFilter")
+
+[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox")]
+script = ExtResource("6_qhtgt")
+textBox = NodePath("../../DialogBox")
 
 [node name="DebugScreen" parent="GeneralLayout/DialogSystem" unique_id=1007317109 instance=ExtResource("1_d3awe")]
 layout_mode = 1
@@ -465,16 +515,18 @@ script = ExtResource("1_r5l72")
 dialogManagerPath = NodePath("../DialogManager")
 metadata/_edit_lock_ = true
 
-[node name="DialogManager" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1319027079 node_paths=PackedStringArray("choiceMaker", "textTyper")]
+[node name="DialogManager" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1319027079 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_hb2xm")
 choiceMaker = NodePath("../ChoiceMaker")
 textTyper = NodePath("../DialogBox")
+dialogueBox = NodePath("../DialogBox")
 metadata/_edit_lock_ = true
 
 [node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 instance=ExtResource("2_50ct6")]
+visible = false
 layout_mode = 1
 anchor_left = 0.067
 anchor_top = 0.47400004
@@ -500,7 +552,7 @@ animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
 optionsContainer = NodePath("../ChoiceLayout/HBoxContainer")
 optionShader = ExtResource("6_d3awe")
 separation = 40
-shaderBack = NodePath("../ChoiceLayout/Shader")
+shaderBack = NodePath("../ChoiceLayout/CanvasLayer/Shader")
 grayBack = NodePath("../ChoiceLayout/Gray")
 metadata/_edit_lock_ = true
 
@@ -520,10 +572,11 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.50980395, 0.50980395, 0.50980395, 0.7882353)
 
-[node name="Shader" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=596100438]
+[node name="CanvasLayer" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1616460335]
+
+[node name="Shader" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CanvasLayer" unique_id=596100438]
 visible = false
 material = SubResource("ShaderMaterial_oho3u")
-layout_mode = 0
 offset_right = 1272.0
 offset_bottom = 720.0
 
@@ -574,6 +627,17 @@ pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
 
-[node name="MultiaudioPlayerModule" type="Node" parent="." unique_id=629384407]
-script = ExtResource("8_d3awe")
-metadata/_custom_type_script = "uid://b1kqhsfkrse3k"
+[node name="Node" type="Node" parent="." unique_id=1691001399]
+
+[node name="Talk" type="AudioStreamPlayer2D" parent="Node" unique_id=1423005477]
+
+[node name="FlashBack" type="AudioStreamPlayer2D" parent="Node" unique_id=344085264]
+stream = ExtResource("19_st2a4")
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="Node" unique_id=1094476841]
+stream = ExtResource("20_0rqdt")
+
+[node name="Talk4" type="AudioStreamPlayer2D" parent="Node" unique_id=2066069177]
+stream = ExtResource("5_oho3u")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node" unique_id=1433978679]

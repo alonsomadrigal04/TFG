@@ -10,12 +10,12 @@ public partial class CharacterStage : Node
 
     [Export(PropertyHint.Range, "0,20,0.1")]
     float appearingIntensity = 5f; // TODO: This variable not seems to do things propetly
-    [Export] float appearTime = 0.3f;
+    [Export] float appearTime = 0.3f; // is the time that takes for a character to appear
     [Export] float disAppearTime = 0.3f;
     [Export] int portraitLayer = -1;
 
     Dictionary<Character, Tween> activeTweens = [];
-    [Export] float bobIntensity = 50f;
+    [Export] float bobIntensity = 30f;
     [Export] Control characterContainer;
 
 
@@ -89,10 +89,10 @@ public partial class CharacterStage : Node
             return;
         }
         TextureRect textureToDestroy = CharactersInScene[character];
-        DisapearAnimation(textureToDestroy, character);
+        DisappearAnimation(textureToDestroy, character);
     }
 
-    void DisapearAnimation(TextureRect textureToDestroy, Character character)
+    void DisappearAnimation(TextureRect textureToDestroy, Character character)
     {
         Tween tween = CreateTween();
 
@@ -120,13 +120,32 @@ public partial class CharacterStage : Node
     {
         Tween tween = CreateTween();
 
-        tween.TweenProperty(portrait, "modulate:a", 1f, appearTime);
+        Vector2 startPos = portrait.Position + new Vector2(0, 40);
+        Vector2 endPos = portrait.Position;
+
+        portrait.Position = startPos;
+        portrait.Modulate = portrait.Modulate with { A = 0.4f };
+        portrait.Scale = new Vector2(0.95f, 1.05f);
+
+        tween.TweenProperty(portrait, "modulate:a", 1f, appearTime)
+            .SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.Out);
 
         tween.Parallel()
-            .TweenProperty(portrait, "scale", Vector2.One, appearTime)
-            .SetTrans(Tween.TransitionType.Elastic)
+            .TweenProperty(portrait, "position", endPos + new Vector2(0, -6), appearTime * 0.5f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        tween.Parallel()
+            .TweenProperty(portrait, "scale", Vector2.One, appearTime * 0.5f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(portrait, "position", endPos, appearTime * 0.5f)
+            .SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.Out);
     }
+
 
     public bool IsCharacterInScene(Character character) => CharactersInScene.ContainsKey(character);
 
@@ -164,5 +183,21 @@ public partial class CharacterStage : Node
         }
 
         return resetPosition;
+    }
+
+    public void HideAllCharacters()
+    {
+        foreach (TextureRect character in CharactersInScene.Values)
+        {
+            character.Hide();
+        }
+    }
+
+    public void ShowAllCharacters()
+    {
+        foreach (TextureRect character in CharactersInScene.Values)
+        {
+            character.Show();
+        }
     }
 }

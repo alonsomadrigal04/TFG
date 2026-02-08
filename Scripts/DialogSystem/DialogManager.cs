@@ -10,6 +10,7 @@ public partial class DialogManager : Node
     DialogReader reader;
     [Export] ChoiceMaker choiceMaker;
     [Export] TextTyper textTyper;
+    [Export] Control dialogueBox;
 
     Dictionary<string, DialogLine> dialogLines;
     List<string> orderedUids;
@@ -52,6 +53,8 @@ public partial class DialogManager : Node
         }
     }
 
+
+
     /// <summary>
     /// Starts a dialog line given its UID. 
     /// </summary>
@@ -66,6 +69,7 @@ public partial class DialogManager : Node
             if(line.Code != "")
             {
                 CodeProcessor.RunCode(line.Code);
+                //OnNextRequested();
                 return;
             }
 
@@ -91,6 +95,8 @@ public partial class DialogManager : Node
 
     void ProcessDialogLine(DialogLine line, string[] typePortions)
     {
+        if(UiStage.Instance.IsTextBoxHide())
+            UiStage.Instance.AnimateShowTextBox();
         if(LastSpeaker == null || line.Speaker != LastSpeaker)
         {
             LastSpeaker ??= line.Speaker;

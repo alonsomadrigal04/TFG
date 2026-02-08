@@ -26,6 +26,8 @@ public partial class TextTyper : Control
     public override void _EnterTree()
     {
         tagProcessor = new TagProcessor();
+        dialogBox.Text = "";
+        nameBox.Text = "";
     }
 
     public async void WriteText(string text, Character speaker)

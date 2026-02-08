@@ -1,0 +1,23 @@
+[DIALOGUE]
+·   [b] text [/b]                               -- Bold text
+·   [i] text [/i]                               -- Italic text
+·   [w] text [/w]                               -- Text with a wavy effect
+·   [s] text [/s]                               -- Text with a shaking effect
+·   [speed=number] text [/speed]                -- Text that appears at a specific speed (e.g., [speed=50]Hello[/speed])
+·   [c=color] text [/c]                         -- Text with a specific color (e.g., [c=red]Hello[/c])
+
+[CODE]
+// POSITIONS //
+LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
+// CHARACTERS //
+·   [NAME OF CHARACTER] appears [POSITIONS]     -- A character appears in a position on the screen
+·   [NAME OF CHARACTER] disappears              -- A character disappears from the screen
+·   [NAME OF CHARACTER] moves [POSITIONS]       -- A character moves to a position on the screen
+·   [NAME OF CHARACTER] Is [EMOTION]            -- A character changes their emotion
+// BACKGROUNDS //
+·   [NAME OF BACKGROUND] bg                     -- A background appears on the screen
+·   [NAME OF BACKGROUND] trans [TYPE]           -- A background transition occurs with a specific type (e.g., flash, blur)
+·   [NAME OF BACKGROUND] flashback               -- A flashback effect occurs with a specific duration (e.g., flashback 3s)
+// CAMERA //
+·   Camera zoom [POSITION/CHARACTER] [DURATION] -- The camera zooms in or out on a position or character for a specific duration (e.g., Camera zoom Center 2s)
+·   Camera shake [DURATION] [INTENSITY]         -- The camera shakes for a specific duration (e.g., Camera shake 1s)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://leggi1whkbf8"
-path="res://.godot/imported/1900x1900-000000-80-0-0.jpg-75ae85715a5e8b74579adc2245f90e0f.ctex"
+uid="uid://3s2ojhskyew4"
+path="res://.godot/imported/negro.jpg-61dec4941ca371308f429c2a6edb3064.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Portraits/Alonso/1900x1900-000000-80-0-0.jpg"
-dest_files=["res://.godot/imported/1900x1900-000000-80-0-0.jpg-75ae85715a5e8b74579adc2245f90e0f.ctex"]
+source_file="res://Assets/Backgrounds/Images/negro.jpg"
+dest_files=["res://.godot/imported/negro.jpg-61dec4941ca371308f429c2a6edb3064.ctex"]
 
 [params]
 
