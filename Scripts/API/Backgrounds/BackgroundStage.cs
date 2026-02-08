@@ -10,6 +10,7 @@ public partial class BackgroundStage : Node
     [Export] ScreenFlash flashTransition;
     [Export] TextureRect imageFrame;
     [Export] ColorRect sepiaFilter;
+    [Export] AudioManager sounds;
 
     public static BackgroundStage Instance {get; private set;}
     float progress = 0f;
@@ -93,6 +94,8 @@ public partial class BackgroundStage : Node
     {
         // TODO: cool flashcak sound
         Texture2D oldBg = imageFrame.Texture;
+        sounds.Flashback.Play();
+        
         await flashTransition.PlayFlash(() =>
         {
             imageFrame.Texture = flashbackImg;

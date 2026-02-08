@@ -11,6 +11,7 @@ public partial class DialogManager : Node
     [Export] ChoiceMaker choiceMaker;
     [Export] TextTyper textTyper;
     [Export] Control dialogueBox;
+    [Export] AudioManager sounds;
 
     Dictionary<string, DialogLine> dialogLines;
     List<string> orderedUids;
@@ -119,6 +120,7 @@ public partial class DialogManager : Node
             return;
 
         string nextUid = currentLine.Next;
+        //sounds.NextSentence.Play();
 
         if(nextUid == "END")
         {

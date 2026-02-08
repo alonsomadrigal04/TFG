@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 public partial class TextTyper : Control
 {
-    [ExportGroup("Audio")]
-    [Export] MultiaudioPlayerModule audioModule;
     [ExportGroup("Text Boxes")]
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
@@ -57,7 +55,7 @@ public partial class TextTyper : Control
         string closingTags = BuildClosingTags(tagProcessor.ActiveEffects);
         dialogBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{cleanText}{closingTags}[/color]";
 
-        audioModule.StopAll();
+        //audioModule.StopAll();
         isTyping = false;
     }
 
@@ -81,8 +79,8 @@ public partial class TextTyper : Control
             if (waitTime > 0)
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
-            if (!char.IsWhiteSpace(c))
-                audioModule.PlaySound(speaker.VoiceSample, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
+            //if (!char.IsWhiteSpace(c))
+                //audioModule.PlaySound(speaker.VoiceSample, 0.2f, (float)GD.RandRange(0.7f, 0.9f));
 
             cleanText += c;
             charIndex++;

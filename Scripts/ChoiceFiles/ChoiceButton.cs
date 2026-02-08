@@ -33,7 +33,6 @@ public partial class ChoiceButton : Button
 
         pressSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/press.wav");
         hoverSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/Hover2.wav");
-
     }
 
     void ConnectSignals()
@@ -55,8 +54,9 @@ public partial class ChoiceButton : Button
 
     void OnPressed()
     {
+        //TODO: add soudns to this
         AnimateClick();
-        AudioManager.PlayAudio(pressSound);
+        //AudioManager.Instance.;
         EmitSignal(nameof(SelectedSignal), Uid);
     }
 
@@ -66,7 +66,7 @@ public partial class ChoiceButton : Button
         StopHoverShake();
         Vector2 originalPosition = Position;
 
-        AudioManager.PlayAudio(hoverSound);
+        //AudioManager.PlayAudio(hoverSound);
 
         hoverTween = CreateTween();
         hoverTween.SetLoops();

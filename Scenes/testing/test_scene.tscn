@@ -18,8 +18,10 @@
 [ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
 [ext_resource type="AudioStream" uid="uid://cdvrc3ns1oa07" path="res://Audio/Sounds/FlavourSounds/question.wav" id="12_abms1"]
+[ext_resource type="Script" uid="uid://66wwtsxguf58" path="res://Scripts/AudioManager.cs" id="19_fml5s"]
 [ext_resource type="AudioStream" uid="uid://odxfbcs8ta2c" path="res://Audio/Sounds/flashBack.wav" id="19_st2a4"]
 [ext_resource type="AudioStream" uid="uid://bpuy6lgehnrsn" path="res://Audio/Sounds/Impact2.ogg" id="20_0rqdt"]
+[ext_resource type="AudioStream" uid="uid://bs2rmf7k3b1re" path="res://Audio/Sounds/NextSentence.wav" id="20_qgo6h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgo6h"]
 shader = ExtResource("3_fml5s")
@@ -491,13 +493,14 @@ characterContainer = NodePath("../CharacterContainer")
 script = ExtResource("2_fx65t")
 layerDialogBox = NodePath("../..")
 
-[node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("blurTransition", "flashTransition", "imageFrame", "sepiaFilter")]
+[node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("blurTransition", "flashTransition", "imageFrame", "sepiaFilter", "sounds")]
 script = ExtResource("3_0fon4")
 timeTransition = 0.6
 blurTransition = NodePath("../../../../ShadersBottom/ColorRect")
 flashTransition = NodePath("../../../../ShadersTop/ScreenFlash")
 imageFrame = NodePath("../../../../Background/BgFrame")
 sepiaFilter = NodePath("../../../../ShadersTop/SepiaFilter")
+sounds = NodePath("../../../../Node")
 
 [node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox")]
 script = ExtResource("6_qhtgt")
@@ -515,7 +518,7 @@ script = ExtResource("1_r5l72")
 dialogManagerPath = NodePath("../DialogManager")
 metadata/_edit_lock_ = true
 
-[node name="DialogManager" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1319027079 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox")]
+[node name="DialogManager" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1319027079 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox", "sounds")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -523,6 +526,7 @@ script = ExtResource("2_hb2xm")
 choiceMaker = NodePath("../ChoiceMaker")
 textTyper = NodePath("../DialogBox")
 dialogueBox = NodePath("../DialogBox")
+sounds = NodePath("../../../Node")
 metadata/_edit_lock_ = true
 
 [node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 instance=ExtResource("2_50ct6")]
@@ -627,17 +631,34 @@ pivot_offset = Vector2(34, 109)
 theme_override_font_sizes/normal_font_size = 156
 text = "?"
 
-[node name="Node" type="Node" parent="." unique_id=1691001399]
+[node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("Hover", "Press", "Talk", "Impact", "Flashback", "NextSentence")]
+script = ExtResource("19_fml5s")
+Hover = NodePath("Hover")
+Press = NodePath("Press")
+Talk = NodePath("Talk")
+Impact = NodePath("Impact")
+Flashback = NodePath("FlashBack")
+NextSentence = NodePath("NextSentence")
 
 [node name="Talk" type="AudioStreamPlayer2D" parent="Node" unique_id=1423005477]
+bus = &"Voices"
+
+[node name="NextSentence" type="AudioStreamPlayer2D" parent="Node" unique_id=1376746039]
+stream = ExtResource("20_qgo6h")
+volume_db = -16.0
+bus = &"Voices"
 
 [node name="FlashBack" type="AudioStreamPlayer2D" parent="Node" unique_id=344085264]
 stream = ExtResource("19_st2a4")
+bus = &"SFX"
 
 [node name="Impact" type="AudioStreamPlayer2D" parent="Node" unique_id=1094476841]
 stream = ExtResource("20_0rqdt")
+bus = &"SFX"
 
-[node name="Talk4" type="AudioStreamPlayer2D" parent="Node" unique_id=2066069177]
+[node name="Hover" type="AudioStreamPlayer2D" parent="Node" unique_id=2066069177]
 stream = ExtResource("5_oho3u")
+bus = &"SFX"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node" unique_id=1433978679]
+[node name="Press" type="AudioStreamPlayer2D" parent="Node" unique_id=1433978679]
+bus = &"SFX"

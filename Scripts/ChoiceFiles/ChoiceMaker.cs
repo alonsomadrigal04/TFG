@@ -42,12 +42,12 @@ public partial class ChoiceMaker : Node
         {
             case "Impact":
                 SetActiveShaders();
-                AudioManager.PlayAudio(impact);
+                //AudioManager.PlayAudio(impact);
                 animationPlayer.Play("IntroQuestion");
                 break;
             case "Soft":
                 SetActiveShaders();
-                AudioManager.PlayAudio(soft);
+                //AudioManager.PlayAudio(soft);
                 animationPlayer.Play("IntroQuestion"); // TODO: create a Soft Animation
                 break;
             default:

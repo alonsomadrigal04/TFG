@@ -36,7 +36,7 @@ public partial class FlavourAnimator : Node
         {
             case "question":
             animationPlayer.Play("question");
-            AudioManager.PlayAudio(questionAudio);
+            //AudioManager.PlayAudio(questionAudio);
             break;
             default:
                 GD.PrintErr($"Flavour Type: {type} Not recognised");
