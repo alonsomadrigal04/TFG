@@ -8,16 +8,21 @@ public partial class CharacterStage : Node
     public static CharacterStage Instance {get; private set;}
     public static Dictionary<Character, TextureRect> CharactersInScene {get; private set;} = [];
 
-    [Export(PropertyHint.Range, "0,20,0.1")]
-    float appearingIntensity = 5f; // TODO: This variable not seems to do things propetly
-    [Export] float appearTime = 0.3f; // is the time that takes for a character to appear
-    [Export] float disAppearTime = 0.3f;
-    [Export] int portraitLayer = -1;
+    [ExportGroup("TIME ANIMATIONS")]
+    [Export(PropertyHint.Range, "0,2,0.1")]
+    float appearTime = 1.0f; // is the time that takes for a character to appear
+    [Export(PropertyHint.Range, "0,2,0.1")]
+    float disAppearTime = 1.0f;
+    [Export(PropertyHint.Range, "0,2,0.1")]
+    float moveTime = 1.0f;
 
+    [ExportGroup("ANIMATIONS INTENSITY")]
+    [Export] float bobIntensity = 15f;
+
+    [ExportGroup("CHARACTER PORTRAIT")]
     Dictionary<Character, Tween> activeTweens = [];
-    [Export] float bobIntensity = 30f;
+    [Export] int portraitLayer = -1;
     [Export] Control characterContainer;
-
 
     public override void _Ready()
     {
@@ -41,10 +46,13 @@ public partial class CharacterStage : Node
 
     void MoveAnimation(TextureRect portrait, ScreenPosition newDirection)
     {
+        ActionBus.ActionStarted();
+
         Tween tween = CreateTween();
         tween.SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
-        tween.TweenProperty(portrait, "anchor_left", ToolKit.XPositions[newDirection], 0.3f);
-        tween.SetParallel().TweenProperty(portrait, "anchor_right", ToolKit.GetAnchorPosition(newDirection), 0.3f);
+        tween.TweenProperty(portrait, "position", ToolKit.GetPosition(newDirection) - new Vector2(0, portrait.Size.Y /2), moveTime);
+
+        tween.Finished += ActionBus.ActionFinished;
     }
 
     /// <summary>
@@ -71,13 +79,11 @@ public partial class CharacterStage : Node
         newPortrait.PivotOffset = newPortrait.Size / 2;
         newPortrait.ZIndex = portraitLayer;
         ToolKit.SetPosition(newPortrait, screenPosition);
-        newPortrait.SetAnchorOffsetToZero();
-
-        newPortrait.Scale = Vector2.One  * (1f / (1f + appearingIntensity));
+        newPortrait.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.Center);
 
         CharactersInScene[newCharacter] = newPortrait;
-
-        CallDeferred(nameof(AddAndAnimate), newPortrait);
+        AddAndAnimate(newPortrait);
+        // CallDeferred(nameof(AddAndAnimate), newPortrait);
 
     }
 
@@ -94,6 +100,7 @@ public partial class CharacterStage : Node
 
     void DisappearAnimation(TextureRect textureToDestroy, Character character)
     {
+        ActionBus.ActionStarted();
         Tween tween = CreateTween();
 
         tween.SetTrans(Tween.TransitionType.Cubic)
@@ -108,6 +115,7 @@ public partial class CharacterStage : Node
             CharactersInScene.Remove(character);
             textureToDestroy.QueueFree();
         }));
+        tween.Finished += ActionBus.ActionFinished;
     }
 
     void AddAndAnimate(TextureRect portrait)
@@ -118,32 +126,23 @@ public partial class CharacterStage : Node
 
     void AppearAnimation(TextureRect portrait)
     {
+        ActionBus.ActionStarted();
+
         Tween tween = CreateTween();
 
-        Vector2 startPos = portrait.Position + new Vector2(0, 40);
         Vector2 endPos = portrait.Position;
 
-        portrait.Position = startPos;
-        portrait.Modulate = portrait.Modulate with { A = 0.4f };
-        portrait.Scale = new Vector2(0.95f, 1.05f);
+        portrait.Modulate = new Color(0,0,0,0);
+        portrait.Scale = new Vector2(0.5f, 0.5f);
 
-        tween.TweenProperty(portrait, "modulate:a", 1f, appearTime)
-            .SetTrans(Tween.TransitionType.Sine)
-            .SetEase(Tween.EaseType.Out);
+        tween.TweenProperty(portrait, "modulate", Colors.White, appearTime)
+        .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.In);
 
-        tween.Parallel()
-            .TweenProperty(portrait, "position", endPos + new Vector2(0, -6), appearTime * 0.5f)
-            .SetTrans(Tween.TransitionType.Quad)
-            .SetEase(Tween.EaseType.Out);
+        tween.Parallel().TweenProperty(portrait, "scale", Vector2.One, appearTime)
+                        .SetTrans(Tween.TransitionType.Quint).SetEase(Tween.EaseType.Out);
 
-        tween.Parallel()
-            .TweenProperty(portrait, "scale", Vector2.One, appearTime * 0.5f)
-            .SetTrans(Tween.TransitionType.Quad)
-            .SetEase(Tween.EaseType.Out);
+        tween.Finished += ActionBus.ActionFinished;
 
-        tween.TweenProperty(portrait, "position", endPos, appearTime * 0.5f)
-            .SetTrans(Tween.TransitionType.Sine)
-            .SetEase(Tween.EaseType.Out);
     }
 
 
@@ -162,6 +161,8 @@ public partial class CharacterStage : Node
 
     private void TalkAnimation(TextureRect portrait)
     {
+        ActionBus.ActionStarted();
+
         Tween tween = CreateTween();
         Vector2 originalPosition= portrait.Position;
 
@@ -172,6 +173,7 @@ public partial class CharacterStage : Node
 
         portrait.Position = originalPosition;
 
+        tween.Finished += ActionBus.ActionFinished;
     }
 
     public static Vector2 GetCharacterPosition(CommandToken commandToken, Vector2 resetPosition)

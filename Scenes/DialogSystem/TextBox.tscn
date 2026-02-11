@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 
-[node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("audioModule", "dialogBox", "nameBox")]
+[node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "nameBox")]
 layout_mode = 3
 anchor_left = 0.080000006
 anchor_top = 0.29900002
@@ -15,7 +15,6 @@ offset_bottom = 215.27997
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1hl6y")
-audioModule = NodePath("")
 dialogBox = NodePath("DialogBox/MarginContainer/DialogText")
 nameBox = NodePath("DialogBox/MarginContainer2/SpeakerName")
 

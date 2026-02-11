@@ -2,5 +2,9 @@
     "Alonso": {
         "voice_sample": "res://Audio/Voices/Alonso.wav",
         "color": "#66ccff"
+    },
+    "Godot":{
+        "voice_sample": "res://Audio/Voices/Godot.wav",
+        "color": "#800000"
     }
 }

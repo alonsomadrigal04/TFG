@@ -1,6 +1,7 @@
 using Components;
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class BackgroundStage : Node
 {
@@ -44,6 +45,7 @@ public partial class BackgroundStage : Node
 
         if (progress >= 1f)
         {
+            ActionBus.ActionFinished();
             progress = 0f;
             isTransitioning = false;
             imageFrame.Texture = 
@@ -51,6 +53,16 @@ public partial class BackgroundStage : Node
             blurTransition.Hide();
             
         }
+    }
+
+    public async Task AnimateFlash()
+    {
+        ActionBus.ActionStarted();
+
+        sounds.Flash.Play();
+        await flashTransition.PlayFlash(() => { }, null, null, null, 0.5f);
+
+        ActionBus.ActionFinished();
     }
 
 
@@ -79,6 +91,7 @@ public partial class BackgroundStage : Node
         transitionBlurShader.SetShaderParameter("progress", progress);
 
         isTransitioning = true;
+        ActionBus.ActionStarted();
     }
 
     public async void FlashTransition(Texture2D newBg)
@@ -93,6 +106,7 @@ public partial class BackgroundStage : Node
 
     public async void MakeFlashback(Texture2D flashbackImg, float duration = 1f)
     {
+        ActionBus.ActionStarted();
         // TODO: cool flashcak sound
         Texture2D oldBg = imageFrame.Texture;
         sounds.Flashback.Play();
@@ -114,8 +128,8 @@ public partial class BackgroundStage : Node
             sepiaFilter.Hide();
         });
 
-
-        UiStage.Instance.AnimateShowTextBox();
+        ActionBus.ActionFinished();
+        //UiStage.Instance.AnimateShowTextBox();
     }
 
 }

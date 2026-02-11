@@ -481,19 +481,25 @@ metadata/_edit_lock_ = true
 
 [node name="CharacterContainer" type="Control" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1438677918]
 layout_mode = 1
-anchor_right = 32.0
-anchor_bottom = 18.0
+anchor_left = 16.0
+anchor_top = 8.525001
+anchor_right = 16.0
+anchor_bottom = 8.525001
+offset_left = -640.0
+offset_top = -341.00003
+offset_right = 640.0
+offset_bottom = 378.99997
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(640, 341)
 
 [node name="CharacterStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=501401635 node_paths=PackedStringArray("characterContainer")]
 script = ExtResource("1_0fon4")
-appearingIntensity = 0.3
 characterContainer = NodePath("../CharacterContainer")
 
 [node name="CameraStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=988545879 node_paths=PackedStringArray("layerDialogBox", "sounds")]
 script = ExtResource("2_fx65t")
-layerDialogBox = NodePath("../..")
+layerDialogBox = NodePath("../CharacterContainer")
 sounds = NodePath("../../../../Node")
 
 [node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("blurTransition", "flashTransition", "imageFrame", "sepiaFilter", "sounds")]
@@ -544,6 +550,7 @@ offset_top = -198.28003
 offset_right = 84.47998
 offset_bottom = 199.87994
 sounds = NodePath("../../../Node")
+metadata/_edit_lock_ = true
 
 [node name="ChoiceMaker" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1185339650 node_paths=PackedStringArray("animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 layout_mode = 1

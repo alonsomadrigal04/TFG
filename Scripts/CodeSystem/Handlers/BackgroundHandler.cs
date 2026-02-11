@@ -10,7 +10,8 @@ public class BackgroundHandler : ICommandHandler
     [
         "bg",
         "trans",
-        "flashback"
+        "flashback",
+        "flash"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -26,9 +27,17 @@ public class BackgroundHandler : ICommandHandler
             case "flashback":
                 MakeFlashback(commandToken);
                 break;
+            case "flash":
+                MakeFlash(commandToken);
+                break;
             default:
                 break;
         }
+    }
+
+    private async void MakeFlash(CommandToken commandToken)
+    {
+        await BackgroundStage.Instance.AnimateFlash();
     }
 
     private void MakeFlashback(CommandToken commandToken)

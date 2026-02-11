@@ -70,7 +70,15 @@ public partial class DialogManager : Node
             if(line.Code != "")
             {
                 CodeProcessor.RunCode(line.Code);
-                //OnNextRequested();
+                GD.Print(line.Code);
+                if (ActionBus.IsBusy)
+                {
+                    Action solicitatedAction = ActionBus.RunAfterActions(OnNextRequested);
+                }
+                else
+                {
+                    OnNextRequested();
+                }
                 return;
             }
 
@@ -100,8 +108,11 @@ public partial class DialogManager : Node
             UiStage.Instance.AnimateShowTextBox();
         if(LastSpeaker == null || line.Speaker != LastSpeaker)
         {
-            LastSpeaker ??= line.Speaker;
-            CharacterStage.Instance.AnimateTalking(line.Speaker);
+            LastSpeaker = line.Speaker;
+            ActionBus.RunAfterActions(() =>
+            {
+                CharacterStage.Instance.AnimateTalking(line.Speaker);   
+            });
         }
         textTyper.WriteText(line.Text, line.Speaker);
         if (typePortions.Length > 1)

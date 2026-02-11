@@ -31,6 +31,8 @@ public partial class UiStage : Node
 
     public void AnimateShowTextBox()
     {
+        ActionBus.ActionStarted();
+        
         Tween tween = CreateTween();
         textBox.Show();
         Vector2 originalPosition = textBox.Position;
@@ -42,6 +44,8 @@ public partial class UiStage : Node
 
         tween.TweenProperty(textBox, "modulate:a", 1f, 0.5f);
         tween.SetParallel().TweenProperty(textBox, "position:y", originalPosition.Y, 0.5f);
+
+        tween.Finished += ActionBus.ActionFinished;
     }
 
 }

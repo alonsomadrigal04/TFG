@@ -15,7 +15,11 @@ public static partial class ToolKit
         XPositions[ScreenPosition.FarRight] = 0.9f;
     }
 
-    public static Vector2 GetPosition(ScreenPosition screenPosition) => new(XPositions[screenPosition], 0.5f);
+    public static Vector2 GetPosition(ScreenPosition screenPosition)
+    {
+        Vector2 screenSize = DisplayServer.WindowGetSize();
+        return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
+    } 
 
     public static Vector2 GetScreenPosition(ScreenPosition screenPosition)
     {
@@ -41,19 +45,7 @@ public static partial class ToolKit
     /// </summary>
     /// <param name="control">The Control node to position.</param>
     /// <param name="screenPosition">The desired screen position.</param>
-    public static void SetPosition(Control control, ScreenPosition screenPosition)
-    {
-        float x = XPositions[screenPosition];
-
-        control.AnchorLeft = x;
-        control.AnchorRight = x;
-        control.AnchorBottom = 0.35f;
-        control.AnchorTop = 0.35f;
-
-    
-        control.PivotOffset = control.Size / 2;
-        control.Position = Vector2.Zero;
-    }
+    public static void SetPosition(Control control, ScreenPosition screenPosition) => control.Position = GetPosition(screenPosition);
 
     /// <summary>
     /// Gets the anchor position for a given screen position.

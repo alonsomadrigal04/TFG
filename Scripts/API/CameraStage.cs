@@ -26,9 +26,9 @@ public partial class CameraStage : Node
         sounds.Shake.Play();
         AnimateShake(duration, intensity, layerDialogBox);
     }
-
     public void AnimateShake(float duration, float intensity, Control canvasToAnimate)
     {
+        ActionBus.ActionStarted();
         Tween tween = CreateTween();
 
         Vector2 basePosition = canvasToAnimate.Position;
@@ -53,10 +53,14 @@ public partial class CameraStage : Node
         }
 
         tween.TweenProperty(canvasToAnimate, "position", basePosition, 0.05f);
+
+        tween.Finished += ActionBus.ActionFinished;
     }
 
     public void CameraZoom(Vector2 zoomPosition, float seconds)
     {
+        ActionBus.ActionStarted();
+
         Tween tween = CreateTween();
 
         tween.SetTrans(Tween.TransitionType.Sine)
@@ -65,12 +69,16 @@ public partial class CameraStage : Node
         layerDialogBox.PivotOffset = zoomPosition;
 
         tween.TweenProperty(layerDialogBox, "scale", new Vector2(1.2f, 1.2f), seconds);
+        tween.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.In);
         //tween.SetParallel().TweenProperty(camera2D, "position", zoomPosition, seconds);
+        tween.Finished += ActionBus.ActionFinished;
 
     }
 
     public void ResetCamera(Vector2 newPosition)
     {
+        ActionBus.ActionStarted();
+
         Tween tween = CreateTween();
 
         tween.SetTrans(Tween.TransitionType.Sine)
@@ -78,5 +86,7 @@ public partial class CameraStage : Node
 
         tween.TweenProperty(layerDialogBox, "pivot_offset", newPosition, 0.2f);
         tween.SetParallel().TweenProperty(layerDialogBox, "scale", new Vector2(1f, 1f), 0.2f);
+
+        tween.Finished += ActionBus.ActionFinished;
     }
 }

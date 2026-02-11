@@ -22,12 +22,12 @@ public partial class TextTyper : Control
 
     public override void _EnterTree()
     {
+
         audioStreamRandomizer = new AudioStreamRandomizer
         {
-            RandomPitchSemitones = 5
+            RandomPitch = 1.3f,
         };
         sounds.Talk.Stream = audioStreamRandomizer;
-
         tagProcessor = new TagProcessor();
         dialogBox.Text = "";
         nameBox.Text = "";

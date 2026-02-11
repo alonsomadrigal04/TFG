@@ -19,7 +19,7 @@ public partial class GameManager : Node
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("ui_accept"))
+        if (Input.IsActionJustPressed("ui_accept") && !ActionBus.IsBusy)
         {
             dialogManager.OnNextRequested();
         }
