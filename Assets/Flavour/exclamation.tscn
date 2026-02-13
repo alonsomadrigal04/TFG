@@ -43,6 +43,7 @@ turbulence_initial_displacement_max = 59.500004
 amount = 1
 texture = ExtResource("1_wulxv")
 lifetime = 2.5
+one_shot = true
 speed_scale = 2.0
 explosiveness = 0.57
 process_material = SubResource("ParticleProcessMaterial_bc3wu")

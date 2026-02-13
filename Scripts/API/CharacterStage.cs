@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Xml.Serialization;
 using Utility;
 
 public partial class CharacterStage : Node
@@ -185,6 +186,12 @@ public partial class CharacterStage : Node
         }
 
         return resetPosition;
+    }
+    public TextureRect GetCharacterPortrait(Character character)
+    {
+        if(!IsCharacterInScene(character))
+            GD.PrintErr($"[CharacterStage] {character} not in the Scene");
+        return CharactersInScene[character];
     }
 
     public void HideAllCharacters()

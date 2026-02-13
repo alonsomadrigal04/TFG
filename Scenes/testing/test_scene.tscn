@@ -17,13 +17,16 @@
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
 [ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
-[ext_resource type="AudioStream" uid="uid://cdvrc3ns1oa07" path="res://Audio/Sounds/FlavourSounds/question.wav" id="12_abms1"]
+[ext_resource type="PackedScene" uid="uid://bjigg7pxsd6r8" path="res://Assets/Flavour/Interrogation.tscn" id="18_1mrl1"]
 [ext_resource type="Script" uid="uid://66wwtsxguf58" path="res://Scripts/AudioManager.cs" id="19_fml5s"]
+[ext_resource type="PackedScene" uid="uid://cdnoe66laax7b" path="res://Assets/Flavour/exclamation.tscn" id="19_mi817"]
 [ext_resource type="AudioStream" uid="uid://odxfbcs8ta2c" path="res://Audio/Sounds/flashBack.wav" id="19_st2a4"]
 [ext_resource type="AudioStream" uid="uid://bpuy6lgehnrsn" path="res://Audio/Sounds/Impact2.ogg" id="20_0rqdt"]
 [ext_resource type="AudioStream" uid="uid://dp4gfkp0uh8iq" path="res://Audio/Sounds/flash.wav" id="20_12ppt"]
 [ext_resource type="AudioStream" uid="uid://bs2rmf7k3b1re" path="res://Audio/Sounds/NextSentence.wav" id="20_qgo6h"]
 [ext_resource type="AudioStream" uid="uid://bos70rcos6hng" path="res://Audio/Sounds/exclamation.wav" id="20_uq5m1"]
+[ext_resource type="AudioStream" uid="uid://djnu3xm715pa7" path="res://Audio/Sounds/FlavourSounds/question2.wav" id="21_xx6ch"]
+[ext_resource type="AudioStream" uid="uid://dcv4i2qsfnv6w" path="res://Audio/Sounds/FlavourSounds/exclamation1.wav" id="22_4nqsh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgo6h"]
 shader = ExtResource("3_fml5s")
@@ -277,138 +280,6 @@ _data = {
 &"RESET": SubResource("Animation_x033f")
 }
 
-[sub_resource type="Animation" id="Animation_f12dq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("QuestionMark:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(787, 75)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("QuestionMark:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("QuestionMark:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("QuestionMark:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("QuestionMark:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_abms1"]
-resource_name = "question"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("QuestionMark:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(787, 75), Vector2(863, 39.999996)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("QuestionMark:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -0.15009831]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("QuestionMark:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("QuestionMark:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(-0.13333333, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.23, 1.23)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("QuestionMark:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.033333335, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f12dq"]
-_data = {
-&"RESET": SubResource("Animation_f12dq"),
-&"question": SubResource("Animation_abms1")
-}
-
 [node name="TestScene" type="Control" unique_id=628620988]
 layout_mode = 3
 anchors_preset = 15
@@ -623,26 +494,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="FlavourAnimationModule" type="Node" parent="." unique_id=280782029 node_paths=PackedStringArray("animationPlayer")]
+[node name="FlavourAnimationModule" type="Node" parent="." unique_id=280782029 node_paths=PackedStringArray("sounds", "MiniAnimations")]
 script = ExtResource("11_n1mmy")
-animationPlayer = NodePath("FlavourAnimatorPlayer")
-questionAudio = ExtResource("12_abms1")
+sounds = NodePath("../Node")
+MiniAnimations = {
+0: NodePath("interrogation"),
+1: NodePath("exclamation")
+}
 
-[node name="FlavourAnimatorPlayer" type="AnimationPlayer" parent="FlavourAnimationModule" unique_id=222090243]
-libraries/ = SubResource("AnimationLibrary_f12dq")
-
-[node name="QuestionMark" type="RichTextLabel" parent="FlavourAnimationModule" unique_id=1480801695]
+[node name="exclamation" parent="FlavourAnimationModule" unique_id=33689476 instance=ExtResource("19_mi817")]
 visible = false
-offset_left = 787.0
-offset_top = 75.0
-offset_right = 855.0
-offset_bottom = 291.99963
-pivot_offset = Vector2(34, 109)
-theme_override_font_sizes/normal_font_size = 156
-text = "?"
+emitting = false
 
-[node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence")]
+[node name="interrogation" parent="FlavourAnimationModule" unique_id=995432709 instance=ExtResource("18_1mrl1")]
+visible = false
+
+[node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence")]
 script = ExtResource("19_fml5s")
+question = NodePath("Question")
+exclamation = NodePath("Exclamation")
 Hover = NodePath("Hover")
 Press = NodePath("Press")
 Shake = NodePath("Shake")
@@ -653,6 +523,14 @@ Flash = NodePath("Flash")
 NextSentence = NodePath("NextSentence")
 
 [node name="Talk" type="AudioStreamPlayer2D" parent="Node" unique_id=1423005477]
+bus = &"Voices"
+
+[node name="Question" type="AudioStreamPlayer2D" parent="Node" unique_id=908864086]
+stream = ExtResource("21_xx6ch")
+bus = &"Voices"
+
+[node name="Exclamation" type="AudioStreamPlayer2D" parent="Node" unique_id=1870237864]
+stream = ExtResource("22_4nqsh")
 bus = &"Voices"
 
 [node name="Flash" type="AudioStreamPlayer2D" parent="Node" unique_id=1153603871]

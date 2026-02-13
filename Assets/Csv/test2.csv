@@ -1,7 +1,7 @@
 ﻿uid;code;type;speaker;text;next
 A1;Alonso appears center;;;;
 A2;Alonso moves farleft;;;;
-A3;;say;Alonso;¡Que tranquilidad!;
+A3;;say/exclamation;Alonso;¡Que tranquilidad!;
 A4;;say;Alonso;La luz del sol…;
 A5;;say;Alonso;El suave viento que viene del este...;
 A6;;say;Alonso;No hay nada que pueda destrozarme este dia.;

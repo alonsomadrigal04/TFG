@@ -116,7 +116,7 @@ public partial class DialogManager : Node
         }
         textTyper.WriteText(line.Text, line.Speaker);
         if (typePortions.Length > 1)
-            FlavourAnimator.Instance.PlayFlavour(typePortions[1]);
+            FlavourAnimator.Instance.PlayFlavour(typePortions[1], line.Speaker);
         DebugService.Register("Last speaker", () => line.Speaker.Name);
     }
 
