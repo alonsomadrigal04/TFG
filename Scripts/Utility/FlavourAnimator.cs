@@ -9,8 +9,7 @@ using System.Runtime.InteropServices;
 public partial class FlavourAnimator : Node
 {
     [Export] AudioManager sounds;
-    [Export] Dictionary<FlavourType, GpuParticles2D> MiniAnimations;
-
+    [Export] Dictionary<FlavourType, GpuParticles2D> MiniAnimations = [];
     public static FlavourAnimator Instance {get; private set;}
 
     public override void _Ready()

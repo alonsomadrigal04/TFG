@@ -40,6 +40,7 @@ turbulence_initial_displacement_min = 37.300003
 turbulence_initial_displacement_max = 59.500004
 
 [node name="GPUParticles2D" type="GPUParticles2D" unique_id=33689476]
+emitting = false
 amount = 1
 texture = ExtResource("1_wulxv")
 lifetime = 2.5

@@ -504,7 +504,7 @@ MiniAnimations = {
 
 [node name="exclamation" parent="FlavourAnimationModule" unique_id=33689476 instance=ExtResource("19_mi817")]
 visible = false
-emitting = false
+z_index = 1
 
 [node name="interrogation" parent="FlavourAnimationModule" unique_id=995432709 instance=ExtResource("18_1mrl1")]
 visible = false

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dx01jhx88jp1c"]
+
+[ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="1_yyxr5"]
+[ext_resource type="PackedScene" uid="uid://cdnoe66laax7b" path="res://Assets/Flavour/exclamation.tscn" id="2_jqwtx"]
+[ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="2_kxrvi"]
+[ext_resource type="Script" uid="uid://66wwtsxguf58" path="res://Scripts/AudioManager.cs" id="4_vhu35"]
+
+[node name="Node" type="Node" unique_id=1221001646 node_paths=PackedStringArray("sounds")]
+script = ExtResource("1_yyxr5")
+sounds = NodePath("AudioManager")
+coolTest = Dictionary[String, Resource]({
+"sdsad": ExtResource("2_kxrvi")
+})
+
+[node name="GPUParticles2D" parent="." unique_id=33689476 instance=ExtResource("2_jqwtx")]
+
+[node name="AudioManager" type="Node" parent="." unique_id=1029907397]
+script = ExtResource("4_vhu35")
+metadata/_custom_type_script = "uid://66wwtsxguf58"
