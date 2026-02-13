@@ -36,7 +36,7 @@ public partial class FlavourAnimator : Node
                 SpawnParticles(MiniAnimations[FlavourType.question], speaker);
             break;
             case FlavourType.exclamation:
-                sounds.question.Play();
+                sounds.exclamation.Play();
                 SpawnParticles(MiniAnimations[FlavourType.exclamation], speaker);
             break;
             default:

@@ -318,6 +318,21 @@ material = SubResource("ShaderMaterial_qgo6h")
 offset_right = 1280.0
 offset_bottom = 720.0
 
+[node name="FlavourAnimationModule" type="Node" parent="ShadersTop" unique_id=280782029 node_paths=PackedStringArray("sounds", "MiniAnimations")]
+script = ExtResource("11_n1mmy")
+sounds = NodePath("../../Node")
+MiniAnimations = {
+0: NodePath("interrogation"),
+1: NodePath("exclamation")
+}
+
+[node name="interrogation" parent="ShadersTop/FlavourAnimationModule" unique_id=995432709 instance=ExtResource("18_1mrl1")]
+visible = false
+
+[node name="exclamation" parent="ShadersTop/FlavourAnimationModule" unique_id=33689476 instance=ExtResource("19_mi817")]
+z_index = 1
+position = Vector2(17, 17)
+
 [node name="ShadersBottom" type="CanvasLayer" parent="." unique_id=99557676]
 
 [node name="ColorRect" type="ColorRect" parent="ShadersBottom" unique_id=1641160413]
@@ -493,21 +508,6 @@ text = "?"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
-
-[node name="FlavourAnimationModule" type="Node" parent="." unique_id=280782029 node_paths=PackedStringArray("sounds", "MiniAnimations")]
-script = ExtResource("11_n1mmy")
-sounds = NodePath("../Node")
-MiniAnimations = {
-0: NodePath("interrogation"),
-1: NodePath("exclamation")
-}
-
-[node name="exclamation" parent="FlavourAnimationModule" unique_id=33689476 instance=ExtResource("19_mi817")]
-visible = false
-z_index = 1
-
-[node name="interrogation" parent="FlavourAnimationModule" unique_id=995432709 instance=ExtResource("18_1mrl1")]
-visible = false
 
 [node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence")]
 script = ExtResource("19_fml5s")
