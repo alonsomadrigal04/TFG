@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cdnoe66laax7b"]
+
+[ext_resource type="Texture2D" uid="uid://20l7bf5g2xu1" path="res://Assets/Flavour/Exclamation.png" id="1_wulxv"]
+
+[sub_resource type="Curve" id="Curve_wulxv"]
+_data = [Vector2(0.024064172, 1), 0.0, 0.0, 0, 0, Vector2(0.72459894, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.9913378, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5fx8f"]
+curve = SubResource("Curve_wulxv")
+
+[sub_resource type="Curve" id="Curve_hub3f"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.042780753, -1), 0.0, 0.0, 0, 0, Vector2(0.069518715, 1), 0.0, 0.0, 0, 0, Vector2(0.10160428, -0.9885534), 0.0, 0.0, 0, 0, Vector2(0.14438502, 1), 0.0, 0.0, 0, 0, Vector2(0.18716578, -1), 0.0, 0.0, 0, 0, Vector2(0.22459894, 1), 0.0, 0.0, 0, 0, Vector2(0.2647059, -1), 0.0, 0.0, 0, 0, Vector2(0.29946524, 1), 0.0, 0.0, 0, 0, Vector2(0.3529412, -1), 0.0, 0.0, 0, 0, Vector2(0.4973262, 0.2830385), 0.0, 0.0, 0, 0, Vector2(0.7406417, -0.14984393), 0.0, 0.0, 0, 0, Vector2(1, -0.01456809), 0.0, 0.0, 0, 0]
+point_count = 13
+
+[sub_resource type="CurveTexture" id="CurveTexture_bc3wu"]
+curve = SubResource("Curve_hub3f")
+
+[sub_resource type="Curve" id="Curve_5fx8f"]
+_data = [Vector2(0, 0.17481798), 0.0, 14.756329, 0, 0, Vector2(0.4171123, 0.7565037), -0.21997008, -0.21997008, 0, 0, Vector2(1, 0.7429761), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hub3f"]
+curve = SubResource("Curve_5fx8f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bc3wu"]
+particle_flag_disable_z = true
+angular_velocity_min = 8.289984
+angular_velocity_max = 12.689983
+angular_velocity_curve = SubResource("CurveTexture_bc3wu")
+gravity = Vector3(30, -30, 0)
+scale_curve = SubResource("CurveTexture_hub3f")
+alpha_curve = SubResource("CurveTexture_5fx8f")
+turbulence_noise_speed = Vector3(100, 0, 0)
+turbulence_noise_speed_random = 2.22
+turbulence_influence_min = 0.020000001
+turbulence_influence_max = 0.09200001
+turbulence_initial_displacement_min = 37.300003
+turbulence_initial_displacement_max = 59.500004
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=33689476]
+amount = 1
+texture = ExtResource("1_wulxv")
+lifetime = 2.5
+speed_scale = 2.0
+explosiveness = 0.57
+process_material = SubResource("ParticleProcessMaterial_bc3wu")
