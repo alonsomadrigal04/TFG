@@ -1,18 +1,10 @@
 ﻿uid;code;type;speaker;text;next
 A1;Alonso appears center;;;;
 A2;Alonso moves farleft;;;;
-A3;;say;Alonso;¡Que tranquilidad!;
-A4;;say;Alonso;La luz del sol…;
-A5;;say;Alonso;El suave viento que viene del este...;
-A6;;say/question;Alonso;No hay nada que pueda destrozarme este dia.;
-A7;Godot appears right;;;;
-A8;;say;Godot;Nunca digas nunca jamas, Alonso.;
-A9;Camera shake;;;;
-A10;;say/exclamation;Alonso;Go-Godot!;
-A11;;say;Alonso;Pero yo…;
-A12;;say;Alonso;¡Te había arreglado!;
-A13;;say;Godot;El TFG nunca termina, pequeño trozo de basura.;
-A14;negro flashback;;;;
-A15;make flash;;;;
-A16;Camera zoom Alonso 0,4s;;;;
-A17;;say;Alonso;Godot, porfavor. Ten piedad, no se como se usan los Callbacks todavía.;
+A3;Alonso moves farright no flip;;;;
+A4;;choice/Impact;;Lol|WoW;A5|A8
+A5;;say/question;Alonso;No hay nada que pueda destrozarme este dia.;
+A6;Godot appears right;;;;
+A7;Godot moves right;;;;
+A8;;say/exclamation;Godot;Nunca digas nunca jamas, Alonso.;
+A9;;say/exclamation;Alonso;Go-Godot!;

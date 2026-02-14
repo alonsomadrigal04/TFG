@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bv821jwcbg1am"]
+
+[ext_resource type="Shader" uid="uid://dkd384mubqi3c" path="res://MarkObject.gdshader" id="1_fyovx"]
+
+[resource]
+shader = ExtResource("1_fyovx")
+shader_parameter/corner_scale = 0.89600004256
+shader_parameter/edge_thickness = 0.0350000016625
+shader_parameter/speed = 5.0
+shader_parameter/intensity = 1.0

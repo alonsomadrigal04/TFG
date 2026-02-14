@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Threading.Tasks;
 
 public partial class ChoiceMaker : Node
 {
     public event Action<string> ChoiceSelected;
 
-    [Export] AudioStream impact;
-    [Export] AudioStream soft;
+    [Export] AudioManager sounds;
 
     [ExportGroup("Options")]
     [Export] AnimationPlayer animationPlayer;
@@ -42,12 +42,12 @@ public partial class ChoiceMaker : Node
         {
             case "Impact":
                 SetActiveShaders();
-                //AudioManager.PlayAudio(impact);
+                sounds.impact.Play();
                 animationPlayer.Play("IntroQuestion");
                 break;
             case "Soft":
                 SetActiveShaders();
-                //AudioManager.PlayAudio(soft);
+                sounds.soft.Play();
                 animationPlayer.Play("IntroQuestion"); // TODO: create a Soft Animation
                 break;
             default:
@@ -66,8 +66,8 @@ public partial class ChoiceMaker : Node
 
     void SetActiveShaders()
     {
-        shaderBack.Visible = true;
-        grayBack.Visible = true;
+        shaderBack.Show();
+        grayBack.Show();
     }
 
     void CreateOptionButton(string optionText, int totalOptions, int i)
@@ -111,23 +111,26 @@ public partial class ChoiceMaker : Node
     }
 
 
-    void ProcessSelection(int uid)
+    async void ProcessSelection(int uid)
     {
-        AnimateOutChoice();
+        await AnimateOutChoice();
         string nextUid = nextOptions[uid];
+        grayBack.Hide();
+        shaderBack.Hide();
         ChoiceSelected?.Invoke(nextUid);
-
     }
 
-    void AnimateOutChoice()
+    async Task AnimateOutChoice()
     {
         animationPlayer.Play("OutQuestion");
+        //sounds.outQuestion.Play();
 
         for(int i = 0; i < currentButtons.Count; i++)
         {
             AnimateExitButtons(currentButtons[i], i);
         }
 
+        await ToSignal(GetTree().CreateTimer(0.6f), "timeout");
     }
 
 
@@ -198,7 +201,6 @@ public partial class ChoiceMaker : Node
         {
             buttonExitTween.TweenCallback(Callable.From(ClearButtons));
         }
-
     }
 
     void ClearButtons()

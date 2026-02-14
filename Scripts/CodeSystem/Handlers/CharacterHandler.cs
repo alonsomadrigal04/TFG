@@ -29,11 +29,21 @@ public class CharacterHanlder : ICommandHandler
             case "disappears":
                 QuitCharacter(commandToken);
                 break;
+            case "flips":
+                FlipsCharacter(commandToken);
+                break;
             default:
                 break;
             
         }
     }
+
+    void FlipsCharacter(CommandToken commandToken)
+    {
+        Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
+        CharacterStage.Instance.FlipCharacterHorizontally(character);
+    }
+
 
     static void QuitCharacter(CommandToken commandToken)
     {

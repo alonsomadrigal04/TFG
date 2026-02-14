@@ -31,8 +31,8 @@ public partial class ChoiceButton : Button
         baseRotation = RotationDegrees;
         ConnectSignals();
 
-        pressSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/press.wav");
-        hoverSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/Hover2.wav");
+        // pressSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/press.wav");
+        // hoverSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/Hover2.wav");
     }
 
     void ConnectSignals()

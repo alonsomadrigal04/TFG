@@ -21,6 +21,18 @@ public static partial class ToolKit
         return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
     } 
 
+    public static ScreenPosition GetScreenSide(Vector2 position)
+    {
+        Vector2 screenSize = DisplayServer.WindowGetSize();
+        float centerX = screenSize.X * 0.5f;
+
+        if (position.X < centerX)
+            return ScreenPosition.Left;
+
+        return ScreenPosition.Right;
+    }
+
+
     public static Vector2 GetScreenPosition(ScreenPosition screenPosition)
     {
         if (!XPositions.TryGetValue(screenPosition, out float xNorm))

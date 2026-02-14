@@ -1,12 +1,15 @@
-[DIALOGUE]
+[DIALOGUE COMMANDS]
 ·   [b] text [/b]                               -- Bold text
 ·   [i] text [/i]                               -- Italic text
 ·   [w] text [/w]                               -- Text with a wavy effect
 ·   [s] text [/s]                               -- Text with a shaking effect
 ·   [speed=number] text [/speed]                -- Text that appears at a specific speed (e.g., [speed=50]Hello[/speed])
 ·   [c=color] text [/c]                         -- Text with a specific color (e.g., [c=red]Hello[/c])
-
-[CODE]
+[TYPE COMMANDS]
+·   SAY                                         -- A character says a line of dialogue
+·   SAY/question                                -- A small question mark appears next to the character
+·   SAY/exclamation                             -- A small exclamation mark appears next to the character
+[CODE COMMANDS]
 // POSITIONS //
 LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 // CHARACTERS //
@@ -14,6 +17,7 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 ·   [NAME OF CHARACTER] disappears              -- A character disappears from the screen
 ·   [NAME OF CHARACTER] moves [POSITIONS]       -- A character moves to a position on the screen
 ·   [NAME OF CHARACTER] Is [EMOTION]            -- A character changes their emotion
+·   [NAME OF CHARACTER] flips                   -- A character changes the orientation of their sprite
 // BACKGROUNDS //
 ·   [NAME OF BACKGROUND] bg                     -- A background appears on the screen
 ·   [NAME OF BACKGROUND] trans [TYPE]           -- A background transition occurs with a specific type (e.g., flash, blur)

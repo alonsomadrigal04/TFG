@@ -7,6 +7,11 @@ public partial class AudioManager : Node
     [Export] public AudioStreamPlayer2D question {get; set;}
     [Export] public AudioStreamPlayer2D exclamation {get; set;}
 
+    [ExportGroup("CHOICE SOUNDS")]
+    [Export] public AudioStreamPlayer2D soft {get; set;}
+    [Export] public AudioStreamPlayer2D impact {get; set;}
+    [Export] public AudioStreamPlayer2D outQuestion {get; set;}
+
     [ExportGroup("DECISION MAKING")]
     [Export] public AudioStreamPlayer2D Hover {get; set;}
     [Export] public AudioStreamPlayer2D Press {get; set;}

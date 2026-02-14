@@ -45,19 +45,35 @@ public partial class FlavourAnimator : Node
         }
     }
 
-    void SpawnParticles(GpuParticles2D gpuParticles2D, Character speaker)
+    static void SpawnParticles(GpuParticles2D gpuParticles2D, Character speaker)
     {
-        if(speaker != null)
+        TextureRect portrait = CharacterStage.Instance.GetCharacterPortrait(speaker);
+        if (portrait == null)
+            return;
+        
+        gpuParticles2D.Show();
+
+        Vector2 portraitCenter = portrait.Position + portrait.Size * 0.5f;
+
+        Vector2 screenCenter = portrait.GetViewportRect().Size * 0.5f;
+
+        Vector2 directionToCenter = (screenCenter - portraitCenter).Normalized();
+
+        if (gpuParticles2D.ProcessMaterial is ParticleProcessMaterial material)
         {
-            TextureRect portrait = CharacterStage.Instance.GetCharacterPortrait(speaker);
-            if(portrait != null)
-            {
-                gpuParticles2D.Show();
-                gpuParticles2D.Position = portrait.Position + portrait.Size * 0.25f;
-                gpuParticles2D.Emitting = true;
-            }
+            float force = 50f;
+            material.Gravity = new Vector3(directionToCenter.X * force, directionToCenter.Y * force -50, 0);
         }
+
+        Vector2 horizontalOffset = directionToCenter * 40f;
+        Vector2 verticalOffset = new(0, -portrait.Size.Y * 0.4f);
+
+        gpuParticles2D.Position = portraitCenter + horizontalOffset + verticalOffset;
+
+        gpuParticles2D.Restart();
+        gpuParticles2D.Emitting = true;
     }
+
 }
 
 

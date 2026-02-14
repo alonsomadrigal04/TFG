@@ -34,16 +34,31 @@ public partial class CharacterStage : Node
         Instance = this;
     }
 
-    public void MovePortrait(Character character, ScreenPosition position)
+    public void MovePortrait(Character character, ScreenPosition targetPosition)
     {
-        if(!IsCharacterInScene(character)) {
+        if (!IsCharacterInScene(character))
+        {
             GD.PrintErr($"[CharacterStage] {character} not in the Scene");
             return;
         }
 
         TextureRect portrait = CharactersInScene[character];
-        MoveAnimation(portrait, position);        
+        ScreenPosition currentSide = ToolKit.GetScreenSide(portrait.Position);
+
+        bool currentIsLeft = currentSide == ScreenPosition.FarLeft
+                        || currentSide == ScreenPosition.Left
+                        || currentSide == ScreenPosition.Center;
+
+        bool targetIsLeft = targetPosition == ScreenPosition.FarLeft
+                        || targetPosition == ScreenPosition.Left
+                        || targetPosition == ScreenPosition.Center;
+
+        if (currentIsLeft != targetIsLeft)
+            FlipCharacterHorizontally(character);
+
+        MoveAnimation(portrait, targetPosition);
     }
+
 
     void MoveAnimation(TextureRect portrait, ScreenPosition newDirection)
     {
@@ -51,7 +66,7 @@ public partial class CharacterStage : Node
 
         Tween tween = CreateTween();
         tween.SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
-        tween.TweenProperty(portrait, "position", ToolKit.GetPosition(newDirection) - new Vector2(0, portrait.Size.Y /2), moveTime);
+        tween.TweenProperty(portrait, "position", ToolKit.GetPosition(newDirection) - new Vector2(portrait.Size.X /2, portrait.Size.Y /2), moveTime);
 
         tween.Finished += ActionBus.ActionFinished;
     }
@@ -193,6 +208,102 @@ public partial class CharacterStage : Node
             GD.PrintErr($"[CharacterStage] {character} not in the Scene");
         return CharactersInScene[character];
     }
+
+    public void ShakeCharacter(Character character)
+    {
+        if (!IsCharacterInScene(character))
+            GD.PrintErr($"[CharacterScene] {character} is not in the scene");
+        
+        TextureRect portrait = GetCharacterPortrait(character);
+
+        AnimateShake(portrait);
+    }
+
+    public void FlipCharacterHorizontally(Character character)
+    {
+        if (!IsCharacterInScene(character))
+        {
+            GD.PrintErr($"[CharacterScene] {character} is not in the scene");
+            return;
+        }
+        ActionBus.ActionStarted();
+
+        TextureRect portrait = GetCharacterPortrait(character);
+
+        float duration = 0.5f;
+        float half = duration * 0.5f;
+
+        Tween tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.InOut);
+
+        tween.TweenDelegate<Color>(
+            v => portrait.Modulate = v,
+            Colors.White,
+            Colors.Black,
+            0.1f
+        );
+
+        tween.TweenDelegate<Vector2>(
+            v => portrait.Scale = v,
+            Vector2.One,
+            new Vector2(0f, 1f),
+            half
+        );
+
+        tween.TweenCallback(Callable.From(() =>
+        {
+            portrait.FlipH = !portrait.FlipH;
+        }));
+
+        tween.TweenDelegate<Vector2>(
+            v => portrait.Scale = v,
+            new Vector2(0f, 1f),
+            Vector2.One,
+            half
+        );
+
+        tween.TweenDelegate<Color>(
+            v => portrait.Modulate = v,
+            Colors.Black,
+            Colors.White,
+            0.1f
+        );
+
+        tween.Finished += ActionBus.ActionFinished;
+    }
+
+
+    public async void AnimateShake(TextureRect portrait)
+    {
+        ActionBus.ActionStarted();
+        Vector2 originalPos = portrait.Position;
+
+        var tween = portrait.CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.SetEase(Tween.EaseType.InOut);
+
+        float strength = 4f;
+        float duration = 0.05f;
+        int shakes = 4;
+
+        for (int i = 0; i < shakes; i++)
+        {
+            Vector2 offset = new Vector2(
+                (float)GD.RandRange(-strength, strength),
+                (float)GD.RandRange(-strength, strength)
+            );
+
+            tween.TweenProperty(portrait, "position", originalPos + offset, duration);
+        }
+
+        tween.TweenProperty(portrait, "position", originalPos, duration);
+
+        tween.Finished += ActionBus.ActionFinished;
+    }
+
+
+
 
     public void HideAllCharacters()
     {
