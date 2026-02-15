@@ -7,8 +7,8 @@ public class CommandRouter
     readonly List<ICommandHandler> commandHandlers = [
         new CameraHandler(),
         new CharacterHanlder(),
-        new BackgroundHandler()
-
+        new BackgroundHandler(),
+        new ObjectHandler()
     ];
 
     public ICommandHandler GetHandler(CommandToken token)

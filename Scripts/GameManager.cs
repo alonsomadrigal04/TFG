@@ -10,6 +10,7 @@ public partial class GameManager : Node
     {
         CharacterDatabase.LoadFromJson("Data\\Characters.json");
         BackgroundDataBase.Load();
+        ObjectDataBase.Load();
         ToolKit.InitializePositions();
 
         dialogManager = GetNode<DialogManager>(dialogManagerPath);

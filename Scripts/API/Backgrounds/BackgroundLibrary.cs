@@ -1,7 +1,8 @@
 using Godot;
+using Godot.Collections;
 
 [GlobalClass]
 public partial class BackgroundLibrary : Resource
 {
-    [Export] public Godot.Collections.Dictionary<string, Texture2D> BackgroundsStored = [];
+    [Export] public Dictionary<string, Texture2D> BackgroundsStored = [];
 }

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdqli2p5bvu30"
-path="res://.godot/imported/llanurasQuebradas.jpg-564b4bed184ac1ffdf7b045b4a68d383.ctex"
+path="res://.godot/imported/llanurasQuebradas.jpg-a5902501d0e13b389c4b4409782bf439.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Backgrounds/Images/llanurasQuebradas.jpg"
-dest_files=["res://.godot/imported/llanurasQuebradas.jpg-564b4bed184ac1ffdf7b045b4a68d383.ctex"]
+source_file="res://Data/Backgrounds/Images/llanurasQuebradas.jpg"
+dest_files=["res://.godot/imported/llanurasQuebradas.jpg-a5902501d0e13b389c4b4409782bf439.ctex"]
 
 [params]
 

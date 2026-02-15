@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://bp2hw26koj5ly" path="res://Scripts/API/UiStage.cs" id="6_qhtgt"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
 [ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
+[ext_resource type="Script" uid="uid://248808w4dew5" path="res://Scripts/API/Objects/ObjectStage.cs" id="8_dclby"]
+[ext_resource type="PackedScene" uid="uid://c1vbgjqjuv7ab" path="res://Scenes/SpecialItemFrame.tscn" id="9_r0xxx"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
 [ext_resource type="PackedScene" uid="uid://bjigg7pxsd6r8" path="res://Assets/Flavour/Interrogation.tscn" id="18_1mrl1"]
 [ext_resource type="Shader" uid="uid://bq0pv8jsguvk8" path="res://Scenes/testing/ScaleGray.gdshader" id="19_4nqsh"]
@@ -257,7 +259,7 @@ metadata/_edit_lock_ = true
 
 [node name="FlavourAnimationModule" type="Node" parent="ShadersTop" unique_id=280782029 node_paths=PackedStringArray("sounds", "MiniAnimations")]
 script = ExtResource("11_n1mmy")
-sounds = NodePath("../../Node")
+sounds = NodePath("../../AudioManager")
 MiniAnimations = {
 0: NodePath("interrogation"),
 1: NodePath("exclamation")
@@ -321,10 +323,15 @@ metadata/_edit_lock_ = true
 script = ExtResource("1_0fon4")
 characterContainer = NodePath("../CharacterContainer")
 
+[node name="ObjectStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1147430345 node_paths=PackedStringArray("objectLayer")]
+script = ExtResource("8_dclby")
+objectLayer = NodePath("../../../../Background")
+specialItemFrameScene = ExtResource("9_r0xxx")
+
 [node name="CameraStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=988545879 node_paths=PackedStringArray("layerDialogBox", "sounds")]
 script = ExtResource("2_fx65t")
 layerDialogBox = NodePath("../CharacterContainer")
-sounds = NodePath("../../../../Node")
+sounds = NodePath("../../../../AudioManager")
 
 [node name="BackgroundStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=963125392 node_paths=PackedStringArray("blurTransition", "flashTransition", "imageFrame", "sepiaFilter", "sounds")]
 script = ExtResource("3_0fon4")
@@ -333,7 +340,7 @@ blurTransition = NodePath("../../../../ShadersBottom/ColorRect")
 flashTransition = NodePath("../../../../ShadersTop/ScreenFlash")
 imageFrame = NodePath("../../../../Background/BgFrame")
 sepiaFilter = NodePath("../../../../ShadersTop/SepiaFilter")
-sounds = NodePath("../../../../Node")
+sounds = NodePath("../../../../AudioManager")
 
 [node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox")]
 script = ExtResource("6_qhtgt")
@@ -359,11 +366,10 @@ script = ExtResource("2_hb2xm")
 choiceMaker = NodePath("../ChoiceMaker")
 textTyper = NodePath("../DialogBox")
 dialogueBox = NodePath("../DialogBox")
-sounds = NodePath("../../../Node")
+sounds = NodePath("../../../AudioManager")
 metadata/_edit_lock_ = true
 
 [node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 node_paths=PackedStringArray("sounds") instance=ExtResource("2_50ct6")]
-visible = false
 layout_mode = 1
 anchor_left = 0.067
 anchor_top = 0.47400004
@@ -373,7 +379,7 @@ offset_left = -85.76
 offset_top = -198.28003
 offset_right = 84.47998
 offset_bottom = 199.87994
-sounds = NodePath("../../../Node")
+sounds = NodePath("../../../AudioManager")
 metadata/_edit_lock_ = true
 
 [node name="ChoiceMaker" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1185339650 node_paths=PackedStringArray("sounds", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
@@ -384,7 +390,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_ak5v8")
-sounds = NodePath("../../../Node")
+sounds = NodePath("../../../AudioManager")
 animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
 optionsContainer = NodePath("../ChoiceLayout/HBoxContainer")
 optionShader = ExtResource("6_d3awe")
@@ -400,6 +406,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1808876110]
 visible = false
@@ -456,7 +463,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Node" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence")]
+[node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence")]
 script = ExtResource("19_fml5s")
 question = NodePath("Question")
 exclamation = NodePath("Exclamation")
@@ -471,54 +478,54 @@ Flashback = NodePath("FlashBack")
 Flash = NodePath("Flash")
 NextSentence = NodePath("NextSentence")
 
-[node name="Talk" type="AudioStreamPlayer2D" parent="Node" unique_id=1423005477]
+[node name="Talk" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1423005477]
 bus = &"Voices"
 
-[node name="OutQuestion" type="AudioStreamPlayer2D" parent="Node" unique_id=996070193]
+[node name="OutQuestion" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=996070193]
 bus = &"Voices"
 
-[node name="Soft" type="AudioStreamPlayer2D" parent="Node" unique_id=1644472377]
+[node name="Soft" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1644472377]
 stream = ExtResource("7_5t315")
 bus = &"Voices"
 
-[node name="Impact2" type="AudioStreamPlayer2D" parent="Node" unique_id=1189898246]
+[node name="Impact2" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1189898246]
 stream = ExtResource("21_ttbwo")
 bus = &"Voices"
 
-[node name="Question" type="AudioStreamPlayer2D" parent="Node" unique_id=908864086]
+[node name="Question" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=908864086]
 stream = ExtResource("21_xx6ch")
 bus = &"Voices"
 
-[node name="Exclamation" type="AudioStreamPlayer2D" parent="Node" unique_id=1870237864]
+[node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1870237864]
 stream = ExtResource("22_4nqsh")
 bus = &"Voices"
 
-[node name="Flash" type="AudioStreamPlayer2D" parent="Node" unique_id=1153603871]
+[node name="Flash" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1153603871]
 stream = ExtResource("20_12ppt")
 volume_db = -8.851
 bus = &"SFX"
 
-[node name="Shake" type="AudioStreamPlayer2D" parent="Node" unique_id=1127677662]
+[node name="Shake" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1127677662]
 stream = ExtResource("20_uq5m1")
 volume_db = -13.0
 bus = &"SFX"
 
-[node name="NextSentence" type="AudioStreamPlayer2D" parent="Node" unique_id=1376746039]
+[node name="NextSentence" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1376746039]
 stream = ExtResource("20_qgo6h")
 volume_db = -16.0
 bus = &"SFX"
 
-[node name="FlashBack" type="AudioStreamPlayer2D" parent="Node" unique_id=344085264]
+[node name="FlashBack" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=344085264]
 stream = ExtResource("19_st2a4")
 bus = &"SFX"
 
-[node name="Impact" type="AudioStreamPlayer2D" parent="Node" unique_id=1094476841]
+[node name="Impact" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1094476841]
 stream = ExtResource("20_0rqdt")
 bus = &"SFX"
 
-[node name="Hover" type="AudioStreamPlayer2D" parent="Node" unique_id=2066069177]
+[node name="Hover" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2066069177]
 stream = ExtResource("5_oho3u")
 bus = &"SFX"
 
-[node name="Press" type="AudioStreamPlayer2D" parent="Node" unique_id=1433978679]
+[node name="Press" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1433978679]
 bus = &"SFX"

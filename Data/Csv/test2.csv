@@ -1,0 +1,9 @@
+﻿uid;code;type;speaker;text;next
+A1;Alonso appears center;;;;
+A2;Alonso moves farleft;;;;
+A4;Godot appears right;;;;
+A5;Godot moves right;;;;
+A6;;say/question;Alonso;Hey! Godot, que pasa tio.;
+A7;;say;Godot;Pues nada, acabo de hornear unas cuantas magdalenas.;
+A8;Madalena shows;;;;
+A9;;say/exclamation;Alonso;Si home, madalenas??;

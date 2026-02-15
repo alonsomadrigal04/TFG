@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://leggi1whkbf8"
-path="res://.godot/imported/pollo.jpg-77ed46acc2655a6432f584a01d36f9aa.ctex"
+uid="uid://3s2ojhskyew4"
+path="res://.godot/imported/negro.jpg-7fc820579bb19c328e693a1d511192a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Backgrounds/Images/pollo.jpg"
-dest_files=["res://.godot/imported/pollo.jpg-77ed46acc2655a6432f584a01d36f9aa.ctex"]
+source_file="res://Data/Backgrounds/Images/negro.jpg"
+dest_files=["res://.godot/imported/negro.jpg-7fc820579bb19c328e693a1d511192a3.ctex"]
 
 [params]
 

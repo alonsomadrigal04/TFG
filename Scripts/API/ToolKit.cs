@@ -19,7 +19,38 @@ public static partial class ToolKit
     {
         Vector2 screenSize = DisplayServer.WindowGetSize();
         return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
-    } 
+    }
+
+    /// <summary>
+    /// Adds a percentage-based offset to the position of a Control node. The offset is calculated based on the size of the screen, allowing for responsive positioning. The direction parameter can be used to specify whether the offset should be added (positive) or subtracted (negative) from the current position of the Control node.
+    /// </summary>
+    /// <param name="control">The Control node to offset.</param>
+    /// <param name="percentageX">The percentage of the screen width to offset by.</param>
+    /// <param name="percentageY">The percentage of the screen height to offset by.</param>
+    /// <param name="direction">The direction of the offset (1 for positive, -1 for negative).</param>
+    /// <returns>The new position of the Control node after applying the offset.</returns>
+    public static Vector2 AddPercentageOffset(
+    this Control control,
+    float percentageX,
+    float percentageY,
+    float direction = 1f)
+    {
+        if (percentageX > 100f || percentageY > 100f)
+        {
+            GD.PushWarning("[Toolkit] Offset greater than 100% of screen size");
+        }
+
+        Vector2 screenSize = DisplayServer.WindowGetSize();
+
+        Vector2 offset = new(
+            screenSize.X * (percentageX * 0.01f),
+            screenSize.Y * (percentageY * 0.01f)
+        );
+
+        control.Position += offset * direction;
+
+        return control.Position;
+    }
 
     public static ScreenPosition GetScreenSide(Vector2 position)
     {

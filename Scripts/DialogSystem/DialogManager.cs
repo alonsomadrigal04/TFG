@@ -40,7 +40,7 @@ public partial class DialogManager : Node
     /// </summary>
     public void StartDialogScene(string sceneName)
     {
-        string path = $"res://Assets/Csv/{sceneName}.csv";
+        string path = $"res://Data/Csv/{sceneName}.csv";
         dialogLines = reader.LoadFromCSV(path);
         orderedUids = reader.GetOrderedUids();
 

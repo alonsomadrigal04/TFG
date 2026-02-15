@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://be1s3kqo0l887"
-path="res://.godot/imported/Alezkar.jpg-19e66a56c193f5ea0d8be7610c205427.ctex"
+path="res://.godot/imported/Alezkar.jpg-66c7ce4606b792e9aef1e3ec412eb02f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Backgrounds/Images/Alezkar.jpg"
-dest_files=["res://.godot/imported/Alezkar.jpg-19e66a56c193f5ea0d8be7610c205427.ctex"]
+source_file="res://Data/Backgrounds/Images/Alezkar.jpg"
+dest_files=["res://.godot/imported/Alezkar.jpg-66c7ce4606b792e9aef1e3ec412eb02f.ctex"]
 
 [params]
 
