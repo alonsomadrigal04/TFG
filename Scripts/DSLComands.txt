@@ -9,6 +9,8 @@
 ·   SAY                                             -- A character says a line of dialogue
 ·   SAY/question                                    -- A small question mark appears next to the character
 ·   SAY/exclamation                                 -- A small exclamation mark appears next to the character
+·   CHOICE/Soft                                     -- A choice appears with a soft transition
+·   CHOICE/Impact                                   -- A choice appears with a Impact transition
 [CODE COMMANDS]
 // POSITIONS //
 LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
@@ -25,6 +27,11 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 ·   [NAME OF BACKGROUND] flashback                  -- A flashback effect occurs with a specific duration (e.g., flashback 3s)
 // CAMERA //
 ·   Camera zoom [POSITION/CHARACTER] [DURATION]     -- The camera zooms in or out on a position or character for a specific duration (e.g., Camera zoom Center 2s)
+·   Camera reset                                    -- The camera resets to its default position and zoom level
 ·   Camera shake [DURATION] [INTENSITY]             -- The camera shakes for a specific duration (e.g., Camera shake 1s)
-// Object //
+·   Camera flash [DURATION] [INTENSITY]             -- The camera flashes for a specific duration (e.g., Camera flash 0.5s)
+// OBJECT //
 ·   [NAME OF OBJECT] shows                          -- An object appears at the top right corner of the screen
+
+// TIME //
+·   Wait [DURATION]                                  -- The game waits for a specific duration before proceeding (e.g., Wait 2s)

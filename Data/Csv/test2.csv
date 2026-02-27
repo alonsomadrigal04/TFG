@@ -1,9 +1,12 @@
 ﻿uid;code;type;speaker;text;next
 A1;Alonso appears center;;;;
 A2;Alonso moves farleft;;;;
-A4;Godot appears right;;;;
-A5;Godot moves right;;;;
-A6;;say/question;Alonso;Hey! Godot, que pasa tio.;
-A7;;say;Godot;Pues nada, acabo de hornear unas cuantas magdalenas.;
-A8;Madalena shows;;;;
-A9;;say/exclamation;Alonso;Si home, madalenas??;
+A4;;say;Alonso;[w]Hello Godot[/w];
+A5;Godot appears right;;;;
+A6;;say/question;Godot;Would you like to go for ramen?;
+A7;;think;Alonso;Mhmm pensamientos.;
+A8;;say;Godot;Wow que.;
+A9;;say;Godot;It's okay, another day will be better.;
+A10;Godot disappears;;;;END
+A11;;say;Godot;All right! We'll go on the 13th.;
+A12;Godot disappears;;;;END

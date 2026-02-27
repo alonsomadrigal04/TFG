@@ -68,6 +68,8 @@ public class DialogReader
         {
             return CharacterDatabase.GetCharacter(parts[3].Trim());
         }
+        else if(subTypes[0] == "think")
+            return CharacterDatabase.GetCharacter(parts[3].Trim());
 
         return null;
 

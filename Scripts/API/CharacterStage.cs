@@ -1,12 +1,15 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Xml.Serialization;
 using Utility;
 
 public partial class CharacterStage : Node
 {
     public static CharacterStage Instance {get; private set;}
+    public static bool IsThinking {get; private set;} = false;
     public static Dictionary<Character, TextureRect> CharactersInScene {get; private set;} = [];
 
     [ExportGroup("TIME ANIMATIONS")]
@@ -24,6 +27,10 @@ public partial class CharacterStage : Node
     Dictionary<Character, Tween> activeTweens = [];
     [Export] int portraitLayer = -1;
     [Export] Control characterContainer;
+    [ExportGroup("FILTERS")]
+    [Export] ColorRect blurshader;
+    TextureRect currentThinkingPortrait;
+
 
     public override void _Ready()
     {
@@ -69,6 +76,46 @@ public partial class CharacterStage : Node
         tween.TweenProperty(portrait, "position", ToolKit.GetPosition(newDirection) - new Vector2(portrait.Size.X /2, portrait.Size.Y /2), moveTime);
 
         tween.Finished += ActionBus.ActionFinished;
+    }
+
+    public void SetThinkingLayout(Character character, bool start)
+    {
+        if (!IsCharacterInScene(character))
+        {
+            GD.PrintErr($"[CharacterStage] {character} not in the Scene");
+            return;
+        }
+
+        TextureRect portrait = GetCharacterPortrait(character);
+        if (start)
+        {
+            IsThinking = true;
+            ApplyBackgroundBlur(portrait);
+            return;
+        }
+        IsThinking = false;
+        HideBackgroundBlur();
+    }
+
+    void ApplyBackgroundBlur(TextureRect portrait)
+    {
+        _ = BackgroundStage.Instance.AnimateFlash();
+        portrait.ZIndex = blurshader.ZIndex + 1;
+        currentThinkingPortrait = portrait;
+        characterContainer.RemoveChild(portrait);
+        blurshader.AddChild(portrait);
+
+        blurshader.Show();
+    }
+
+    void HideBackgroundBlur()
+    {
+        currentThinkingPortrait.ZIndex = portraitLayer;
+        blurshader.RemoveChild(currentThinkingPortrait);
+        characterContainer.AddChild(currentThinkingPortrait);
+        currentThinkingPortrait = null;
+
+        blurshader.Hide();
     }
 
     /// <summary>

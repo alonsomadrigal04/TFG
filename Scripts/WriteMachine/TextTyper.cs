@@ -62,7 +62,10 @@ public partial class TextTyper : Control
         }
 
         string closingTags = BuildClosingTags(tagProcessor.ActiveEffects);
-        dialogBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{cleanText}{closingTags}[/color]";
+        string colorText = speaker.TextColor.ToHtml();
+            if(CharacterStage.IsThinking)
+                colorText = Colors.Green.ToHtml();
+        dialogBox.Text = $"[color=#{colorText}]{cleanText}{closingTags}[/color]";
 
         //audioModule.StopAll();
         isTyping = false;
@@ -79,8 +82,10 @@ public partial class TextTyper : Control
             string closingTags2 = BuildClosingTags(tagProcessor.ActiveEffects);
             string remainingText = BuildRemainingText(tokens, tokenIndex, charIndex + 1);
 
-
-            dialogBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{visiblePart}{closingTags2}[/color]" +
+            string colorText = speaker.TextColor.ToHtml();
+            if(CharacterStage.IsThinking)
+                colorText = Colors.Green.ToHtml();
+            dialogBox.Text = $"[color=#{colorText}]{visiblePart}{closingTags2}[/color]" +
                              $"[color=#ffffff00]{remainingText}[/color]";
 
             float waitTime = skipRequested ? 0 : GetWaitTimeForChar(c, tagProcessor.CurrentSpeed);;

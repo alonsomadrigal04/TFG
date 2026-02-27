@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/ChoiceFiles/ChoiceMaker.cs" id="4_ak5v8"]
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
+[ext_resource type="Shader" uid="uid://ctleyojck05gm" path="res://Scenes/testing/blur.gdshader" id="6_e0sb1"]
 [ext_resource type="Script" uid="uid://bp2hw26koj5ly" path="res://Scripts/API/UiStage.cs" id="6_qhtgt"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
 [ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
@@ -39,6 +40,11 @@ shader_parameter/time_scale = 1.5
 shader_parameter/wave_intensity = -0.005
 shader_parameter/grain_strength = 0.0800000038
 shader_parameter/vignette_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ooxv7"]
+shader = ExtResource("6_e0sb1")
+shader_parameter/lod = 1.7690000840275
+shader_parameter/mix_percentage = 0.25600001216
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttbwo"]
 shader = ExtResource("19_4nqsh")
@@ -319,9 +325,10 @@ grow_vertical = 2
 pivot_offset = Vector2(640, 341)
 metadata/_edit_lock_ = true
 
-[node name="CharacterStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=501401635 node_paths=PackedStringArray("characterContainer")]
+[node name="CharacterStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=501401635 node_paths=PackedStringArray("characterContainer", "blurshader")]
 script = ExtResource("1_0fon4")
 characterContainer = NodePath("../CharacterContainer")
+blurshader = NodePath("../../BlurFilter")
 
 [node name="ObjectStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1147430345 node_paths=PackedStringArray("objectLayer")]
 script = ExtResource("8_dclby")
@@ -345,6 +352,17 @@ sounds = NodePath("../../../../AudioManager")
 [node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox")]
 script = ExtResource("6_qhtgt")
 textBox = NodePath("../../DialogBox")
+
+[node name="BlurFilter" type="ColorRect" parent="GeneralLayout/DialogSystem" unique_id=764443550]
+visible = false
+material = SubResource("ShaderMaterial_ooxv7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="DebugScreen" parent="GeneralLayout/DialogSystem" unique_id=1007317109 instance=ExtResource("1_d3awe")]
 layout_mode = 1

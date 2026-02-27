@@ -27,7 +27,7 @@ public partial class ObjectStage : Node
         IsObjectInScene = false;
 
         AnimateObjectDisAppear(icon);
-        GD.Print(textureRectIcon.Position);
+        //GD.Print(textureRectIcon.Position);
     }
 
     private void AnimateObjectDisAppear(object textureRectIcon)

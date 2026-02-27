@@ -94,6 +94,10 @@ public partial class DialogManager : Node
                     choiceMaker.ShowChoices(line);
                     break;
 
+                case "think":
+                    ShowThinkLayout(line, typePortions);
+                    break;
+
                 default:
                     GD.PrintErr($"Unknown dialog line type: {line.Type}");
                     break;
@@ -102,8 +106,17 @@ public partial class DialogManager : Node
 
     }
 
-    void ProcessDialogLine(DialogLine line, string[] typePortions)
+    private void ShowThinkLayout(DialogLine line, string[] typePortions)
     {
+        CharacterStage.Instance.SetThinkingLayout(line.Speaker, true);
+        ProcessDialogLine(line, typePortions, true);
+    }
+
+
+    void ProcessDialogLine(DialogLine line, string[] typePortions, bool isThought = false)
+    {
+        if(!isThought && CharacterStage.IsThinking)
+            CharacterStage.Instance.SetThinkingLayout(line.Speaker, false);
         if(UiStage.Instance.IsTextBoxHide())
             UiStage.Instance.AnimateShowTextBox();
         if(LastSpeaker == null || line.Speaker != LastSpeaker)
