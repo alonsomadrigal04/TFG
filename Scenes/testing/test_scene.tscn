@@ -394,9 +394,9 @@ anchor_top = 0.47400004
 anchor_right = 0.934
 anchor_bottom = 0.92100006
 offset_left = -85.76
-offset_top = -198.28003
+offset_top = -106.28003
 offset_right = 84.47998
-offset_bottom = 199.87994
+offset_bottom = 291.87994
 sounds = NodePath("../../../AudioManager")
 metadata/_edit_lock_ = true
 

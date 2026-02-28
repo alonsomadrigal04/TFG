@@ -1,6 +1,8 @@
 ﻿uid;code;type;speaker;text;next
+;alezkar bg;;;;
 A1;Alonso appears center;;;;
 A2;Alonso moves farleft;;;;
+A3;negro flashback;;;;
 A4;;say;Alonso;[w]Hello Godot[/w];
 A5;Godot appears right;;;;
 A6;;say/question;Godot;Would you like to go for ramen?;

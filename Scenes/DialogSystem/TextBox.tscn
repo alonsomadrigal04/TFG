@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vu586py46jou"]
 
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
+[ext_resource type="Texture2D" uid="uid://cbhwjvlx50sij" path="res://Assets/UI/dialogBox.png" id="2_4xj7t"]
 
 [node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "nameBox")]
 z_index = 2
@@ -16,76 +17,70 @@ offset_bottom = 215.27997
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1hl6y")
-dialogBox = NodePath("DialogBox/MarginContainer/DialogText")
-nameBox = NodePath("DialogBox/MarginContainer2/SpeakerName")
+dialogBox = NodePath("TextureRect/MarginContainer/DialogText")
+nameBox = NodePath("TextureRect/MarginContainer2/SpeakerName")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=759137323]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1808204549]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.067
-anchor_top = 0.275
-anchor_right = 0.934
-anchor_bottom = 0.72200006
-offset_left = 0.23999786
-offset_right = 0.47998047
-offset_bottom = 0.15997314
-color = Color(0.34509805, 0.37254903, 0.6784314, 0.11764706)
+anchor_left = 0.0195
+anchor_top = 0.2958889
+anchor_right = 0.97150004
+anchor_bottom = 0.62688893
+offset_left = 0.0399971
+offset_top = -0.040008545
+offset_right = 828.48
+offset_bottom = 162.63995
+scale = Vector2(0.595, 0.595)
+texture = ExtResource("2_4xj7t")
+metadata/_edit_use_anchors_ = true
 
-[node name="DialogBox" type="Panel" parent="." unique_id=596144031]
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1344734697]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.080000006
-anchor_top = 0.29900002
-anchor_right = 0.92
-anchor_bottom = 0.70000005
-offset_left = -0.40000916
-offset_top = -0.28001404
-offset_right = 0.4000244
-offset_bottom = 0.9999695
+anchor_left = 0.17010522
+anchor_top = 0.30580878
+anchor_right = 0.82971585
+anchor_bottom = 0.91225886
+offset_left = -0.3062439
+offset_top = 0.059761047
+offset_right = 0.7312012
+offset_bottom = -4.4712524
+metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="DialogBox" unique_id=2119528654]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.26200002
-offset_bottom = 0.019996643
-color = Color(0.34509805, 0.37254903, 0.6784314, 0.11764706)
-
-[node name="MarginContainer" type="MarginContainer" parent="DialogBox" unique_id=1344734697]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.321
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.11999512
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 10
-
-[node name="DialogText" type="RichTextLabel" parent="DialogBox/MarginContainer" unique_id=1750638901]
+[node name="DialogText" type="RichTextLabel" parent="TextureRect/MarginContainer" unique_id=1750638901]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 51
-theme_override_font_sizes/bold_font_size = 51
-theme_override_font_sizes/bold_italics_font_size = 51
-theme_override_font_sizes/italics_font_size = 51
+theme_override_font_sizes/normal_font_size = 82
+theme_override_font_sizes/bold_italics_font_size = 70
+theme_override_font_sizes/italics_font_size = 70
+theme_override_font_sizes/mono_font_size = 70
 bbcode_enabled = true
-text = "[color=#fffffff]Lorem ipsum dolor sit amet, [b]consectetur adipiscing elit[/b], sed do eiusmod tempor..."
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor..."
 scroll_active = false
+autowrap_mode = 2
 shortcut_keys_enabled = false
 language = "es"
+metadata/_edit_lock_ = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="DialogBox" unique_id=927923826]
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect" unique_id=927923826]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.26200002
-offset_right = -4.592041
-offset_bottom = 0.1349945
-theme_override_constants/margin_left = 20
+anchor_left = 0.19900002
+anchor_top = 0.06327919
+anchor_right = 0.32700002
+anchor_bottom = 0.23395605
+offset_left = -0.6303406
+offset_top = -0.16487503
+offset_right = -0.46154785
+offset_bottom = 0.30126953
+metadata/_edit_use_anchors_ = true
 
-[node name="SpeakerName" type="RichTextLabel" parent="DialogBox/MarginContainer2" unique_id=1705052146]
+[node name="SpeakerName" type="RichTextLabel" parent="TextureRect/MarginContainer2" unique_id=1705052146]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 51
+theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "JAIME ALTOZANO"
+text = "JAIME"
 scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
