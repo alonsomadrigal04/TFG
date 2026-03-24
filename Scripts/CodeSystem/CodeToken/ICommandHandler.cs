@@ -6,4 +6,5 @@ public interface ICommandHandler
 {
     public HashSet<string> Supportedverbs {get;}
     public void Execute(CommandToken commandToken);
+    public void CleanEffects();
 }

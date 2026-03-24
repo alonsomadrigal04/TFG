@@ -8,13 +8,10 @@ public static class ActionBus
     public static void ActionStarted()
     {
         runningActions++;
-        GD.Print("START");
     } 
         
     public static void ActionFinished()
     {
-        GD.Print($"ENDED");
-
         if (runningActions <= 0)
         {
             GD.PrintErr("ActionFinished called without matching ActionStarted");

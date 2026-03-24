@@ -2,12 +2,14 @@ using Components;
 using Godot;
 using System;
 using System.Threading.Tasks;
+using Utility;
 
 public partial class BackgroundStage : Node
 {
     [ExportGroup("TRANSITIONS")]
     [Export] float timeTransition = 1.5f; 
     [Export] ColorRect blurTransition;
+    [Export] ColorRect blurFilter;
     [Export] ScreenFlash flashTransition;
     [Export] TextureRect imageFrame;
     [Export] ColorRect sepiaFilter;
@@ -41,7 +43,6 @@ public partial class BackgroundStage : Node
         progress = Mathf.Min(progress, 1f);
 
         transitionBlurShader.SetShaderParameter("progress", progress);
-        GD.Print(transitionBlurShader.GetShaderParameter("progress"));
 
         if (progress >= 1f)
         {
@@ -104,6 +105,31 @@ public partial class BackgroundStage : Node
         });
     }
 
+    public void SetBlurBg()
+    {
+        blurFilter.Show();
+        blurFilter.Modulate = blurFilter.Modulate with {A = 0};
+        Tween tween = CreateTween();
+        tween.TweenDelegate<Color>(
+            v => blurFilter.Modulate = v,
+            blurFilter.Modulate,
+            blurFilter.Modulate with {A = 1},
+            0.5f
+        );
+    }
+
+    public void UnSetBlurBg()
+    {
+        Tween tween = CreateTween();
+        tween.TweenDelegate<Color>(
+            v => blurFilter.Modulate = v,
+            blurFilter.Modulate,
+            blurFilter.Modulate with {A = 0},
+            0.5f
+        );
+        tween.Finished += blurFilter.Hide;
+    }
+
     public async void MakeFlashback(Texture2D flashbackImg, float duration = 1f)
     {
         ActionBus.ActionStarted();
@@ -132,4 +158,9 @@ public partial class BackgroundStage : Node
         //UiStage.Instance.AnimateShowTextBox();
     }
 
+    internal void CleanEffects()
+    {
+        UnSetBlurBg();
+        sepiaFilter.Hide();
+    }
 }

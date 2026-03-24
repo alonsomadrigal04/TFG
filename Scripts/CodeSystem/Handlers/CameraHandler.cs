@@ -148,4 +148,9 @@ public class CameraHandler : ICommandHandler
 
         return true;
     }
+
+    public void CleanEffects()
+    {
+        CameraStage.Instance.CleanEffects();
+    }
 }

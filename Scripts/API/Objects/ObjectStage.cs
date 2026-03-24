@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using Utility;
@@ -27,10 +28,9 @@ public partial class ObjectStage : Node
         IsObjectInScene = false;
 
         AnimateObjectDisAppear(icon);
-        //GD.Print(textureRectIcon.Position);
     }
 
-    private void AnimateObjectDisAppear(object textureRectIcon)
+    private void AnimateObjectDisAppear(Texture2D textureRectIcon)
     {
         throw new NotImplementedException();
     }
@@ -48,8 +48,6 @@ public partial class ObjectStage : Node
         textureRectIcon.AddPercentageOffset(0, yOffset, -1f);
 
         AnimateObjectAppear(textureRectIcon);
-        GD.Print(textureRectIcon.Position);
-
     }
 
     private void AnimateObjectAppear(TextureRect itemFrame)
@@ -101,5 +99,9 @@ public partial class ObjectStage : Node
         .SetEase(Tween.EaseType.Out);
     }
 
-
+    internal void CleanEffects()
+    {
+        //TODO HOCER ESTO
+        IsObjectInScene = false;
+    }
 }

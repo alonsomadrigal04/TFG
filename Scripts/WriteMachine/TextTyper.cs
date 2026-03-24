@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Utility;
 
 
 public partial class TextTyper : Control
@@ -14,6 +15,7 @@ public partial class TextTyper : Control
     [Export] RichTextLabel dialogBox;
     [Export] RichTextLabel nameBox;
     [Export] AudioManager sounds;
+    [Export] SentenceCompleteHud sentenceHud;
     AudioStreamRandomizer audioStreamRandomizer;
 
     public bool isTyping;
@@ -33,9 +35,16 @@ public partial class TextTyper : Control
         nameBox.Text = "";
     }
 
+    public void CleanTextBox()
+    {
+        dialogBox.Text = "";
+        nameBox.Text = "";
+    }
+
     public async void WriteText(string text, Character speaker)
     {
         isTyping = true;
+        sentenceHud.StopAndReset();
         nameBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{speaker.Name}[/color]";
         dialogBox.Text = "";
         skipRequested = false;
@@ -69,6 +78,7 @@ public partial class TextTyper : Control
 
         //audioModule.StopAll();
         isTyping = false;
+        sentenceHud.StartHudAnimation();
     }
 
     async Task<string> WriteTextToken(TextToken textToken, string cleanText, List<TagToken> tokens, int tokenIndex, Character speaker)

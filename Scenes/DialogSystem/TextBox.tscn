@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 [ext_resource type="Texture2D" uid="uid://cbhwjvlx50sij" path="res://Assets/UI/dialogBox.png" id="2_4xj7t"]
+[ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_s4oty"]
+[ext_resource type="Texture2D" uid="uid://573y4umjdap7" path="res://Assets/UI/intro.png" id="4_u2kc5"]
+[ext_resource type="Script" uid="uid://be60ixvdb27x8" path="res://Scenes/DialogSystem/SentenceCompleteHud.cs" id="5_h4oya"]
 
-[node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "nameBox")]
+[node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "nameBox", "sentenceHud")]
 z_index = 2
 layout_mode = 3
 anchor_left = 0.080000006
@@ -19,6 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_1hl6y")
 dialogBox = NodePath("TextureRect/MarginContainer/DialogText")
 nameBox = NodePath("TextureRect/MarginContainer2/SpeakerName")
+sentenceHud = NodePath("SentenceCompleteHUD")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1808204549]
 layout_mode = 1
@@ -38,10 +42,10 @@ metadata/_edit_use_anchors_ = true
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1344734697]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.17010522
+anchor_left = 0.18077877
 anchor_top = 0.30580878
-anchor_right = 0.82971585
-anchor_bottom = 0.91225886
+anchor_right = 0.81001085
+anchor_bottom = 0.8451995
 offset_left = -0.3062439
 offset_top = 0.059761047
 offset_right = 0.7312012
@@ -50,6 +54,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DialogText" type="RichTextLabel" parent="TextureRect/MarginContainer" unique_id=1750638901]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_s4oty")
 theme_override_font_sizes/normal_font_size = 82
 theme_override_font_sizes/bold_italics_font_size = 70
 theme_override_font_sizes/italics_font_size = 70
@@ -77,10 +82,27 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SpeakerName" type="RichTextLabel" parent="TextureRect/MarginContainer2" unique_id=1705052146]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 45
+theme_override_fonts/normal_font = ExtResource("3_s4oty")
+theme_override_font_sizes/normal_font_size = 52
 bbcode_enabled = true
 text = "JAIME"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="SentenceCompleteHUD" type="TextureRect" parent="." unique_id=534918969]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.786
+anchor_top = 0.5472847
+anchor_right = 0.786
+anchor_bottom = 0.54800004
+offset_left = -18.080017
+offset_top = -17.045013
+offset_right = 181.91998
+offset_bottom = 182.44058
+scale = Vector2(0.175, 0.175)
+texture = ExtResource("4_u2kc5")
+script = ExtResource("5_h4oya")
+metadata/_edit_use_anchors_ = true

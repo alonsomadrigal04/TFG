@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c7ojrtvec8i6r"]
+
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_e2avg"]
+[ext_resource type="Script" uid="uid://deqbnkwo3jkac" path="res://Scenes/inventory/ItemSlotBehaviour.cs" id="1_yawnl"]
+[ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="3_a665t"]
+
+[node name="ItemSlot" type="Control" unique_id=1884305001 node_paths=PackedStringArray("iconItem", "nameItem")]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 6.0
+offset_right = 372.0
+offset_bottom = 97.0
+script = ExtResource("1_yawnl")
+iconItem = NodePath("TextureRect")
+nameItem = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1400082882]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -110.0
+offset_right = 1084.0
+offset_bottom = 91.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=935085846]
+layout_mode = 1
+offset_left = -19.0
+offset_top = -22.0
+offset_right = 130.03448
+offset_bottom = 116.22368
+scale = Vector2(0.555, 0.555)
+pivot_offset = Vector2(63.563717, 63.563717)
+texture = ExtResource("1_e2avg")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1789054599]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 102.0
+offset_top = 24.0
+offset_right = 355.0
+offset_bottom = 69.0
+pivot_offset = Vector2(127, 23)
+theme_override_fonts/font = ExtResource("3_a665t")
+theme_override_font_sizes/font_size = 32
+text = "ITEM EPIC NAME"

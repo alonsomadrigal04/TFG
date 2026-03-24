@@ -8,6 +8,7 @@ public class CharacterDatabase
 
     public static void RegisterCharacter(Character character)
     {
+        character.characterState = new();
         characterDatabase[character.Name] = character;
     }
     public static bool IsCharacterRegistred(string character) => characterDatabase.ContainsKey(character);
@@ -52,7 +53,6 @@ public class CharacterDatabase
                 TextColor = new Color(entry.GetValueOrDefault("color", "#ffffff").ToString()),
                 Portraits =  portraitSet?.Portraits ?? []
             };
-            
             RegisterCharacter(character);
         }
 

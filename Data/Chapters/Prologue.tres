@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChapterData" format=3 uid="uid://ckj64qkj7g74v"]
+
+[ext_resource type="Script" uid="uid://uuyekluu2ar2" path="res://Scripts/ChapterLogic/ChapterData.cs" id="1_dvroo"]
+
+[resource]
+script = ExtResource("1_dvroo")
+Title = "Prólogo"
+Subtitle = "El cabo"
+StartConversation = "Alonso"
+metadata/_custom_type_script = "uid://uuyekluu2ar2"

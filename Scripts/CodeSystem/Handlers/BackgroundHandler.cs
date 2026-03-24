@@ -79,4 +79,9 @@ public class BackgroundHandler : ICommandHandler
 
         BackgroundStage.Instance.SetBackground(newBg);
     }
+
+    public void CleanEffects()
+    {
+        BackgroundStage.Instance.CleanEffects();
+    }
 }

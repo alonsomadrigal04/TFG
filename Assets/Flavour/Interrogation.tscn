@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjigg7pxsd6r8"]
 
-[ext_resource type="Texture2D" uid="uid://clw2fkos7bwky" path="res://Assets/Flavour/Interrogation.png" id="1_q0krc"]
+[ext_resource type="Texture2D" uid="uid://dspn7h0focdc6" path="res://Assets/Flavour/interrogationSign.png" id="1_q0krc"]
 
 [sub_resource type="Curve" id="Curve_wulxv"]
 _data = [Vector2(0.024064172, 1), 0.0, 0.0, 0, 0, Vector2(0.72459894, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.9913378, 0.0, 0, 0]
@@ -18,7 +18,7 @@ point_count = 2
 curve = SubResource("Curve_mkyn7")
 
 [sub_resource type="Curve" id="Curve_5fx8f"]
-_data = [Vector2(0, 0.09365249), 0.0, 1.3551733, 0, 0, Vector2(0.4117647, 0.22892827), 0.05882946, 0.05882946, 0, 0, Vector2(1, 0.1612904), -0.105402365, 0.0, 0, 0]
+_data = [Vector2(0, 0.09365249), 0.0, 1.3551733, 0, 0, Vector2(0.42091155, 0.65396667), 0.05882946, 0.05882946, 0, 0, Vector2(1, 0.5046973), -0.105402365, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_hub3f"]

@@ -1,9 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.Marshalling;
-using System.Xml.Serialization;
 using Utility;
 
 public partial class CharacterStage : Node
@@ -24,7 +20,6 @@ public partial class CharacterStage : Node
     [Export] float bobIntensity = 15f;
 
     [ExportGroup("CHARACTER PORTRAIT")]
-    Dictionary<Character, Tween> activeTweens = [];
     [Export] int portraitLayer = -1;
     [Export] Control characterContainer;
     [ExportGroup("FILTERS")]
@@ -367,4 +362,15 @@ public partial class CharacterStage : Node
             character.Show();
         }
     }
+
+    public void CleanEffects()
+    {
+        foreach(var character in CharactersInScene)
+        {
+            DisappearAnimation(character.Value, character.Key);
+        }
+        CharactersInScene.Clear();
+        IsThinking = false;
+    }
+
 }

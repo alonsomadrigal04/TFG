@@ -7,26 +7,26 @@ using System.Net.Http.Headers;
 
 public partial class DialogManager : Node
 {
-    DialogReader reader;
     [Export] ChoiceMaker choiceMaker;
     [Export] TextTyper textTyper;
-    [Export] Control dialogueBox;
+    [Export] TextTyper dialogueBox;
     [Export] AudioManager sounds;
-
     Dictionary<string, DialogLine> dialogLines;
     List<string> orderedUids;
     DialogLine currentLine;
 
     bool isInChoiceMode = false;
+    public bool IsSpeaking {get; private set;} = false;
     Character LastSpeaker = null;
 
 
 
     public override void _EnterTree()
     {
-        reader = new DialogReader();
         choiceMaker.ChoiceSelected += OnChoiceSelected;
     }
+
+    public bool IsTyping() => textTyper.isTyping;
 
     void OnChoiceSelected(string nextUid)
     {
@@ -38,11 +38,13 @@ public partial class DialogManager : Node
     /// <summary>
     /// Starts a dialog scene by loading dialog lines from a CSV file.
     /// </summary>
-    public void StartDialogScene(string sceneName)
+    public void StartDialogScene(Dialog sceneName)
     {
-        string path = $"res://Data/Csv/{sceneName}.csv";
-        dialogLines = reader.LoadFromCSV(path);
-        orderedUids = reader.GetOrderedUids();
+        IsSpeaking = true;
+        dialogLines = sceneName.Conversation;
+        orderedUids = sceneName.OrderedUids;
+        BackgroundStage.Instance.SetBlurBg();
+        textTyper.CleanTextBox();
 
         if (orderedUids.Count > 0 )
         {
@@ -70,7 +72,6 @@ public partial class DialogManager : Node
             if(line.Code != "")
             {
                 CodeProcessor.RunCode(line.Code);
-                GD.Print(line.Code);
                 if (ActionBus.IsBusy)
                 {
                     Action solicitatedAction = ActionBus.RunAfterActions(OnNextRequested);
@@ -106,10 +107,15 @@ public partial class DialogManager : Node
 
     }
 
-    private void ShowThinkLayout(DialogLine line, string[] typePortions)
+    void ShowThinkLayout(DialogLine line, string[] typePortions)
     {
         CharacterStage.Instance.SetThinkingLayout(line.Speaker, true);
         ProcessDialogLine(line, typePortions, true);
+    }
+
+    public void DesactivateDialogFrameWork()
+    {
+        CodeProcessor.TurnOffHandlers();
     }
 
 
@@ -133,45 +139,157 @@ public partial class DialogManager : Node
         DebugService.Register("Last speaker", () => line.Speaker.Name);
     }
 
-    /// <summary>
-    /// Handles the request to proceed to the next line of dialog. 
-    /// </summary>
     public void OnNextRequested()
     {
         if (currentLine == null)
             return;
-        if(isInChoiceMode)
+
+        if (isInChoiceMode)
             return;
 
-        string nextUid = currentLine.Next;
         sounds.NextSentence.Play();
 
-        if(nextUid == "END")
+        string nextUid = currentLine.Next;
+        NextUidType nextType = ParseNextUid(nextUid);
+
+        switch (nextType)
         {
-            EndDialog();
-            return;
-        }
-        else if (!string.IsNullOrEmpty(nextUid) && dialogLines.ContainsKey(nextUid))
-        {
-            StartDialog(nextUid);
-            return;
+            case NextUidType.EndGame:
+                DesactivateDialogFrameWork();
+                EndGame();
+                return;
+
+            case NextUidType.EndChapter:
+                DesactivateDialogFrameWork();
+                EndChapter();
+                return;
+
+            case NextUidType.ChangeDialog:
+                DesactivateDialogFrameWork();
+                HandleDialogChange(nextUid);
+                return;
+            case NextUidType.ExploreZone:
+                DesactivateDialogFrameWork();
+                ChangeToExploreMode(nextUid);
+                return;
+
+            case NextUidType.DiferentLine:
+                if (dialogLines.ContainsKey(nextUid))
+                {
+                    StartDialog(nextUid);
+                    return;
+                }
+                break;
         }
 
+        GoToNextOrderedLine();
+    }
+
+    void ChangeToExploreMode(string raw)
+    {
+        GameStateManager.Instance.ChangeState(State.Explore);
+        string[] parts = raw.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+        GameManager.ChangeEnvironment(GameEnvironments.ParseEnvironment(parts[3]));
+    }
+
+
+    void GoToNextOrderedLine()
+    {
         int currentIndex = orderedUids.IndexOf(currentLine.Uid);
-        if (currentIndex != -1 && currentIndex + 1 < orderedUids.Count)
+
+        if (currentIndex >= 0 && currentIndex + 1 < orderedUids.Count)
         {
-            string nextInOrder = orderedUids[currentIndex + 1];
-            StartDialog(nextInOrder);
+            StartDialog(orderedUids[currentIndex + 1]);
         }
         else
         {
             EndDialog();
-            return;
         }
     }
 
-    private void EndDialog()
+    void HandleDialogChange(string raw)
     {
+        string[] parts = raw.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+        if (parts.Length < 4)
+        {
+            GD.PrintErr("[DialogManager] Invalid chapter change syntax.");
+            return;
+        }
+
+        string chapterName = parts[3];
+
+        Dialog newDialog = ConversationsDataBase.GetConversation(chapterName);
+
+        if (newDialog == null)
+        {
+            GD.PrintErr($"[DialogManager] Dialog {chapterName} not found.");
+            return;
+        }
+        ActionBus.RunAfterActions(() =>
+        {
+            StartDialogScene(newDialog);
+        });
+    }
+
+    void EndGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    void EndDialog()
+    {
+        IsSpeaking = false;
+        GameStateManager.Instance.ChangeState(State.Explore);
+
         GD.Print("End of dialogue.");
     }
+
+    void EndChapter()
+    {
+        IsSpeaking = false;
+        GD.Print("Chapter ended.");
+
+        GameManager.Instance.StartNewChapter();
+    }
+
+    static NextUidType ParseNextUid(string raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+            return NextUidType.NextLine;
+
+        string[] parts = raw.ToLower().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+        if (parts.Length >= 2)
+        {
+            if (parts[0] == "chapter" && parts[1] == "ends")
+                return NextUidType.EndChapter;
+
+            if (parts[0] == "game" && parts[1] == "ends")
+                return NextUidType.EndGame;
+        }
+
+        if (parts.Length >= 3)
+        {
+            if (parts[0] == "go" && parts[1] == "to" && parts[2] == "dialog")
+                return NextUidType.ChangeDialog;
+            else if(parts[2] == "explorezone")
+                return NextUidType.ExploreZone;
+            else
+                GD.PrintErr("[DialogManager] wrong command entered, try 'go to [name of the dialog]'");
+        }
+
+        return NextUidType.DiferentLine;
+    }
+
+}
+
+public enum NextUidType
+{
+    EndChapter,
+    ChangeDialog,
+    EndGame,
+    NextLine,
+    DiferentLine,
+    ExploreZone
 }

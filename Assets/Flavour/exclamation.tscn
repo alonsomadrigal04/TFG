@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdnoe66laax7b"]
 
-[ext_resource type="Texture2D" uid="uid://20l7bf5g2xu1" path="res://Assets/Flavour/Exclamation.png" id="1_wulxv"]
+[ext_resource type="Texture2D" uid="uid://cj11d07nr2x0w" path="res://Assets/Flavour/exclamationSign.png" id="1_wulxv"]
 
 [sub_resource type="Curve" id="Curve_wulxv"]
 _data = [Vector2(0.024064172, 1), 0.0, 0.0, 0, 0, Vector2(0.72459894, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.9913378, 0.0, 0, 0]

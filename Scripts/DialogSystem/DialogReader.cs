@@ -5,13 +5,13 @@ using System.Linq;
 
 public class DialogReader
 {
-     readonly Dictionary<string, DialogLine> lines = [];
-     readonly List<string> orderedUids = [];
+    public Dictionary<string, DialogLine> Lines {get; private set;} = [];
+    public List<string> OrderedUids {get; private set;} = [];
 
     public Dictionary<string, DialogLine> LoadFromCSV(string path)
     {
-        lines.Clear();
-        orderedUids.Clear();
+        Lines.Clear();
+        OrderedUids.Clear();
 
         if (!FileAccess.FileExists(path))
         {
@@ -48,13 +48,13 @@ public class DialogReader
 
             if(dialogLine.Uid == "")
                 GD.PrintErr($"[DialogReader] line {index + 1} doesn't have an UID");
-            lines[dialogLine.Uid] = dialogLine;
-            orderedUids.Add(dialogLine.Uid);
+            Lines[dialogLine.Uid] = dialogLine;
+            OrderedUids.Add(dialogLine.Uid);
             index++;
         }
 
-        DebugService.Register("Qty of lines", () => lines.Count.ToString());
-        return lines;
+        DebugService.Register("Qty of lines", () => Lines.Count.ToString());
+        return Lines;
     }
 
     private Character GetCharacterName(string[] parts)
@@ -75,5 +75,5 @@ public class DialogReader
 
     }
 
-    public List<string> GetOrderedUids() => [.. orderedUids];
+    public List<string> GetOrderedUids() => [.. OrderedUids];
 }

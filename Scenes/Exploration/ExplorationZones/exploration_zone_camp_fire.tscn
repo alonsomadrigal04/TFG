@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://78syml0hccxr"]
+
+[ext_resource type="Script" uid="uid://q4jme22dupru" path="res://Scripts/Exploration/ExplorationZoneCampFire.cs" id="1_cj88r"]
+[ext_resource type="PackedScene" uid="uid://dchwp1pat8lg2" path="res://Scenes/DialogSystem/DialogScene.tscn" id="2_2ovw4"]
+[ext_resource type="Resource" uid="uid://cwfi3gfwdnsiy" path="res://Data/Alonso.tres" id="2_cj88r"]
+[ext_resource type="PackedScene" uid="uid://bftu10xb87ci0" path="res://Scenes/Exploration/interactables/npc/npc.tscn" id="2_hjfww"]
+[ext_resource type="PackedScene" uid="uid://dyddrn2lof815" path="res://Scenes/Exploration/InspectView.tscn" id="3_hjfww"]
+[ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/player/player.tscn" id="4_745qm"]
+[ext_resource type="Script" uid="uid://dr5isq3vby701" path="res://Scripts/Exploration/CameraBehaviour.cs" id="5_y808e"]
+[ext_resource type="PackedScene" uid="uid://bt8xfctwne0hy" path="res://Scenes/Exploration/interactables/object/object.tscn" id="7_uayis"]
+[ext_resource type="Resource" path="res://Data/Objects/cafetera.tres" id="8_jxm86"]
+[ext_resource type="Texture2D" uid="uid://leggi1whkbf8" path="res://Data/Backgrounds/Images/pollo.jpg" id="9_ung3y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7r1u"]
+size = Vector3(60, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m1cl4"]
+size = Vector3(60, 1, 60)
+
+[node name="ExplorationZoneCampFire" type="Node" unique_id=1900525975 node_paths=PackedStringArray("cameraBehaviour", "player", "Stage")]
+script = ExtResource("1_cj88r")
+npcScene = ExtResource("2_hjfww")
+AlonsoData = ExtResource("2_cj88r")
+AlonsoPosition1 = Vector3(0, 3.89, -3.39)
+cameraBehaviour = NodePath("Camera3D")
+player = NodePath("Player")
+Stage = NodePath("Ground")
+metadata/_custom_type_script = "uid://q4jme22dupru"
+
+[node name="DialogScene" parent="." unique_id=628620988 instance=ExtResource("2_2ovw4")]
+visible = false
+mouse_filter = 2
+
+[node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
+visible = false
+
+[node name="Player" parent="." unique_id=1961554038 instance=ExtResource("4_745qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45, 0.5, -8.05)
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=201284183]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=592974075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+shape = SubResource("BoxShape3D_u7r1u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1048144331]
+transform = Transform3D(0.9999998, -0.0006187713, 2.3885163e-05, 0.0006187641, 0.9999998, 9.021093e-05, -4.7392135e-05, -0.0001786104, 0.505, 0, 0, -15.15)
+mesh = SubResource("BoxMesh_m1cl4")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=113618063 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.359186, 2.8485312, -0.29643822)
+script = ExtResource("5_y808e")
+target = NodePath("../Player")
+
+[node name="Object" parent="." unique_id=336918594 instance=ExtResource("7_uayis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35, 0.5, -7.75)
+ObjectInfo = ExtResource("8_jxm86")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=757806959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.049554, 0.87941813)
+metadata/_edit_lock_ = true
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=210966861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -167.35666)
+pixel_size = 0.5944744
+texture = ExtResource("9_ung3y")

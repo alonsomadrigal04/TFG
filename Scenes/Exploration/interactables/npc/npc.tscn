@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bftu10xb87ci0"]
+
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_2xp5l"]
+[ext_resource type="Script" uid="uid://cqt2wogs2p0us" path="res://Scripts/Exploration/NpcBehaviour.cs" id="1_bs2lt"]
+[ext_resource type="Texture2D" uid="uid://bkjhyg74su0ec" path="res://Assets/UI/dialogIcon.png" id="2_gvido"]
+[ext_resource type="Script" uid="uid://dvke0mr2o3aeq" path="res://Scripts/Exploration/InteractIconAnimation.cs" id="4_gvido"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nhy3c"]
+height = 2.4362793
+radius = 0.76708984
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3i1kj"]
+radius = 1.8000001
+
+[node name="NPC" type="RigidBody3D" unique_id=1867189114 node_paths=PackedStringArray("characterSprite", "colliderBody", "colliderInteract", "dialogIcon", "interactionArea")]
+script = ExtResource("1_bs2lt")
+dialogImg = ExtResource("2_gvido")
+characterSprite = NodePath("CharacterSprite")
+colliderBody = NodePath("ColliderBody")
+colliderInteract = NodePath("InteractionArea/ColliderIteractArea")
+dialogIcon = NodePath("InteractIcon")
+interactionArea = NodePath("InteractionArea")
+metadata/_edit_lock_ = true
+
+[node name="CharacterSprite" type="Sprite3D" parent="." unique_id=2074991068]
+texture = ExtResource("1_2xp5l")
+metadata/_edit_lock_ = true
+
+[node name="ColliderBody" type="CollisionShape3D" parent="." unique_id=1652999767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62976074, 0)
+shape = SubResource("CylinderShape3D_nhy3c")
+metadata/_edit_lock_ = true
+
+[node name="InteractIcon" type="Sprite3D" parent="." unique_id=821486069]
+transform = Transform3D(0.425, 0, 0, 0, 0.425, 0, 0, 0, 0.425, 0, 1, 0)
+texture = ExtResource("1_2xp5l")
+script = ExtResource("4_gvido")
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=1274931997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5037036, 0)
+metadata/_edit_lock_ = true
+
+[node name="ColliderIteractArea" type="CollisionShape3D" parent="InteractionArea" unique_id=1556162699]
+shape = SubResource("CylinderShape3D_3i1kj")
+metadata/_edit_lock_ = true

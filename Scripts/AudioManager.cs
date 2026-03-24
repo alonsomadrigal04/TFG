@@ -25,5 +25,9 @@ public partial class AudioManager : Node
 
     [ExportGroup("UI SOUNDS")]
     [Export] public AudioStreamPlayer2D NextSentence {get; set;}
+    [Export] public AudioStreamPlayer2D Remember {get; set;}
+    [Export] public AudioStreamPlayer2D NewItem {get; set;}
+
+
 
 }

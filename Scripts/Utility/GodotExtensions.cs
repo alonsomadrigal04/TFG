@@ -8,6 +8,7 @@ namespace Utility;
 
 public static class GodotExtensions
 {
+    
     ///<summary>Defers the execution of the specified action until the current frame has finished processing.</summary>
     ///<param name="action">The <see cref="Action"/> to be invoked later using Godot's deferred call system.</param>
     public static void CallDeferred(Action action) => Callable.From(action).CallDeferred();
@@ -49,6 +50,11 @@ public static class GodotExtensions
         CallDeferred(() => oldParent.AddChild(newParent));
         CallDeferred(() => root.Reparent(newParent, false));
     }
+
+    ///<summary>Asynchronously waits for a specified amount of real-time seconds using <see cref="Task.Delay(int)"/>.</summary>
+    ///<param name="seconds">The number of seconds to delay the execution of the next operation.</param>
+    /// <param name="token">The cancellation token that will be checked prior to completing the returned Task</param>
+    public static async Task Delay(float seconds, CancellationToken token = default) => await Task.Delay((int)MathF.Round(seconds * 1000), token);
 
     ///<summary>Returns all child nodes of a specific type from the given node.</summary>
     ///<typeparam name="T">The type of nodes to search for.</typeparam>
@@ -115,7 +121,16 @@ public static class GodotExtensions
     public static MethodTweener TweenDelegate(this Tween tween, Action<float> setter, float from, float to, float duration)
         => tween.TweenMethod(Callable.From(setter), from, to, duration);
 
-    public static async Task AwaitFinished(this Tween tween, CancellationToken token, bool killOnCancel = true)
+    /// <summary>
+    /// Asynchronously waits until the <see cref="Tween"/> finishes execution.
+    /// Optionally kills the tween if the provided <see cref="CancellationToken"/> is triggered.
+    /// Safely handles invalid or freed tween instances and guarantees completion without throwing.
+    /// </summary>
+    /// <param name="tween">The tween to await.</param>
+    /// <param name="killOnCancel">If true, the tween will be killed when cancellation is requested.</param>
+    /// <param name="token">An optional cancellation token that can interrupt the await operation.</param>
+    /// <returns>A task that completes when the tween finishes or is cancelled.</returns>
+    public static async Task AwaitFinished(this Tween tween, bool killOnCancel = true, CancellationToken? token = default)
     {
         if (tween == null || !GodotObject.IsInstanceValid(tween)) return;
 
@@ -125,7 +140,7 @@ public static class GodotExtensions
 
         tween.Finished += OnFinished;
 
-        using (token.Register(() =>
+        using (token?.Register(() =>
         {
             if (killOnCancel && GodotObject.IsInstanceValid(tween)) tween.Kill();
             if (!tcs.Task.IsCompleted) tcs.TrySetResult();

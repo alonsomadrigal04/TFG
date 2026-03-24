@@ -8,7 +8,9 @@ public class CommandRouter
         new CameraHandler(),
         new CharacterHanlder(),
         new BackgroundHandler(),
-        new ObjectHandler()
+        new ObjectHandler(),
+        new UiHandler(),
+        new GameStateHandler()
     ];
 
     public ICommandHandler GetHandler(CommandToken token)
@@ -19,6 +21,14 @@ public class CommandRouter
         }
         GD.PrintErr($"[CommandRouter] '{token.Verb}' is not recognized");
         return null;
+    }
+
+    public void SutDown()
+    {
+        foreach(var handler in commandHandlers)
+        {
+            handler.CleanEffects();
+        }
     }
 
 }

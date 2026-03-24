@@ -53,7 +53,7 @@ public partial class ScreenFlash : ColorRect
         tween.TweenInterval(durationVal);
         tween.TweenDelegate(setter, alphaVal, 0f, fadeOutVal);
 
-        await tween.AwaitFinished(token);
+        await tween.AwaitFinished(true, token);
         Hide();
     }
 

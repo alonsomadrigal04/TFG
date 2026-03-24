@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bj7ooxpjx5vh"]
+
+[ext_resource type="Texture2D" uid="uid://b478j44g1n2fg" path="res://Assets/Objects/3DModels/CoffePot/Metal_albedo.jpeg" id="1_8kixx"]
+[ext_resource type="Texture2D" uid="uid://bjbq4a6xxtpmn" path="res://Assets/Objects/3DModels/CoffePot/Metal_AO.jpeg" id="2_uwm6x"]
+[ext_resource type="Texture2D" uid="uid://coeb7p88slvfx" path="res://Assets/Objects/3DModels/CoffePot/Metal_metallic.jpg" id="3_peb32"]
+[ext_resource type="Texture2D" uid="uid://ceu1rgek6a1ju" path="res://Assets/Objects/3DModels/CoffePot/Metal_normal.png" id="4_bx2bb"]
+[ext_resource type="Texture2D" uid="uid://bceyxcqkg6p5c" path="res://Assets/Objects/3DModels/CoffePot/Metal_roughness.jpeg" id="5_4kphv"]
+
+[resource]
+albedo_texture = ExtResource("1_8kixx")
+metallic = 1.0
+metallic_texture = ExtResource("3_peb32")
+roughness_texture = ExtResource("5_4kphv")
+normal_enabled = true
+normal_texture = ExtResource("4_bx2bb")
+ao_enabled = true
+ao_texture = ExtResource("2_uwm6x")

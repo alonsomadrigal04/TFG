@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChapterData" format=3 uid="uid://bi3q8cb445uv3"]
+
+[ext_resource type="Script" uid="uid://uuyekluu2ar2" path="res://Scripts/ChapterLogic/ChapterData.cs" id="1_kg50c"]
+
+[resource]
+script = ExtResource("1_kg50c")
+Title = "Capitulo"
+Subtitle = "Raul me cago en tu puta madre"
+StartConversation = "Raul"
+metadata/_custom_type_script = "uid://uuyekluu2ar2"

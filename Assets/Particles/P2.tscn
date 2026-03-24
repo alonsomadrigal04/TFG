@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://df6g2vpmwhsyb"]
+
+[sub_resource type="Curve" id="Curve_7wavg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23913044, 1), 0.0, 0.0, 0, 0, Vector2(0.87318844, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ewrjt"]
+curve = SubResource("Curve_7wavg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p1q8r"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_ewrjt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xgl3"]
+albedo_color = Color(1, 1, 0.54588866, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6pcc4"]
+material = SubResource("StandardMaterial3D_5xgl3")
+
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=1752531838]
+amount = 1
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_p1q8r")
+draw_pass_1 = SubResource("SphereMesh_6pcc4")

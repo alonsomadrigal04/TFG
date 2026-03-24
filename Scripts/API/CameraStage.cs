@@ -5,7 +5,6 @@ using Godot.Collections;
 public partial class CameraStage : Node
 {
     public static CameraStage Instance { get; private set; }
-
     [Export] Control layerDialogBox;
     [Export] Control layerBackground;
     [Export] AudioManager sounds;
@@ -89,4 +88,10 @@ public partial class CameraStage : Node
 
         tween.Finished += ActionBus.ActionFinished;
     }
+
+    public void CleanEffects()
+    {
+        ResetCamera(ToolKit.GetScreenPosition(ScreenPosition.Center));
+    }
+
 }

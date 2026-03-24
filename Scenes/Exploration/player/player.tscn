@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dv6vy3g67l346"]
+
+[ext_resource type="Script" uid="uid://chnbuoxh42x7s" path="res://Scripts/Exploration/PlayerBehaviour.cs" id="1_1f3pn"]
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_2gqnt"]
+[ext_resource type="Texture2D" uid="uid://d6vhhw03rvi4" path="res://Assets/PH/stickman.png" id="1_a7g3y"]
+[ext_resource type="Texture2D" uid="uid://dspn7h0focdc6" path="res://Assets/Flavour/interrogationSign.png" id="4_5rjme"]
+[ext_resource type="Script" uid="uid://dhqwo528v5uqh" path="res://Scenes/Exploration/player/InteractFlavourAnimation.cs" id="5_5rjme"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eojwj"]
+height = 4.0
+radius = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trchd"]
+transparency = 1
+albedo_texture = ExtResource("1_a7g3y")
+
+[node name="Player" type="CharacterBody3D" unique_id=1961554038 node_paths=PackedStringArray("exclamationSprite")]
+script = ExtResource("1_1f3pn")
+exclamationSprite = NodePath("Exclamation")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=745000325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0001464, 0)
+shape = SubResource("CylinderShape3D_eojwj")
+metadata/_edit_lock_ = true
+
+[node name="BodySprite" type="Sprite3D" parent="." unique_id=969084677]
+transform = Transform3D(1, 0, 0, 0, 3.1, 0, 0, 0, 1, 0, 2, 0)
+material_override = SubResource("StandardMaterial3D_trchd")
+texture = ExtResource("1_2gqnt")
+metadata/_edit_lock_ = true
+
+[node name="Exclamation" type="Sprite3D" parent="." unique_id=1498343091]
+transform = Transform3D(0.66186297, -0.22789769, 0, 0.22789769, 0.66186297, 0, 0, 0, 0.7, 0.564, 4.17, 0)
+texture = ExtResource("4_5rjme")
+script = ExtResource("5_5rjme")
+metadata/_edit_lock_ = true

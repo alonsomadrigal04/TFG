@@ -188,8 +188,6 @@ public partial class ChoiceMaker : Node
 
     void AnimateExitButtons(Button button, int index)
     {
-        GD.Print(index);
-
         buttonExitTween = CreateTween()
             .SetTrans(Tween.TransitionType.Expo)
             .SetEase(Tween.EaseType.In);

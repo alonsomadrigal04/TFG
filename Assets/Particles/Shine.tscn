@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bjntvrqyt1240"]
+
+[ext_resource type="Texture2D" uid="uid://ca5qxqvitpi7v" path="res://addons/kenney-particle-pack-7e801dc538996622a91327bb1dd5879cf977aa09/kenney-particle-pack-7e801dc538996622a91327bb1dd5879cf977aa09/addons/kenney_particle_pack/star_08.png" id="1_pblbn"]
+
+[sub_resource type="Curve" id="Curve_evui2"]
+_data = [Vector2(0, 0), 0.0, 3.0636618, 0, 0, Vector2(1, 0), -2.4827597, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8m4f1"]
+curve = SubResource("Curve_evui2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j3ki6"]
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angular_velocity_min = -50.000015
+angular_velocity_max = 49.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_8m4f1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d3he"]
+transparency = 1
+albedo_color = Color(0.96293, 0.9096355, 0.47419018, 1)
+albedo_texture = ExtResource("1_pblbn")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_g0h0e"]
+material = SubResource("StandardMaterial3D_1d3he")
+
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=339684353]
+amount = 5
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_j3ki6")
+draw_pass_1 = SubResource("QuadMesh_g0h0e")

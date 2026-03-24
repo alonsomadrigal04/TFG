@@ -34,4 +34,10 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 ·   [NAME OF OBJECT] shows                          -- An object appears at the top right corner of the screen
 
 // TIME //
-·   Wait [DURATION]                                  -- The game waits for a specific duration before proceeding (e.g., Wait 2s)
+·   Wait [DURATION]                                 -- The game waits for a specific duration before proceeding (e.g., Wait 2s)
+[UID COMMANDS]
+·  CHAPTER ENDS                                     -- Ends the current chapter and moves to the next one
+·  END GAME                                         -- Ends the game and returns to the main menu
+·  GO TO [DIALOG NAME]                              -- Jumps to a specific dialog in the gamedata
+·  [empty]                                          -- Moves to the next line of dialogue
+·  [UID NAME]                                       -- Jumps to a specific UID in the same dialog (e.g., [UID1])                                       

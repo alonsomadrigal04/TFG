@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bt8xfctwne0hy"]
+
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_mis3g"]
+[ext_resource type="Script" uid="uid://cksroi58er8ub" path="res://Scripts/Exploration/ObjectBehaviour.cs" id="1_rr520"]
+[ext_resource type="Texture2D" uid="uid://bjsmbwxvnhejl" path="res://Assets/UI/inspectIcon.png" id="2_741hp"]
+[ext_resource type="Script" uid="uid://dvke0mr2o3aeq" path="res://Scripts/Exploration/InteractIconAnimation.cs" id="4_63qpb"]
+[ext_resource type="PackedScene" uid="uid://bjntvrqyt1240" path="res://Assets/Particles/Shine.tscn" id="6_g16vu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bp6ga"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j7glg"]
+
+[node name="Object" type="StaticBody3D" unique_id=336918594 node_paths=PackedStringArray("visualMesh", "colliderBody", "interactionArea", "interactionRangeShape", "interactIcon")]
+script = ExtResource("1_rr520")
+inspectImg = ExtResource("2_741hp")
+visualMesh = NodePath("VisualMesh")
+colliderBody = NodePath("ColliderBody")
+interactionArea = NodePath("InteractionArea")
+interactionRangeShape = NodePath("InteractionArea/CollisionShape3D")
+interactIcon = NodePath("InteractIcon")
+
+[node name="VisualMesh" type="MeshInstance3D" parent="." unique_id=1359370048]
+
+[node name="ColliderBody" type="CollisionShape3D" parent="." unique_id=824655901]
+shape = SubResource("BoxShape3D_bp6ga")
+
+[node name="InteractIcon" type="Sprite3D" parent="." unique_id=217495732]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 1.1713265, 0)
+texture = ExtResource("1_mis3g")
+script = ExtResource("4_63qpb")
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=1297561107]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=559363187]
+shape = SubResource("SphereShape3D_j7glg")
+
+[node name="ShiningParticles" parent="." unique_id=339684353 instance=ExtResource("6_g16vu")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.85846686, 0)

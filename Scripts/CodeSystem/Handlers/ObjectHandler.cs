@@ -33,8 +33,9 @@ public class ObjectHandler : ICommandHandler
             return;
         }
         string item = commandToken.Subject.ToLower();
-        if (!ObjectDataBase.LoadedSpecialItems.TryGetValue(item, out Texture2D icon))
+        if (!ObjectDataBase.LoadedSpecialItems.TryGetValue(item, out ObjectData objectData))
             GD.PrintErr($"[ObjectStage] {item} is not registered");
+        Texture2D icon = objectData.Icon;
         ObjectStage.Instance.DisappearObject(icon);
     }
 
@@ -46,8 +47,14 @@ public class ObjectHandler : ICommandHandler
             return;
         }
         string item = commandToken.Subject.ToLower();
-        if (!ObjectDataBase.LoadedSpecialItems.TryGetValue(item, out Texture2D icon))
+        if (!ObjectDataBase.LoadedSpecialItems.TryGetValue(item, out ObjectData objectData))
             GD.PrintErr($"[ObjectStage] {item} is not registered");
+        Texture2D icon = objectData.Icon;
         ObjectStage.Instance.AppearObject(icon);
+    }
+
+    public void CleanEffects()
+    {
+        ObjectStage.Instance.CleanEffects();
     }
 }

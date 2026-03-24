@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://h4xno4rqhtvt"]
+
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_0aity"]
+
+[node name="InteractIcon" type="Sprite3D" unique_id=548095342]
+transform = Transform3D(0.425, 0, 0, 0, 0.425, 0, 0, 0, 0.425, 0, 0, 0)
+texture = ExtResource("1_0aity")

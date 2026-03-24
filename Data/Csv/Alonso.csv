@@ -1,0 +1,4 @@
+﻿uid;code;type;speaker;text;next
+A1;Alonso appears center;;;;
+A2;Alonso moves left;;;;
+A5;;say;Alonso;MUCHAS CANTIDADES DE AMOR Y PASION;go to explorezone test

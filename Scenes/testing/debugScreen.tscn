@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqck3mujc1mro"]
+[gd_scene format=3 uid="uid://cqck3mujc1mro"]
 
 [ext_resource type="Script" uid="uid://fwpw2fclhu7n" path="res://Scripts/Utility/DebugScreen.cs" id="1_1brux"]
 
-[node name="DebugScreen" type="Control"]
+[node name="DebugScreen" type="Control" unique_id=1184607513]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1brux")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1424738928]
 layout_mode = 0
 offset_right = 206.0
 offset_bottom = 143.0
-text = "I'm something important."

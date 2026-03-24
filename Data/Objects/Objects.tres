@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ObjectsLibrary" format=3 uid="uid://xqgjglcyxk2u"]
+
+[ext_resource type="Script" uid="uid://bjqo5x42b7xkd" path="res://Scripts/Exploration/resources/ObjectData.cs" id="1_18i6k"]
+[ext_resource type="Resource" uid="uid://buofe2bke4jxd" path="res://Data/Objects/cafetera.tres" id="2_0evw0"]
+[ext_resource type="Script" uid="uid://c2uc2muu5p7vv" path="res://Scripts/API/Objects/ObjectsLibrary.cs" id="2_aataa"]
+[ext_resource type="Resource" uid="uid://cqmqs4fxktoou" path="res://Data/Objects/sample.tres" id="3_11kda"]
+
+[resource]
+script = ExtResource("2_aataa")
+Itemstored = Dictionary[String, ExtResource("1_18i6k")]({
+"cafetera": ExtResource("2_0evw0"),
+"sample": ExtResource("3_11kda")
+})
+metadata/_custom_type_script = "uid://c2uc2muu5p7vv"

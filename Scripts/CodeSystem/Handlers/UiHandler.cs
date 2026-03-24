@@ -27,4 +27,9 @@ public class UiHandler : ICommandHandler
     {
         UiStage.Instance.HideTextBox();
     }
+
+    public void CleanEffects()
+    {
+        UiStage.Instance.CleanEffects();
+    }
 }

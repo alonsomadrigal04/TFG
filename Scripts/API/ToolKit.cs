@@ -21,6 +21,8 @@ public static partial class ToolKit
         return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
     }
 
+    public static Vector2 GetScreenSize() => DisplayServer.WindowGetSize();
+
     /// <summary>
     /// Adds a percentage-based offset to the position of a Control node. The offset is calculated based on the size of the screen, allowing for responsive positioning. The direction parameter can be used to specify whether the offset should be added (positive) or subtracted (negative) from the current position of the Control node.
     /// </summary>

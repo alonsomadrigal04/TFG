@@ -70,5 +70,9 @@ public class CharacterHanlder : ICommandHandler
         throw new NotImplementedException();
     }
 
+    public void CleanEffects()
+    {
+        CharacterStage.Instance.CleanEffects();
+    }
 
 }

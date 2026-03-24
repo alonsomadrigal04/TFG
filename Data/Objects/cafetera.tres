@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ObjectData" format=3 uid="uid://buofe2bke4jxd"]
+
+[ext_resource type="Texture2D" uid="uid://20l7bf5g2xu1" path="res://Assets/Flavour/Exclamation.png" id="1_6ifuv"]
+[ext_resource type="Material" uid="uid://bj7ooxpjx5vh" path="res://Assets/Objects/3DModels/CoffePot/CoffeepotMaterial.tres" id="2_1qpsx"]
+[ext_resource type="ArrayMesh" uid="uid://doplufyjbd8wu" path="res://Assets/Objects/3DModels/CoffePot/Coffeepot.obj" id="3_uhqb2"]
+[ext_resource type="Script" uid="uid://bjqo5x42b7xkd" path="res://Scripts/Exploration/resources/ObjectData.cs" id="4_2w0a5"]
+
+[resource]
+script = ExtResource("4_2w0a5")
+Name = "Cafetera"
+Model = ExtResource("3_uhqb2")
+Material = ExtResource("2_1qpsx")
+Icon = ExtResource("1_6ifuv")
+Description = "Una cafetera italiana clásica estaba en el focking suelo, qué asco. Seguro que será de algún vagabundo o de la artista adicta a la cafeína."
+Comentary = "Una cafera italiana? estafa en el fokin suelo que cosa mas rara."
+metadata/_custom_type_script = "uid://bjqo5x42b7xkd"
