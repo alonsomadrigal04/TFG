@@ -57,8 +57,13 @@ public partial class GameManager : Node
         GD.Print("Launching the game...\n");
         GodotExtensions.CallDeferred(LaunchGame);
 
+        ObjectDataBase.AddObjectByName("sample1");
+        ObjectDataBase.AddObjectByName("sample2");
+        ObjectDataBase.AddObjectByName("sample3");
         ObjectDataBase.AddObjectByName("sample");
         ObjectDataBase.AddObjectByName("cafetera");
+
+
 
     }
 

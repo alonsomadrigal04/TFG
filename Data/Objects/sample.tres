@@ -11,4 +11,5 @@ Name = "SAMPLE"
 Model = ExtResource("3_xwdab")
 Material = ExtResource("2_8qewl")
 Icon = ExtResource("1_lcs21")
+Description = "ESTA ES LA PUTA DESCRIPCION 4"
 metadata/_custom_type_script = "uid://bjqo5x42b7xkd"

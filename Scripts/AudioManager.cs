@@ -27,6 +27,13 @@ public partial class AudioManager : Node
     [Export] public AudioStreamPlayer2D NextSentence {get; set;}
     [Export] public AudioStreamPlayer2D Remember {get; set;}
     [Export] public AudioStreamPlayer2D NewItem {get; set;}
+    [Export] public AudioStreamPlayer2D Spining {get; set;}
+    [Export] public AudioStreamPlayer2D ClockDisplay {get; set;}
+    [Export] public AudioStreamPlayer2D ClockHide {get; set;}
+
+
+
+
 
 
 

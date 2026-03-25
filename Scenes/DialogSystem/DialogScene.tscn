@@ -35,7 +35,12 @@
 [ext_resource type="AudioStream" uid="uid://dcv4i2qsfnv6w" path="res://Audio/Sounds/FlavourSounds/exclamation1.wav" id="22_4nqsh"]
 [ext_resource type="AudioStream" uid="uid://dwt4hxb583njp" path="res://Audio/BagNotification.wav" id="22_ipu37"]
 [ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/IDeinventario.png" id="22_ngurm"]
+[ext_resource type="Texture2D" uid="uid://bvvmfv7rray7o" path="res://Assets/UI/copper.png" id="22_r68ee"]
+[ext_resource type="Texture2D" uid="uid://dbu3gw56pruc" path="res://Assets/UI/rueda_1.png" id="25_wr3cw"]
 [ext_resource type="AudioStream" uid="uid://cvyte0s0h2lkm" path="res://Audio/Sounds/remember.wav" id="32_pfbu6"]
+[ext_resource type="AudioStream" uid="uid://g3nc3pdpi00g" path="res://Audio/rotating.wav" id="37_w3e4s"]
+[ext_resource type="AudioStream" uid="uid://cbhu3b60bg67d" path="res://Audio/ClockDisplay.mp3" id="39_jn18p"]
+[ext_resource type="AudioStream" uid="uid://dhfieslkjnckf" path="res://Audio/ClockHide.wav" id="41_3b5i8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nssry"]
 shader = ExtResource("6_e0sb1")
@@ -229,6 +234,11 @@ _data = {
 &"OutQuestion": SubResource("Animation_lipur"),
 &"RESET": SubResource("Animation_x033f")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r68ee"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("37_w3e4s")
 
 [node name="DialogManager" type="Control" unique_id=628620988 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox", "sounds")]
 layout_mode = 3
@@ -571,23 +581,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="ItemMenu" type="Control" parent="GeneralLayout/DialogSystem" unique_id=446959301 node_paths=PackedStringArray("Spinner", "IconItem1", "IconItem2", "IconItem3", "VBoxContainer", "UseItem", "ItemName")]
+[node name="ItemMenu" type="Control" parent="GeneralLayout/DialogSystem" unique_id=446959301 node_paths=PackedStringArray("Spinner", "Icons", "VBoxContainer", "ItemName", "sounds", "decorationCopperFrame", "ButtonSpinnerDisplay")]
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("21_cxyfr")
 Spinner = NodePath("Spinner")
-IconItem1 = NodePath("Spinner/IconItem")
-IconItem2 = NodePath("Spinner/PreviousIconItem")
-IconItem3 = NodePath("Spinner/NextIconItem")
+Icons = [NodePath("Spinner/IconItem"), NodePath("Spinner/NextIconItem"), NodePath("Spinner/PreviousIconItem")]
 VBoxContainer = NodePath("VBoxContainer")
-UseItem = NodePath("VBoxContainer/Button")
 ItemName = NodePath("VBoxContainer/ObjectName")
+sounds = NodePath("../../../AudioManager")
+decorationCopperFrame = NodePath("Spinner/Frame")
+ButtonSpinnerDisplay = NodePath("ButtonSpinnerDisplay")
 
 [node name="Spinner" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=892568672]
-position = Vector2(394.99997, 234.99998)
+position = Vector2(47.999996, 45.999996)
 scale = Vector2(0.67791665, 0.67791665)
 texture = ExtResource("21_7awbk")
+
+[node name="Frame" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1120215889]
+z_index = -1
+scale = Vector2(1.0964963, 1.0964965)
+texture = ExtResource("22_r68ee")
 
 [node name="IconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=367583361]
 position = Vector2(146.03564, 98.832214)
@@ -604,13 +619,17 @@ position = Vector2(10.018406, -174.41158)
 scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
 
+[node name="ButtonSpinnerDisplay" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=464232412]
+position = Vector2(47.999996, 46)
+scale = Vector2(0.73, 0.73)
+texture = ExtResource("25_wr3cw")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=661815887]
-visible = false
 layout_mode = 0
-offset_left = 154.0
-offset_top = 81.0
-offset_right = 423.0
-offset_bottom = 331.0
+offset_left = 303.0
+offset_top = 59.0
+offset_right = 572.0
+offset_bottom = 176.0
 
 [node name="ObjectName" type="Label" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=154131091]
 layout_mode = 2
@@ -623,12 +642,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Usar"
 
-[node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem")]
+[node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "outQuestion", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem", "Spining", "ClockDisplay", "ClockHide")]
 script = ExtResource("19_fml5s")
 question = NodePath("Question")
 exclamation = NodePath("Exclamation")
 soft = NodePath("Soft")
 impact = NodePath("Impact2")
+outQuestion = NodePath("Spining")
 Hover = NodePath("Hover")
 Press = NodePath("Press")
 Shake = NodePath("Shake")
@@ -639,6 +659,9 @@ Flash = NodePath("Flash")
 NextSentence = NodePath("NextSentence")
 Remember = NodePath("Remember")
 NewItem = NodePath("NewItem")
+Spining = NodePath("Spining")
+ClockDisplay = NodePath("ClockDisplay")
+ClockHide = NodePath("ClockHide")
 
 [node name="Talk" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1423005477]
 bus = &"Voices"
@@ -699,3 +722,12 @@ bus = &"SFX"
 [node name="Remember" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=159495649]
 stream = ExtResource("32_pfbu6")
 bus = &"SFX"
+
+[node name="Spining" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1799688762]
+stream = SubResource("AudioStreamRandomizer_r68ee")
+
+[node name="ClockDisplay" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=938678772]
+stream = ExtResource("39_jn18p")
+
+[node name="ClockHide" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2001161895]
+stream = ExtResource("41_3b5i8")
