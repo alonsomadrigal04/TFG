@@ -9,7 +9,8 @@ public class GameStateHandler : ICommandHandler
     public HashSet<string> supportedVerbs = [
         "affinity",
         ">",
-        "<"
+        "<",
+        "needs"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -25,8 +26,23 @@ public class GameStateHandler : ICommandHandler
             case "<":
                 ParseCondition(commandToken);
                 break;
+            case "needs":
+                ParseConditionObject(commandToken);
+                break;
             default:
                 break;
+        }
+    }
+
+    void ParseConditionObject(CommandToken commandToken)
+    {
+        IReadOnlyList<string> args = commandToken.Arguments;
+        if(args.Count != 3)
+            GD.PrintErr("[GameStateHandler] wrong spelling try Alonso needs cafetera : A2");
+
+        ObjectData objectData = ObjectDataBase.GetObject(commandToken.Arguments[0]);
+        if(!ObjectDataBase.PlayerInventory.Contains(objectData)){
+            GameManager.Instance.dialogManager.StartDialog(args[2].ToUpper());
         }
     }
 

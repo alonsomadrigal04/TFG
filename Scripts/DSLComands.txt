@@ -32,7 +32,11 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 ·   Camera flash [DURATION] [INTENSITY]             -- The camera flashes for a specific duration (e.g., Camera flash 0.5s)
 // OBJECT //
 ·   [NAME OF OBJECT] shows                          -- An object appears at the top right corner of the screen
-
+// GAME STATE //
+·   [NAME] affinity [VALUE]                         -- Adds or subtracts affinity points of a character (e.g., Alonso affinity 10)
+·   [NAME]_affinity > [VALUE] : [UID NAME]          -- If a character's affinity is greater than a specific value, jump to a specific UID (e.g., Alonso_affinity > 50 : [UID1])                                
+·   [NAME]_affinity < [VALUE] : [UID NAME]          -- If a character's affinity is less than a specific value, jump to a specific UID (e.g., Alonso_affinity < 20 : [UID2])
+·   [NAME] needs [OBJECT] : [UID NAME]              -- If the player has a specific object, jump to a the following line. If not, jump to a specific UID (e.g., Alonso needs Key : [UID3])  
 // TIME //
 ·   Wait [DURATION]                                 -- The game waits for a specific duration before proceeding (e.g., Wait 2s)
 [UID COMMANDS]

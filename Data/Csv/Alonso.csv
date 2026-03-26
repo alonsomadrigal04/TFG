@@ -1,4 +1,4 @@
 ﻿uid;code;type;speaker;text;next
-A1;Alonso appears center;;;;
-A2;Alonso moves left;;;;
-A5;;say;Alonso;MUCHAS CANTIDADES DE AMOR Y PASION;go to explorezone test
+A1;Alonso needs cafetera : A3;;;;
+A2;;say;Alonso;Enhorabuena, tienes la cafetera. ;
+A3;;say;Alonso;no la tienes tontoo;
