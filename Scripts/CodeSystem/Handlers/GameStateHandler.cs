@@ -10,7 +10,8 @@ public class GameStateHandler : ICommandHandler
         "affinity",
         ">",
         "<",
-        "needs"
+        "needs",
+        "setflag"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -29,9 +30,22 @@ public class GameStateHandler : ICommandHandler
             case "needs":
                 ParseConditionObject(commandToken);
                 break;
+            case "setflag":
+                ParseFlag(commandToken);
+                break;
             default:
                 break;
         }
+    }
+
+    void ParseFlag(CommandToken commandToken)
+    {
+        IReadOnlyList<string> args = commandToken.Arguments;
+        if(args.Count > 1)
+            GD.PrintErr("[GameStateHandler] too many arguments in line");
+        
+        string flag = args[0];
+        GameFlagsManager.AddFlag(flag);
     }
 
     void ParseConditionObject(CommandToken commandToken)
