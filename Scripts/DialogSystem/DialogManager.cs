@@ -276,7 +276,7 @@ public partial class DialogManager : Node
             else if(parts[2] == "explorezone")
                 return NextUidType.ExploreZone;
             else
-                GD.PrintErr("[DialogManager] wrong command entered, try 'go to [name of the dialog]'");
+                GD.PrintErr("[DialogManager] wrong command entered, try 'go to dialog [name of the dialog]'");
         }
 
         return NextUidType.DiferentLine;

@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cqck3mujc1mro" path="res://Scenes/testing/debugScreen.tscn" id="3_2irst"]
 [ext_resource type="Script" uid="uid://2wlmnk3f6oyy" path="res://Scripts/Exploration/ChapterBehaviour.cs" id="3_71axn"]
 [ext_resource type="Script" uid="uid://6ycf3k1utqii" path="res://Scripts/Exploration/GameStateManager.cs" id="3_acvyw"]
-[ext_resource type="PackedScene" uid="uid://dwl22uodgoge4" path="res://Scenes/Exploration/testScene.tscn" id="3_kldst"]
 [ext_resource type="Resource" uid="uid://ckj64qkj7g74v" path="res://Data/Chapters/Prologue.tres" id="4_dahhg"]
 [ext_resource type="PackedScene" uid="uid://cwlcgvjsolfg7" path="res://Scenes/MainMenu.tscn" id="4_fgofq"]
 [ext_resource type="Shader" uid="uid://dc72rux4b1k2f" path="res://Scenes/FractalNoiseTrans.gdshader" id="5_7lihs"]
@@ -623,7 +622,6 @@ stream_0/stream = ExtResource("12_wxwew")
 script = ExtResource("1_gl6un")
 enabledDebugMode = true
 debugDialogName = "Alonso"
-firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
 screenTransition = NodePath("../Postprocesing/FX/CanvasLayer2/ScreenTransition")
 safeScreen = NodePath("../Postprocesing/FX/CanvasLayer/ScreenSafe")
@@ -641,12 +639,10 @@ metadata/_custom_type_script = "uid://2wlmnk3f6oyy"
 
 [node name="GameEnvironments" type="Node" parent="." unique_id=968756839]
 script = ExtResource("2_kldst")
-gameplay = ExtResource("3_kldst")
 mainMenu = ExtResource("4_fgofq")
-campfireScene = ExtResource("3_kldst")
+campfireScene = ExtResource("11_4q8tf")
 onlyTextBox = ExtResource("7_wxwew")
 chapterEnv = ExtResource("7_dahhg")
-test = ExtResource("11_4q8tf")
 metadata/_custom_type_script = "uid://c4f6ujc2r5nm6"
 
 [node name="DialogManager" parent="." unique_id=628620988 instance=ExtResource("2_j5yw3")]

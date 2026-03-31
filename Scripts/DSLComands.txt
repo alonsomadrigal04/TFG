@@ -42,6 +42,7 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 [UID COMMANDS]
 ·  CHAPTER ENDS                                     -- Ends the current chapter and moves to the next one
 ·  END GAME                                         -- Ends the game and returns to the main menu
-·  GO TO [DIALOG NAME]                              -- Jumps to a specific dialog in the gamedata
+·  GO TO DIALOG [DIALOG NAME]                       -- Jumps to a specific dialog in the gamedata
+·  GO TO EXPLOREZONE [EXPLORE NAME]                 -- Jumps to a specific explore scene in the gamedata
 ·  [empty]                                          -- Moves to the next line of dialogue
 ·  [UID NAME]                                       -- Jumps to a specific UID in the same dialog (e.g., [UID1])                                       

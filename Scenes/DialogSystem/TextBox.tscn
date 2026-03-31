@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 [ext_resource type="Texture2D" uid="uid://cbhwjvlx50sij" path="res://Assets/UI/dialogBox.png" id="2_4xj7t"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_s4oty"]
-[ext_resource type="Texture2D" uid="uid://573y4umjdap7" path="res://Assets/UI/intro.png" id="4_u2kc5"]
+[ext_resource type="Texture2D" uid="uid://dhhubtdruxl1y" path="res://Assets/UI/nextDialogIcon.png" id="4_h4oya"]
 [ext_resource type="Script" uid="uid://be60ixvdb27x8" path="res://Scenes/DialogSystem/SentenceCompleteHud.cs" id="5_h4oya"]
 
 [node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "nameBox", "sentenceHud")]
@@ -94,15 +94,19 @@ metadata/_edit_lock_ = true
 [node name="SentenceCompleteHUD" type="TextureRect" parent="." unique_id=534918969]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.786
-anchor_top = 0.5472847
-anchor_right = 0.786
-anchor_bottom = 0.54800004
-offset_left = -18.080017
-offset_top = -17.045013
-offset_right = 181.91998
-offset_bottom = 182.44058
+anchor_left = 0.77957594
+anchor_top = 0.5707223
+anchor_right = 0.77957594
+anchor_bottom = 0.5707223
+offset_left = -122.85721
+offset_top = -218.92004
+offset_right = 122.85721
+offset_bottom = 218.92004
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
 scale = Vector2(0.175, 0.175)
-texture = ExtResource("4_u2kc5")
+pivot_offset = Vector2(122.85693, 220)
+texture = ExtResource("4_h4oya")
 script = ExtResource("5_h4oya")
 metadata/_edit_use_anchors_ = true

@@ -37,6 +37,10 @@
 [ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/IDeinventario.png" id="22_ngurm"]
 [ext_resource type="Texture2D" uid="uid://bvvmfv7rray7o" path="res://Assets/UI/copper.png" id="22_r68ee"]
 [ext_resource type="Texture2D" uid="uid://dbu3gw56pruc" path="res://Assets/UI/rueda_1.png" id="25_wr3cw"]
+[ext_resource type="Texture2D" uid="uid://8dkdgp7bwg47" path="res://Assets/UI/CuadroFondoInspectView.png" id="26_fpum5"]
+[ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="26_yr3c2"]
+[ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="27_mmhpi"]
+[ext_resource type="Texture2D" uid="uid://ccpm34rujuvtr" path="res://Assets/UI/CogerDejarBoton.png" id="28_sjivi"]
 [ext_resource type="AudioStream" uid="uid://cvyte0s0h2lkm" path="res://Audio/Sounds/remember.wav" id="32_pfbu6"]
 [ext_resource type="AudioStream" uid="uid://g3nc3pdpi00g" path="res://Audio/rotating.wav" id="37_w3e4s"]
 [ext_resource type="AudioStream" uid="uid://cbhu3b60bg67d" path="res://Audio/ClockDisplay.mp3" id="39_jn18p"]
@@ -585,6 +589,7 @@ metadata/_edit_lock_ = true
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 script = ExtResource("21_cxyfr")
 Spinner = NodePath("Spinner")
 Icons = [NodePath("Spinner/IconItem"), NodePath("Spinner/NextIconItem"), NodePath("Spinner/PreviousIconItem")]
@@ -633,14 +638,34 @@ offset_bottom = 176.0
 
 [node name="ObjectName" type="Label" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=154131091]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("26_yr3c2")
 theme_override_font_sizes/font_size = 36
 text = "OBJECT NAME"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=790318771]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("27_mmhpi")
 theme_override_font_sizes/font_size = 40
 text = "Usar"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer/Button" unique_id=1904266145]
+z_index = -1
+layout_mode = 0
+offset_left = 20.0
+offset_top = -5.0
+offset_right = 243.59999
+offset_bottom = 68.0
+texture = ExtResource("28_sjivi")
+expand_mode = 1
+
+[node name="CuadroFondoInspectView" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=499169520]
+z_index = -2
+position = Vector2(138, 54)
+scale = Vector2(0.3646789, 0.19336385)
+texture = ExtResource("26_fpum5")
+metadata/_edit_lock_ = true
 
 [node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "outQuestion", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem", "Spining", "ClockDisplay", "ClockHide")]
 script = ExtResource("19_fml5s")
