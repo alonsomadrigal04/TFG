@@ -27,6 +27,12 @@
 [ext_resource type="AudioStream" uid="uid://cnxb6xnbujtmh" path="res://Audio/flipPage3.wav" id="20_356ba"]
 [ext_resource type="AudioStream" uid="uid://cqoe1f1m07imo" path="res://Audio/flipPage4.wav" id="21_i4lct"]
 [ext_resource type="PackedScene" uid="uid://c7ojrtvec8i6r" path="res://Scenes/inventory/itemSlot.tscn" id="22_vvhu1"]
+[ext_resource type="Shader" uid="uid://nkp7leqca4uo" path="res://Scenes/PauseShader.gdshader" id="28_iyesh"]
+[ext_resource type="Script" uid="uid://weqokltvq3a0" path="res://Scenes/PauseMenu.cs" id="28_khs3t"]
+[ext_resource type="Texture2D" uid="uid://8dkdgp7bwg47" path="res://Assets/UI/CuadroFondoInspectView.png" id="29_i1pr2"]
+[ext_resource type="Texture2D" uid="uid://ccpm34rujuvtr" path="res://Assets/UI/CogerDejarBoton.png" id="30_4f4ik"]
+[ext_resource type="AudioStream" uid="uid://jcea17wsyvbw" path="res://Audio/PauseSound.wav" id="31_i1pr2"]
+[ext_resource type="AudioStream" uid="uid://c57e6pttdapxs" path="res://Audio/UnPuaseSound.wav" id="32_4f4ik"]
 
 [sub_resource type="Animation" id="Animation_8r6kd"]
 resource_name = "CloseInventory"
@@ -616,15 +622,442 @@ random_pitch = 1.4178123
 streams_count = 1
 stream_0/stream = ExtResource("12_wxwew")
 
-[node name="Game" type="Node" unique_id=1234653959]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khs3t"]
+shader = ExtResource("28_iyesh")
+shader_parameter/intensity = 0.85
+shader_parameter/speed = 1.0
+shader_parameter/warp = 0.06
+shader_parameter/shake = 0.45
+shader_parameter/chromatic = 0.004
+shader_parameter/blur_amount = 0.25
+shader_parameter/blur_mip = 1.5
+shader_parameter/grain = 0.2
+shader_parameter/scanline_strength = 0.1
+shader_parameter/vignette_strength = 0.38
+shader_parameter/color_drift = 0.55
+shader_parameter/ghosting = 0.12
+shader_parameter/line_jitter = 0.0015
 
-[node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("screenTransition", "safeScreen", "chapterBehaviour")]
+[sub_resource type="Animation" id="Animation_iyesh"]
+resource_name = "OnPause"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShaderPause:material:shader_parameter/warp")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 0.06]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseSounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("31_i1pr2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShaderPause:material:shader_parameter/chromatic")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.30000007),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 0.0110000005225]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShaderPause:material:shader_parameter/blur_mip")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.30000007),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 1.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BlackPanel:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(-899, -105), Vector2(-515, -105)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ContinueButton:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.033333335, 0.23333335, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-200, 415), Vector2(270.52, 415), Vector2(228, 415)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ExitButton:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.06666667, 0.26666668, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-200, 504), Vector2(250, 504), Vector2(228, 504)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ShaderPause:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackPanel:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ContinueButton:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ExitButton:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_khs3t"]
+resource_name = "OutPause"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShaderPause:material:shader_parameter/warp")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.34420058),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.06, 0.0]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseSounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_4f4ik")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShaderPause:material:shader_parameter/chromatic")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.34420058),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0110000005225, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShaderPause:material:shader_parameter/blur_mip")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.34420058),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [1.5, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BlackPanel:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(-515, -105), Vector2(-899, -105)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ContinueButton:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666666, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(228, 415), Vector2(270.52, 415), Vector2(-200, 415)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ExitButton:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.06666666, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(228, 504), Vector2(250, 504), Vector2(-200, 504)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ShaderPause:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ExitButton:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.33333337),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ContinueButton:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.33333337),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BlackPanel:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.33333337),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4f4ik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShaderPause:material:shader_parameter/warp")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.06]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShaderPause:material:shader_parameter/chromatic")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.004]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShaderPause:material:shader_parameter/blur_mip")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlackPanel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0009999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-518.815, -105), Vector2(-919, -105)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ContinueButton:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0009999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(228, 415), Vector2(-287.67, 415)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ExitButton:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0009999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(228, 504), Vector2(-282, 504)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShaderPause:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackPanel:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ContinueButton:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ExitButton:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1pr2"]
+_data = {
+&"OnPause": SubResource("Animation_iyesh"),
+&"OutPause": SubResource("Animation_khs3t"),
+&"RESET": SubResource("Animation_4f4ik")
+}
+
+[node name="Game" type="Node" unique_id=1234653959]
+process_mode = 1
+
+[node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseAnimationPlayer", "screenTransition", "safeScreen", "chapterBehaviour")]
+process_mode = 3
 script = ExtResource("1_gl6un")
 enabledDebugMode = true
 debugDialogName = "Alonso"
 dialogManagerPath = NodePath("../DialogManager")
-screenTransition = NodePath("../Postprocesing/FX/CanvasLayer2/ScreenTransition")
-safeScreen = NodePath("../Postprocesing/FX/CanvasLayer/ScreenSafe")
+pauseAnimationPlayer = NodePath("../Postprocesing/PauseMenu/PauseLayer/PauseLayout/PauseAnimator")
+screenTransition = NodePath("../Postprocesing/FX/PostProcess/ScreenTransition")
+safeScreen = NodePath("../Postprocesing/FX/ScreenSafeLayer/ScreenSafe")
 chapterBehaviour = NodePath("../ChapterBehaviour")
 metadata/_custom_type_script = "uid://cdg4q3jx0krqk"
 
@@ -658,19 +1091,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Postprocesing/FX" unique_id=373118072]
+[node name="ScreenSafeLayer" type="CanvasLayer" parent="Postprocesing/FX" unique_id=373118072]
 
-[node name="ScreenSafe" type="ColorRect" parent="Postprocesing/FX/CanvasLayer" unique_id=654579972]
+[node name="ScreenSafe" type="ColorRect" parent="Postprocesing/FX/ScreenSafeLayer" unique_id=654579972]
 visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="Postprocesing/FX" unique_id=283839373]
+[node name="PostProcess" type="CanvasLayer" parent="Postprocesing/FX" unique_id=283839373]
 layer = 100
 
-[node name="Inventory" type="Control" parent="Postprocesing/FX/CanvasLayer2" unique_id=1469522107 node_paths=PackedStringArray("animationPlayer", "BgInventory", "LeftPanel", "rightPanel", "flipPageSounds", "itemDescription", "objectContainer", "sampleItem")]
+[node name="Inventory" type="Control" parent="Postprocesing/FX/PostProcess" unique_id=1469522107 node_paths=PackedStringArray("animationPlayer", "BgInventory", "LeftPanel", "rightPanel", "flipPageSounds", "itemDescription", "objectContainer", "sampleItem")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -685,6 +1118,7 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 script = ExtResource("13_8r6kd")
 animationPlayer = NodePath("AnimationPlayer")
 BgInventory = NodePath("BgInventory")
@@ -696,7 +1130,7 @@ objectContainer = NodePath("ItemContainer")
 sampleItem = NodePath("ItemContainer/ItemSlot")
 itemSlotScene = ExtResource("22_vvhu1")
 
-[node name="BgInventory" type="ColorRect" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=610348752]
+[node name="BgInventory" type="ColorRect" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=610348752]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -704,21 +1138,21 @@ pivot_offset = Vector2(25, 20)
 color = Color(0.5409905, 0.5409905, 0.5409905, 1)
 metadata/_edit_lock_ = true
 
-[node name="ItemContainer" type="Control" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=487046114]
+[node name="ItemContainer" type="Control" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=487046114]
 visible = false
 anchors_preset = 0
 offset_left = 13.39
 offset_right = 53.39
 offset_bottom = 40.0
 
-[node name="ItemSlot" parent="Postprocesing/FX/CanvasLayer2/Inventory/ItemContainer" unique_id=1884305001 instance=ExtResource("22_vvhu1")]
+[node name="ItemSlot" parent="Postprocesing/FX/PostProcess/Inventory/ItemContainer" unique_id=1884305001 instance=ExtResource("22_vvhu1")]
 layout_mode = 0
 offset_left = 113.0
 offset_top = 99.0
 offset_right = 485.0
 offset_bottom = 190.0
 
-[node name="leftPanel" type="ColorRect" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=2020212679]
+[node name="leftPanel" type="ColorRect" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=2020212679]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -731,13 +1165,13 @@ grow_vertical = 2
 pivot_offset = Vector2(430, 612)
 color = Color(0.6627451, 1, 1, 1)
 
-[node name="DecorationPanel1" type="ColorRect" parent="Postprocesing/FX/CanvasLayer2/Inventory/leftPanel" unique_id=1969332914]
+[node name="DecorationPanel1" type="ColorRect" parent="Postprocesing/FX/PostProcess/Inventory/leftPanel" unique_id=1969332914]
 layout_mode = 0
 offset_right = 778.06335
 offset_bottom = 1190.0
 pivot_offset = Vector2(389.03174, 595)
 
-[node name="rightPanel" type="ColorRect" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=1537632030]
+[node name="rightPanel" type="ColorRect" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=1537632030]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -753,7 +1187,7 @@ grow_vertical = 2
 pivot_offset = Vector2(430, 588)
 color = Color(0.6627451, 1, 1, 1)
 
-[node name="DecorationPanel2" type="ColorRect" parent="Postprocesing/FX/CanvasLayer2/Inventory/rightPanel" unique_id=249257895]
+[node name="DecorationPanel2" type="ColorRect" parent="Postprocesing/FX/PostProcess/Inventory/rightPanel" unique_id=249257895]
 layout_mode = 0
 offset_left = 46.0
 offset_right = 1274.178
@@ -761,7 +1195,7 @@ offset_bottom = 1190.0
 pivot_offset = Vector2(614.0884, 594.9998)
 color = Color(0.29351652, 0.16879693, 0.014867373, 1)
 
-[node name="ItemDescription" type="Label" parent="Postprocesing/FX/CanvasLayer2/Inventory/rightPanel" unique_id=2106286326]
+[node name="ItemDescription" type="Label" parent="Postprocesing/FX/PostProcess/Inventory/rightPanel" unique_id=2106286326]
 layout_mode = 0
 offset_left = 65.56636
 offset_top = 547.09534
@@ -776,7 +1210,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Postprocesing/FX/CanvasLayer2/Inventory/rightPanel" unique_id=1941036319]
+[node name="TextureRect" type="TextureRect" parent="Postprocesing/FX/PostProcess/Inventory/rightPanel" unique_id=1941036319]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.20700002
@@ -790,10 +1224,10 @@ offset_bottom = 4.100006
 expand_mode = 1
 stretch_mode = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=936477051]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=936477051]
 libraries/ = SubResource("AnimationLibrary_8r6kd")
 
-[node name="InventoryIcon" type="TextureRect" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=1757855031]
+[node name="InventoryIcon" type="TextureRect" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=1757855031]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -805,29 +1239,142 @@ scale = Vector2(0.12, 0.12)
 pivot_offset = Vector2(336.5, 400)
 texture = ExtResource("13_x3xnh")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=197144105]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=197144105]
 
-[node name="FlipPageSounds" type="AudioStreamPlayer" parent="Postprocesing/FX/CanvasLayer2/Inventory" unique_id=160263538]
+[node name="FlipPageSounds" type="AudioStreamPlayer" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=160263538]
 stream = SubResource("AudioStreamRandomizer_iyesh")
 
-[node name="ScreenTransition" type="ColorRect" parent="Postprocesing/FX/CanvasLayer2" unique_id=1738841893 node_paths=PackedStringArray("fadeIn", "fadeOut")]
+[node name="ScreenTransition" type="ColorRect" parent="Postprocesing/FX/PostProcess" unique_id=1738841893 node_paths=PackedStringArray("fadeIn", "fadeOut")]
 z_index = 4096
 material = SubResource("ShaderMaterial_fgofq")
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 script = ExtResource("5_b2bpf")
 fadeIn = NodePath("FadeIn")
 fadeOut = NodePath("FadeOut")
 metadata/_custom_type_script = "uid://uhrvulka1u6m"
 metadata/_edit_lock_ = true
 
-[node name="FadeIn" type="AudioStreamPlayer" parent="Postprocesing/FX/CanvasLayer2/ScreenTransition" unique_id=585234025]
+[node name="FadeIn" type="AudioStreamPlayer" parent="Postprocesing/FX/PostProcess/ScreenTransition" unique_id=585234025]
 stream = SubResource("AudioStreamRandomizer_3cx6b")
 
-[node name="FadeOut" type="AudioStreamPlayer" parent="Postprocesing/FX/CanvasLayer2/ScreenTransition" unique_id=471615023]
+[node name="FadeOut" type="AudioStreamPlayer" parent="Postprocesing/FX/PostProcess/ScreenTransition" unique_id=471615023]
 stream = SubResource("AudioStreamRandomizer_wxwew")
 
-[node name="DebugScreen" parent="Postprocesing/FX/CanvasLayer2" unique_id=1323278458 instance=ExtResource("3_2irst")]
+[node name="DebugScreen" parent="Postprocesing/FX/PostProcess" unique_id=1323278458 instance=ExtResource("3_2irst")]
+visible = false
 mouse_filter = 2
 enable = false
 metadata/_edit_lock_ = true
+
+[node name="PauseMenu" type="Control" parent="Postprocesing" unique_id=1938885479]
+process_mode = 3
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PauseLayer" type="CanvasLayer" parent="Postprocesing/PauseMenu" unique_id=1443689421]
+layer = 20
+
+[node name="PauseLayout" type="Control" parent="Postprocesing/PauseMenu/PauseLayer" unique_id=1520626626 node_paths=PackedStringArray("continueButton", "exitButton")]
+z_index = 10
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("28_khs3t")
+continueButton = NodePath("ContinueButton")
+exitButton = NodePath("ExitButton")
+
+[node name="ShaderPause" type="ColorRect" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1813110584]
+visible = false
+material = SubResource("ShaderMaterial_khs3t")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="BlackPanel" type="TextureRect" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1012670915]
+visible = false
+layout_mode = 0
+offset_left = -518.815
+offset_top = -105.0
+offset_right = 353.185
+offset_bottom = 769.0
+texture = ExtResource("29_i1pr2")
+
+[node name="ContinueButton" type="Button" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=489865440]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 228.0
+offset_top = 415.0
+offset_right = 380.0001
+offset_bottom = 466.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_356ba")
+theme_override_font_sizes/font_size = 35
+text = "Continuar"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/ContinueButton" unique_id=1900697949]
+z_index = -1
+layout_mode = 0
+offset_left = -54.0
+offset_top = -13.0
+offset_right = 191.33176
+offset_bottom = 72.0
+texture = ExtResource("30_4f4ik")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ExitButton" type="Button" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1830966073]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 228.0
+offset_top = 504.0
+offset_right = 369.00015
+offset_bottom = 555.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_356ba")
+theme_override_font_sizes/font_size = 35
+text = "Salir"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/ExitButton" unique_id=1292168449]
+z_index = -1
+layout_mode = 0
+offset_left = -54.0
+offset_top = -13.0
+offset_right = 191.33176
+offset_bottom = 72.0
+texture = ExtResource("30_4f4ik")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="PauseSounds" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1219337627]
+
+[node name="PauseAnimator" type="AnimationPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=2025800477]
+libraries/ = SubResource("AnimationLibrary_i1pr2")

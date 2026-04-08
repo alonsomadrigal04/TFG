@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dgqessqarqca4"]
+
+[ext_resource type="Texture2D" uid="uid://bwcwx00wcs2ov" path="res://addons/SpriteSheets/BubleSpriteSheet.png" id="1_ldyf2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_omn08"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_hub3f"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.045454547, 0.10606061, 0.1780303, 0.25757575, 0.472, 0.728, 0.944)
+colors = PackedColorArray(0.37187055, 0.012920001, 0.28707156, 0.37300003, 0.18531457, 0.017903231, 0.28745052, 1, 0.4249097, 0.086104214, 0.62782896, 1, 0.30351564, 0.057616152, 0.45158887, 1, 0.74251693, 0.45940793, 0.97278637, 1, 0.74255604, 0.45895782, 0.97269243, 0.58500004, 0.74255604, 0.45895782, 0.97269243, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bc3wu"]
+gradient = SubResource("Gradient_hub3f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_72xi3"]
+lifetime_randomness = 0.35
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(640, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+flatness = 0.192
+initial_velocity_min = 269.03
+initial_velocity_max = 289.03
+gravity = Vector3(0, 0, 0)
+damping_min = 14.939001
+damping_max = 14.939001
+scale_min = 0.02
+scale_max = 0.03
+color = Color(1.224127, 1.224127, 1.224127, 1)
+color_ramp = SubResource("GradientTexture1D_bc3wu")
+anim_speed_min = 5.18
+anim_speed_max = 5.18
+anim_offset_min = 0.66459996
+anim_offset_max = 1.0
+turbulence_noise_strength = 9.38
+turbulence_noise_scale = 5.0
+turbulence_noise_speed_random = 0.45
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.030000001
+
+[node name="PurpleHazard" type="GPUParticles2D" unique_id=538173490]
+z_index = -1
+material = SubResource("CanvasItemMaterial_omn08")
+emitting = false
+amount = 400
+texture = ExtResource("1_ldyf2")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.66
+randomness = 0.4
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_72xi3")

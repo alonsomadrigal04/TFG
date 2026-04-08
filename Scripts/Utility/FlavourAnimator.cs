@@ -38,6 +38,8 @@ public partial class FlavourAnimator : Node
             case FlavourType.exclamation:
                 sounds.exclamation.Play();
                 SpawnParticles(MiniAnimations[FlavourType.exclamation], speaker);
+                SpawnParticles(MiniAnimations[FlavourType.purpleHazard], speaker);
+
             break;
             default:
                 GD.PrintErr($"Flavour Type: {type} Not recognised");
@@ -81,5 +83,6 @@ public partial class FlavourAnimator : Node
 public enum FlavourType
 {
     question,
-    exclamation
+    exclamation,
+    purpleHazard
 }

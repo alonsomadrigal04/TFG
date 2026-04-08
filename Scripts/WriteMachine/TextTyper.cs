@@ -103,7 +103,7 @@ public partial class TextTyper : Control
             if (waitTime > 0)
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
-            if (!char.IsWhiteSpace(c))
+            if (!char.IsWhiteSpace(c) || c == '.' || c == '!' || c == '?')
                 sounds.Talk.Play();
 
             cleanText += c;
@@ -114,7 +114,7 @@ public partial class TextTyper : Control
     }
 
 
-     string BuildRemainingText(List<TagToken> tokens, int currentTokenIndex, int charIndexInToken)
+    string BuildRemainingText(List<TagToken> tokens, int currentTokenIndex, int charIndexInToken)
     {
         string remainingText = "";
 

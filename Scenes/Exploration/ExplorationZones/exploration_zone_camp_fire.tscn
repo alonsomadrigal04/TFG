@@ -1,20 +1,89 @@
-[gd_scene format=3 uid="uid://78syml0hccxr"]
+[gd_scene format=4 uid="uid://78syml0hccxr"]
 
 [ext_resource type="Script" uid="uid://q4jme22dupru" path="res://Scripts/Exploration/ExplorationZoneCampFire.cs" id="1_cj88r"]
 [ext_resource type="Resource" uid="uid://cwfi3gfwdnsiy" path="res://Data/Alonso.tres" id="2_cj88r"]
 [ext_resource type="PackedScene" uid="uid://bftu10xb87ci0" path="res://Scenes/Exploration/interactables/npc/npc.tscn" id="2_hjfww"]
 [ext_resource type="PackedScene" uid="uid://dyddrn2lof815" path="res://Scenes/Exploration/InspectView.tscn" id="3_hjfww"]
+[ext_resource type="Texture2D" uid="uid://cuc2di04exf0k" path="res://Assets/HDR/qwantani_moon_noon_puresky_4k.hdr" id="4_2ovw4"]
 [ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/player/player.tscn" id="4_745qm"]
 [ext_resource type="Script" uid="uid://dr5isq3vby701" path="res://Scripts/Exploration/CameraBehaviour.cs" id="5_y808e"]
 [ext_resource type="PackedScene" uid="uid://bt8xfctwne0hy" path="res://Scenes/Exploration/interactables/object/object.tscn" id="7_uayis"]
 [ext_resource type="Resource" uid="uid://buofe2bke4jxd" path="res://Data/Objects/cafetera.tres" id="8_jxm86"]
-[ext_resource type="Texture2D" uid="uid://leggi1whkbf8" path="res://Data/Backgrounds/Images/pollo.jpg" id="9_ung3y"]
+[ext_resource type="Texture2D" uid="uid://dguf425opjq2o" path="res://Assets/3D/BondFire/Texture/bonfire logs txtr.png" id="10_hjfww"]
+[ext_resource type="PackedScene" uid="uid://dpde5hkvuqtc0" path="res://Assets/Particles/Fire.tscn" id="11_hjfww"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_745qm"]
+panorama = ExtResource("4_2ovw4")
+energy_multiplier = 0.2
+
+[sub_resource type="Sky" id="Sky_y808e"]
+sky_material = SubResource("PanoramaSkyMaterial_745qm")
+
+[sub_resource type="Environment" id="Environment_r8nds"]
+background_mode = 2
+background_energy_multiplier = 1.48
+sky = SubResource("Sky_y808e")
+glow_enabled = true
+glow_blend_mode = 0
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_uayis"]
+
+[sub_resource type="Compositor" id="Compositor_jxm86"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7r1u"]
 size = Vector3(60, 1, 30)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m1cl4"]
 size = Vector3(60, 1, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cj88r"]
+size = Vector3(60.01465, 6.3205566, 1.8492432)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ovw4"]
+size = Vector3(1, 6.5665283, 31.337646)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ung3y"]
+albedo_texture = ExtResource("10_hjfww")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbmat"]
+resource_name = "bonfire logs"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tlq4l"]
+_surfaces = [{
+"aabb": AABB(-2.690927, -0.07896197, -2.9165308, 5.444438, 1.2588143, 5.635621),
+"format": 34896613377,
+"index_count": 480,
+"index_data": PackedByteArray("MgABAAIAAQADAAIAAQAFAAMAMwACAAMAMwAyAAIANAADAAUANAAzAAMANQAFAAEANQA0AAUAMgA1AAEABAA0ADUABgAyADMABwAzADQABwAGADMABAAHADQABgAAADIAAAA1ADIAAAAGAAcAAAAEADUAAAAHAAQANgAKAAgACgALAAgACgANAAsANwAIAAsANwA2AAgAOAALAA0AOAA3AAsAOQANAAoAOQA4AA0ANgA5AAoACQA4ADkADwA2ADcADgA3ADgADgAPADcACQAOADgADwAMADYADAA5ADYADAAPAA4ADAAJADkADAAOAAkAGAA6ABoAGAAcADoAGwAYABoAHQAcABgAHQAYABsAHAAdADsAHAA7ADoAHQAbACAAGwAaACAAHQAgADsAOgA7AB4AIAAaAB8AGgA6ABkAOgAeABkAGgAZAB8AOwAhAB4AOwAgACEAIQAZAB4AIAAfACEAIQAfABkAPAARABIAEQATABIAEQAVABMAPQASABMAPQA8ABIAPgATABUAPgA9ABMAPwAVABEAPwA+ABUAPAA/ABEAFAA+AD8AFgA8AD0AFwA9AD4AFwAWAD0AFAAXAD4AFgAQADwAEAA/ADwAEAAWABcAEAAUAD8AEAAXABQAQAAjACQAIwAlACQAIwApACUAQQAkACUAQQBAACQAQgAlACkAQgBBACUAQwApACMAQwBCACkAQABDACMAJgBCAEMAJwBAAEEAKABBAEIAKAAnAEEAJgAoAEIAJwAiAEAAIgBDAEAAIgAnACgAIgAmAEMAIgAoACYARAArACwAKwAvACwAKwAxAC8ARQAsAC8ARQBEACwARgAvADEARgBFAC8ARwAxACsARwBGADEARABHACsALgBGAEcALQBEAEUAMABFAEYAMAAtAEUALgAwAEYALQAqAEQAKgBHAEQAKgAtADAAKgAuAEcAKgAwAC4ASABJAEoASABLAEkATABIAEoATQBLAEgATQBIAEwASwBNAE4ASwBOAEkATQBMAE8ATABKAE8ATQBPAE4ASQBOAFAATwBKAFEASgBJAFIASQBQAFIASgBSAFEATgBTAFAATgBPAFMAUwBSAFAATwBRAFMAUwBRAFIAVABVAFYAVQBXAFYAVQBYAFcAWQBWAFcAWQBUAFYAWgBXAFgAWgBZAFcAWwBYAFUAWwBaAFgAVABbAFUAXABaAFsAXQBUAFkAXgBZAFoAXgBdAFkAXABeAFoAXQBfAFQAXwBbAFQAXwBdAF4AXwBcAFsAXwBeAFwA"),
+"lods": [1.3195399, PackedByteArray("AAABAAIAAQADAAIAAwAAAAIAAAAEAAEAAQAFAAMABAAFAAEABgAAAAMABAAHAAUAAAAHAAQAAAAGAAcABwADAAUABwAGAAMACAAJAAoACgALAAgADAAJAAgACgANAAsACQANAAoADAAOAAkACQAOAA0ADwAMAAgADwAIAAsADAAPAA4ADQAPAAsADgAPAA0AGAAZABoAGwAYABoAGAAcABkAHQAcABgAHQAYABsAHAAdABkAGQAdAB4AGgAZAB8AGwAaACAAHQAbACAAIAAaAB8AHQAhAB4AHQAgACEAIQAZAB4AIAAfACEAIQAfABkAEAARABIAEQATABIAEwAQABIAEAAUABEAEQAVABMAFgAQABMAFAAXABEAEQAXABUAEAAXABQAFwATABUAEAAWABcAFwAWABMAIgAjACQAIwAlACQAIgAmACMAJwAkACUAJwAiACQAIgAoACYAIgAnACgAJgApACMAIwApACUAJgAoACkAKQAnACUAKAAnACkAKgArACwALQAqACwAKgAuACsALQAsAC8AKwAvACwAKgAtADAAMAAtAC8AKgAwAC4AKwAxAC8AMAAvADEALgAxACsALgAwADEA"), 1.9793098, PackedByteArray("AAABAAIAAQADAAIAAwAAAAIAAAAEAAEAAQAFAAMABAAFAAEABgAAAAMABAAHAAUAAAAHAAQAAAAGAAcABwADAAUABwAGAAMACAAJAAoACgALAAgADAAJAAgACgANAAsACQANAAoADAAOAAkACQAOAA0ADwAMAAgADwAIAAsADAAPAA4ADQAPAAsADgAPAA0AEAARABIAEQATABIAEwAQABIAEAAUABEAEQAVABMAFgAQABMAFAAXABEAEQAXABUAEAAXABQAFwATABUAEAAWABcAFwAWABMA")],
+"name": "bonfire logs",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 96,
+"vertex_data": PackedByteArray("NRBeNeqEAAD+/xgjZJAAAP//Dzc8ggAA/v+taniIAAA1EDAfwJAAAP7/5T/atQAANRByZ8CQAAA1EF41BLkAAOea16SpxAAAk7B1JQoKAAB1qECbqcgAAJiNAZouyQAABaMMLwoGAAAmm66LJ88AAESj4xWIEAAAtpU2JI8KAAAVt33DnFMAAAxThBIp4QAAM17KGazsAABKWUY4//8AAMKtWbrGRwAAiTXLLKvjAADCraPi82QAAAmOstHtRgAAtt9SFBHeAAC0iq/whnEAAKKqGIqppQAAIunrJ5HrAAB/8bgbKtIAAKD2CCtg3wAAXYz//4t/AAB2dkjp6HgAAA60sZ0pswAANnzi/DaIAACoHKA2uVcAAPiEiMBGkgAAS34oz+6GAABhYhvdLZYAACglhSeAYQAAAAAgQh9rAAAoDlEnl30AADxrn8T6qwAA9Lbogx5iAABZQ40khScAAFI+MB9nOAAAQKG3nWt0AACRvKSGSVUAAOYo1zRbTwAABqsfrzRSAACGNtFM5iQAABqINTrqhAAAGohJbMCQAAAaiDU6BLkAABqIBiTAkAAALJ+1bDNkAADdkd9huGgAAGufjFOwbgAAuawdYzNoAABsvH6RwpkAAI3BzqD4pgAAlok7cW2hAABDgGKQxLIAAIpgcH+9lAAAQ4AXaJeVAABOTGOFbG0AANwso5OLgAAAzz0VdkqTAABqVrN0XHcAAKGNXF1ZWwAAtncqd9FuAABkg4+DLUIAAPyTGGB5SgAAo2jMHxQSAABGYhuB/T0AACB2mn3ZOwAAyVRNIzgUAABZZ28pAAAAANBW2iqwBAAATWSoiHUuAADWdD2HxSkAAFx17+OEWwAAL4fh2OhoAABVc2LcDGsAAOSFheLUVgAAh8VXcz1oAACH4wAAiGQAAD/rExTYVwAA7vpiLK5fAAD69pIKKH0AAOrW/IOPcAAAis5wZS6KAACevMljnXYAADWfCrE6fQAA1b9wxWx7AACHtdm4/5IAAHCnK7codAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dgt5r"]
+resource_name = "Bonfire model 2_Cylinder"
+_surfaces = [{
+"aabb": AABB(-2.690927, -0.07896197, -2.9165308, 5.444438, 1.2588143, 5.635621),
+"attribute_data": PackedByteArray("YwKbNAUj3PxjAtz8BSObNAUjmzQpZtz8BSPc/ClmmzSKzVQlvo9WBijHgRW+j0sx+rzc/Pf8mzT3/Nz8+rybNGqoPyEA3eAGXMZJJLeL4AYpZps0+rzc/Clm3Pz6vJs0KyLc/IY6mzSGOtz8KyKbNIY6mzSibNz8hjrc/KJsmzRofUEjjcuiD/inniVHehIComzc/G6tmzRurdz8omybNG6tmzQv3dz8bq3c/C/dmzQYz9wAacAbK6OnIQ6Q+qAOYwKbNAUj3PxjAtz8BSObNAUj3PwpZps0KWbc/AUjmzSKzVQlvo9WBijHgRW+j0sxKWabNPq83PwpZtz8+rybNPq83Pz3/Js09/zc/Pq8mzRqqD8hAN3gBlzGSSS3i+AGomybNG6t3PyibLuYomzc/G6tmzRurZs0L92bNG6t3Pwv3dz8GM/cAGnAGyujpyEOkPqgDmh9QSONy6IP+KeeJUd6EgKGOruYomzc/IY63PyibLuYKyKbNIY63PwrItz8hjq7mIY6mzSGOps0omy7mIY6u5iibJs0YwKbNAUj3PxjAtz8BSObNAUjmzQpZtz8BSPc/ClmmzSKzVQlvo9WBijHgRW+j0sxKWbc/Pq8mzT6vNz8KWabNPq8mzT3/Nz8+rzc/Pf8mzRqqD8hAN3gBlzGSSS3i+AGYwKbNAUj3PxjAtz8BSObNAUjmzQpZtz8BSPc/ClmmzSKzVQlvo9WBijHgRW+j0sxKWabNPq83PwpZtz8+rybNPq8mzT3/Nz8+rzc/Pf8mzRqqD8hAN3gBlzGSSS3i+AGYwK7mAUju5gFI7uYKWa7mClmu5j6vLuY+ry7mPf8u5j3/LuY+ry7mPq8u5gpZruYKWa7mAUju5gFI7uYYwK7mCsiu5iGOruYhjq7mKJsu5iibLuYbq27mG6tu5gv3buYL927mG6tu5hurbuYomy7mKJsu5iGOruYhjq7mCsiu5hurbuYomy7mC/du5hurbuYbq27mC/du5hurbuYKyK7mGMCu5gFI7uYBSO7mClmu5gpZruY+ry7mPq8u5j3/LuY9/y7mPq8u5j6vLuYKWa7mClmu5gFI7uYBSO7mGMCu5iGOruYKyK7mGMCu5gFI7uYBSO7mClmu5gpZruY+ry7mPq8u5j3/LuY9/y7mPq8u5j6vLuYKWa7mClmu5gFI7uYBSO7mGMCu5hjAruYBSO7mAUju5gpZruYKWa7mPq8u5j6vLuY9/y7mPf8u5j6vLuY+ry7mClmu5gpZruYBSO7mAUju5hjAruYomybNG6tu5iibLuYbq2bNG6tmzQv3buYbq27mC/dmzQYz9wAacAbK6OnIQ6Q+qAObq27mC/d3Pxurdz8L927mKJsu5hurdz8omzc/G6tu5hofUEjjcuiD/inniVHehIChjq7mKJs3PyGOtz8omy7mCsiu5iGOtz8KyLc/IY6u5iGOps0omy7mIY6u5iibJs0KyKbNIY6u5grIruYhjqbNGMCu5gFI9z8YwLc/AUju5gFI7uYKWbc/AUj3PwpZruYis1UJb6PVgYox4EVvo9LMSlmu5j6vNz8KWbc/Pq8u5j6vLuY9/zc/Pq83Pz3/LuYaqg/IQDd4AZcxkkkt4vgBvq8mzT3/LuY+ry7mPf8mzQpZps0+ry7mClmu5j6vJs0BSObNClmu5gFI7uYKWabNGMCmzQFI7uYYwK7mAUjmzQ="),
+"format": 34896613399,
+"index_count": 480,
+"index_data": PackedByteArray("lgABAAIAlgCXAAEAmAAFAAYAmACZAAUACAAJAAoACAALAAkAmgAVABYAmgCbABUAnAAOAAwAnACdAA4AEAARABIAEAATABEADwCeAJ8ADwANAJ4AFACgAKEAFAAXAKAABACiAKMABAAHAKIAAACkAKUAAAADAKQApgAaABgApgCnABoAqAAdAB4AqACpAB0AIAAhACIAIAAjACEAqgAmACQAqgCrACYArAApACoArACtACkALAAtAC4ALAAvAC0AKACuAK8AKAArAK4AJwCwALEAJwAlALAAHACyALMAHAAfALIAGwC0ALUAGwAZALQASAC2ALcASABMALYATQC4ALkATQBOALgAUQBSAFMAUQBUAFIAugBQAE8AugC7AFAASgBJAEsASgC8AEkAVQBWAFcAVQBYAFYAWQBaAFsAWQBcAFoAvQBeAF8AvQBgAF4AvgAxADIAvgC/ADEAwAA2ADQAwADBADYAOAA5ADoAOAA7ADkAwgA9AD4AwgDDAD0AxABCAEAAxADFAEIARABFAEYARABHAEUAQwDGAMcAQwBBAMYAPADIAMkAPAA/AMgANwDKAMsANwA1AMoAMADMAM0AMAAzAMwAYgBjAGQAYgBlAGMAXQDOAM8AXQBhAM4A0ABnAGgA0ADRAGcA0gBrAGwA0gDTAGsAbgBvAHAAbgBxAG8A1AB0AHIA1ADVAHQA1gB3AHgA1gDXAHcAegB7AHwAegB9AHsAdgDYANkAdgB5ANgAdQDaANsAdQBzANoAagDcAN0AagBtANwAZgDeAN8AZgBpAN4A4AB/AIAA4ADhAH8A4gCDAIQA4gDjAIMAhgCHAIgAhgCJAIcA5ACLAIwA5ADlAIsA5gCPAJAA5gDnAI8AkgCTAJQAkgCVAJMAjgDoAOkAjgCRAOgAigDqAOsAigCNAOoAggDsAO0AggCFAOwAfgDuAO8AfgCBAO4A8ADxAPIA8ADzAPEA9AD1APYA9AD3APUA+AD5APoA+AD7APkA/AD9AP4A/AD/AP0AAAEBAQIBAAEDAQEBBAEFAQYBBAEHAQUBCAEJAQoBCAELAQkBDAENAQ4BDAEPAQ0BEAERARIBEAETAREBFAEVARYBFAEXARUBGAEZARoBGAEbARkBHAEdAR4BHAEfAR0BIAEhASIBIAEjASEBJAElASYBJAEnASUBKAEpASoBKAErASkBLAEtAS4BLAEvAS0BMAExATIBMAEzATEBNAE1ATYBNAE3ATUBOAE5AToBOAE7ATkBPAE9AT4BPAE/AT0B"),
+"lods": [1.3195399, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGwAZABgAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJwAlACQAKAApACoAKAArACkALAAtAC4ALAAvAC0ASABJAEoASgBJAEsASABMAEkATQBOAE8ATwBOAFAAUQBSAFMAUQBUAFIAVQBWAFcAVQBYAFYAWQBaAFsAWQBcAFoAXQBeAF8AXQBgAF4AXQBhAGAAMAAxADIAMAAzADEANAA1ADYANwA1ADQAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQwBBAEAARABFAEYARABHAEUAYgBjAGQAYgBlAGMAZgBnAGgAZgBpAGcAagBrAGwAagBtAGsAbgBvAHAAbgBxAG8AcgBzAHQAdQBzAHIAdgB3AHgAdgB5AHcAegB7AHwAegB9AHsAfgB/AIAAfgCBAH8AggCDAIQAggCFAIMAhgCHAIgAhgCJAIcAigCLAIwAigCNAIsAjgCPAJAAjgCRAI8AkgCTAJQAkgCVAJMA"), 1.9793098, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGwAZABgAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJwAlACQAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANwA1ADQAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQwBBAEAARABFAEYARABHAEUA")],
+"material": SubResource("StandardMaterial3D_kbmat"),
+"name": "bonfire logs",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 320,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_tlq4l")
 
 [node name="ExplorationZoneCampFire" type="Node" unique_id=1900525975 node_paths=PackedStringArray("cameraBehaviour", "player", "Stage")]
 script = ExtResource("1_cj88r")
@@ -26,11 +95,16 @@ player = NodePath("Player")
 Stage = NodePath("Ground")
 metadata/_custom_type_script = "uid://q4jme22dupru"
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=530323316]
+environment = SubResource("Environment_r8nds")
+camera_attributes = SubResource("CameraAttributesPhysical_uayis")
+compositor = SubResource("Compositor_jxm86")
+
 [node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
 visible = false
 
 [node name="Player" parent="." unique_id=1961554038 instance=ExtResource("4_745qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45, 0.5, -8.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.250385, 0.5, -3.6045752)
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=201284183]
 metadata/_edit_lock_ = true
@@ -56,7 +130,46 @@ ObjectInfo = ExtResource("8_jxm86")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.049554, 0.87941813)
 metadata/_edit_lock_ = true
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=210966861]
+[node name="Bg" type="Sprite3D" parent="." unique_id=210966861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -167.35666)
 pixel_size = 0.5944744
-texture = ExtResource("9_ung3y")
+
+[node name="MapLimits" type="Node3D" parent="." unique_id=1488318580]
+
+[node name="Area3D" type="Area3D" parent="MapLimits" unique_id=1876926528]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapLimits/Area3D" unique_id=762712205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6602783, 1.0235991)
+shape = SubResource("BoxShape3D_cj88r")
+
+[node name="Area3D3" type="Area3D" parent="MapLimits" unique_id=550249201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapLimits/Area3D3" unique_id=1296374172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6602783, 1.0235991)
+shape = SubResource("BoxShape3D_cj88r")
+
+[node name="Area3D2" type="Area3D" parent="MapLimits" unique_id=256986473]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapLimits/Area3D2" unique_id=1144349338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.373838, 2.7832642, -14.008179)
+shape = SubResource("BoxShape3D_2ovw4")
+
+[node name="Area3D4" type="Area3D" parent="MapLimits" unique_id=743518741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapLimits/Area3D4" unique_id=468907815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.373838, 2.7832642, -14.008179)
+shape = SubResource("BoxShape3D_2ovw4")
+
+[node name="Bonfire model 2" type="Node3D" parent="." unique_id=1666785294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.708504, 0.5744805, -15.07692)
+
+[node name="Bonfire" type="MeshInstance3D" parent="Bonfire model 2" unique_id=1468743227]
+transform = Transform3D(0.361, 0, 0, 0, 1.298, 0, 0, 0, 0.361, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ung3y")
+mesh = SubResource("ArrayMesh_dgt5r")
+skeleton = NodePath("")
+
+[node name="Flames" parent="." unique_id=1216438305 instance=ExtResource("11_hjfww")]
+transform = Transform3D(1.385, 0, 0, 0, 1.385, 0, 0, 0, 1.385, -20.570492, 1.4149144, -15.116969)

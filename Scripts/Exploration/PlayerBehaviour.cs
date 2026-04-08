@@ -9,10 +9,12 @@ public partial class PlayerBehaviour : CharacterBody3D
     [ExportGroup("MOVEMENT SETTINGS")]
     [Export] public float Speed { get; set; } = 5f;
     [Export] public float Aceleration { get; set; } = 50f;
+    [Export] public AnimatedSprite3D animatedSprite3D;
 
     [ExportGroup("SFX")]
     [Export] public InteractFlavourAnimation exclamationSprite;
-    Direction lastDirection = Direction.front;
+    [Export] public DustParticles dustParticles;
+    Direction lastDirection = Direction.Front;
     bool isBlocked = false;
     readonly List<IInteractable> interactablesInRange = [];
 
@@ -33,31 +35,44 @@ public partial class PlayerBehaviour : CharacterBody3D
 
         if (Input.IsActionPressed("moveRight"))
         {
-            newDirection = Direction.right;
+            newDirection = Direction.Right;
             direction.X += 1;
         }
         if (Input.IsActionPressed("moveLeft"))
         {
-            newDirection = Direction.left;
+            newDirection = Direction.Left;
             direction.X -= 1;
         }
         if (Input.IsActionPressed("moveFar"))
         {
-            newDirection = Direction.back;
+            newDirection = Direction.Back;
             direction.Z -= 1;
         }
         if (Input.IsActionPressed("moveNear"))
         {
-            newDirection = Direction.front;
+            animatedSprite3D.Animation = "Walk";
+            newDirection = Direction.Front;
             direction.Z += 1;
         }
 
         if (direction != Vector3.Zero) 
         {
             direction = direction.Normalized();
+            dustParticles.Emitting = true;
         }
 
-        if (newDirection != lastDirection) lastDirection = newDirection;
+        if(direction == Vector3.Zero)
+        {
+            animatedSprite3D.Animation = "Idle";
+            dustParticles.Emitting = false;
+        }
+
+        if (newDirection != lastDirection)
+        {
+            lastDirection = newDirection;
+            dustParticles.ChangeDirection(newDirection);
+        } 
+            
 
         Velocity = new Vector3(direction.X * Speed, Velocity.Y, direction.Z * Speed);
         MoveAndSlide();
@@ -95,10 +110,10 @@ public partial class PlayerBehaviour : CharacterBody3D
     }
 }
 
-enum Direction
+public enum Direction
 {
-    right,
-    left,
-    front,
-    back
+    Right,
+    Left,
+    Front,
+    Back
 }

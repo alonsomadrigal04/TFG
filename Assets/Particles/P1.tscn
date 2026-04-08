@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clrc8ftdnb5m4"]
 
-[ext_resource type="Texture2D" uid="uid://clwu74dygr766" path="res://addons/kenney-particle-pack-7e801dc538996622a91327bb1dd5879cf977aa09/kenney-particle-pack-7e801dc538996622a91327bb1dd5879cf977aa09/addons/kenney_particle_pack/star_07.png" id="1_kr1cj"]
+[ext_resource type="Texture2D" uid="uid://clwu74dygr766" path="res://addons/kenney_particle_pack/star_07.png" id="1_kr1cj"]
 
 [sub_resource type="Curve" id="Curve_g50yd"]
 _limits = [-1.0, 1.0, 0.0, 1.0]

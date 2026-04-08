@@ -1,5 +1,27 @@
 ﻿uid;code;type;speaker;text;next
-A1;Alonso needs cafetera : A3;;;;
-A2;;say;Alonso;Enhorabuena, tienes la cafetera. ;
-A3;;say;Alonso;no la tienes tontoo;
-A4;;say;Alonso;Esto es una fokin prueba;go to explorezone campfire
+A1;Alonso appears center;;;;
+A2;Alonso moves farleft;;;;
+A3;;say;Alonso;[w] Hola soy un placeholder[/w];
+A4;;say;Alonso;Soy una prueba para que veas [b] veas [/b] de lo que soy capaz.;
+A5;;say;Alonso;¡Puedo moverme libremente por la pantalla, mira!;
+A6;Alonso moves right;;;;
+A7;Alonso moves farleft;;;;
+A8;;say/question;Alonso;¿Te gustaría ver algo más?;
+A9;;choice/Soft;;Claro que si|Rapidito;A12|A11
+A10;;say/exclamation;Alonso;[s]Wow…[/s] Está bien, prometo que será sencillo…;A13
+A11;;say;Alonso;¡Perfecto!;
+A12;Godot appears center;;;;
+A13;Godot moves right;;;;
+A14;;say;Godot;JA, pobre [s]ingenuo[/s];
+A15;camera shake;;;;
+A16;;say/exclamation;Alonso;¡Go-Godot!;
+A17;;say;Alonso;¿Qué haces aquí?;
+A18;camera flash;;;;
+A19;;say;Godot;Solo pasaba por aquí...Para…;
+A20;Camera zoom Alonso 1s;;;;
+A21;;say;Alonso;…;
+A22;zoom reset;;;;
+A23;;say;Godot;Darte unas madalenas;
+A24;negro flashback;;;;
+A25;cafetera shows;;;;
+A26;;say/exclamation;Alonso;Si hooome, madalenas??;go to explorezone campfire

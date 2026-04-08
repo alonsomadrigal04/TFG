@@ -146,7 +146,8 @@ public partial class ChoiceMaker : Node
     {
         return new Control
         {
-            CustomMinimumSize = new Vector2(width, height)
+            CustomMinimumSize = new Vector2(width, height),
+            VisibilityLayer = 9
         };
     }
 
@@ -160,7 +161,8 @@ public partial class ChoiceMaker : Node
             PivotOffset = new Vector2(width / 2, height / 2),
             SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter | Control.SizeFlags.Expand,
             SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
-            Uid = uid
+            Uid = uid,
+            VisibilityLayer = 10
         };
         return button;
     }

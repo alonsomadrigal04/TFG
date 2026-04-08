@@ -17,6 +17,9 @@ public partial class GameManager : Node
 
     [ExportSubgroup("Dialog Path")]
     [Export] NodePath dialogManagerPath;
+    [ExportSubgroup("Pause Menu")]
+    [Export] AnimationPlayer pauseAnimationPlayer;
+
 
     [ExportSubgroup("Loading Screen")]
     [Export] ScreenTransition screenTransition;
@@ -56,11 +59,6 @@ public partial class GameManager : Node
         safeScreen.Show();
         GD.Print("Launching the game...\n");
         GodotExtensions.CallDeferred(LaunchGame);
-
-        //ObjectDataBase.AddObjectByName("cafetera");
-
-
-
     }
 
     void InitializeGameData()
@@ -89,10 +87,10 @@ public partial class GameManager : Node
 
     static void StartDebug()
     {
+        GameStarted = true;
         ChangeEnvironment(GameEnvironments.OnlyTextBox);
         instance.dialogManager.StartDialogScene(ConversationsDataBase.GetConversation(instance.debugDialogName));
     }
-
 
     public async static void ChangeEnvironment(PackedScene newEnv, float loadTimeFactor = 1)
         => GodotExtensions.CallDeferred(() => ChangeEnvironmentDeferred(newEnv, loadTimeFactor));
@@ -136,18 +134,24 @@ public partial class GameManager : Node
     }
 
 
-    public static void PauseGame()
+    public void PauseGame()
     {
-        //instance.pauseFilter.Visible = !instance.pauseFilter.Visible;
+        if(!GameStarted) return;
         PauseManager.GamePaused = !PauseManager.GamePaused;
+        if(PauseManager.GamePaused)
+            pauseAnimationPlayer.Play("OnPause");
+        else
+            pauseAnimationPlayer.Play("OutPause");
     }
 
     public override void _Input(InputEvent e)
     {
         if(Input.IsAnythingPressed() && !GlobalInputsEnabled) return;
 
-        if(e.IsActionPressed("pause"))
+        if (e.IsActionPressed("pause"))
+        {
             PauseGame();
+        }
     }
 
 
@@ -169,4 +173,10 @@ public partial class GameManager : Node
 
     public void StartNewChapter() => chapterBehaviour.ChangeChapter();
     public int GetChapterNumber() => chapterBehaviour.CurrentChapter;
+
+    public void ExitGame()
+    {
+        GetTree().Quit();
+    }
+
 }

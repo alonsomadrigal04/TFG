@@ -37,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666668, 0.2),
 "transitions": PackedFloat32Array(0.5, 0.5, 0.5),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(4.565, 2.27), Vector2(3, 3)]
+"values": [Vector2(2, 2), Vector2(4.021, 2), Vector2(3, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1234,7 +1234,7 @@ anchor_bottom = 0.5
 offset_left = 387.0
 offset_top = 135.125
 offset_right = 597.532
-offset_bottom = 189.12537
+offset_bottom = 189.12518
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
@@ -1265,7 +1265,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 436.0
 offset_top = 245.0
-offset_right = 586.20337
+offset_right = 586.2036
 offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2

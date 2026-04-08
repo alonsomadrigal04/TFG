@@ -160,15 +160,18 @@ public partial class DialogManager : Node
                 return;
 
             case NextUidType.EndChapter:
+                InventoryBehaviour.Instance.Hide();
                 DesactivateDialogFrameWork();
                 EndChapter();
                 return;
 
             case NextUidType.ChangeDialog:
+                InventoryBehaviour.Instance.Show();
                 DesactivateDialogFrameWork();
                 HandleDialogChange(nextUid);
                 return;
             case NextUidType.ExploreZone:
+                InventoryBehaviour.Instance.Hide();
                 DesactivateDialogFrameWork();
                 ChangeToExploreMode(nextUid);
                 return;

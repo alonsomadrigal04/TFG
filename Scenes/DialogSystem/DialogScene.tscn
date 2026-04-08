@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
 [ext_resource type="Shader" uid="uid://ctleyojck05gm" path="res://Scenes/testing/blur.gdshader" id="6_e0sb1"]
+[ext_resource type="PackedScene" uid="uid://dgqessqarqca4" path="res://Assets/Particles/purpleHazard.tscn" id="6_n6ldu"]
 [ext_resource type="Script" uid="uid://bp2hw26koj5ly" path="res://Scripts/API/UiStage.cs" id="6_qhtgt"]
 [ext_resource type="Shader" uid="uid://byk3nv7pbmaml" path="res://Scenes/DinamicVigennetev2.gdshader" id="6_x033f"]
 [ext_resource type="AudioStream" uid="uid://befndnnsf5r3g" path="res://Audio/Sounds/soft.wav" id="7_5t315"]
@@ -19,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c1vbgjqjuv7ab" path="res://Scenes/SpecialItemFrame.tscn" id="9_r0xxx"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
 [ext_resource type="Texture2D" uid="uid://20l7bf5g2xu1" path="res://Assets/Flavour/Exclamation.png" id="15_2rb1s"]
+[ext_resource type="Texture2D" uid="uid://k0af4whpqc86" path="res://Assets/UI/PopUpsCuadro.png" id="17_p8x5j"]
 [ext_resource type="PackedScene" uid="uid://bjigg7pxsd6r8" path="res://Assets/Flavour/Interrogation.tscn" id="18_1mrl1"]
 [ext_resource type="Shader" uid="uid://bq0pv8jsguvk8" path="res://Scenes/testing/ScaleGray.gdshader" id="19_4nqsh"]
 [ext_resource type="Script" uid="uid://66wwtsxguf58" path="res://Scripts/AudioManager.cs" id="19_fml5s"]
@@ -37,10 +39,10 @@
 [ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/IDeinventario.png" id="22_ngurm"]
 [ext_resource type="Texture2D" uid="uid://bvvmfv7rray7o" path="res://Assets/UI/copper.png" id="22_r68ee"]
 [ext_resource type="Texture2D" uid="uid://dbu3gw56pruc" path="res://Assets/UI/rueda_1.png" id="25_wr3cw"]
-[ext_resource type="Texture2D" uid="uid://8dkdgp7bwg47" path="res://Assets/UI/CuadroFondoInspectView.png" id="26_fpum5"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="26_yr3c2"]
 [ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="27_mmhpi"]
-[ext_resource type="Texture2D" uid="uid://ccpm34rujuvtr" path="res://Assets/UI/CogerDejarBoton.png" id="28_sjivi"]
+[ext_resource type="Texture2D" uid="uid://b3cc6g5i0fd45" path="res://Assets/UI/UsarObjectoBoton.png" id="30_p8x5j"]
+[ext_resource type="Texture2D" uid="uid://dfd3qqt0lixup" path="res://Assets/UI/UsarObjetoCuadro.png" id="31_p8x5j"]
 [ext_resource type="AudioStream" uid="uid://cvyte0s0h2lkm" path="res://Audio/Sounds/remember.wav" id="32_pfbu6"]
 [ext_resource type="AudioStream" uid="uid://g3nc3pdpi00g" path="res://Audio/rotating.wav" id="37_w3e4s"]
 [ext_resource type="AudioStream" uid="uid://cbhu3b60bg67d" path="res://Audio/ClockDisplay.mp3" id="39_jn18p"]
@@ -63,9 +65,6 @@ shader_parameter/vignette_strength = 0.0
 shader = ExtResource("6_e0sb1")
 shader_parameter/lod = 1.7690000840275
 shader_parameter/mix_percentage = 0.25600001216
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttbwo"]
-shader = ExtResource("19_4nqsh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oho3u"]
 shader = ExtResource("6_x033f")
@@ -239,6 +238,9 @@ _data = {
 &"RESET": SubResource("Animation_x033f")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttbwo"]
+shader = ExtResource("19_4nqsh")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r68ee"]
 random_pitch = 1.122462
 streams_count = 1
@@ -261,6 +263,7 @@ metadata/_edit_lock_ = true
 [node name="Background" type="CanvasLayer" parent="." unique_id=907658383]
 
 [node name="BgFrame" type="TextureRect" parent="Background" unique_id=1764284992]
+visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.47400004
@@ -314,15 +317,17 @@ script = ExtResource("11_n1mmy")
 sounds = NodePath("../../AudioManager")
 MiniAnimations = {
 0: NodePath("interrogation"),
-1: NodePath("exclamation")
+1: NodePath("exclamation"),
+2: NodePath("PurpleHazard")
 }
 
+[node name="PurpleHazard" parent="ShadersTop/FlavourAnimationModule" unique_id=538173490 instance=ExtResource("6_n6ldu")]
+position = Vector2(645, 720)
+
 [node name="interrogation" parent="ShadersTop/FlavourAnimationModule" unique_id=995432709 instance=ExtResource("18_1mrl1")]
-visible = false
 
 [node name="exclamation" parent="ShadersTop/FlavourAnimationModule" unique_id=33689476 instance=ExtResource("19_mi817")]
 z_index = 1
-position = Vector2(17, 17)
 
 [node name="ShadersBottom" type="CanvasLayer" parent="." unique_id=99557676]
 
@@ -425,6 +430,7 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="GeneralLayout/DialogSystem/RememberUI" unique_id=1199579503]
 visible = false
@@ -443,7 +449,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_2rb1s")
 
 [node name="NewItemNotification" type="Control" parent="GeneralLayout/DialogSystem" unique_id=585923529]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -454,38 +459,36 @@ offset_bottom = 720.0
 grow_horizontal = 2
 pivot_offset = Vector2(640, 53)
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
-[node name="ItemFrame" type="ColorRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1916597318]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -258.0
-offset_top = 17.0
-offset_right = 258.0
-offset_bottom = 121.0
-grow_horizontal = 2
-pivot_offset = Vector2(258, 52)
-color = Color(1, 1, 1, 0.5294118)
+[node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1664417285]
+layout_mode = 0
+offset_left = 347.0
+offset_top = -60.0
+offset_right = 931.2923
+offset_bottom = 221.0
+texture = ExtResource("17_p8x5j")
+expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="ItemLabel" type="Label" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1122127271]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.50600004
 anchor_right = 0.50600004
-offset_left = -240.68005
+offset_left = -266.68005
 offset_top = 25.0
-offset_right = 224.31995
-offset_bottom = 106.0
+offset_right = 250.31995
+offset_bottom = 163.0
 pivot_offset = Vector2(225, 41)
-theme_override_colors/font_color = Color(0.0071415612, 0.0071415612, 0.0071415603, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 34
 text = "Has conseguido!"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 node_paths=PackedStringArray("sounds") instance=ExtResource("2_50ct6")]
-visible = false
 layout_mode = 1
 anchor_left = 0.067
 anchor_top = 0.47400004
@@ -518,6 +521,7 @@ grayBack = NodePath("../ChoiceLayout/Gray")
 metadata/_edit_lock_ = true
 
 [node name="ChoiceLayout" type="Control" parent="GeneralLayout/DialogSystem" unique_id=131375595]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -527,19 +531,8 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1808876110]
-visible = false
-material = SubResource("ShaderMaterial_ttbwo")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.50980395, 0.50980395, 0.50980395, 0.7843136)
-metadata/_edit_lock_ = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1616460335]
+layer = 10
 
 [node name="Shader" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CanvasLayer" unique_id=596100438]
 visible = false
@@ -549,9 +542,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=930759866]
+z_index = 2
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -561,7 +556,7 @@ offset_top = -167.0
 offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 alignment = 1
 metadata/_edit_lock_ = true
 
@@ -585,6 +580,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1808876110]
+visible = false
+z_index = 2
+material = SubResource("ShaderMaterial_ttbwo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.50980395, 0.50980395, 0.50980395, 0.7843136)
+metadata/_edit_lock_ = true
+
 [node name="ItemMenu" type="Control" parent="GeneralLayout/DialogSystem" unique_id=446959301 node_paths=PackedStringArray("Spinner", "Icons", "VBoxContainer", "ItemName", "sounds", "decorationCopperFrame", "ButtonSpinnerDisplay")]
 anchors_preset = 0
 offset_right = 1280.0
@@ -600,6 +609,7 @@ decorationCopperFrame = NodePath("Spinner/Frame")
 ButtonSpinnerDisplay = NodePath("ButtonSpinnerDisplay")
 
 [node name="Spinner" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=892568672]
+z_index = 3
 position = Vector2(47.999996, 45.999996)
 scale = Vector2(0.67791665, 0.67791665)
 texture = ExtResource("21_7awbk")
@@ -610,16 +620,19 @@ scale = Vector2(1.0964963, 1.0964965)
 texture = ExtResource("22_r68ee")
 
 [node name="IconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=367583361]
+z_index = 1
 position = Vector2(146.03564, 98.832214)
 scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
 
 [node name="NextIconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1059250872]
+z_index = 1
 position = Vector2(-167.01146, 73.90666)
 scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
 
 [node name="PreviousIconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1850297980]
+z_index = 1
 position = Vector2(10.018406, -174.41158)
 scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
@@ -630,25 +643,31 @@ scale = Vector2(0.73, 0.73)
 texture = ExtResource("25_wr3cw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=661815887]
+z_index = 2
 layout_mode = 0
-offset_left = 303.0
+offset_left = 340.0
 offset_top = 59.0
-offset_right = 572.0
+offset_right = 609.0
 offset_bottom = 176.0
 
 [node name="ObjectName" type="Label" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=154131091]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6135737, 0.47938704, 0.29548463, 1)
 theme_override_fonts/font = ExtResource("26_yr3c2")
 theme_override_font_sizes/font_size = 36
 text = "OBJECT NAME"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Button" type="Button" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=790318771]
+z_index = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(0.16802019, 0.46216583, 0.5101133, 1)
 theme_override_fonts/font = ExtResource("27_mmhpi")
 theme_override_font_sizes/font_size = 40
 text = "Usar"
 flat = true
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer/Button" unique_id=1904266145]
 z_index = -1
@@ -657,14 +676,15 @@ offset_left = 20.0
 offset_top = -5.0
 offset_right = 243.59999
 offset_bottom = 68.0
-texture = ExtResource("28_sjivi")
+texture = ExtResource("30_p8x5j")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="CuadroFondoInspectView" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=499169520]
-z_index = -2
-position = Vector2(138, 54)
-scale = Vector2(0.3646789, 0.19336385)
-texture = ExtResource("26_fpum5")
+z_index = -1
+position = Vector2(134, 22)
+scale = Vector2(0.8327068, 0.8327068)
+texture = ExtResource("31_p8x5j")
 metadata/_edit_lock_ = true
 
 [node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "outQuestion", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem", "Spining", "ClockDisplay", "ClockHide")]
