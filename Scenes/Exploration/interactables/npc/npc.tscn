@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_2xp5l"]
 [ext_resource type="Script" uid="uid://cqt2wogs2p0us" path="res://Scripts/Exploration/NpcBehaviour.cs" id="1_bs2lt"]
-[ext_resource type="Texture2D" uid="uid://bkjhyg74su0ec" path="res://Assets/UI/dialogIcon.png" id="2_gvido"]
+[ext_resource type="Texture2D" uid="uid://bkjhyg74su0ec" path="res://Assets/UI/PH/dialogIcon.png" id="2_gvido"]
 [ext_resource type="Script" uid="uid://dvke0mr2o3aeq" path="res://Scripts/Exploration/InteractIconAnimation.cs" id="4_gvido"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nhy3c"]

@@ -244,6 +244,7 @@ public partial class DialogManager : Node
     {
         IsSpeaking = false;
         GameStateManager.Instance.ChangeState(State.Explore);
+        DesactivateDialogFrameWork();
 
         GD.Print("End of dialogue.");
     }

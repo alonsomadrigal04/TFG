@@ -18,28 +18,69 @@ public partial class ObjectStage : Node
     }
 
     [Export] CanvasLayer objectLayer;
+    
     [Export] float yOffset = 25f;
     [Export]  float xOffset = 25f;
     [Export] PackedScene specialItemFrameScene;
+    SpecialItemFrame specialItemFrame;
     public bool IsObjectInScene {get; private set;} = false;
 
-    public void DisappearObject(Texture2D icon)
+    public void DisappearObject()
     {
-        IsObjectInScene = false;
+        if (specialItemFrame == null) return;
 
-        AnimateObjectDisAppear(icon);
+        IsObjectInScene = false;
+        AnimateObjectDisAppear(specialItemFrame.itemFrame);
     }
 
-    private void AnimateObjectDisAppear(Texture2D textureRectIcon)
+    void AnimateObjectDisAppear(TextureRect itemFrame)
     {
-        throw new NotImplementedException();
+        if (itemFrame == null) return;
+
+        Tween tween = CreateTween();
+        tween.SetParallel(true);
+
+        Vector2 originalPos = itemFrame.Position;
+
+        tween.TweenDelegate<float>(
+            value => {
+                var c = itemFrame.Modulate;
+                c.A = value;
+                itemFrame.Modulate = c;
+            },
+            1f,
+            0f,
+            0.25f
+        );
+
+        tween.TweenDelegate<Vector2>(
+            value => itemFrame.Position = value,
+            originalPos,
+            originalPos + new Vector2(0, 40),
+            0.3f
+        ).SetTrans(Tween.TransitionType.Cubic)
+        .SetEase(Tween.EaseType.In);
+
+        tween.TweenDelegate<Vector2>(
+            value => itemFrame.Scale = value,
+            itemFrame.Scale,
+            new Vector2(0.6f, 0.6f),
+            0.25f
+        ).SetTrans(Tween.TransitionType.Quad)
+        .SetEase(Tween.EaseType.In);
+
+        tween.Chain().TweenCallback(Callable.From(() =>
+        {
+            specialItemFrame?.QueueFree();
+            specialItemFrame = null;
+        }));
     }
 
     public void AppearObject(Texture2D icon)
     {
         IsObjectInScene = true;
         //todo create a variable or smothing to store the new object created or make the object public
-        SpecialItemFrame specialItemFrame = specialItemFrameScene.Instantiate<SpecialItemFrame>();
+        specialItemFrame = specialItemFrameScene.Instantiate<SpecialItemFrame>();
         specialItemFrame.SetItemIcon(icon);
         TextureRect textureRectIcon = specialItemFrame.itemFrame;
 
@@ -101,7 +142,7 @@ public partial class ObjectStage : Node
 
     internal void CleanEffects()
     {
-        //TODO HOCER ESTO
-        IsObjectInScene = false;
+        DisappearObject();
+        
     }
 }

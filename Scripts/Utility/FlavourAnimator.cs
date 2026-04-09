@@ -38,7 +38,7 @@ public partial class FlavourAnimator : Node
             case FlavourType.exclamation:
                 sounds.exclamation.Play();
                 SpawnParticles(MiniAnimations[FlavourType.exclamation], speaker);
-                SpawnParticles(MiniAnimations[FlavourType.purpleHazard], speaker);
+                SpawnParticles(MiniAnimations[FlavourType.purpleHazard], speaker, false);
 
             break;
             default:
@@ -47,8 +47,15 @@ public partial class FlavourAnimator : Node
         }
     }
 
-    static void SpawnParticles(GpuParticles2D gpuParticles2D, Character speaker)
+    static void SpawnParticles(GpuParticles2D gpuParticles2D, Character speaker, bool needsSpeaker = true)
     {
+        if (!needsSpeaker)
+        {
+            gpuParticles2D.Show();
+            gpuParticles2D.Restart();
+            gpuParticles2D.Emitting = true;
+            return;
+        }
         TextureRect portrait = CharacterStage.Instance.GetCharacterPortrait(speaker);
         if (portrait == null)
             return;

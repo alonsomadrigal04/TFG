@@ -14,9 +14,15 @@ public partial class PlayerBehaviour : CharacterBody3D
     [ExportGroup("SFX")]
     [Export] public InteractFlavourAnimation exclamationSprite;
     [Export] public DustParticles dustParticles;
+    [Export] MeshInstance3D shadowProxy;
     Direction lastDirection = Direction.Front;
     bool isBlocked = false;
     readonly List<IInteractable> interactablesInRange = [];
+
+    public override void _Ready()
+    {
+        shadowProxy.Show();
+    }
 
     public override void _PhysicsProcess(double delta)
     {

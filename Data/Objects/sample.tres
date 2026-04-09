@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ObjectData" format=3 uid="uid://cqmqs4fxktoou"]
 
-[ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/IDeinventario.png" id="1_lcs21"]
+[ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/PH/IDeinventario.png" id="1_lcs21"]
 [ext_resource type="Script" uid="uid://bjqo5x42b7xkd" path="res://Scripts/Exploration/resources/ObjectData.cs" id="1_oefx4"]
 [ext_resource type="Material" uid="uid://bj7ooxpjx5vh" path="res://Assets/Objects/3DModels/CoffePot/CoffeepotMaterial.tres" id="2_8qewl"]
 [ext_resource type="ArrayMesh" uid="uid://doplufyjbd8wu" path="res://Assets/Objects/3DModels/CoffePot/Coffeepot.obj" id="3_xwdab"]

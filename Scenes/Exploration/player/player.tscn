@@ -247,6 +247,8 @@
 [ext_resource type="Texture2D" uid="uid://behmacuf2uf7x" path="res://Assets/Animations/Treya/WalkingFrontAnimation/FrontAnimation_00096.png" id="245_lfjpr"]
 [ext_resource type="PackedScene" uid="uid://exe28x4hiba5" path="res://Assets/Particles/dust.tscn" id="246_fi1rh"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_fi1rh"]
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_eojwj"]
 height = 4.0
 radius = 0.7
@@ -988,12 +990,18 @@ animations = [{
 "speed": 24.0
 }]
 
-[node name="Player" type="CharacterBody3D" unique_id=1961554038 node_paths=PackedStringArray("animatedSprite3D", "exclamationSprite", "dustParticles")]
+[node name="Player" type="CharacterBody3D" unique_id=1961554038 node_paths=PackedStringArray("animatedSprite3D", "exclamationSprite", "dustParticles", "shadowProxy")]
 script = ExtResource("1_1f3pn")
 animatedSprite3D = NodePath("AnimatedSprite3D")
 exclamationSprite = NodePath("Exclamation")
 dustParticles = NodePath("DustParticles")
+shadowProxy = NodePath("ShadowProxy")
 metadata/_edit_lock_ = true
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="." unique_id=1645429205]
+transform = Transform3D(1.4112751, 0, 0, 0, 4.916134, 0, 0, 0, 0.034331143, 0, 2.392354, 0)
+cast_shadow = 3
+mesh = SubResource("BoxMesh_fi1rh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=745000325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0001464, 0)
@@ -1022,3 +1030,7 @@ frame_progress = 0.7635309
 
 [node name="DustParticles" parent="." unique_id=391103126 instance=ExtResource("246_fi1rh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23982358, -0.0065428615)
+
+[node name="PlayerLight" type="OmniLight3D" parent="." unique_id=619277056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7645185, 0)
+light_energy = 0.2

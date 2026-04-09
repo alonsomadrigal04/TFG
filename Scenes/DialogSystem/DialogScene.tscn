@@ -30,16 +30,16 @@
 [ext_resource type="AudioStream" uid="uid://dp4gfkp0uh8iq" path="res://Audio/Sounds/flash.wav" id="20_12ppt"]
 [ext_resource type="AudioStream" uid="uid://bs2rmf7k3b1re" path="res://Audio/Sounds/NextSentence.wav" id="20_qgo6h"]
 [ext_resource type="AudioStream" uid="uid://bos70rcos6hng" path="res://Audio/Sounds/exclamation.wav" id="20_uq5m1"]
-[ext_resource type="Texture2D" uid="uid://dyeujum83bbmn" path="res://Assets/UI/rueda.png" id="21_7awbk"]
 [ext_resource type="Script" uid="uid://bbh5xd5cchgu0" path="res://Scripts/DialogSystem/ItemInteractionMenu.cs" id="21_cxyfr"]
 [ext_resource type="AudioStream" uid="uid://1x0qf7pvxjd7" path="res://Audio/Sounds/Impact_1.wav" id="21_ttbwo"]
 [ext_resource type="AudioStream" uid="uid://djnu3xm715pa7" path="res://Audio/Sounds/FlavourSounds/question2.wav" id="21_xx6ch"]
 [ext_resource type="AudioStream" uid="uid://dcv4i2qsfnv6w" path="res://Audio/Sounds/FlavourSounds/exclamation1.wav" id="22_4nqsh"]
 [ext_resource type="AudioStream" uid="uid://dwt4hxb583njp" path="res://Audio/BagNotification.wav" id="22_ipu37"]
-[ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/IDeinventario.png" id="22_ngurm"]
-[ext_resource type="Texture2D" uid="uid://bvvmfv7rray7o" path="res://Assets/UI/copper.png" id="22_r68ee"]
-[ext_resource type="Texture2D" uid="uid://dbu3gw56pruc" path="res://Assets/UI/rueda_1.png" id="25_wr3cw"]
+[ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/PH/IDeinventario.png" id="22_ngurm"]
+[ext_resource type="Texture2D" uid="uid://bvvmfv7rray7o" path="res://Assets/UI/PH/copper.png" id="22_r68ee"]
+[ext_resource type="Texture2D" uid="uid://cfna65dtgmjfo" path="res://Assets/UI/InventoryWhell.png" id="24_p8x5j"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="26_yr3c2"]
+[ext_resource type="Texture2D" uid="uid://dn6ob4eug2mj2" path="res://Assets/UI/InventoryCenter.png" id="27_2370t"]
 [ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="27_mmhpi"]
 [ext_resource type="Texture2D" uid="uid://b3cc6g5i0fd45" path="res://Assets/UI/UsarObjectoBoton.png" id="30_p8x5j"]
 [ext_resource type="Texture2D" uid="uid://dfd3qqt0lixup" path="res://Assets/UI/UsarObjetoCuadro.png" id="31_p8x5j"]
@@ -459,17 +459,15 @@ offset_bottom = 720.0
 grow_horizontal = 2
 pivot_offset = Vector2(640, 53)
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1664417285]
 layout_mode = 0
-offset_left = 347.0
-offset_top = -60.0
-offset_right = 931.2923
-offset_bottom = 221.0
+offset_left = 343.0
+offset_top = -105.0
+offset_right = 927.2923
+offset_bottom = 176.0
 texture = ExtResource("17_p8x5j")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="ItemLabel" type="Label" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1122127271]
 layout_mode = 1
@@ -477,16 +475,14 @@ anchors_preset = -1
 anchor_left = 0.50600004
 anchor_right = 0.50600004
 offset_left = -266.68005
-offset_top = 25.0
 offset_right = 250.31995
-offset_bottom = 163.0
+offset_bottom = 138.0
 pivot_offset = Vector2(225, 41)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 34
 text = "Has conseguido!"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 node_paths=PackedStringArray("sounds") instance=ExtResource("2_50ct6")]
 layout_mode = 1
@@ -607,12 +603,13 @@ ItemName = NodePath("VBoxContainer/ObjectName")
 sounds = NodePath("../../../AudioManager")
 decorationCopperFrame = NodePath("Spinner/Frame")
 ButtonSpinnerDisplay = NodePath("ButtonSpinnerDisplay")
+metadata/_edit_lock_ = true
 
 [node name="Spinner" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=892568672]
 z_index = 3
 position = Vector2(47.999996, 45.999996)
 scale = Vector2(0.67791665, 0.67791665)
-texture = ExtResource("21_7awbk")
+texture = ExtResource("24_p8x5j")
 
 [node name="Frame" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1120215889]
 z_index = -1
@@ -638,16 +635,17 @@ scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
 
 [node name="ButtonSpinnerDisplay" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=464232412]
-position = Vector2(47.999996, 46)
+z_index = 3
+position = Vector2(47.000004, 47.000004)
 scale = Vector2(0.73, 0.73)
-texture = ExtResource("25_wr3cw")
+texture = ExtResource("27_2370t")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=661815887]
 z_index = 2
 layout_mode = 0
-offset_left = 340.0
+offset_left = 381.0
 offset_top = 59.0
-offset_right = 609.0
+offset_right = 650.0
 offset_bottom = 176.0
 
 [node name="ObjectName" type="Label" parent="GeneralLayout/DialogSystem/ItemMenu/VBoxContainer" unique_id=154131091]

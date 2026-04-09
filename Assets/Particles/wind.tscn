@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cp1fdwher20a4"]
+
+[sub_resource type="Gradient" id="Gradient_c52p8"]
+offsets = PackedFloat32Array(0, 0.408, 0.64, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.7623703, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b7oqe"]
+gradient = SubResource("Gradient_c52p8")
+
+[sub_resource type="Curve" id="Curve_46g85"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50362325, 0.11319351), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cq8a2"]
+curve = SubResource("Curve_46g85")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jafgq"]
+lifetime_randomness = 0.43
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 10, 20)
+spread = 10.0
+initial_velocity_min = 3.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.39999998
+scale_curve = SubResource("CurveTexture_cq8a2")
+color_ramp = SubResource("GradientTexture1D_b7oqe")
+turbulence_noise_strength = 0.2
+turbulence_noise_scale = 3.0
+turbulence_noise_speed = Vector3(0.3, 0.3, 0.3)
+turbulence_influence_min = 0.006
+turbulence_influence_max = 0.006
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_duqn5"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.156)
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_6ps6a"]
+material = SubResource("StandardMaterial3D_duqn5")
+section_length = 2.0
+
+[sub_resource type="Gradient" id="Gradient_b7oqe"]
+offsets = PackedFloat32Array(0, 0.264, 0.79924244, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.9471689, 0, 0.9471689, 0.947, 0.86307913, 0.06363241, 0.86307913, 0.8629366, 0.408, 0.408, 0.408, 0.408)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_46g85"]
+gradient = SubResource("Gradient_b7oqe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cq8a2"]
+emission_shape = 3
+emission_box_extents = Vector3(20, 10, 20)
+spread = 10.0
+initial_velocity_min = 2.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0, 1, 1)
+color_initial_ramp = SubResource("GradientTexture1D_46g85")
+turbulence_enabled = true
+turbulence_noise_strength = 0.4
+turbulence_noise_scale = 2.0
+turbulence_influence_min = 0.010000001
+turbulence_influence_max = 0.010000001
+
+[sub_resource type="PointMesh" id="PointMesh_jafgq"]
+
+[node name="WindRoot" type="Node3D" unique_id=1833939752]
+
+[node name="WindCore" type="GPUParticles3D" parent="." unique_id=102811350]
+amount = 10
+lifetime = 9.0
+randomness = 1.0
+transform_align = 2
+trail_enabled = true
+trail_lifetime = 1.4000000000000001
+process_material = SubResource("ParticleProcessMaterial_jafgq")
+draw_pass_1 = SubResource("TubeTrailMesh_6ps6a")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=837144833]
+amount = 300
+lifetime = 11.37
+process_material = SubResource("ParticleProcessMaterial_cq8a2")
+draw_pass_1 = SubResource("PointMesh_jafgq")

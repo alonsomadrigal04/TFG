@@ -11,6 +11,10 @@
 [ext_resource type="Resource" uid="uid://buofe2bke4jxd" path="res://Data/Objects/cafetera.tres" id="8_jxm86"]
 [ext_resource type="Texture2D" uid="uid://dguf425opjq2o" path="res://Assets/3D/BondFire/Texture/bonfire logs txtr.png" id="10_hjfww"]
 [ext_resource type="PackedScene" uid="uid://dpde5hkvuqtc0" path="res://Assets/Particles/Fire.tscn" id="11_hjfww"]
+[ext_resource type="Script" uid="uid://dauu7ky3wsoqd" path="res://Scenes/Exploration/ExplorationZones/BoneFire.cs" id="12_745qm"]
+[ext_resource type="AudioStream" uid="uid://ci2rj2i8o01m6" path="res://Audio/Sounds/AmbientSounds/BoneFire.mp3" id="13_y808e"]
+[ext_resource type="PackedScene" uid="uid://cp1fdwher20a4" path="res://Assets/Particles/wind.tscn" id="14_r8nds"]
+[ext_resource type="AudioStream" uid="uid://blylle7lsf30u" path="res://Audio/Sounds/AmbientSounds/DesertAmbience.mp3" id="15_uayis"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_745qm"]
 panorama = ExtResource("4_2ovw4")
@@ -23,8 +27,16 @@ sky_material = SubResource("PanoramaSkyMaterial_745qm")
 background_mode = 2
 background_energy_multiplier = 1.48
 sky = SubResource("Sky_y808e")
+ambient_light_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+ambient_light_sky_contribution = 0.2
+ambient_light_energy = 0.13
+tonemap_mode = 3
+tonemap_exposure = 0.33
 glow_enabled = true
 glow_blend_mode = 0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.9452769, 1, 1, 1)
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_uayis"]
 
@@ -100,11 +112,8 @@ environment = SubResource("Environment_r8nds")
 camera_attributes = SubResource("CameraAttributesPhysical_uayis")
 compositor = SubResource("Compositor_jxm86")
 
-[node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
-visible = false
-
 [node name="Player" parent="." unique_id=1961554038 instance=ExtResource("4_745qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.250385, 0.5, -3.6045752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.790144, 0.975981, -16.380077)
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=201284183]
 metadata/_edit_lock_ = true
@@ -118,12 +127,13 @@ transform = Transform3D(0.9999998, -0.0006187713, 2.3885163e-05, 0.0006187641, 0
 mesh = SubResource("BoxMesh_m1cl4")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=113618063 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.359186, 2.8485312, -0.29643822)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.624266, 2.8485312, -9.505987)
+cull_mask = 1048573
 script = ExtResource("5_y808e")
 target = NodePath("../Player")
 
 [node name="Object" parent="." unique_id=336918594 instance=ExtResource("7_uayis")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35, 0.5, -7.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.63084, 0.5, -15.1258745)
 ObjectInfo = ExtResource("8_jxm86")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=757806959]
@@ -173,3 +183,30 @@ skeleton = NodePath("")
 
 [node name="Flames" parent="." unique_id=1216438305 instance=ExtResource("11_hjfww")]
 transform = Transform3D(1.385, 0, 0, 0, 1.385, 0, 0, 0, 1.385, -20.570492, 1.4149144, -15.116969)
+
+[node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1121685087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.664766, 2.2701323, -15.167492)
+light_color = Color(1, 0.79595864, 0.48452926, 1)
+light_volumetric_fog_energy = 2.953
+shadow_enabled = true
+shadow_bias = 0.651
+shadow_normal_bias = 0.0
+shadow_blur = 6.174
+omni_range = 11.78
+script = ExtResource("12_745qm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=753922685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.464548, 1.5219965, -15.00403)
+stream = ExtResource("13_y808e")
+autoplay = true
+
+[node name="WindRoot" parent="." unique_id=1833939752 instance=ExtResource("14_r8nds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.516628, 8.225475, -20.254791)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1555692601]
+stream = ExtResource("15_uayis")
+volume_db = -3.0
+autoplay = true

@@ -127,24 +127,19 @@ public partial class UiStage : Node
         sounds.NewItem.Play();
 
         Vector2 originalPosition = itemNotificationOriginalPosition;
-        Vector2 hiddenPosition = originalPosition + new Vector2(0f, 28f);
-        Vector2 exitPosition = originalPosition + new Vector2(0f, -18f);
+        Vector2 hiddenPosition = originalPosition + new Vector2(0f, -300f);
 
         itemNotification.Position = hiddenPosition;
         itemNotification.Modulate = Colors.White with { A = 0f };
-        itemNotification.Scale = Vector2.One * 0.92f;
 
         Tween tweenIn = CreateTween();
         tweenIn.SetParallel(true);
 
         tweenIn.TweenProperty(itemNotification, "position", originalPosition, 0.32f)
-            .SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+            .SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
 
         tweenIn.TweenProperty(itemNotification, "modulate", Colors.White, 0.16f)
             .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
-
-        tweenIn.TweenProperty(itemNotification, "scale", Vector2.One * 1.06f, 0.18f)
-            .SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
 
         await ToSignal(tweenIn, Tween.SignalName.Finished);
 
@@ -153,10 +148,7 @@ public partial class UiStage : Node
         Tween tweenOut = CreateTween();
         tweenOut.SetParallel(true);
 
-        tweenOut.TweenProperty(itemNotification, "position", exitPosition, 0.28f)
-            .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
-
-        tweenOut.TweenProperty(itemNotification, "scale", Vector2.One, 0.18f)
+        tweenOut.TweenProperty(itemNotification, "position", hiddenPosition, 0.28f)
             .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
 
         tweenOut.TweenProperty(itemNotification, "modulate", Colors.White with { A = 0f }, 0.24f)

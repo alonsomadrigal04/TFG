@@ -17,12 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://78syml0hccxr" path="res://Scenes/Exploration/ExplorationZones/exploration_zone_camp_fire.tscn" id="11_4q8tf"]
 [ext_resource type="AudioStream" uid="uid://c4lqyd6ruk82q" path="res://Audio/Fadeout.wav" id="12_wxwew"]
 [ext_resource type="Script" uid="uid://t3vn56657cob" path="res://Scenes/InventoryBehaviour.cs" id="13_8r6kd"]
-[ext_resource type="Texture2D" uid="uid://fl22g2k1vlws" path="res://Assets/UI/mochilaepica.png" id="13_x3xnh"]
 [ext_resource type="AudioStream" uid="uid://cq5rkjsqoxc1c" path="res://Audio/closingbag.wav" id="14_rajel"]
 [ext_resource type="AudioStream" uid="uid://bxcnl6o22lvpl" path="res://Audio/openingbag.wav" id="14_tfod6"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="15_356ba"]
 [ext_resource type="AudioStream" uid="uid://bsyg7qkfl15tr" path="res://Audio/daggerHit.wav" id="17_3jf1l"]
 [ext_resource type="AudioStream" uid="uid://m00y27g26i3x" path="res://Audio/flipPage1.wav" id="18_i0vto"]
+[ext_resource type="Texture2D" uid="uid://cjg2mxihh03y0" path="res://Assets/UI/mochilita.png" id="18_khs3t"]
 [ext_resource type="AudioStream" uid="uid://shkfldpv78ir" path="res://Audio/flipPage2.wav" id="19_3jf1l"]
 [ext_resource type="AudioStream" uid="uid://cnxb6xnbujtmh" path="res://Audio/flipPage3.wav" id="20_356ba"]
 [ext_resource type="AudioStream" uid="uid://cqoe1f1m07imo" path="res://Audio/flipPage4.wav" id="21_i4lct"]
@@ -1237,7 +1237,7 @@ offset_right = 690.0
 offset_bottom = 817.0
 scale = Vector2(0.12, 0.12)
 pivot_offset = Vector2(336.5, 400)
-texture = ExtResource("13_x3xnh")
+texture = ExtResource("18_khs3t")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Postprocesing/FX/PostProcess/Inventory" unique_id=197144105]
 

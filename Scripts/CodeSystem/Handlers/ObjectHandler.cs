@@ -25,18 +25,15 @@ public class ObjectHandler : ICommandHandler
         }
     }
 
-    private void ObjectDissappear(CommandToken commandToken)
+    void ObjectDissappear(CommandToken commandToken)
     {
         if(!ObjectStage.Instance.IsObjectInScene)
         {
             GD.PrintErr("[ObjectStage] SpecialItem there is no objects in the scene");
             return;
         }
-        string item = commandToken.Subject.ToLower();
-        if (!ObjectDataBase.LoadedSpecialItems.TryGetValue(item, out ObjectData objectData))
-            GD.PrintErr($"[ObjectStage] {item} is not registered");
-        Texture2D icon = objectData.Icon;
-        ObjectStage.Instance.DisappearObject(icon);
+
+        ObjectStage.Instance.DisappearObject();
     }
 
     void ObjectAppear(CommandToken commandToken)
