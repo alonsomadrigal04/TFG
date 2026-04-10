@@ -50,7 +50,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nssry"]
 shader = ExtResource("6_e0sb1")
-shader_parameter/lod = 2.6650001265875
+shader_parameter/lod = 1.278000060705
 shader_parameter/mix_percentage = 0.6070000288325
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgo6h"]
@@ -261,9 +261,9 @@ sounds = NodePath("AudioManager")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=907658383]
+layer = 2
 
 [node name="BgFrame" type="TextureRect" parent="Background" unique_id=1764284992]
-visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.47400004

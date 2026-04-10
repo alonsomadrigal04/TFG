@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ObjectData" format=3 uid="uid://buofe2bke4jxd"]
 
-[ext_resource type="Texture2D" uid="uid://20l7bf5g2xu1" path="res://Assets/Flavour/Exclamation.png" id="1_6ifuv"]
+[ext_resource type="Texture2D" uid="uid://dllj6dapr7fcq" path="res://Assets/Objects/Icons/madalena.jpg" id="1_6ifuv"]
 [ext_resource type="Material" uid="uid://bj7ooxpjx5vh" path="res://Assets/Objects/3DModels/CoffePot/CoffeepotMaterial.tres" id="2_1qpsx"]
 [ext_resource type="ArrayMesh" uid="uid://doplufyjbd8wu" path="res://Assets/Objects/3DModels/CoffePot/Coffeepot.obj" id="3_uhqb2"]
 [ext_resource type="Script" uid="uid://bjqo5x42b7xkd" path="res://Scripts/Exploration/resources/ObjectData.cs" id="4_2w0a5"]

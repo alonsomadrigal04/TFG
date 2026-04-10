@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://ccpm34rujuvtr" path="res://Assets/UI/CogerDejarBoton.png" id="30_4f4ik"]
 [ext_resource type="AudioStream" uid="uid://jcea17wsyvbw" path="res://Audio/PauseSound.wav" id="31_i1pr2"]
 [ext_resource type="AudioStream" uid="uid://c57e6pttdapxs" path="res://Audio/UnPuaseSound.wav" id="32_4f4ik"]
+[ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="34_0iyqm"]
 
 [sub_resource type="Animation" id="Animation_8r6kd"]
 resource_name = "CloseInventory"
@@ -1289,7 +1290,7 @@ mouse_filter = 2
 [node name="PauseLayer" type="CanvasLayer" parent="Postprocesing/PauseMenu" unique_id=1443689421]
 layer = 20
 
-[node name="PauseLayout" type="Control" parent="Postprocesing/PauseMenu/PauseLayer" unique_id=1520626626 node_paths=PackedStringArray("continueButton", "exitButton")]
+[node name="PauseLayout" type="Control" parent="Postprocesing/PauseMenu/PauseLayer" unique_id=1520626626 node_paths=PackedStringArray("musicSlider", "sfxSlider", "continueButton", "exitButton")]
 z_index = 10
 layout_mode = 3
 anchors_preset = 8
@@ -1305,6 +1306,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("28_khs3t")
+musicSlider = NodePath("BlackPanel/Music")
+sfxSlider = NodePath("BlackPanel/SFXSounds")
 continueButton = NodePath("ContinueButton")
 exitButton = NodePath("ExitButton")
 
@@ -1323,6 +1326,53 @@ offset_top = -105.0
 offset_right = 353.185
 offset_bottom = 769.0
 texture = ExtResource("29_i1pr2")
+
+[node name="MusicVolume2" type="Label" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=1471996750]
+layout_mode = 0
+offset_left = 550.815
+offset_top = 212.0
+offset_right = 826.815
+offset_bottom = 244.0
+theme_override_fonts/font = ExtResource("34_0iyqm")
+theme_override_font_sizes/font_size = 26
+text = "Ambient Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSounds" type="HSlider" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=809052446]
+layout_mode = 0
+offset_left = 550.815
+offset_top = 212.0
+offset_right = 833.815
+offset_bottom = 319.0
+max_value = 1.5
+step = 0.01
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="MusicVolume" type="Label" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=658900809]
+layout_mode = 0
+offset_left = 550.815
+offset_top = 319.0
+offset_right = 826.815
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("34_0iyqm")
+theme_override_font_sizes/font_size = 26
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="HSlider" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=769160863]
+layout_mode = 0
+offset_left = 550.815
+offset_top = 319.0
+offset_right = 833.815
+offset_bottom = 426.0
+max_value = 1.5
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 2
 
 [node name="ContinueButton" type="Button" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=489865440]
 visible = false
@@ -1375,6 +1425,7 @@ expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="PauseSounds" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1219337627]
+bus = &"SFX"
 
 [node name="PauseAnimator" type="AnimationPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=2025800477]
 libraries/ = SubResource("AnimationLibrary_i1pr2")
