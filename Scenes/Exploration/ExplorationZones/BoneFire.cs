@@ -10,7 +10,5 @@ public partial class BoneFire : OmniLight3D
         float t = Time.GetTicksMsec() * 0.1f;
         float flicker = noise.GetNoise1D(t) * 0.5f + 0.5f;
         LightEnergy = 3f - flicker * 2f;
-
-        GD.Print(flicker);
     }
 }
