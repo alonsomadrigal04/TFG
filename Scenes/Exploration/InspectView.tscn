@@ -1297,7 +1297,7 @@ layer = 2
 [node name="BackgroundFilter" type="ColorRect" parent="CanvasLayer" unique_id=1878827516]
 z_index = -1
 material = SubResource("ShaderMaterial_017go")
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1386,10 +1386,13 @@ metadata/_edit_lock_ = true
 
 [node name="ObjectDisapear" type="AudioStreamPlayer" parent="DebugScreen" unique_id=1668430278]
 stream = ExtResource("4_n1rb6")
+bus = &"SFX"
 
 [node name="VoiceLines" type="AudioStreamPlayer" parent="DebugScreen" unique_id=931790494]
+bus = &"Voices"
 
 [node name="Whoosh" type="AudioStreamPlayer" parent="DebugScreen" unique_id=196768376]
+bus = &"SFX"
 
 [node name="ThinkingTreya" type="Control" parent="." unique_id=669349350]
 anchors_preset = 0

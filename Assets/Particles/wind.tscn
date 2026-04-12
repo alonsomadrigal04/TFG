@@ -73,14 +73,16 @@ turbulence_influence_max = 0.010000001
 amount = 10
 lifetime = 9.0
 randomness = 1.0
+visibility_aabb = AABB(-20.45, -4, -20.33, 40.74, 17.98, 42.455)
 transform_align = 2
 trail_enabled = true
-trail_lifetime = 1.4000000000000001
+trail_lifetime = 1.4
 process_material = SubResource("ParticleProcessMaterial_jafgq")
 draw_pass_1 = SubResource("TubeTrailMesh_6ps6a")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=837144833]
-amount = 300
+amount = 200
 lifetime = 11.37
+visibility_aabb = AABB(-20.45, -4, -20.33, 40.74, 17.98, 42.455)
 process_material = SubResource("ParticleProcessMaterial_cq8a2")
 draw_pass_1 = SubResource("PointMesh_jafgq")

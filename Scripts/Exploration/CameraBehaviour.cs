@@ -29,7 +29,7 @@ public partial class CameraBehaviour : Camera3D
         Vector3 desired = target.GlobalPosition + offset;
         GlobalPosition = GlobalPosition.Lerp(desired, followSpeed * d);
 
-        HandleOcclusion(d);
+        //HandleOcclusion(d);
     }
 
     void HandleOcclusion(float delta)

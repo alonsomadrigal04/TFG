@@ -5,17 +5,17 @@ public partial class ObjectBehaviour : StaticBody3D, IInteractable
 {
     [Export] public ObjectData ObjectInfo { get; private set; }
     [Export] Texture2D inspectImg;
-    [Export] public MeshInstance3D visualMesh;
     [Export] CollisionShape3D colliderBody;
     [Export] Area3D interactionArea;
     [Export] CollisionShape3D interactionRangeShape;
     [Export] InteractIconAnimation interactIcon;
     [Export] float interactionRange = 3f;
-    
 
     public int priority { get; set; } = 10;
 
-    Vector3 size;
+    private Vector3 size = Vector3.One;
+    private Node3D instanceRoot;
+    private MeshInstance3D meshInstance;
 
     public override void _Ready()
     {
@@ -25,7 +25,7 @@ public partial class ObjectBehaviour : StaticBody3D, IInteractable
         if (!ValidateObjectInfo())
             return;
 
-        ConfigureVisualMesh();
+        InstantiateVisual();
         ConfigureColliderBody();
         ConfigureInteractionArea();
         ConfigureInteractIcon();
@@ -42,7 +42,7 @@ public partial class ObjectBehaviour : StaticBody3D, IInteractable
 
     private bool ValidateReferences()
     {
-        if (visualMesh == null || colliderBody == null || interactionArea == null || interactionRangeShape == null || interactIcon == null)
+        if (colliderBody == null || interactionArea == null || interactionRangeShape == null || interactIcon == null)
         {
             GD.PrintErr("[ObjectBehaviour] Missing exported references.");
             return false;
@@ -59,26 +59,35 @@ public partial class ObjectBehaviour : StaticBody3D, IInteractable
             return false;
         }
 
-        if (ObjectInfo.Model == null)
+        if (ObjectInfo.Scene == null)
         {
-            GD.PrintErr("[ObjectBehaviour] Object has no model assigned.");
-            size = Vector3.Zero;
+            GD.PrintErr("[ObjectBehaviour] Object has no scene assigned.");
             return false;
         }
 
         return true;
     }
 
-    private void ConfigureVisualMesh()
+    private void InstantiateVisual()
     {
-        if (ObjectInfo.Material == null)
-            GD.PrintErr("[ObjectBehaviour] Object has no material assigned.");
+        instanceRoot = ObjectInfo.Scene.Instantiate<Node3D>();
+        AddChild(instanceRoot);
 
-        visualMesh.Mesh = ObjectInfo.Model;
-        visualMesh.Scale = new Vector3(0.3f, 0.3f, 0.3f);
-        visualMesh.MaterialOverride = ObjectInfo.Material;
+        meshInstance = instanceRoot.FindChild("*", true, false) as MeshInstance3D;
 
-        size = visualMesh.GetAabb().Size * visualMesh.Scale;
+        if (meshInstance == null)
+        {
+            GD.PrintErr("[ObjectBehaviour] No MeshInstance3D found in scene.");
+            size = Vector3.One;
+            return;
+        }
+
+        if (ObjectInfo.Material != null)
+            meshInstance.MaterialOverride = ObjectInfo.Material;
+
+        // instanceRoot.Scale = new Vector3(1f, 0.3f, 0.3f);
+
+        size = meshInstance.GetAabb().Size * instanceRoot.Scale;
     }
 
     private void ConfigureColliderBody()
@@ -89,9 +98,6 @@ public partial class ObjectBehaviour : StaticBody3D, IInteractable
             box.Size = size;
     }
 
-	/// <summary>
-	/// Configures the interaction area by setting its position and shape based on the object's size and the specified interaction range.
-	/// </summary>
     private void ConfigureInteractionArea()
     {
         interactionArea.Position = new Vector3(0f, size.Y / 2f, 0f);

@@ -7,7 +7,16 @@ using System.Linq;
 public partial class PlayerBehaviour : CharacterBody3D
 {
     [ExportGroup("MOVEMENT SETTINGS")]
-    [Export] public float Speed { get; set; } = 5f;
+    private float speed = 5f;
+    [Export] public float Speed 
+    { 
+        get { return speed; }
+        set
+        {
+            speed = value;
+            animatedSprite3D.SpeedScale = value / 2;
+        } 
+    }
     [Export] public float Aceleration { get; set; } = 50f;
     [Export] public AnimatedSprite3D animatedSprite3D;
 
@@ -21,6 +30,7 @@ public partial class PlayerBehaviour : CharacterBody3D
 
     public override void _Ready()
     {
+        animatedSprite3D.SpeedScale = speed;
         shadowProxy.Show();
     }
 
@@ -41,11 +51,13 @@ public partial class PlayerBehaviour : CharacterBody3D
 
         if (Input.IsActionPressed("moveRight"))
         {
+            animatedSprite3D.Animation = "Right";
             newDirection = Direction.Right;
             direction.X += 1;
         }
         if (Input.IsActionPressed("moveLeft"))
         {
+            animatedSprite3D.Animation = "Left";
             newDirection = Direction.Left;
             direction.X -= 1;
         }
@@ -56,7 +68,7 @@ public partial class PlayerBehaviour : CharacterBody3D
         }
         if (Input.IsActionPressed("moveNear"))
         {
-            animatedSprite3D.Animation = "Walk";
+            animatedSprite3D.Animation = "Front";
             newDirection = Direction.Front;
             direction.Z += 1;
         }
@@ -88,8 +100,17 @@ public partial class PlayerBehaviour : CharacterBody3D
     {
         if (Input.IsActionJustPressed("interact") && interactablesInRange.Count > 0)
         {
+            GD.Print("Interact");
             IInteractable element = interactablesInRange.OrderByDescending(i => i.priority).FirstOrDefault();
             element?.Interact();
+        }
+        if (Input.IsActionJustPressed("sprint"))
+        {
+            Speed = 7;
+        }
+        if (Input.IsActionJustReleased("sprint"))
+        {
+            Speed = 5;
         }
 
     }

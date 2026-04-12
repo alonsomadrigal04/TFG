@@ -711,26 +711,26 @@ bus = &"Voices"
 
 [node name="NewItem" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2078408255]
 stream = ExtResource("22_ipu37")
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="OutQuestion" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=996070193]
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="Soft" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1644472377]
 stream = ExtResource("7_5t315")
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="Impact2" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1189898246]
 stream = ExtResource("21_ttbwo")
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="Question" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=908864086]
 stream = ExtResource("21_xx6ch")
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1870237864]
 stream = ExtResource("22_4nqsh")
-bus = &"Voices"
+bus = &"SFX"
 
 [node name="Flash" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1153603871]
 stream = ExtResource("20_12ppt")
@@ -768,9 +768,12 @@ bus = &"SFX"
 
 [node name="Spining" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1799688762]
 stream = SubResource("AudioStreamRandomizer_r68ee")
+bus = &"SFX"
 
 [node name="ClockDisplay" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=938678772]
 stream = ExtResource("39_jn18p")
+bus = &"SFX"
 
 [node name="ClockHide" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2001161895]
 stream = ExtResource("41_3b5i8")
+bus = &"SFX"
