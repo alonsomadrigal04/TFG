@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Utility;
 
 public class GameStateHandler : ICommandHandler
 {
@@ -11,7 +12,8 @@ public class GameStateHandler : ICommandHandler
         ">",
         "<",
         "needs",
-        "setflag"
+        "setflag",
+        "wait"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -33,9 +35,19 @@ public class GameStateHandler : ICommandHandler
             case "setflag":
                 ParseFlag(commandToken);
                 break;
+            case "wait":
+                HandleWaitCondition(commandToken);
+                break;
             default:
                 break;
         }
+    }
+
+    static void HandleWaitCondition(CommandToken commandToken)
+    {
+        ActionBus.ActionStarted();
+
+        GodotExtensions.Wait(commandToken.Arguments[0].ToFloat(), ActionBus.ActionFinished);
     }
 
     void ParseFlag(CommandToken commandToken)
@@ -56,7 +68,7 @@ public class GameStateHandler : ICommandHandler
 
         ObjectData objectData = ObjectDataBase.GetObject(commandToken.Arguments[0]);
         if(!ObjectDataBase.PlayerInventory.Contains(objectData)){
-            GameManager.Instance.dialogManager.StartDialog(args[2].ToUpper());
+            GameManager.Instance.DialogManager.StartDialog(args[2].ToUpper());
         }
     }
 
@@ -78,11 +90,11 @@ public class GameStateHandler : ICommandHandler
         {
             case ">":
                     if(targetAfinity > args[0].ToInt())
-                    GameManager.Instance.dialogManager.StartDialog(args[2].ToUpper());
+                    GameManager.Instance.DialogManager.StartDialog(args[2].ToUpper());
                 break;
             case "<":
                     if(targetAfinity < args[0].ToInt())
-                        GameManager.Instance.dialogManager.StartDialog(args[2].ToUpper());
+                        GameManager.Instance.DialogManager.StartDialog(args[2].ToUpper());
                 break;
             default:
                 break;

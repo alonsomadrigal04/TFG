@@ -1,0 +1,61 @@
+﻿uid;code;type;speaker;text;next
+A1;UI off;;;;
+A2;UI inventory off;;;;
+A3;UI transparent;;;;
+A4;Dialog move center;;;;
+A5;timer wait 3;;;;
+A6;Music play BgMusic1;;;;
+A7;timer wait 2;;;;
+A8;title dramatic Decisión;;;;
+A9;;say;Narrator;[speed s=0.1]Las decisiones [/speed][speed s=1] [/speed]son lo que separa a los honrados de los mezquinos.;
+A10;;say;Narrator;[w]O eso dicen.[/w];
+A11;;say;Narrator;Las desgracias caen a la gente de forma aleatoria.;
+A12;;say;Narrator;Pero cuando alguien tropieza una y otra vez con la misma piedra, deja de parecer casualidad.;
+A13;;say;Narrator;Quizá tengas las ideas claras.;
+A14;;say;Narrator;Quizá solo te estás castigando por volver a equivocarte.;
+A15;;say;Narrator;O simplmente te estas equivocando.;
+A16;;say;Narrator;¿Existen de verdad las decisiones equivocadas?;
+A17;;say;Narrator;¿Tú qué piensas, toda decisión decide que dejas de [s]ser[/s]?;
+A18;;choice/Soft;;Si|No;A20|A23
+A19;;;;;
+A20;;say;Narrator;Curioso;
+A21;;say;Narrator;No te tenía por alguien tan decidido.;A26
+A22;;;;;
+A23;;say;Narrator;¿Sabes que no puedes huir, verdad?;
+A24;;say;Narrator;El honor te persigue;A26
+A25;;;;;
+A26;UI off;;;;
+A27;UI inventory off;;;;
+A28;UI transparent;;;;
+A29;timer wait 2;;;;
+A30;title dramatic Venganza;;;;
+A31;;say;Narrator;Pongamos que eres un granjero honrado.;
+A32;;say;Narrator;Trabajas la tierra, cuidas tu ganado y  aguantas como puedas los inviernos.;
+A36;;say;Narrator;Pero tú señor feudal es un avaro.;
+A37;;say;Narrator;Tu familia enferma tu ganado se reduce;
+A38;;say;Narrator;Te reduce tu territorio en época de cría;
+A39;;say;Narrator;Sube los precios en invierno.;
+A40;;say;Narrator;Te aprieta cuando la familia enferma.;
+A41;;say;Narrator;Te quita terreno en plena cría.;
+A42;;say;Narrator;El señor feudal no lo necesita.;
+A43;;say;Narrator;Lo hace para recordarte que puede hacerlo.;
+A44;;say;Narrator;Un día, sin embargo, el terrateniente cae enfermo.;
+A45;;say;Narrator;Y por alguna razón, acude a ti.;
+A46;;say;Narrator;Te pide que lo cuides y habla con calma.;
+A47;;say;Narrator;Incluso parece arrepentido.;
+A48;;say;Feudo;Si me curo, juro que recompensaré tu buena voluntad.;
+A49;;say;Feudo;Has servido bien, a pesar de mis faltas.;
+A50;;say;Feudo;[speed s=0.07][s]Lo siento.[/s][/speed].;
+A51;;say;Feudo;[speed s=0.1][s]No quiero morir[/s][/speed].;
+A52;;say;Narrator;Tienes la medicina en la mano derecha.;
+A53;;say;Narrator;Y el veneno en la izquierda.;
+A54;;say;Narrator;¿Cuál le das?;
+A55;;choice/Soft;;veneno|medicina;A58|A58
+A56;;say;Narrator;…;
+A57;;say;Narrator;Ya veo;
+A58;UI off;;;;
+A59;timer wait 2;;;;
+A60;title dramatic Honor;;;;
+A58;UI off;;;;
+A59;timer wait 2;;;;
+A60;title dramatic Honor;;;;

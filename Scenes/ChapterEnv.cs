@@ -40,6 +40,15 @@ public partial class ChapterEnv : Control
         
     }
 
+    public override void _Input(InputEvent e)
+    {
+        if (e.IsActionPressed("skip"))
+        {
+            animationPlayer.Seek(animationPlayer.CurrentAnimationLength -0.1f, true);
+        }
+    }
+
+
     void SetNameLabel(string name) => chapterLabel.Text = name;
     void SetSubTitleLabel(string subtitle) => subTitleLabel.Text = subtitle;
 

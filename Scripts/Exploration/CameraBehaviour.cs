@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public partial class CameraBehaviour : Camera3D
 {
     [Export] Node3D target;
+    public bool IsActive = false;
 
     Vector3 offset = new(0f, 3.5f, 7.2f);
     float followSpeed = 5f;
@@ -21,7 +22,7 @@ public partial class CameraBehaviour : Camera3D
 
     public override void _Process(double delta)
     {
-        if (target == null)
+        if (target == null || !IsActive)
             return;
 
         float d = (float)delta;

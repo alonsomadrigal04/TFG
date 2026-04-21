@@ -8,10 +8,13 @@ public partial class UiStage : Node
     public static UiStage Instance { get; private set; }
     [Export] AudioManager sounds;
     [Export] Control textBox;
+    [Export] DialogManager dialogManager;
     [Export] Label rememberText;
     [Export] Sprite2D rememberImage;
     [Export] Control itemNotification;
     [Export] Label itemNotificationLabel;
+    [Export] Label dramaticText;
+    [Export] ItemInteractionMenu inventory;
     Vector2 itemNotificationOriginalPosition;
 
     public override void _Ready()
@@ -21,17 +24,24 @@ public partial class UiStage : Node
             QueueFree();
             return;
         }
+        GD.Print(inventory);
         Instance = this;
 
         itemNotificationOriginalPosition = itemNotification.Position;
         itemNotification.Modulate = itemNotification.Modulate with {A = 0};
         itemNotification.Hide();
+        dramaticText.Hide();
 
     }
 
     public void HideTextBox()
     {
         textBox.Hide();
+    }
+
+    public void HideInventory()
+    {
+        inventory.Hide();
     }
     public void ShowTextBox()
     {
@@ -57,6 +67,48 @@ public partial class UiStage : Node
         tween.SetParallel().TweenProperty(textBox, "position:y", originalPosition.Y, 0.5f);
 
         tween.Finished += ActionBus.ActionFinished;
+    }
+
+    public void AnimateDramaticText(string title)
+    {
+        ActionBus.ActionStarted();
+        dramaticText.Text = char.ToUpper(title[0]) + title[1..];
+        dramaticText.Show();
+        sounds.Chorus1.Play();
+        Vector2 originalScale = dramaticText.Scale;
+
+        dramaticText.Modulate = dramaticText.Modulate with {A = 0};
+        
+
+        Tween tween = CreateTween();
+        tween.SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
+        tween.SetParallel();
+        tween.TweenDelegate<Vector2>(
+            v => dramaticText.Scale = v,
+            new Vector2(1,1),
+            new Vector2(1,1) * 0.5f,
+            2f
+        );
+
+        tween.TweenDelegate(
+            v => dramaticText.Modulate = new Color(1,1,1, v),
+            0,
+            1,
+            1f
+        );
+
+        tween.SetParallel(false);
+                tween.TweenDelegate(
+            v => dramaticText.Modulate = new Color(1,1,1, v),
+            1,
+            0,
+            1f
+        );
+
+        tween.Finished += () =>{
+            ActionBus.ActionFinished();
+            dramaticText.Scale = originalScale;
+        };
     }
 
     public void AnimateRemember(string name)
@@ -158,5 +210,35 @@ public partial class UiStage : Node
     public void CleanEffects()
     {
         AnimateHideTextBox();
+    }
+
+    public void SetTransparent()
+    {
+        dialogManager.textTyper.changeTextBox(TextboxTypes.Transparent);
+    }
+
+    public void UncoverTextBox()
+    {
+        textBox.Modulate = textBox.Modulate with { A = 1f };
+    }
+
+    internal void PlaySound(CommandToken commandToken)
+    {
+        if(SoundsDataBase.LoadedSounds.TryGetValue(commandToken.Arguments[0], out AudioStream sound))
+        {
+           AudioStreamPlayer player = sounds.sfxPool.GetReleased();
+           player.Stream = sound;
+           player.Bus = char.ToUpper(commandToken.Subject[0]) + commandToken.Subject[1..];
+           player.Play();
+        }
+        else
+        {
+            GD.Print("Something goes wrong");
+        }
+    }
+
+    internal void MoveUI()
+    {
+        dialogManager.SetTextBoxPosition();
     }
 }

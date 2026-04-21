@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://bf32lw2rbxmpp" path="res://Scripts/API/Backgrounds/BackgroundStage.cs" id="3_0fon4"]
 [ext_resource type="Shader" uid="uid://bnexcwx6ebdcd" path="res://Scenes/testing/sepiafilter.gdshader" id="3_fml5s"]
 [ext_resource type="Script" uid="uid://d3tcne0rh1fac" path="res://Scripts/ChoiceFiles/ChoiceMaker.cs" id="4_ak5v8"]
-[ext_resource type="AudioStream" uid="uid://87cvjbbgsl6n" path="res://Audio/Sounds/Impact1.wav" id="5_oho3u"]
 [ext_resource type="Material" uid="uid://bgda7arqbu6dr" path="res://Assets/ShadersDefault/OptionButton.tres" id="6_d3awe"]
 [ext_resource type="Shader" uid="uid://ctleyojck05gm" path="res://Scenes/testing/blur.gdshader" id="6_e0sb1"]
 [ext_resource type="PackedScene" uid="uid://dgqessqarqca4" path="res://Assets/Particles/purpleHazard.tscn" id="6_n6ldu"]
@@ -28,7 +27,6 @@
 [ext_resource type="AudioStream" uid="uid://odxfbcs8ta2c" path="res://Audio/Sounds/flashBack.wav" id="19_st2a4"]
 [ext_resource type="AudioStream" uid="uid://bpuy6lgehnrsn" path="res://Audio/Sounds/Impact2.ogg" id="20_0rqdt"]
 [ext_resource type="AudioStream" uid="uid://dp4gfkp0uh8iq" path="res://Audio/Sounds/flash.wav" id="20_12ppt"]
-[ext_resource type="AudioStream" uid="uid://bs2rmf7k3b1re" path="res://Audio/Sounds/NextSentence.wav" id="20_qgo6h"]
 [ext_resource type="AudioStream" uid="uid://bos70rcos6hng" path="res://Audio/Sounds/exclamation.wav" id="20_uq5m1"]
 [ext_resource type="Script" uid="uid://bbh5xd5cchgu0" path="res://Scripts/DialogSystem/ItemInteractionMenu.cs" id="21_cxyfr"]
 [ext_resource type="AudioStream" uid="uid://1x0qf7pvxjd7" path="res://Audio/Sounds/Impact_1.wav" id="21_ttbwo"]
@@ -44,9 +42,15 @@
 [ext_resource type="Texture2D" uid="uid://b3cc6g5i0fd45" path="res://Assets/UI/UsarObjectoBoton.png" id="30_p8x5j"]
 [ext_resource type="Texture2D" uid="uid://dfd3qqt0lixup" path="res://Assets/UI/UsarObjetoCuadro.png" id="31_p8x5j"]
 [ext_resource type="AudioStream" uid="uid://cvyte0s0h2lkm" path="res://Audio/Sounds/remember.wav" id="32_pfbu6"]
+[ext_resource type="AudioStream" uid="uid://kgv4b1fveuyf" path="res://Audio/BgMusic1.wav" id="33_157ha"]
+[ext_resource type="AudioStream" uid="uid://dc4s7bto7g5bb" path="res://Audio/Sounds/Buttons/press.wav" id="35_jm2e1"]
+[ext_resource type="AudioStream" uid="uid://cykli5r756vv4" path="res://Audio/Flipcard.wav" id="37_5u86h"]
 [ext_resource type="AudioStream" uid="uid://g3nc3pdpi00g" path="res://Audio/rotating.wav" id="37_w3e4s"]
 [ext_resource type="AudioStream" uid="uid://cbhu3b60bg67d" path="res://Audio/ClockDisplay.mp3" id="39_jn18p"]
 [ext_resource type="AudioStream" uid="uid://dhfieslkjnckf" path="res://Audio/ClockHide.wav" id="41_3b5i8"]
+[ext_resource type="AudioStream" uid="uid://ds8wa6tm3a2u7" path="res://Audio/nextSentencev2.wav" id="43_5u86h"]
+[ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="45_5u86h"]
+[ext_resource type="AudioStream" uid="uid://xife0ekje1j4" path="res://Audio/Chorus1.wav" id="48_2370t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nssry"]
 shader = ExtResource("6_e0sb1")
@@ -241,12 +245,27 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttbwo"]
 shader = ExtResource("19_4nqsh")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r68ee"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5u86h"]
+random_pitch = 1.4142135
+streams_count = 1
+stream_0/stream = ExtResource("37_5u86h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nx8yl"]
+random_pitch = 1.3348398
+streams_count = 1
+stream_0/stream = ExtResource("43_5u86h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_avqk1"]
 random_pitch = 1.122462
 streams_count = 1
 stream_0/stream = ExtResource("37_w3e4s")
 
-[node name="DialogManager" type="Control" unique_id=628620988 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox", "sounds")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2370t"]
+random_pitch = 1.3348398
+streams_count = 1
+stream_0/stream = ExtResource("48_2370t")
+
+[node name="DialogManager" type="Control" unique_id=628620988 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox", "sounds", "itemMenu", "choiceLayout")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -258,6 +277,8 @@ choiceMaker = NodePath("GeneralLayout/DialogSystem/ChoiceMaker")
 textTyper = NodePath("GeneralLayout/DialogSystem/DialogBox")
 dialogueBox = NodePath("GeneralLayout/DialogSystem/DialogBox")
 sounds = NodePath("AudioManager")
+itemMenu = NodePath("GeneralLayout/DialogSystem/ItemMenu")
+choiceLayout = NodePath("GeneralLayout/DialogSystem/ChoiceLayout")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=907658383]
@@ -312,14 +333,9 @@ offset_bottom = 720.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="FlavourAnimationModule" type="Node" parent="ShadersTop" unique_id=280782029 node_paths=PackedStringArray("sounds", "MiniAnimations")]
+[node name="FlavourAnimationModule" type="Node" parent="ShadersTop" unique_id=280782029 node_paths=PackedStringArray("sounds")]
 script = ExtResource("11_n1mmy")
 sounds = NodePath("../../AudioManager")
-MiniAnimations = {
-0: NodePath("interrogation"),
-1: NodePath("exclamation"),
-2: NodePath("PurpleHazard")
-}
 
 [node name="PurpleHazard" parent="ShadersTop/FlavourAnimationModule" unique_id=538173490 instance=ExtResource("6_n6ldu")]
 position = Vector2(645, 720)
@@ -405,14 +421,17 @@ imageFrame = NodePath("../../../../Background/BgFrame")
 sepiaFilter = NodePath("../../../../ShadersTop/SepiaFilter")
 sounds = NodePath("../../../../AudioManager")
 
-[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("sounds", "textBox", "rememberText", "rememberImage", "itemNotification", "itemNotificationLabel")]
+[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("sounds", "textBox", "dialogManager", "rememberText", "rememberImage", "itemNotification", "itemNotificationLabel", "dramaticText", "inventory")]
 script = ExtResource("6_qhtgt")
 sounds = NodePath("../../../../AudioManager")
 textBox = NodePath("../../DialogBox")
+dialogManager = NodePath("../../../..")
 rememberText = NodePath("../../RememberUI/Label")
 rememberImage = NodePath("../../RememberUI/Sprite2D")
 itemNotification = NodePath("../../NewItemNotification")
 itemNotificationLabel = NodePath("../../NewItemNotification/ItemLabel")
+dramaticText = NodePath("../../../DramaticTitle/Label")
+inventory = NodePath("../../ItemMenu")
 
 [node name="BlurFilter" type="ColorRect" parent="GeneralLayout/DialogSystem" unique_id=764443550]
 visible = false
@@ -479,6 +498,7 @@ offset_right = 250.31995
 offset_bottom = 138.0
 pivot_offset = Vector2(225, 41)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("27_mmhpi")
 theme_override_font_sizes/font_size = 34
 text = "Has conseguido!"
 horizontal_alignment = 1
@@ -498,14 +518,7 @@ mouse_filter = 2
 sounds = NodePath("../../../AudioManager")
 metadata/_edit_lock_ = true
 
-[node name="ChoiceMaker" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1185339650 node_paths=PackedStringArray("sounds", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="ChoiceMaker" type="Node" parent="GeneralLayout/DialogSystem" unique_id=698217489 node_paths=PackedStringArray("sounds", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 script = ExtResource("4_ak5v8")
 sounds = NodePath("../../../AudioManager")
 animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
@@ -607,7 +620,7 @@ metadata/_edit_lock_ = true
 
 [node name="Spinner" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=892568672]
 z_index = 3
-position = Vector2(47.999996, 45.999996)
+position = Vector2(63.642086, 64.64208)
 scale = Vector2(0.67791665, 0.67791665)
 texture = ExtResource("24_p8x5j")
 
@@ -624,19 +637,19 @@ texture = ExtResource("22_ngurm")
 
 [node name="NextIconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1059250872]
 z_index = 1
-position = Vector2(-167.01146, 73.90666)
+position = Vector2(-198.61157, 65.43269)
 scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
 
 [node name="PreviousIconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1850297980]
 z_index = 1
-position = Vector2(10.018406, -174.41158)
+position = Vector2(4.9532833, -210.41241)
 scale = Vector2(0.800925, 0.800925)
 texture = ExtResource("22_ngurm")
 
 [node name="ButtonSpinnerDisplay" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu" unique_id=464232412]
 z_index = 3
-position = Vector2(47.000004, 47.000004)
+position = Vector2(63.64209, 62.64209)
 scale = Vector2(0.73, 0.73)
 texture = ExtResource("27_2370t")
 
@@ -685,13 +698,49 @@ scale = Vector2(0.8327068, 0.8327068)
 texture = ExtResource("31_p8x5j")
 metadata/_edit_lock_ = true
 
-[node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "outQuestion", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem", "Spining", "ClockDisplay", "ClockHide")]
+[node name="DramaticTitle" type="Control" parent="GeneralLayout" unique_id=2099592669]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GeneralLayout/DramaticTitle" unique_id=2066151417]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.5
+offset_top = -129.5
+offset_right = 461.5
+offset_bottom = 129.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(462, 131)
+theme_override_fonts/font = ExtResource("26_yr3c2")
+theme_override_font_sizes/font_size = 215
+text = "Dramatico"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioManager" type="Node" parent="." unique_id=1691001399 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "outQuestion", "flipCard", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem", "Spining", "ClockDisplay", "ClockHide", "Chorus1")]
 script = ExtResource("19_fml5s")
 question = NodePath("Question")
 exclamation = NodePath("Exclamation")
 soft = NodePath("Soft")
 impact = NodePath("Impact2")
-outQuestion = NodePath("Spining")
+outQuestion = NodePath("OutQuestion")
+flipCard = NodePath("FlipCard")
 Hover = NodePath("Hover")
 Press = NodePath("Press")
 Shake = NodePath("Shake")
@@ -705,8 +754,14 @@ NewItem = NodePath("NewItem")
 Spining = NodePath("Spining")
 ClockDisplay = NodePath("ClockDisplay")
 ClockHide = NodePath("ClockHide")
+Chorus1 = NodePath("Chorus1")
+
+[node name="BGMusic1" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1159589514]
+stream = ExtResource("33_157ha")
+bus = &"Voices"
 
 [node name="Talk" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1423005477]
+volume_db = 20.0
 bus = &"Voices"
 
 [node name="NewItem" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2078408255]
@@ -714,10 +769,15 @@ stream = ExtResource("22_ipu37")
 bus = &"SFX"
 
 [node name="OutQuestion" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=996070193]
+stream = ExtResource("35_jm2e1")
 bus = &"SFX"
 
 [node name="Soft" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1644472377]
 stream = ExtResource("7_5t315")
+bus = &"SFX"
+
+[node name="FlipCard" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1376555965]
+stream = SubResource("AudioStreamRandomizer_5u86h")
 bus = &"SFX"
 
 [node name="Impact2" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1189898246]
@@ -743,8 +803,8 @@ volume_db = -13.0
 bus = &"SFX"
 
 [node name="NextSentence" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1376746039]
-stream = ExtResource("20_qgo6h")
-volume_db = -16.0
+stream = SubResource("AudioStreamRandomizer_nx8yl")
+volume_db = 9.321
 bus = &"SFX"
 
 [node name="FlashBack" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=344085264]
@@ -756,7 +816,7 @@ stream = ExtResource("20_0rqdt")
 bus = &"SFX"
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2066069177]
-stream = ExtResource("5_oho3u")
+stream = ExtResource("45_5u86h")
 bus = &"SFX"
 
 [node name="Press" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1433978679]
@@ -767,7 +827,7 @@ stream = ExtResource("32_pfbu6")
 bus = &"SFX"
 
 [node name="Spining" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1799688762]
-stream = SubResource("AudioStreamRandomizer_r68ee")
+stream = SubResource("AudioStreamRandomizer_avqk1")
 bus = &"SFX"
 
 [node name="ClockDisplay" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=938678772]
@@ -776,4 +836,8 @@ bus = &"SFX"
 
 [node name="ClockHide" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2001161895]
 stream = ExtResource("41_3b5i8")
+bus = &"SFX"
+
+[node name="Chorus1" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=918165088]
+stream = SubResource("AudioStreamRandomizer_2370t")
 bus = &"SFX"

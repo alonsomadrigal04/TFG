@@ -6,6 +6,13 @@ public partial class PauseMenu : Control
     [ExportGroup("Sliders")]
     [Export] HSlider musicSlider;
     [Export] HSlider sfxSlider;
+    [Export] HSlider voiceSlider;
+
+    [Export] AudioStreamPlayer indicatorSoundMusic;
+    [Export] AudioStreamPlayer indicatorSoundSFX;
+    [Export] AudioStreamPlayer indicatorSoundVoices;
+
+
 
     [ExportGroup("Buttons")]
 
@@ -19,14 +26,19 @@ public partial class PauseMenu : Control
 
         sfxSlider.ValueChanged += UpdateSFXVolume;
         musicSlider.ValueChanged += UpdateMusicVolume;
+        voiceSlider.ValueChanged += UpdateVoicesVolume;
 
         InitializeSliders();
     }
+
+
 
     void InitializeSliders()
     {
         SetSliderToBusValue(sfxSlider, "SFX");
         SetSliderToBusValue(musicSlider, "Music");
+        SetSliderToBusValue(voiceSlider, "Voices");
+
     }
 
     void SetSliderToBusValue(HSlider slider, string busName)
@@ -48,11 +60,20 @@ public partial class PauseMenu : Control
     void UpdateSFXVolume(double value)
     {
         SetBusVolume("SFX", (float)value);
+        indicatorSoundSFX.Play();
     }
 
+    void UpdateVoicesVolume(double value)
+    {
+        SetBusVolume("Voices", (float)value);
+        indicatorSoundVoices.Play();
+        
+    }
     void UpdateMusicVolume(double value)
     {
         SetBusVolume("Music", (float)value);
+        indicatorSoundMusic.Play();
+
     }
 
     void SetBusVolume(string busName, float value)

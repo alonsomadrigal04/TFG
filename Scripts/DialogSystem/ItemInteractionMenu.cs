@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Utility;
 
-public partial class ItemInteractionMenu : Node
+public partial class ItemInteractionMenu : Control
 {
     [ExportGroup("Spinner Config")]
     [Export] Sprite2D Spinner { get; set; }
@@ -182,4 +182,5 @@ public partial class ItemInteractionMenu : Node
         float inv = -Spinner.Rotation;
         foreach (var icon in Icons) icon.Rotation = inv;
     }
+
 }

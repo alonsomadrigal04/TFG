@@ -39,7 +39,7 @@ public partial class ChapterBehaviour : Node
 
         if (!string.IsNullOrEmpty(chapter.StartConversation))
         {
-            GameManager.Instance.dialogManager.StartDialogScene(ConversationsDataBase.GetConversation(chapter.StartConversation));
+            GameManager.Instance.DialogManager.StartDialogScene(ConversationsDataBase.GetConversation(chapter.StartConversation));
         }
     }
 

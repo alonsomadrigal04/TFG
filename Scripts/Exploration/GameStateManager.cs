@@ -61,7 +61,7 @@ public partial class GameStateManager : Node
     {
         Player.SetInputBlocked(true);
 
-        GameManager.Instance.dialogManager.StartDialogScene(ConversationsDataBase.GetConversation(npc.CharacterInfo.Name));
+        GameManager.Instance.DialogManager.StartDialogScene(ConversationsDataBase.GetConversation(npc.CharacterInfo.Name));
     }
 
 }

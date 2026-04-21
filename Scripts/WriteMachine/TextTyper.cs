@@ -1,22 +1,23 @@
-using Game.Common.Modules;
 using Godot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Utility;
 
 
 public partial class TextTyper : Control
 {
     [ExportGroup("Text Boxes")]
     [Export] RichTextLabel dialogBox;
+    [Export] TextureRect dialogBoxFrame;
+
     [Export] RichTextLabel nameBox;
     [Export] AudioManager sounds;
     [Export] SentenceCompleteHud sentenceHud;
     AudioStreamRandomizer audioStreamRandomizer;
+    [ExportGroup("Text Boxes Style")]
+    [Export] Godot.Collections.Dictionary<TextboxTypes, Texture2D> textBoxesStyle = [];
 
     public bool isTyping;
     public bool skipRequested = false;
@@ -45,7 +46,10 @@ public partial class TextTyper : Control
     {
         isTyping = true;
         sentenceHud.StopAndReset();
-        nameBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{speaker.Name}[/color]";
+        if(speaker.Name == "Narrator")
+            nameBox.Text = "";
+        else
+            nameBox.Text = $"[color=#{speaker.TextColor.ToHtml()}]{speaker.Name}[/color]";
         dialogBox.Text = "";
         skipRequested = false;
         
@@ -74,7 +78,7 @@ public partial class TextTyper : Control
         string colorText = speaker.TextColor.ToHtml();
             if(CharacterStage.IsThinking)
                 colorText = Colors.Green.ToHtml();
-        dialogBox.Text = $"[color=#{colorText}]{cleanText}{closingTags}[/color]";
+        //dialogBox.Text = $"[color=#{colorText}]{cleanText}{closingTags}[/color]";
 
         //audioModule.StopAll();
         isTyping = false;
@@ -103,7 +107,7 @@ public partial class TextTyper : Control
             if (waitTime > 0)
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
-            if (!char.IsWhiteSpace(c) || c == '.' || c == '!' || c == '?')
+            if (!char.IsWhiteSpace(c) & c != '.' & c != '!' & c != '?')
                 sounds.Talk.Play();
 
             cleanText += c;
@@ -177,4 +181,27 @@ public partial class TextTyper : Control
         }
         return waitTime;
     }
+
+    public void changeTextBox(TextboxTypes textboxType)
+    {
+        switch (textboxType)
+        {
+            case TextboxTypes.Transparent:
+                dialogBoxFrame.Texture = textBoxesStyle[TextboxTypes.Transparent];
+                break;
+            case TextboxTypes.Normal:
+                dialogBoxFrame.Texture = textBoxesStyle[TextboxTypes.Normal];
+                break;
+            default:
+            dialogBoxFrame.Texture = textBoxesStyle[TextboxTypes.Normal];
+                break;
+        }
+    }
+
 }
+
+public enum TextboxTypes
+{
+    Transparent,
+    Normal
+} 

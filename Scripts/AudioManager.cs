@@ -1,8 +1,28 @@
+using Game.Utility;
 using Godot;
 using System;
 [GlobalClass]
 public partial class AudioManager : Node
 {
+    public Pool<AudioStreamPlayer> sfxPool;
+
+    public override void _Ready()
+    {
+        sfxPool = new Pool<AudioStreamPlayer>(
+            create: () =>
+            {
+                AudioStreamPlayer audioStreamPlayer = new()
+                {
+                    Bus = "SFX"
+                };
+                AddChild(audioStreamPlayer);
+                return audioStreamPlayer;
+            },
+            isReleased: (audioStreamPlayer) => !audioStreamPlayer.Playing
+        );
+    }
+
+
     [ExportGroup("FLAVOUR TEXT")]
     [Export] public AudioStreamPlayer2D question {get; set;}
     [Export] public AudioStreamPlayer2D exclamation {get; set;}
@@ -11,6 +31,8 @@ public partial class AudioManager : Node
     [Export] public AudioStreamPlayer2D soft {get; set;}
     [Export] public AudioStreamPlayer2D impact {get; set;}
     [Export] public AudioStreamPlayer2D outQuestion {get; set;}
+    [Export] public AudioStreamPlayer2D flipCard {get; set;}
+
 
     [ExportGroup("DECISION MAKING")]
     [Export] public AudioStreamPlayer2D Hover {get; set;}
@@ -30,11 +52,6 @@ public partial class AudioManager : Node
     [Export] public AudioStreamPlayer2D Spining {get; set;}
     [Export] public AudioStreamPlayer2D ClockDisplay {get; set;}
     [Export] public AudioStreamPlayer2D ClockHide {get; set;}
-
-
-
-
-
-
+    [Export] public AudioStreamPlayer2D Chorus1 {get; set;}
 
 }

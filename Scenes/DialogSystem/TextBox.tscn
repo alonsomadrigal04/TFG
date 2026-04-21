@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 [ext_resource type="Texture2D" uid="uid://cbhwjvlx50sij" path="res://Assets/UI/dialogBox.png" id="2_4xj7t"]
+[ext_resource type="Texture2D" uid="uid://ccg0urlj0wv0" path="res://Assets/UI/transparent.png" id="2_nvnf7"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_s4oty"]
 [ext_resource type="Texture2D" uid="uid://dhhubtdruxl1y" path="res://Assets/UI/nextDialogIcon.png" id="4_h4oya"]
 [ext_resource type="Script" uid="uid://be60ixvdb27x8" path="res://Scenes/DialogSystem/SentenceCompleteHud.cs" id="5_h4oya"]
 
-[node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "nameBox", "sentenceHud")]
+[node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "dialogBoxFrame", "nameBox", "sentenceHud")]
 z_index = 2
 layout_mode = 3
 anchor_left = 0.080000006
@@ -21,8 +22,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1hl6y")
 dialogBox = NodePath("TextureRect/MarginContainer/DialogText")
+dialogBoxFrame = NodePath("TextureRect")
 nameBox = NodePath("TextureRect/MarginContainer2/SpeakerName")
 sentenceHud = NodePath("SentenceCompleteHUD")
+textBoxesStyle = Dictionary[int, Texture2D]({
+0: ExtResource("2_nvnf7"),
+1: ExtResource("2_4xj7t")
+})
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1808204549]
 layout_mode = 1
@@ -48,14 +54,14 @@ anchor_right = 0.81001085
 anchor_bottom = 0.8451995
 offset_left = -0.3062439
 offset_top = 0.059761047
-offset_right = 0.7312012
-offset_bottom = -4.4712524
+offset_right = 0.5057373
+offset_bottom = -4.4709473
 metadata/_edit_use_anchors_ = true
 
 [node name="DialogText" type="RichTextLabel" parent="TextureRect/MarginContainer" unique_id=1750638901]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_s4oty")
-theme_override_font_sizes/normal_font_size = 82
+theme_override_font_sizes/normal_font_size = 58
 theme_override_font_sizes/bold_font_size = 82
 theme_override_font_sizes/bold_italics_font_size = 82
 theme_override_font_sizes/italics_font_size = 82

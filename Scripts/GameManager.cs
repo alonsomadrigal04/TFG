@@ -28,11 +28,15 @@ public partial class GameManager : Node
 
 
     [Export] public ChapterBehaviour chapterBehaviour;
+
+    [ExportSubgroup("GAME SETTINGS")]
+    public bool CanMove = false;
+
     public string CurrentChapterTitle => chapterBehaviour.GetChapterName();
     public string CurrentChapterSubTitle => chapterBehaviour.GetChapterSubName();
 
-    public DialogManager dialogManager;
-    public bool IsDialogueActive {get; private set;}= false;
+    public DialogManager DialogManager;
+    public bool IsDialogueActive {get; set;} = false;
 
     static CancellationTokenSource changeEnvCts;
     static Node currentEnvironment;
@@ -68,7 +72,8 @@ public partial class GameManager : Node
         ObjectDataBase.Load();
         ToolKit.InitializePositions();
         ConversationsDataBase.Load();
-        dialogManager = GetNode<DialogManager>(dialogManagerPath);
+        SoundsDataBase.Load();
+        DialogManager = GetNode<DialogManager>(dialogManagerPath);
 
     }
 
@@ -89,7 +94,7 @@ public partial class GameManager : Node
     {
         GameStarted = true;
         ChangeEnvironment(GameEnvironments.OnlyTextBox);
-        instance.dialogManager.StartDialogScene(ConversationsDataBase.GetConversation(instance.debugDialogName));
+        instance.DialogManager.StartDialogScene(ConversationsDataBase.GetConversation(instance.debugDialogName));
     }
 
     public async static void ChangeEnvironment(PackedScene newEnv, float loadTimeFactor = 1)
@@ -157,15 +162,15 @@ public partial class GameManager : Node
 
     public override void _Process(double delta)
     {
-        if (dialogManager.IsSpeaking && Input.IsActionJustPressed("ui_accept") && !ActionBus.IsBusy)
+        if (DialogManager.IsSpeaking && Input.IsActionJustPressed("ui_accept") && !ActionBus.IsBusy)
         {
-            dialogManager.OnNextRequested();
+            DialogManager.OnNextRequested();
         }
-        if(dialogManager.IsSpeaking && Input.IsActionPressed("fasterDialog"))
+        if(DialogManager.IsSpeaking && Input.IsActionPressed("fasterDialog"))
         {
             Engine.TimeScale *= 2;
         }
-        if (dialogManager.IsSpeaking && Input.IsActionJustReleased("fasterDialog"))
+        if (DialogManager.IsSpeaking && Input.IsActionJustReleased("fasterDialog"))
         {
             Engine.TimeScale = 1;
         }

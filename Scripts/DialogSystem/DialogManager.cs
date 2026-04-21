@@ -8,9 +8,14 @@ using System.Net.Http.Headers;
 public partial class DialogManager : Node
 {
     [Export] ChoiceMaker choiceMaker;
-    [Export] TextTyper textTyper;
+    [Export] public TextTyper textTyper;
     [Export] TextTyper dialogueBox;
     [Export] AudioManager sounds;
+    [Export] Control itemMenu;
+    [Export] Control choiceLayout;
+
+    [Signal] public delegate void DialogEndedEventHandler();
+
     Dictionary<string, DialogLine> dialogLines;
     List<string> orderedUids;
     DialogLine currentLine;
@@ -24,6 +29,9 @@ public partial class DialogManager : Node
     public override void _EnterTree()
     {
         choiceMaker.ChoiceSelected += OnChoiceSelected;
+        dialogueBox.Hide();
+        itemMenu.Hide();
+        choiceLayout.Hide();
     }
 
     public bool IsTyping() => textTyper.isTyping;
@@ -41,6 +49,8 @@ public partial class DialogManager : Node
     public void StartDialogScene(Dialog sceneName)
     {
         IsSpeaking = true;
+        textTyper.Show();
+        GameManager.Instance.IsDialogueActive = true;
         dialogLines = sceneName.Conversation;
         orderedUids = sceneName.OrderedUids;
         BackgroundStage.Instance.SetBlurBg();
@@ -55,8 +65,6 @@ public partial class DialogManager : Node
             GD.PrintErr("No lines found in the CSV.");
         }
     }
-
-
 
     /// <summary>
     /// Starts a dialog line given its UID. 
@@ -147,7 +155,6 @@ public partial class DialogManager : Node
         if (isInChoiceMode)
             return;
 
-        sounds.NextSentence.Play();
 
         string nextUid = currentLine.Next;
         NextUidType nextType = ParseNextUid(nextUid);
@@ -179,12 +186,14 @@ public partial class DialogManager : Node
             case NextUidType.DiferentLine:
                 if (dialogLines.ContainsKey(nextUid))
                 {
+                    sounds.NextSentence.Play();
                     StartDialog(nextUid);
                     return;
                 }
                 break;
         }
 
+        sounds.NextSentence.Play();
         GoToNextOrderedLine();
     }
 
@@ -243,8 +252,12 @@ public partial class DialogManager : Node
     void EndDialog()
     {
         IsSpeaking = false;
+        
+        GameManager.Instance.IsDialogueActive = false;
         GameStateManager.Instance.ChangeState(State.Explore);
         DesactivateDialogFrameWork();
+
+        EmitSignal(nameof(DialogEnded));
 
         GD.Print("End of dialogue.");
     }
@@ -286,6 +299,10 @@ public partial class DialogManager : Node
         return NextUidType.DiferentLine;
     }
 
+    internal void SetTextBoxPosition()
+    {
+        dialogueBox.Position = ToolKit.GetScreenPosition(ScreenPosition.Center) - new Vector2(dialogueBox.Size.X / 2, dialogueBox.Size.Y / 2);
+    }
 }
 
 public enum NextUidType

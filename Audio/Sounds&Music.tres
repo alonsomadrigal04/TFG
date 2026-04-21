@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SoundsLibrary" format=3 uid="uid://cxlyerxclra1s"]
+
+[ext_resource type="AudioStream" uid="uid://kgv4b1fveuyf" path="res://Audio/BgMusic1.wav" id="1_2v5lu"]
+[ext_resource type="Script" uid="uid://pcq10egp6y5d" path="res://Scripts/API/SFX & Music/SoundsLibrary.cs" id="1_157nu"]
+
+[resource]
+script = ExtResource("1_157nu")
+SoundsStored = Dictionary[String, AudioStream]({
+"bgmusic1": ExtResource("1_2v5lu")
+})
+metadata/_custom_type_script = "uid://pcq10egp6y5d"

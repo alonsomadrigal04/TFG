@@ -7,7 +7,7 @@ public static class CodeProcessor
     public static void RunCode(string rawCommandLine)
     {
         CommandToken commandToken = CommandTokenizer.ParseCommand(rawCommandLine);
-        commandRouter = new();
+        commandRouter ??= new();
         ICommandHandler handler = commandRouter.GetHandler(commandToken);
 
         handler.Execute(commandToken);
@@ -15,6 +15,7 @@ public static class CodeProcessor
 
     public static void TurnOffHandlers()
     {
+        commandRouter ??= new();
         commandRouter.SutDown();
     }
 }

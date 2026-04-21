@@ -25,7 +25,11 @@ public partial class PlayerBehaviour : CharacterBody3D
     [Export] public DustParticles dustParticles;
     [Export] MeshInstance3D shadowProxy;
     Direction lastDirection = Direction.Front;
-    bool isBlocked = false;
+    public bool IsBlocked
+    {
+        get => GameManager.Instance.IsDialogueActive;
+        set => GameManager.Instance.IsDialogueActive = value;
+    }
     readonly List<IInteractable> interactablesInRange = [];
 
     public override void _Ready()
@@ -36,7 +40,7 @@ public partial class PlayerBehaviour : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (!isBlocked)
+        if (!IsBlocked)
         {
             ManageMovement(delta);
             ManageInteractions();
@@ -133,7 +137,7 @@ public partial class PlayerBehaviour : CharacterBody3D
 
     public void SetInputBlocked(bool newBlockState)
     {
-        isBlocked = newBlockState;
+        IsBlocked = newBlockState;
     }
 }
 

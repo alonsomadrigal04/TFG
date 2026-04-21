@@ -182,6 +182,15 @@ public static class GodotExtensions
         return spawn;
     }
 
+    public static void Wait(float seconds, Action onFinished)
+    {
+        if (Engine.GetMainLoop() is not SceneTree tree)
+            return;
+
+        var timer = tree.CreateTimer(seconds);
+        timer.Timeout += () => onFinished?.Invoke();
+    }
+
     /// <summary> Calculates the total lifetime of a particle system, including all chained sub-emitters recursively.</summary>
     /// <param name="particles">The root particle system to evaluate.</param>
     /// <returns>The combined lifetime of this emitter and all its sub-emitters.</returns>

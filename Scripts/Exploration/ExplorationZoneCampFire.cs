@@ -17,6 +17,8 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
     [Export] CameraBehaviour cameraBehaviour;
     [Export] PlayerBehaviour player;
     [Export] StaticBody3D Stage;
+    [Export] AnimationPlayer animationPlayer;
+    DialogManager dialogManager;
 
     public void SpawnCharacters()
     {
@@ -46,6 +48,39 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
         GetPlayer();
         ValidateFields();
         SpawnCharacters();
+
+        GetDialogManager();
+
+        animationPlayer.AnimationFinished += HandleAnimations;
+        
+    }
+
+    private void HandleAnimations(StringName animName)
+    {
+        switch (animName)
+        {
+            case "Post_Prologue":
+                animationPlayer.Play("In_Gameplay");
+                break;
+            case "In_Gameplay":
+                cameraBehaviour.IsActive = true;
+                GameManager.Instance.IsDialogueActive = false;
+                break;
+
+        }
+    }
+
+    void GetDialogManager()
+    {
+        dialogManager = GameManager.Instance.DialogManager;
+        dialogManager.DialogEnded += SetAnimation;
+    }
+
+    void SetAnimation()
+    {
+        GameManager.Instance.IsDialogueActive = true;
+        animationPlayer.Play("Post_Prologue");
+        dialogManager.DialogEnded -= SetAnimation;
     }
 
     void GetPlayer()

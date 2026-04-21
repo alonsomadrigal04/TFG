@@ -5,7 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dyddrn2lof815" path="res://Scenes/Exploration/InspectView.tscn" id="3_hjfww"]
 [ext_resource type="Texture2D" uid="uid://cuc2di04exf0k" path="res://Assets/HDR/qwantani_moon_noon_puresky_4k.hdr" id="4_2ovw4"]
 [ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/player/player.tscn" id="4_745qm"]
+[ext_resource type="Texture2D" uid="uid://d0wa0diinkhnj" path="res://Assets/Animations/Treya/TreyaResources/whiteTreya.png" id="5_blpe6"]
 [ext_resource type="Script" uid="uid://dr5isq3vby701" path="res://Scripts/Exploration/CameraBehaviour.cs" id="5_y808e"]
+[ext_resource type="Texture2D" uid="uid://hjm8i0pwcg0h" path="res://Assets/Animations/Treya/TreyaResources/blackTreya.png" id="6_6b1p2"]
+[ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="6_i1x1g"]
 [ext_resource type="Texture2D" uid="uid://bx0saf8oh7tve" path="res://Assets/3D/bad_tent/source/Efortless tent_0.png" id="7_djent"]
 [ext_resource type="PackedScene" uid="uid://bt8xfctwne0hy" path="res://Scenes/Exploration/interactables/object/object.tscn" id="7_uayis"]
 [ext_resource type="Texture2D" uid="uid://cgmvurhskpin6" path="res://Assets/3D/bad_tent/textures/TCom_Fabric_SilkMedieval_header.jpg" id="8_55ksr"]
@@ -31,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://nf44kmjagcx6" path="res://Assets/3D/stone-pack/BigRock.tscn" id="26_qeitl"]
 [ext_resource type="Texture2D" uid="uid://dy2vuybb3s05h" path="res://Assets/3D/stone-pack/stone_pack_4.png" id="27_a01yt"]
 [ext_resource type="Texture2D" uid="uid://by50bec5l480s" path="res://Assets/3D/stone-pack/stone_pack_5.png" id="28_jvfm1"]
+[ext_resource type="AudioStream" uid="uid://c3eeyli2r3cqa" path="res://Audio/PrologueSounds.wav" id="32_ld6ji"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_745qm"]
 panorama = ExtResource("4_2ovw4")
@@ -58,6 +62,315 @@ volumetric_fog_sky_affect = 0.44
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_uayis"]
 
 [sub_resource type="Compositor" id="Compositor_jxm86"]
+
+[sub_resource type="Animation" id="Animation_6b1p2"]
+resource_name = "In_Gameplay"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scenario/Elements/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.5666666, 4.7, 5),
+"transitions": PackedFloat32Array(4.594785, 4.594785, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-2.4518242, 5.129331, 9.188756), Vector3(-2.452, 5.144, 10.764), Vector3(-2.452, 5.144, 10.764), Vector3(-2.444, 4.313, 16.808)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scenario/Elements/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.5666666, 4.7, 5),
+"transitions": PackedFloat32Array(4.594785, 4.594785, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.27925268, 0, 0), Vector3(-0.27925268, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cinematics/Control/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2333333, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_blpe6"]
+resource_name = "Post_Prologue"
+length = 9.066667
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cinematics/AnimationPlayer/CinematicSounds")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_ld6ji")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scenario/Elements/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7.8333335),
+"transitions": PackedFloat32Array(3.249009, 3.249009),
+"update": 0,
+"values": [Vector3(-113.554955, 9.046183, 1.92976), Vector3(-113.555, 8.161, 4.715)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scenario/Elements/Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.8333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.34906584)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cinematics/Just:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.9, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cinematics/Trust:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 8.166667, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cinematics/Yourself:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 8.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cinematics/Sprite3D:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 8.500364),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_blpe6"), ExtResource("6_6b1p2")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WorldEnvironment:environment:background_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 9.066667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WorldEnvironment:environment:volumetric_fog_enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 9.066667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WorldEnvironment:environment:background_color")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 8.466666, 8.499698),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.47788018, 0.47788012, 0.47788012, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Cinematics/Control/ColorRect:color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.5333333, 8.533334, 9.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ld6ji"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scenario/Elements/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-7.163391, 5.129331, 1.9648652)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scenario/Elements/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cinematics/Just:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cinematics/Trust:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cinematics/Yourself:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cinematics/Sprite3D:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_blpe6")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WorldEnvironment:environment:background_mode")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WorldEnvironment:environment:volumetric_fog_enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WorldEnvironment:environment:background_color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Cinematics/Control/ColorRect:color")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1x1g"]
+_data = {
+&"In_Gameplay": SubResource("Animation_6b1p2"),
+&"Post_Prologue": SubResource("Animation_blpe6"),
+&"RESET": SubResource("Animation_ld6ji")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cx1kg"]
 size = Vector3(0.17150879, 0.09447479, 0.171875)
@@ -204,6 +517,9 @@ size = Vector3(2.1533203, 1.1259766, 1.2167969)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37kug"]
 size = Vector3(183.49829, 181.89063, 200.5752)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ld6ji"]
+size = Vector3(4.928711, 1, 5.76001)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55ksr"]
 albedo_texture = ExtResource("19_djent")
@@ -430,7 +746,7 @@ size = Vector3(150.57813, 123.421936, 79.005806)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0v362"]
 size = Vector3(112.29736, 125.08411, 46.24182)
 
-[node name="ExplorationZoneCampFire" type="Node" unique_id=1900525975 node_paths=PackedStringArray("cameraBehaviour", "player", "Stage")]
+[node name="ExplorationZoneCampFire" type="Node" unique_id=1900525975 node_paths=PackedStringArray("cameraBehaviour", "player", "Stage", "animationPlayer")]
 script = ExtResource("1_cj88r")
 npcScene = ExtResource("2_hjfww")
 AlonsoPosition1 = Vector3(312, 32, -20)
@@ -438,12 +754,81 @@ AlonsoPosition2 = Vector3(0, 0, -20)
 cameraBehaviour = NodePath("Scenario/Elements/Camera3D")
 player = NodePath("Scenario/Elements/Player")
 Stage = NodePath("Scenario/Ground")
+animationPlayer = NodePath("Cinematics/AnimationPlayer")
 metadata/_custom_type_script = "uid://q4jme22dupru"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=530323316]
 environment = SubResource("Environment_r8nds")
 camera_attributes = SubResource("CameraAttributesPhysical_uayis")
 compositor = SubResource("Compositor_jxm86")
+
+[node name="Cinematics" type="Node3D" parent="." unique_id=2052511566]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics" unique_id=1140092819]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_i1x1g")
+
+[node name="CinematicSounds" type="AudioStreamPlayer" parent="Cinematics/AnimationPlayer" unique_id=52291253]
+
+[node name="Sprite3D" type="Sprite3D" parent="Cinematics" unique_id=1719623078]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, -113.52338, 6.3069496, 0.8666872)
+texture = ExtResource("5_blpe6")
+
+[node name="Just" type="Label3D" parent="Cinematics" unique_id=616033312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.03976, 9.784, -30)
+text = "JUST"
+font = ExtResource("6_i1x1g")
+font_size = 1498
+
+[node name="Trust" type="Label3D" parent="Cinematics" unique_id=1818395239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.61659, 9.784, -30)
+text = "TRUST"
+font = ExtResource("6_i1x1g")
+font_size = 1498
+
+[node name="Yourself" type="Label3D" parent="Cinematics" unique_id=1221513261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.5465, 8.06445, 1.8947983)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "YOURSELF"
+font = ExtResource("6_i1x1g")
+font_size = 187
+outline_size = 0
+
+[node name="Control" type="Control" parent="Cinematics" unique_id=1898997249]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(647, 355)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Cinematics/Control" unique_id=367478260]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 355)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Scenario" type="Node3D" parent="." unique_id=485272423]
 
@@ -664,18 +1049,24 @@ shape = SubResource("BoxShape3D_37kug")
 [node name="Elements" type="Node3D" parent="Scenario" unique_id=279166647]
 
 [node name="Player" parent="Scenario/Elements" unique_id=1961554038 instance=ExtResource("4_745qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1916695, 0.975981, 1.3107195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4442272, 0.8129549, 8.808306)
 
 [node name="Object" parent="Scenario/Elements" unique_id=336918594 instance=ExtResource("7_uayis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.956717, 0.9844111, -1.0873804)
 ObjectInfo = ExtResource("17_qeitl")
 
 [node name="Camera3D" type="Camera3D" parent="Scenario/Elements" unique_id=113618063 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.292717, 2.8485312, 6.9326115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.163391, 5.129331, 1.9648652)
 cull_mask = 1048573
 fov = 56.0
 script = ExtResource("5_y808e")
 target = NodePath("../Player")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenario/Elements" unique_id=143025789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.86999, 4.7001925, 1.3775125)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Elements/StaticBody3D" unique_id=2134969475]
+shape = SubResource("BoxShape3D_ld6ji")
 
 [node name="Ground" type="StaticBody3D" parent="Scenario" unique_id=201284183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -788,9 +1179,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.840815, 2.7832642, -14.008179)
 shape = SubResource("BoxShape3D_2ovw4")
 
-[node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
-visible = false
-
 [node name="MoonLight" type="DirectionalLight3D" parent="." unique_id=1035759556]
 transform = Transform3D(1, 0, 0, 0, 0.89493436, 0.4461978, 0, -0.4461978, 0.89493436, 0, 13.077069, 18.484531)
 light_energy = 0.3
@@ -799,6 +1187,7 @@ shadow_blur = 0.0
 sky_mode = 1
 
 [node name="EditorLight" type="DirectionalLight3D" parent="." unique_id=915341291]
+visible = false
 light_energy = 3.252
 editor_only = true
 
@@ -826,6 +1215,8 @@ shape = SubResource("BoxShape3D_qeitl")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Node3D/StaticBody3D" unique_id=271842168]
 transform = Transform3D(1, -7.460699e-14, -2.3293406e-21, 7.460699e-14, 1, 8.3518604e-23, -2.3716923e-20, 8.3518515e-23, 1, -55.648712, 112.370445, -16.67944)
 shape = SubResource("BoxShape3D_0v362")
+
+[node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
 
 [editable path="Scenario/Ground/MainGround/SmallRock1"]
 [editable path="Scenario/Ground/MainGround2/SmallRock1"]

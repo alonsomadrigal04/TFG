@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterPortraitSet" format=3 uid="uid://dxkmekraujpyo"]
+
+[ext_resource type="Script" uid="uid://b2obmv4nui3pe" path="res://Scripts/Characters/CharacterPortraitSet.cs" id="1_dabp8"]
+[ext_resource type="Texture2D" uid="uid://3s2ojhskyew4" path="res://Data/Backgrounds/Images/negro.jpg" id="1_w14qv"]
+
+[resource]
+script = ExtResource("1_dabp8")
+Portraits = Array[Texture2D]([ExtResource("1_w14qv")])
+metadata/_custom_type_script = "uid://b2obmv4nui3pe"

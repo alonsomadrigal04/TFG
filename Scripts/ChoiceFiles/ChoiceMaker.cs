@@ -14,6 +14,7 @@ public partial class ChoiceMaker : Node
     [Export] AudioManager sounds;
 
     [ExportGroup("Options")]
+    [Export] Control choiceLayout;
     [Export] AnimationPlayer animationPlayer;
     [Export] HBoxContainer optionsContainer;
     [Export] ShaderMaterial optionShader;
@@ -30,6 +31,7 @@ public partial class ChoiceMaker : Node
 
     public void ShowChoices(DialogLine line)
     {
+        choiceLayout.Show();
         string[] optionType = line.Type.Split('/', StringSplitOptions.TrimEntries);
         if(optionType.Length == 1)
             GD.PrintErr("Choice subType not declarated: try choice/Impact, choice/Soft");
@@ -83,6 +85,8 @@ public partial class ChoiceMaker : Node
         currentButtons.Add(button);
 
         button.SelectedSignal += ProcessSelection;
+        button.MouseEntered += HoverSounds;
+        
 
         button.AddChild(overlay);
         wrapper.AddChild(button);
@@ -94,7 +98,9 @@ public partial class ChoiceMaker : Node
         AnimateButtonEntry(button, wrapper.GetIndex());
     }
 
-    private void SetButtonTextSize()
+    void HoverSounds() => sounds.Hover.Play();
+
+    void SetButtonTextSize()
     {
         int count = currentButtons.Count;
         if (count == 0)
@@ -113,10 +119,13 @@ public partial class ChoiceMaker : Node
 
     async void ProcessSelection(int uid)
     {
+        sounds.outQuestion.Play();
         await AnimateOutChoice();
         string nextUid = nextOptions[uid];
         grayBack.Hide();
         shaderBack.Hide();
+
+        choiceLayout.Hide();
         ChoiceSelected?.Invoke(nextUid);
     }
 
@@ -206,7 +215,10 @@ public partial class ChoiceMaker : Node
     void ClearButtons()
     {
         foreach (var b in currentButtons)
+        {
+            b.MouseEntered -= HoverSounds;
             b.GetParent().QueueFree();
+        }
 
         currentButtons.Clear();
     }
@@ -214,6 +226,10 @@ public partial class ChoiceMaker : Node
 
     void AnimateButtonEntry(Button button, int index)
     {
+        AudioStreamPlayer player = sounds.sfxPool.GetReleased();
+        player.Stream = sounds.flipCard.Stream;
+        player.Play();
+
         Tween tween = CreateTween()
             .SetTrans(Tween.TransitionType.Expo)
             .SetEase(Tween.EaseType.Out);

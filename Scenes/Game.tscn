@@ -34,6 +34,8 @@
 [ext_resource type="AudioStream" uid="uid://jcea17wsyvbw" path="res://Audio/PauseSound.wav" id="31_i1pr2"]
 [ext_resource type="AudioStream" uid="uid://c57e6pttdapxs" path="res://Audio/UnPuaseSound.wav" id="32_4f4ik"]
 [ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="34_0iyqm"]
+[ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="35_jn8rg"]
+[ext_resource type="AudioStream" uid="uid://dlk6gg7wgvgox" path="res://Audio/Voices/Alonso.wav" id="35_umnjm"]
 
 [sub_resource type="Animation" id="Animation_8r6kd"]
 resource_name = "CloseInventory"
@@ -1047,14 +1049,29 @@ _data = {
 &"RESET": SubResource("Animation_4f4ik")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_umnjm"]
+random_pitch = 1.4983071
+streams_count = 1
+stream_0/stream = ExtResource("35_jn8rg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_18uti"]
+random_pitch = 1.4983071
+streams_count = 1
+stream_0/stream = ExtResource("35_umnjm")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4eqlp"]
+random_pitch = 1.4983071
+streams_count = 1
+stream_0/stream = ExtResource("35_jn8rg")
+
 [node name="Game" type="Node" unique_id=1234653959]
 process_mode = 1
 
 [node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseAnimationPlayer", "screenTransition", "safeScreen", "chapterBehaviour")]
 process_mode = 3
 script = ExtResource("1_gl6un")
-enabledDebugMode = true
-debugDialogName = "Alonso"
+debugDialogName = "Prologo"
+firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
 pauseAnimationPlayer = NodePath("../Postprocesing/PauseMenu/PauseLayer/PauseLayout/PauseAnimator")
 screenTransition = NodePath("../Postprocesing/FX/PostProcess/ScreenTransition")
@@ -1080,7 +1097,6 @@ chapterEnv = ExtResource("7_dahhg")
 metadata/_custom_type_script = "uid://c4f6ujc2r5nm6"
 
 [node name="DialogManager" parent="." unique_id=628620988 instance=ExtResource("2_j5yw3")]
-visible = false
 mouse_filter = 2
 
 [node name="Postprocesing" type="CanvasLayer" parent="." unique_id=1519700872]
@@ -1264,9 +1280,7 @@ stream = SubResource("AudioStreamRandomizer_3cx6b")
 stream = SubResource("AudioStreamRandomizer_wxwew")
 
 [node name="DebugScreen" parent="Postprocesing/FX/PostProcess" unique_id=1323278458 instance=ExtResource("3_2irst")]
-visible = false
 mouse_filter = 2
-enable = false
 metadata/_edit_lock_ = true
 
 [node name="PauseMenu" type="Control" parent="Postprocesing" unique_id=1938885479]
@@ -1290,7 +1304,7 @@ mouse_filter = 2
 [node name="PauseLayer" type="CanvasLayer" parent="Postprocesing/PauseMenu" unique_id=1443689421]
 layer = 20
 
-[node name="PauseLayout" type="Control" parent="Postprocesing/PauseMenu/PauseLayer" unique_id=1520626626 node_paths=PackedStringArray("musicSlider", "sfxSlider", "continueButton", "exitButton")]
+[node name="PauseLayout" type="Control" parent="Postprocesing/PauseMenu/PauseLayer" unique_id=1520626626 node_paths=PackedStringArray("musicSlider", "sfxSlider", "voiceSlider", "indicatorSoundMusic", "indicatorSoundSFX", "indicatorSoundVoices", "continueButton", "exitButton")]
 z_index = 10
 layout_mode = 3
 anchors_preset = 8
@@ -1306,8 +1320,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("28_khs3t")
-musicSlider = NodePath("BlackPanel/Music")
+musicSlider = NodePath("BlackPanel/MusicSlider")
 sfxSlider = NodePath("BlackPanel/SFXSounds")
+voiceSlider = NodePath("BlackPanel/VoicesSlider")
+indicatorSoundMusic = NodePath("MusicIndicator")
+indicatorSoundSFX = NodePath("SFXIndicator")
+indicatorSoundVoices = NodePath("VoicesIndicator")
 continueButton = NodePath("ContinueButton")
 exitButton = NodePath("ExitButton")
 
@@ -1327,7 +1345,7 @@ offset_right = 353.185
 offset_bottom = 769.0
 texture = ExtResource("29_i1pr2")
 
-[node name="MusicVolume2" type="Label" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=1471996750]
+[node name="SFXSlider" type="Label" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=1471996750]
 layout_mode = 0
 offset_left = 550.815
 offset_top = 212.0
@@ -1335,7 +1353,7 @@ offset_right = 826.815
 offset_bottom = 244.0
 theme_override_fonts/font = ExtResource("34_0iyqm")
 theme_override_font_sizes/font_size = 26
-text = "Ambient Volume"
+text = "SFX Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1345,8 +1363,32 @@ offset_left = 550.815
 offset_top = 212.0
 offset_right = 833.815
 offset_bottom = 319.0
-max_value = 1.5
-step = 0.01
+max_value = 1.2
+step = 0.12
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="VoicesVolume" type="Label" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=1722651369]
+layout_mode = 0
+offset_left = 550.815
+offset_top = 429.0
+offset_right = 826.815
+offset_bottom = 461.0
+theme_override_fonts/font = ExtResource("34_0iyqm")
+theme_override_font_sizes/font_size = 26
+text = "Voices Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VoicesSlider" type="HSlider" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=1508788693]
+layout_mode = 0
+offset_left = 550.815
+offset_top = 429.0
+offset_right = 833.815
+offset_bottom = 536.0
+max_value = 1.2
+step = 0.12
 tick_count = 6
 ticks_on_borders = true
 ticks_position = 2
@@ -1363,13 +1405,14 @@ text = "Music Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Music" type="HSlider" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=769160863]
+[node name="MusicSlider" type="HSlider" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout/BlackPanel" unique_id=769160863]
 layout_mode = 0
 offset_left = 550.815
 offset_top = 319.0
 offset_right = 833.815
 offset_bottom = 426.0
-max_value = 1.5
+max_value = 1.2
+step = 0.12
 tick_count = 6
 ticks_on_borders = true
 ticks_position = 2
@@ -1429,3 +1472,15 @@ bus = &"SFX"
 
 [node name="PauseAnimator" type="AnimationPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=2025800477]
 libraries/ = SubResource("AnimationLibrary_i1pr2")
+
+[node name="MusicIndicator" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=958186119]
+stream = SubResource("AudioStreamRandomizer_umnjm")
+bus = &"Music"
+
+[node name="VoicesIndicator" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1994745838]
+stream = SubResource("AudioStreamRandomizer_18uti")
+bus = &"Voices"
+
+[node name="SFXIndicator" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1585600924]
+stream = SubResource("AudioStreamRandomizer_4eqlp")
+bus = &"SFX"

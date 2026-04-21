@@ -69,6 +69,7 @@ public partial class InspectView : Control
         InitializeLayout();
         ChangeVisibility(false);
         DebugScreen.Hide();
+        Hide();
 
         GameStateManager.Instance.RegisterInspectView(this);
 

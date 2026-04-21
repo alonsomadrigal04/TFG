@@ -6,5 +6,13 @@
 	"Godot":{
 		"voice_sample": "res://Audio/Voices/Godot.wav",
 		"color": "#800000"
+	},
+	"Narrator": {
+		"voice_sample": "res://Audio/Voices/Narrator.wav",
+		"color": "#572364"
+	},
+	"Feudo": {
+		"voice_sample": "res://Audio/Voices/Feudo.wav",
+		"color": "#FFDB58"
 	}
 }

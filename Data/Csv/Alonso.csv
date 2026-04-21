@@ -1,7 +1,7 @@
 ﻿uid;code;type;speaker;text;next
 A1;Alonso appears center;;;;
 A2;Alonso moves farleft;;;;
-A3;;say;Alonso;[w] Hola soy un placeholder[/w];go to explorezone campfire
+A3;;say;Alonso;.........;go to explorezone campfire
 A4;;say;Alonso;Soy una prueba para que veas [b] veas [/b] de lo que soy capaz.;
 A5;;say;Alonso;¡Puedo moverme libremente por la pantalla, mira!;
 A6;Alonso moves right;;;;
