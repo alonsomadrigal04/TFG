@@ -518,9 +518,10 @@ mouse_filter = 2
 sounds = NodePath("../../../AudioManager")
 metadata/_edit_lock_ = true
 
-[node name="ChoiceMaker" type="Node" parent="GeneralLayout/DialogSystem" unique_id=698217489 node_paths=PackedStringArray("sounds", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
+[node name="ChoiceMaker" type="Node" parent="GeneralLayout/DialogSystem" unique_id=698217489 node_paths=PackedStringArray("sounds", "choiceLayout", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 script = ExtResource("4_ak5v8")
 sounds = NodePath("../../../AudioManager")
+choiceLayout = NodePath("../ChoiceLayout")
 animationPlayer = NodePath("../ChoiceLayout/AnimationPlayer")
 optionsContainer = NodePath("../ChoiceLayout/HBoxContainer")
 optionShader = ExtResource("6_d3awe")
@@ -766,78 +767,59 @@ bus = &"Voices"
 
 [node name="NewItem" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2078408255]
 stream = ExtResource("22_ipu37")
-bus = &"SFX"
 
 [node name="OutQuestion" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=996070193]
 stream = ExtResource("35_jm2e1")
-bus = &"SFX"
 
 [node name="Soft" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1644472377]
 stream = ExtResource("7_5t315")
-bus = &"SFX"
 
 [node name="FlipCard" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1376555965]
 stream = SubResource("AudioStreamRandomizer_5u86h")
-bus = &"SFX"
 
 [node name="Impact2" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1189898246]
 stream = ExtResource("21_ttbwo")
-bus = &"SFX"
 
 [node name="Question" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=908864086]
 stream = ExtResource("21_xx6ch")
-bus = &"SFX"
 
 [node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1870237864]
 stream = ExtResource("22_4nqsh")
-bus = &"SFX"
 
 [node name="Flash" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1153603871]
 stream = ExtResource("20_12ppt")
 volume_db = -8.851
-bus = &"SFX"
 
 [node name="Shake" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1127677662]
 stream = ExtResource("20_uq5m1")
 volume_db = -13.0
-bus = &"SFX"
 
 [node name="NextSentence" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1376746039]
 stream = SubResource("AudioStreamRandomizer_nx8yl")
 volume_db = 9.321
-bus = &"SFX"
 
 [node name="FlashBack" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=344085264]
 stream = ExtResource("19_st2a4")
-bus = &"SFX"
 
 [node name="Impact" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1094476841]
 stream = ExtResource("20_0rqdt")
-bus = &"SFX"
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2066069177]
 stream = ExtResource("45_5u86h")
-bus = &"SFX"
 
 [node name="Press" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1433978679]
-bus = &"SFX"
 
 [node name="Remember" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=159495649]
 stream = ExtResource("32_pfbu6")
-bus = &"SFX"
 
 [node name="Spining" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1799688762]
 stream = SubResource("AudioStreamRandomizer_avqk1")
-bus = &"SFX"
 
 [node name="ClockDisplay" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=938678772]
 stream = ExtResource("39_jn18p")
-bus = &"SFX"
 
 [node name="ClockHide" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=2001161895]
 stream = ExtResource("41_3b5i8")
-bus = &"SFX"
 
 [node name="Chorus1" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=918165088]
 stream = SubResource("AudioStreamRandomizer_2370t")
-bus = &"SFX"

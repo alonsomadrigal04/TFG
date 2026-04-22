@@ -210,6 +210,7 @@ public partial class UiStage : Node
     public void CleanEffects()
     {
         AnimateHideTextBox();
+        UncoverTextBox();
     }
 
     public void SetTransparent()
@@ -226,10 +227,7 @@ public partial class UiStage : Node
     {
         if(SoundsDataBase.LoadedSounds.TryGetValue(commandToken.Arguments[0], out AudioStream sound))
         {
-           AudioStreamPlayer player = sounds.sfxPool.GetReleased();
-           player.Stream = sound;
-           player.Bus = char.ToUpper(commandToken.Subject[0]) + commandToken.Subject[1..];
-           player.Play();
+           sounds.PlaySfx(sound);
         }
         else
         {
@@ -237,8 +235,32 @@ public partial class UiStage : Node
         }
     }
 
-    internal void MoveUI()
+    internal void MoveUI(CommandToken commandToken)
     {
-        dialogManager.SetTextBoxPosition();
+        //commandToken.
+
+        dialogManager.SetTextBoxPosition(commandToken);
+    }
+
+    public void PlayMusic(CommandToken commandToken)
+    {
+        if(SoundsDataBase.LoadedSounds.TryGetValue(commandToken.Arguments[0], out AudioStream sound))
+        {
+            sounds.PlayMusic(sound);
+        }
+        else
+        {
+            GD.Print("Something goes wrong");
+        }
+    }
+
+    internal void StopMusic()
+    {
+        sounds.StopMusic();
+    }
+
+    internal void StopSFX()
+    {
+        sounds.FadeOutAllSfx();
     }
 }

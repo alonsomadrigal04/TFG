@@ -299,7 +299,7 @@ public partial class DialogManager : Node
         return NextUidType.DiferentLine;
     }
 
-    internal void SetTextBoxPosition()
+    internal void SetTextBoxPosition(CommandToken commandToken)
     {
         dialogueBox.Position = ToolKit.GetScreenPosition(ScreenPosition.Center) - new Vector2(dialogueBox.Size.X / 2, dialogueBox.Size.Y / 2);
     }

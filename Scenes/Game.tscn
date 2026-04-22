@@ -1070,7 +1070,8 @@ process_mode = 1
 [node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseAnimationPlayer", "screenTransition", "safeScreen", "chapterBehaviour")]
 process_mode = 3
 script = ExtResource("1_gl6un")
-debugDialogName = "Prologo"
+enabledDebugMode = true
+debugDialogName = "Test"
 firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
 pauseAnimationPlayer = NodePath("../Postprocesing/PauseMenu/PauseLayer/PauseLayout/PauseAnimator")
@@ -1468,7 +1469,6 @@ expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="PauseSounds" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1219337627]
-bus = &"SFX"
 
 [node name="PauseAnimator" type="AnimationPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=2025800477]
 libraries/ = SubResource("AnimationLibrary_i1pr2")
@@ -1483,4 +1483,3 @@ bus = &"Voices"
 
 [node name="SFXIndicator" type="AudioStreamPlayer" parent="Postprocesing/PauseMenu/PauseLayer/PauseLayout" unique_id=1585600924]
 stream = SubResource("AudioStreamRandomizer_4eqlp")
-bus = &"SFX"

@@ -16,7 +16,8 @@ public class UiHandler : ICommandHandler
         "dramatic",
         "inventory",
         "play",
-        "move"
+        "move",
+        "stop"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -44,14 +45,27 @@ public class UiHandler : ICommandHandler
             case "move":
                 HandleMoveUI(commandToken);
                 break;
+            case "stop":
+                HandleStop(commandToken);
+                break;
             default:
                 break;
         }
     }
 
+    void HandleStop(CommandToken commandToken)
+    {
+        if(commandToken.Subject == "music")
+        {
+            UiStage.Instance.StopMusic();
+            return;
+        }
+        UiStage.Instance.StopSFX();
+    }
+
     void HandleMoveUI(CommandToken commandToken)
     {
-        UiStage.Instance.MoveUI();
+        UiStage.Instance.MoveUI(commandToken);
     }
 
     void HandlePlay(CommandToken commandToken)
@@ -59,6 +73,11 @@ public class UiHandler : ICommandHandler
         if(commandToken.Arguments.Count != 1)
         {
             GD.PrintErr("[UiHandler] the arguments are not valid");
+            return;
+        }
+        if(commandToken.Subject == "music")
+        {
+            UiStage.Instance.PlayMusic(commandToken);
             return;
         }
         UiStage.Instance.PlaySound(commandToken);

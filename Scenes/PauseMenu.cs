@@ -35,7 +35,7 @@ public partial class PauseMenu : Control
 
     void InitializeSliders()
     {
-        SetSliderToBusValue(sfxSlider, "SFX");
+        SetSliderToBusValue(sfxSlider, "Sfx");
         SetSliderToBusValue(musicSlider, "Music");
         SetSliderToBusValue(voiceSlider, "Voices");
 

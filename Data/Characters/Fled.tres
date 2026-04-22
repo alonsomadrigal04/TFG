@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NpcData" format=3 uid="uid://c0c3efv82reoo"]
+
+[ext_resource type="Script" uid="uid://cvhug3hhtedit" path="res://Scripts/Exploration/resources/NpcData.cs" id="1_4xpi4"]
+[ext_resource type="Texture2D" uid="uid://dmbkf2c2y6suy" path="res://Assets/FullBody/Alonso.png" id="1_k0dtr"]
+
+[resource]
+script = ExtResource("1_4xpi4")
+Name = "Fled"
+WordPortrait = ExtResource("1_k0dtr")
+metadata/_custom_type_script = "uid://cvhug3hhtedit"

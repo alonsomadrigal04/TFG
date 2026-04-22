@@ -67,7 +67,7 @@ public partial class GameManager : Node
 
     void InitializeGameData()
     {
-        CharacterDatabase.LoadFromJson("Data\\Characters.json");
+        CharacterDatabase.LoadFromJson("res://Data/Characters/Characters.json");
         BackgroundDataBase.Load();
         ObjectDataBase.Load();
         ToolKit.InitializePositions();

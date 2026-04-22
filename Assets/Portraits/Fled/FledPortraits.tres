@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterPortraitSet" format=3 uid="uid://cyqptlbqhi55q"]
+
+[ext_resource type="Texture2D" uid="uid://bdtcvaa4ga0vb" path="res://Assets/Portraits/Godot/EvilGodot.png" id="1_16w5a"]
+[ext_resource type="Script" uid="uid://b2obmv4nui3pe" path="res://Scripts/Characters/CharacterPortraitSet.cs" id="1_trck5"]
+
+[resource]
+script = ExtResource("1_trck5")
+Portraits = Array[Texture2D]([ExtResource("1_16w5a")])
+metadata/_custom_type_script = "uid://b2obmv4nui3pe"

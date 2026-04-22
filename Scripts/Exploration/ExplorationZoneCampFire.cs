@@ -19,6 +19,11 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
     [Export] StaticBody3D Stage;
     [Export] AnimationPlayer animationPlayer;
     DialogManager dialogManager;
+    [ExportGroup("Sounds")]
+    [Export] AudioStreamPlayer3D firesounds;
+    [Export] AudioStreamPlayer ambiencesounds;
+
+
 
     public void SpawnCharacters()
     {
@@ -28,6 +33,8 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
         NpcBehaviour AlonsoNpc = npcScene.Instantiate<NpcBehaviour>();
         AlonsoNpc.Initialize(AlonsoData);
         AddChild(AlonsoNpc);
+
+        AlonsoNpc.Position = AlonsoPosition1;
         // if cool logic
         // if(CharacterDatabase.GetCharacter("nuria").characterState.Afinity < 70)
         //     AlonsoNpc.GlobalPosition = AlonsoPosition2;
@@ -51,6 +58,13 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
 
         GetDialogManager();
 
+        if (GameManager.Instance.enabledDebugMode)
+        {
+            animationPlayer.Play("In_Gameplay");
+            animationPlayer.Seek(animationPlayer.CurrentAnimationLength -0.1f, false);
+        }
+
+
         animationPlayer.AnimationFinished += HandleAnimations;
         
     }
@@ -61,13 +75,25 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
         {
             case "Post_Prologue":
                 animationPlayer.Play("In_Gameplay");
+                StartSounds();
                 break;
             case "In_Gameplay":
-                cameraBehaviour.IsActive = true;
-                GameManager.Instance.IsDialogueActive = false;
+                SetControlTrue();
                 break;
 
         }
+    }
+
+    void SetControlTrue()
+    {
+        cameraBehaviour.IsActive = true;
+        GameManager.Instance.IsDialogueActive = false;
+    }
+
+    void StartSounds()
+    {
+        firesounds.Play();
+        ambiencesounds.Play();
     }
 
     void GetDialogManager()

@@ -1,0 +1,14 @@
+﻿uid;code;type;speaker;text;next
+A1;UI off;;;;
+A2;UI inventory off;;;;
+A3;UI transparent;;;;
+A4;Dialog move center;;;;
+A5;timer wait 3;;;;
+A6;;say;Narrator;Entra musica de fondo.;
+A7;Music play BgMusic1;;;;
+A8;;say;Narrator;Entra SFX.;
+A9;Sfx play warsounds;;;;
+A10;;say;Narrator;Se va la musica;
+A11;Music stop;;;;
+A12;;say;Narrator;Se van los sfx.;
+A13;Sfx stop;;;;

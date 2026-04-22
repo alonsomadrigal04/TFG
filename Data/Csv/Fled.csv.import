@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bsu45q4sdjwmg"
+valid=false
+
+[deps]
+
+source_file="res://Data/Csv/Fled.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

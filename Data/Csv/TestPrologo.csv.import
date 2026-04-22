@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bn8a4kajued8b"
+valid=false
+
+[deps]
+
+source_file="res://Data/Csv/TestPrologo.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

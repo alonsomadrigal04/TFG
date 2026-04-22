@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="NpcData" format=3 uid="uid://cwfi3gfwdnsiy"]
+
+[ext_resource type="Script" uid="uid://cvhug3hhtedit" path="res://Scripts/Exploration/resources/NpcData.cs" id="1_nt80b"]
+
+[resource]
+resource_name = "Alonso"
+script = ExtResource("1_nt80b")
+metadata/_custom_type_script = "uid://cvhug3hhtedit"

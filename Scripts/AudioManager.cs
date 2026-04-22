@@ -6,20 +6,152 @@ public partial class AudioManager : Node
 {
     public Pool<AudioStreamPlayer> sfxPool;
 
+    static AudioStreamPlayer musicPlayer;
+    Tween musicTween;
+
+    const string BUS_SFX = "Sfx";
+    const string BUS_MUSIC = "Fademusic";
+
     public override void _Ready()
     {
         sfxPool = new Pool<AudioStreamPlayer>(
             create: () =>
             {
-                AudioStreamPlayer audioStreamPlayer = new()
+                AudioStreamPlayer p = new()
                 {
-                    Bus = "SFX"
+                    Bus = BUS_SFX
                 };
-                AddChild(audioStreamPlayer);
-                return audioStreamPlayer;
+                AddChild(p);
+                return p;
             },
-            isReleased: (audioStreamPlayer) => !audioStreamPlayer.Playing
+            isReleased: (p) => !p.Playing
         );
+
+        musicPlayer = new AudioStreamPlayer
+        {
+            Bus = BUS_MUSIC
+        };
+
+        AddChild(musicPlayer);
+    }
+
+    /// <summary>
+    /// Plays an SFX using the pool.
+    /// </summary>
+    public void PlaySfx(AudioStream stream, float volumeDb = 0f)
+    {
+        var p = sfxPool.GetReleased();
+        p.Stream = stream;
+        p.VolumeDb = volumeDb;
+        p.Play();
+    }
+
+    /// <summary>
+    /// Stops all active SFX immediately.
+    /// </summary>
+    public void StopAllSfx()
+    {
+        foreach (var child in GetChildren())
+        {
+            if (child is AudioStreamPlayer p && p.Bus == BUS_SFX)
+                p.Stop();
+        }
+    }
+
+    /// <summary>
+    /// Plays music with optional fade transition.
+    /// </summary>
+    public async void PlayMusic(AudioStream stream, float fadeTime = 0.5f)
+    {
+        if (musicPlayer.Stream == stream && musicPlayer.Playing)
+            return;
+
+        musicTween?.Kill();
+
+        if (musicPlayer.Playing)
+        {
+            await FadeOutMusic(fadeTime);
+        }
+
+        musicPlayer.Stream = stream;
+        musicPlayer.VolumeDb = -80f;
+        musicPlayer.Play();
+
+        await FadeInMusic(fadeTime);
+    }
+
+    /// <summary>
+    /// Stops music with optional fade.
+    /// </summary>
+    public async void StopMusic(float fadeTime = 0.5f)
+    {
+        if (!musicPlayer.Playing)
+            return;
+
+        musicTween?.Kill();
+
+        await FadeOutMusic(fadeTime);
+        musicPlayer.Stop();
+    }
+
+    /// <summary>
+    /// Fades in the current music.
+    /// </summary>
+    async System.Threading.Tasks.Task FadeInMusic(float time)
+    {
+        musicTween = CreateTween();
+        musicTween.TweenProperty(musicPlayer, "volume_db", 0f, time);
+        await ToSignal(musicTween, Tween.SignalName.Finished);
+    }
+
+    /// <summary>
+    /// Fades out the current music.
+    /// </summary>
+    async System.Threading.Tasks.Task FadeOutMusic(float time)
+    {
+        musicTween = CreateTween();
+        musicTween.TweenProperty(musicPlayer, "volume_db", -80f, time);
+        await ToSignal(musicTween, Tween.SignalName.Finished);
+    }
+
+    public static bool IsMusicPlaying()
+    {
+        return musicPlayer != null && musicPlayer.Playing;
+    }
+
+
+    /// <summary>
+    /// Mutes or unmutes the music bus instantly.
+    /// </summary>
+    public void SetMusicMute(bool mute)
+    {
+        int idx = AudioServer.GetBusIndex(BUS_MUSIC);
+        AudioServer.SetBusMute(idx, mute);
+    }
+
+    /// <summary>
+    /// Mutes or unmutes the SFX bus instantly.
+    /// </summary>
+    public void SetSfxMute(bool mute)
+    {
+        int idx = AudioServer.GetBusIndex(BUS_SFX);
+        AudioServer.SetBusMute(idx, mute);
+    }
+
+    /// <summary>
+    /// Fades out all SFX currently playing.
+    /// </summary>
+    public void FadeOutAllSfx(float time = 0.3f)
+    {
+        foreach (var child in GetChildren())
+        {
+            if (child is AudioStreamPlayer p && p.Bus == BUS_SFX && p.Playing)
+            {
+                var t = CreateTween();
+                t.TweenProperty(p, "volume_db", -80f, time);
+                t.TweenCallback(Callable.From(() => p.Stop()));
+            }
+        }
     }
 
 
