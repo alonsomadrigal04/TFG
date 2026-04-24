@@ -182,20 +182,15 @@ public partial class TextTyper : Control
         return waitTime;
     }
 
-    public void changeTextBox(TextboxTypes textboxType)
+    public void ChangeTextBox(TextboxTypes textboxType)
     {
-        switch (textboxType)
+        dialogBoxFrame.Texture = textboxType switch
         {
-            case TextboxTypes.Transparent:
-                dialogBoxFrame.Texture = textBoxesStyle[TextboxTypes.Transparent];
-                break;
-            case TextboxTypes.Normal:
-                dialogBoxFrame.Texture = textBoxesStyle[TextboxTypes.Normal];
-                break;
-            default:
-            dialogBoxFrame.Texture = textBoxesStyle[TextboxTypes.Normal];
-                break;
-        }
+            TextboxTypes.Transparent => textBoxesStyle[TextboxTypes.Transparent],
+            TextboxTypes.Normal => textBoxesStyle[TextboxTypes.Normal],
+            _ => textBoxesStyle[TextboxTypes.Normal],
+        };
+
     }
 
 }
@@ -205,3 +200,9 @@ public enum TextboxTypes
     Transparent,
     Normal
 } 
+
+public enum TextboxPosition
+{
+    Center,
+    Down
+}

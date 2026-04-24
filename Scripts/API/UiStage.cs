@@ -209,13 +209,17 @@ public partial class UiStage : Node
 
     public void CleanEffects()
     {
-        AnimateHideTextBox();
+        ActionBus.RunAfterActions(() => 
+            AnimateHideTextBox()
+        );
         UncoverTextBox();
+        ChangeBoxStyle(TextboxTypes.Normal);
+        MoveUI(ScreenPosition.Down);
     }
 
-    public void SetTransparent()
+    public void ChangeBoxStyle(TextboxTypes style)
     {
-        dialogManager.textTyper.changeTextBox(TextboxTypes.Transparent);
+        dialogManager.textTyper.ChangeTextBox(style);
     }
 
     public void UncoverTextBox()
@@ -235,11 +239,9 @@ public partial class UiStage : Node
         }
     }
 
-    internal void MoveUI(CommandToken commandToken)
+    internal void MoveUI(ScreenPosition position)
     {
-        //commandToken.
-
-        dialogManager.SetTextBoxPosition(commandToken);
+        dialogManager.SetTextBoxPosition(position);
     }
 
     public void PlayMusic(CommandToken commandToken)

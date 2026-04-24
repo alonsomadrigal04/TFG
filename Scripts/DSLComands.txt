@@ -39,6 +39,16 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 ·   [NAME] needs [OBJECT] : [UID NAME]              -- If the player has a specific object, jump to a the following line. If not, jump to a specific UID (e.g., Alonso needs Key : [UID3])  
 // TIME //
 ·   Wait [DURATION]                                 -- The game waits for a specific duration before proceeding (e.g., Wait 2s)
+/// UI //
+·   UI uncover                            -- The UI appears on the screen 
+·   UI off                             -- The UI disappears from the screen
+·   UI transparent                       -- The UI becomes transparent
+·   UI dramatic [TEXT]                      -- The UI becomes dramatic (e.g., darkens the background and highlights the dialogue box)
+·   UI inventory shows                       -- The inventory appears on the screen
+·   UI inventory hides                       -- The inventory disappears from the screen
+·   [Music/Sfx] play [NAME]                   -- A music track or sound effect plays (e.g., Music play Theme, Sfx play DoorOpen)
+·   UI move [POSITION]                    -- The UI moves to a specific position on the screen (e.g., UI move Left)
+·   [Music/Sfx] stop                   -- A music track or sound effect stops playing (e.g., Music stop Theme, Sfx stop DoorOpen)
 [UID COMMANDS]
 ·  CHAPTER ENDS                                     -- Ends the current chapter and moves to the next one
 ·  END GAME                                         -- Ends the game and returns to the main menu

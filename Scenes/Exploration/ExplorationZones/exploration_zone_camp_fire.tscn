@@ -816,6 +816,7 @@ font_size = 187
 outline_size = 0
 
 [node name="Control" type="Control" parent="Cinematics" unique_id=1898997249]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -834,6 +835,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Cinematics/Control" unique_id=367478260]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1234,6 +1236,7 @@ transform = Transform3D(1, -7.460699e-14, -2.3293406e-21, 7.460699e-14, 1, 8.351
 shape = SubResource("BoxShape3D_0v362")
 
 [node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("3_hjfww")]
+visible = false
 
 [editable path="Scenario/Ground/MainGround/SmallRock1"]
 [editable path="Scenario/Ground/MainGround2/SmallRock1"]

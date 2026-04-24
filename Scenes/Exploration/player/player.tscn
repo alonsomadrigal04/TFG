@@ -1608,9 +1608,8 @@ script = ExtResource("5_5rjme")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=2095260011]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 2.1721272, 0)
-flip_h = true
 sprite_frames = SubResource("SpriteFrames_lqmvl")
-animation = &"Idle"
+animation = &"Right"
 autoplay = "Idle"
 speed_scale = 3.0
 

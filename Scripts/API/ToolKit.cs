@@ -11,6 +11,7 @@ public static partial class ToolKit
         XPositions[ScreenPosition.FarLeft]  = 0.1f;
         XPositions[ScreenPosition.Left]     = 0.25f;
         XPositions[ScreenPosition.Center]   = 0.5f;
+        XPositions[ScreenPosition.Down]   = 0.5f;
         XPositions[ScreenPosition.Right]    = 0.75f;
         XPositions[ScreenPosition.FarRight] = 0.9f;
     }
@@ -143,6 +144,7 @@ public enum ScreenPosition
     Left,
     Center,
     Right,
-    FarRight
+    FarRight,
+    Down
     
 }

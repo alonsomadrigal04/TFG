@@ -23,6 +23,7 @@ public partial class DialogManager : Node
     bool isInChoiceMode = false;
     public bool IsSpeaking {get; private set;} = false;
     Character LastSpeaker = null;
+    Vector2 dialogueBoxOgPosition = new(0, 235.0f);
 
 
 
@@ -49,7 +50,6 @@ public partial class DialogManager : Node
     public void StartDialogScene(Dialog sceneName)
     {
         IsSpeaking = true;
-        textTyper.Show();
         GameManager.Instance.IsDialogueActive = true;
         dialogLines = sceneName.Conversation;
         orderedUids = sceneName.OrderedUids;
@@ -299,9 +299,15 @@ public partial class DialogManager : Node
         return NextUidType.DiferentLine;
     }
 
-    internal void SetTextBoxPosition(CommandToken commandToken)
+    public void SetTextBoxPosition(ScreenPosition position)
     {
-        dialogueBox.Position = ToolKit.GetScreenPosition(ScreenPosition.Center) - new Vector2(dialogueBox.Size.X / 2, dialogueBox.Size.Y / 2);
+        ActionBus.ActionStarted();
+        Tween tween = CreateTween();
+        if(position == ScreenPosition.Down)
+            tween.TweenProperty(dialogueBox, "position", dialogueBoxOgPosition, 0.2f);
+        else
+            tween.TweenProperty(dialogueBox, "position", ToolKit.GetScreenPosition(position) - new Vector2(dialogueBox.Size.X / 2, dialogueBox.Size.Y / 2), 0.2f);
+        tween.Finished += ActionBus.ActionFinished;
     }
 }
 

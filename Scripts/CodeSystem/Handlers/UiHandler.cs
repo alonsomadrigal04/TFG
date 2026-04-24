@@ -11,7 +11,7 @@ public class UiHandler : ICommandHandler
     static readonly HashSet<string> supportedVerbs =
     [
         "off",
-        "transparent",
+        "change",
         "uncover",
         "dramatic",
         "inventory",
@@ -33,8 +33,8 @@ public class UiHandler : ICommandHandler
             case "dramatic":
                 HandleDramaticText(commandToken);
                 break;
-            case "transparent":
-                HandleTransparent(commandToken);
+            case "change":
+                HandleChange(commandToken);
                 break;
             case "uncover":
                 HandleUncover(commandToken);
@@ -65,7 +65,13 @@ public class UiHandler : ICommandHandler
 
     void HandleMoveUI(CommandToken commandToken)
     {
-        UiStage.Instance.MoveUI(commandToken);
+        if(commandToken.Arguments.Count != 1)
+        {
+            GD.PrintErr("[UiHandler] the arguments are not valid");
+            return;
+        }
+        ScreenPosition position = ToolKit.ParseEnum<ScreenPosition>(commandToken.Arguments[0]);
+        UiStage.Instance.MoveUI(position);
     }
 
     void HandlePlay(CommandToken commandToken)
@@ -88,9 +94,15 @@ public class UiHandler : ICommandHandler
         UiStage.Instance.UncoverTextBox();
     }
 
-    void HandleTransparent(CommandToken commandToken)
+    void HandleChange(CommandToken commandToken)
     {
-        UiStage.Instance.SetTransparent();
+        if(commandToken.Arguments.Count != 1)
+        {
+            GD.PrintErr("[UI Handler] ammount of argumentts not valid");
+        }
+        string textStyle = char.ToUpper(commandToken.Arguments[0][0]) + commandToken.Arguments[0][1..];
+        TextboxTypes style = ToolKit.ParseEnum<TextboxTypes>(textStyle);
+        UiStage.Instance.ChangeBoxStyle(style);
     }
 
     void HideInventory(CommandToken commandToken)
