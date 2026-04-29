@@ -1,54 +1,40 @@
-using System;
-using System.Diagnostics;
 using Godot;
+using System;
+
 [GlobalClass]
-partial class ExplorationZoneCampFire : Node, IExplorationZone
+public partial class ExplorationZoneCampFire : Node, IExplorationZone
 {
     [Export] PackedScene npcScene;
+
     [ExportGroup("NPCS DATA")]
-    [Export] NpcData AlonsoData;
+    [Export] NpcData alonsoData;
 
     [ExportGroup("NPC POSITIONS")]
-    [Export] Vector3 AlonsoPosition1;
-    [Export] Vector3 AlonsoPosition2;
-    // [Export] Vector3 NuriaPosition1;
+    [Export] Vector3 alonsoPosition1;
+    [Export] Vector3 alonsoPosition2;
 
-    [ExportGroup("STAGE SETTINGS")] 
+    [ExportGroup("STAGE SETTINGS")]
     [Export] CameraBehaviour cameraBehaviour;
     [Export] PlayerBehaviour player;
-    [Export] StaticBody3D Stage;
-    [Export] AnimationPlayer animationPlayer;
+    [Export] StaticBody3D stage;
+
+    [ExportGroup("ANIMATIONS")]
+    [Export] AnimationPlayer cinematicAnimationPlayer;
+    [Export] AnimationPlayer uiAnimationPlayer;
+
+    [ExportGroup("SOUNDS")]
+    [Export] AudioStreamPlayer3D fireSounds;
+    [Export] AudioStreamPlayer ambienceSounds;
+
+    [ExportGroup("LORE")]
+    [Export] LorePoint lorePoint;
+
+    [ExportGroup("UI")]
+    [Export] CanvasLayer dialogFrameLayer;
+
     DialogManager dialogManager;
-    [ExportGroup("Sounds")]
-    [Export] AudioStreamPlayer3D firesounds;
-    [Export] AudioStreamPlayer ambiencesounds;
 
-
-
-    public void SpawnCharacters()
-    {
-        // NpcBehaviour NuriaNpc = new(NuriaData);
-        // // if cool logic
-        // NuriaNpc.Position = AlonsoPosition1;
-        NpcBehaviour AlonsoNpc = npcScene.Instantiate<NpcBehaviour>();
-        AlonsoNpc.Initialize(AlonsoData);
-        AddChild(AlonsoNpc);
-
-        AlonsoNpc.Position = AlonsoPosition1;
-        // if cool logic
-        // if(CharacterDatabase.GetCharacter("nuria").characterState.Afinity < 70)
-        //     AlonsoNpc.GlobalPosition = AlonsoPosition2;
-    }
-    public void ValidateFields()
-    {
-        if(cameraBehaviour == null || Stage == null )
-            GD.Print("[EXPLORATION CAMPFIRE] There are fields missing");
-    }
-
-    public override void _Process(double delta)
-    {
-        DebugDraw3D.DrawSphere(AlonsoPosition1);
-    }
+    bool introPlayed;
 
     public override void _Ready()
     {
@@ -56,61 +42,206 @@ partial class ExplorationZoneCampFire : Node, IExplorationZone
         ValidateFields();
         SpawnCharacters();
 
+        dialogFrameLayer.Hide();
+
         GetDialogManager();
+
+        cinematicAnimationPlayer.AnimationFinished += OnCinematicFinished;
 
         if (GameManager.Instance.enabledDebugMode)
         {
-            animationPlayer.Play("In_Gameplay");
-            animationPlayer.Seek(animationPlayer.CurrentAnimationLength -0.1f, false);
+            SkipToGameplay();
         }
-
-
-        animationPlayer.AnimationFinished += HandleAnimations;
-        
     }
 
-    private void HandleAnimations(StringName animName)
+    public override void _ExitTree()
     {
-        switch (animName)
+        cinematicAnimationPlayer.AnimationFinished -= OnCinematicFinished;
+
+        if (dialogManager != null)
         {
-            case "Post_Prologue":
-                animationPlayer.Play("In_Gameplay");
-                StartSounds();
-                break;
-            case "In_Gameplay":
-                SetControlTrue();
-                break;
-
+            dialogManager.DialogEnded -= OnDialogEnded;
+            dialogManager.DialogStarted -= OnDialogStarted;
         }
     }
 
-    void SetControlTrue()
+    public override void _Process(double delta)
     {
-        cameraBehaviour.IsActive = true;
-        GameManager.Instance.IsDialogueActive = false;
+        DebugDraw3D.DrawSphere(alonsoPosition1);
     }
 
-    void StartSounds()
+    public override void _Input(InputEvent e)
     {
-        firesounds.Play();
-        ambiencesounds.Play();
-    }
-
-    void GetDialogManager()
-    {
-        dialogManager = GameManager.Instance.DialogManager;
-        dialogManager.DialogEnded += SetAnimation;
-    }
-
-    void SetAnimation()
-    {
-        GameManager.Instance.IsDialogueActive = true;
-        animationPlayer.Play("Post_Prologue");
-        dialogManager.DialogEnded -= SetAnimation;
+        if (e.IsActionPressed("skip"))
+        {
+            SkipCurrentAnimation();
+        }
     }
 
     void GetPlayer()
     {
         GameStateManager.Instance.Player = player;
+    }
+
+    void GetDialogManager()
+    {
+        dialogManager = GameManager.Instance.DialogManager;
+
+        dialogManager.DialogStarted += OnDialogStarted;
+        dialogManager.DialogEnded += OnDialogEnded;
+    }
+
+    void SpawnNpc(NpcData npcData, Vector3 position)
+    {
+        NpcBehaviour npc = npcScene.Instantiate<NpcBehaviour>();
+
+        npc.Initialize(npcData);
+
+        AddChild(npc);
+
+        npc.Position = position;
+    }
+
+    void OnDialogStarted()
+    {
+        // if (GameManager.Instance.IsDialogueActive)
+        //     return;
+
+        PlayUIAnimation("EnterDialog");
+
+        dialogFrameLayer.Show();
+
+        GD.Print("Dialog Enter Animation");
+    }
+
+    void OnDialogEnded()
+    {
+        if (!introPlayed)
+        {
+            StartIntroSequence();
+            return;
+        }
+
+        EndDialogUI();
+    }
+
+    void StartIntroSequence()
+    {
+        introPlayed = true;
+
+        GameManager.Instance.IsDialogueActive = true;
+
+        GD.Print("Intro Started");
+
+        cinematicAnimationPlayer.Play("Post_Prologue");
+    }
+
+    void EndDialogUI()
+    {
+        GD.Print("Dialog Exit Animation");
+
+        PlayUIAnimation("ExitDialog");
+    }
+
+    void OnCinematicFinished(StringName animationName)
+    {
+        switch (animationName)
+        {
+            case "Post_Prologue":
+
+                StartSounds();
+
+                cinematicAnimationPlayer.Play("In_Gameplay");
+
+                break;
+
+            case "In_Gameplay":
+
+                EnableGameplay();
+
+                break;
+
+        }
+    }
+
+    public void HideLayer()
+    {
+        dialogFrameLayer.Hide();
+    }
+
+    void EnableGameplay()
+    {
+        cameraBehaviour.IsActive = true;
+
+        GameManager.Instance.IsDialogueActive = false;
+
+        GD.Print("Gameplay Enabled");
+    }
+
+    void PlayUIAnimation(string animationName)
+    {
+        if (uiAnimationPlayer.CurrentAnimation == animationName)
+            return;
+
+        uiAnimationPlayer.Play(animationName);
+    }
+
+    void SkipCurrentAnimation()
+    {
+        AnimationPlayer currentPlayer = cinematicAnimationPlayer.IsPlaying()
+            ? cinematicAnimationPlayer
+            : uiAnimationPlayer;
+
+        if (!currentPlayer.IsPlaying())
+            return;
+
+        string currentAnimation = currentPlayer.CurrentAnimation;
+
+        currentPlayer.Stop();
+
+        GD.Print($"Skipped animation: {currentAnimation}");
+
+        if (currentPlayer == cinematicAnimationPlayer)
+        {
+            OnCinematicFinished(currentAnimation);
+        }
+    }
+
+    void SkipToGameplay()
+    {
+        cinematicAnimationPlayer.Play("In_Gameplay");
+
+        cinematicAnimationPlayer.Seek(
+            cinematicAnimationPlayer.CurrentAnimationLength,
+            true
+        );
+
+        EnableGameplay();
+    }
+
+    void StartSounds()
+    {
+        fireSounds?.Play();
+        ambienceSounds?.Play();
+    }
+
+    public void SpawnCharacters()
+    {
+        SpawnNpc(alonsoData, alonsoPosition1);
+    }
+
+    public void ValidateFields()
+    {
+        if (cameraBehaviour == null)
+            GD.PushError("[EXPLORATION CAMPFIRE] CameraBehaviour is missing.");
+
+        if (stage == null)
+            GD.PushError("[EXPLORATION CAMPFIRE] Stage is missing.");
+
+        if (cinematicAnimationPlayer == null)
+            GD.PushError("[EXPLORATION CAMPFIRE] Cinematic AnimationPlayer is missing.");
+
+        if (uiAnimationPlayer == null)
+            GD.PushError("[EXPLORATION CAMPFIRE] UI AnimationPlayer is missing.");
     }
 }

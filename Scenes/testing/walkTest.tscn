@@ -1,10 +1,25 @@
 [gd_scene format=3 uid="uid://ccy6tss7o1hjy"]
 
-[ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/player/player.tscn" id="1_gedpv"]
-[ext_resource type="Script" uid="uid://dr5isq3vby701" path="res://Scripts/Exploration/CameraBehaviour.cs" id="2_0j3a5"]
+[ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/Player/player.tscn" id="1_4hv2w"]
+[ext_resource type="Script" uid="uid://dr5isq3vby701" path="res://Scripts/Exploration/CameraBehaviour.cs" id="2_s5mtw"]
+[ext_resource type="Script" uid="uid://66wwtsxguf58" path="res://Scripts/CoreScripts/AudioManager.cs" id="3_a068d"]
+[ext_resource type="AudioStream" uid="uid://hlli8dhixydv" path="res://Audio/flipsound.wav" id="4_iyynb"]
+[ext_resource type="AudioStream" uid="uid://b7y7hwa61ghc2" path="res://Audio/Sounds/Footsteps/DirtSteps2.wav" id="5_4nxud"]
+[ext_resource type="AudioStream" uid="uid://cwo2tltf5mmrl" path="res://Audio/Sounds/Footsteps/DirtSteps3.wav" id="6_vabu5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0j3a5"]
 size = Vector3(50.65918, 0.23876953, 39.972656)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_280v4"]
+random_pitch = 1.6096534
+streams_count = 1
+stream_0/stream = ExtResource("4_iyynb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dd6w4"]
+random_pitch = 1.3932942
+streams_count = 2
+stream_0/stream = ExtResource("5_4nxud")
+stream_1/stream = ExtResource("6_vabu5")
 
 [node name="Node3D" type="Node3D" unique_id=2143960701]
 
@@ -14,10 +29,23 @@ size = Vector3(50.65918, 0.23876953, 39.972656)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38061523, 0)
 shape = SubResource("BoxShape3D_0j3a5")
 
-[node name="Player" parent="." unique_id=1961554038 instance=ExtResource("1_gedpv")]
+[node name="Player" parent="." unique_id=1961554038 instance=ExtResource("1_4hv2w")]
 isDebugging = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1341558527 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
-script = ExtResource("2_0j3a5")
+script = ExtResource("2_s5mtw")
 target = NodePath("../Player")
+
+[node name="AudioManager" type="Node" parent="." unique_id=2021658161 node_paths=PackedStringArray("Flipsound", "WalkingSounds")]
+script = ExtResource("3_a068d")
+Flipsound = NodePath("Flipsound")
+WalkingSounds = NodePath("Footsteps")
+metadata/_custom_type_script = "uid://66wwtsxguf58"
+
+[node name="Flipsound" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=423467920]
+stream = SubResource("AudioStreamRandomizer_280v4")
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1220581058]
+stream = SubResource("AudioStreamRandomizer_dd6w4")
+volume_db = -2.0

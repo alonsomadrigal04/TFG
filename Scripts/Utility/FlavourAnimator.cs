@@ -4,7 +4,6 @@ using Godot.Collections;
 [GlobalClass]
 public partial class FlavourAnimator : Node
 {
-    [Export] AudioManager sounds;
     [Export] Dictionary<FlavourType, GpuParticles2D> MiniAnimations = [];
     public static FlavourAnimator Instance {get; private set;}
 
@@ -28,11 +27,11 @@ public partial class FlavourAnimator : Node
         switch (ToolKit.ParseEnum<FlavourType>(type))
         {
             case FlavourType.question:
-                sounds.question.Play();
+                AudioManager.Instance.question.Play();
                 SpawnParticles(MiniAnimations[FlavourType.question], speaker);
             break;
             case FlavourType.exclamation:
-                sounds.exclamation.Play();
+                AudioManager.Instance.exclamation.Play();
                 SpawnParticles(MiniAnimations[FlavourType.exclamation], speaker);
                 SpawnParticles(MiniAnimations[FlavourType.purpleHazard], speaker, false);
 

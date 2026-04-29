@@ -132,15 +132,8 @@ public partial class CharacterStage : Node
             Modulate = new Color(1, 1, 1, 0)
         };
 
-        newPortrait.ResetSize();
-
-        newPortrait.PivotOffset = newPortrait.Size / 2;
-        newPortrait.ZIndex = portraitLayer;
-        ToolKit.SetPosition(newPortrait, screenPosition);
-        newPortrait.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.Center);
-
         CharactersInScene[newCharacter] = newPortrait;
-        AddAndAnimate(newPortrait);
+        AddAndAnimate(newPortrait, screenPosition);
         // CallDeferred(nameof(AddAndAnimate), newPortrait);
 
     }
@@ -176,9 +169,19 @@ public partial class CharacterStage : Node
         tween.Finished += ActionBus.ActionFinished;
     }
 
-    void AddAndAnimate(TextureRect portrait)
+    void AddAndAnimate(TextureRect portrait, ScreenPosition screenPosition)
     {
         characterContainer.AddChild(portrait);
+
+        portrait.ResetSize();
+
+        portrait.PivotOffset = portrait.Size / 2;
+        portrait.ZIndex = portraitLayer;
+        portrait.SetPosition(screenPosition);
+        portrait.SetAnchorsPreset(Control.LayoutPreset.Center);
+
+        GD.Print(portrait.Name + ": " + portrait.Position);
+
         AppearAnimation(portrait);
     }
 

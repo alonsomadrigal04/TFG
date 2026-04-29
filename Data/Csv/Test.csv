@@ -2,4 +2,5 @@
 A1;UI inventory off;;;;
 A2;UI change transparent;;;;
 A3;Dialog move center;;;;
-A4;;say;Alonso;Texto de ejemplo;go to explorezone Campfire 
+A4;;say;Alonso;Texto de ejemplo;
+A5;UI off;;;;

@@ -11,7 +11,8 @@ public class BackgroundHandler : ICommandHandler
         "bg",
         "trans",
         "flashback",
-        "flash"
+        "flash",
+        "vanish"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -30,17 +31,27 @@ public class BackgroundHandler : ICommandHandler
             case "flash":
                 MakeFlash(commandToken);
                 break;
+            case "vanish":
+                MakeVanish(commandToken);
+                break;
             default:
                 break;
         }
     }
 
-    private async void MakeFlash(CommandToken commandToken)
+    void MakeVanish(CommandToken commandToken)
+    {
+        if(!BackgroundDataBase.LoadedBackgrounds.TryGetValue("transparent", out Texture2D newBg))
+            GD.PrintErr($"[BackgroundStage] there is no transparent background");
+        BackgroundStage.Instance.BlurTransition(newBg);
+    }
+
+    async void MakeFlash(CommandToken commandToken)
     {
         await BackgroundStage.Instance.AnimateFlash();
     }
 
-    private void MakeFlashback(CommandToken commandToken)
+    void MakeFlashback(CommandToken commandToken)
     {
         //TODO: parse duration in commandToken
         string bgname = commandToken.Subject;

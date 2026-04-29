@@ -4,6 +4,16 @@ using System.Collections.Generic;
 
 public partial class CameraBehaviour : Camera3D
 {
+
+    public static CameraBehaviour Instance { get => instance; set => instance = value; }
+
+    static CameraBehaviour instance;
+    public override void _EnterTree() => Instance = this;
+
+    public override void _ExitTree()
+    {
+        if (Instance == this) Instance = null;
+    }
     [Export] Node3D target;
     public bool IsActive = false;
 
@@ -12,8 +22,15 @@ public partial class CameraBehaviour : Camera3D
 
     readonly Dictionary<MeshInstance3D, float> fade = [];
 
+    float shakeTimeLeft = 0f;
+    float shakeDuration = 0f;
+    float shakeIntensity = 0f;
+    Vector3 shakeOffset = Vector3.Zero;
+    RandomNumberGenerator rng = new();
+
     public override void _Ready()
     {
+        rng.Randomize();
         if (target == null)
             GD.PushError("[CAMERA] TARGET NOT SET");
         else
@@ -28,9 +45,36 @@ public partial class CameraBehaviour : Camera3D
         float d = (float)delta;
 
         Vector3 desired = target.GlobalPosition + offset;
+
+        if (shakeTimeLeft > 0f)
+        {
+            shakeTimeLeft -= d;
+
+            float t = shakeTimeLeft / shakeDuration;
+            float currentIntensity = shakeIntensity * t;
+
+            shakeOffset = new Vector3(
+                rng.RandfRange(-1f, 1f),
+                rng.RandfRange(-1f, 1f),
+                rng.RandfRange(-1f, 1f)
+            ) * currentIntensity;
+        }
+        else
+        {
+            shakeOffset = Vector3.Zero;
+        }
+
+        desired += shakeOffset;
+
         GlobalPosition = GlobalPosition.Lerp(desired, followSpeed * d);
 
-        //HandleOcclusion(d);
+        HandleOcclusion(d);
+    }
+    public void Shake(float duration = 0.4f, float intensity = 1f)
+    {
+        shakeDuration = duration;
+        shakeTimeLeft = duration;
+        shakeIntensity = intensity;
     }
 
     void HandleOcclusion(float delta)
@@ -51,10 +95,8 @@ public partial class CameraBehaviour : Camera3D
         if (hit.Count > 0)
         {
             Node collider = hit["collider"].As<Node>();
-			GD.Print(collider.Name);
 
             MeshInstance3D mesh = FindMeshUpwards(collider);
-			GD.Print(mesh);
 
 
             if (mesh != null && mesh.IsInGroup("occludable"))
@@ -135,6 +177,7 @@ public partial class CameraBehaviour : Camera3D
             return;
 
         Color c = mat.AlbedoColor;
+        mat.Transparency = BaseMaterial3D.TransparencyEnum.AlphaScissor;
         c.A = 1f;
         mat.AlbedoColor = c;
     }

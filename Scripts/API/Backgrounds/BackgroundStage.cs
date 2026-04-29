@@ -13,7 +13,6 @@ public partial class BackgroundStage : Node
     [Export] ScreenFlash flashTransition;
     [Export] TextureRect imageFrame;
     [Export] ColorRect sepiaFilter;
-    [Export] AudioManager sounds;
 
     public static BackgroundStage Instance {get; private set;}
     float progress = 0f;
@@ -60,7 +59,7 @@ public partial class BackgroundStage : Node
     {
         ActionBus.ActionStarted();
 
-        sounds.Flash.Play();
+        AudioManager.Instance.Flash.Play();
         await flashTransition.PlayFlash(() => { }, null, null, null, 0.5f);
 
         ActionBus.ActionFinished();
@@ -98,7 +97,7 @@ public partial class BackgroundStage : Node
     public async void FlashTransition(Texture2D newBg)
     {
         //TODO: Cool sounds
-        sounds.Flash.Play();
+        AudioManager.Instance.Flash.Play();
         await flashTransition.PlayFlash(() =>
         {
             imageFrame.Texture = newBg;
@@ -135,7 +134,7 @@ public partial class BackgroundStage : Node
         ActionBus.ActionStarted();
         // TODO: cool flashcak sound
         Texture2D oldBg = imageFrame.Texture;
-        sounds.Flashback.Play();
+        AudioManager.Instance.Flashback.Play();
         
         await flashTransition.PlayFlash(() =>
         {

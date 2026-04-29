@@ -10,11 +10,12 @@ public partial class DialogManager : Node
     [Export] ChoiceMaker choiceMaker;
     [Export] public TextTyper textTyper;
     [Export] TextTyper dialogueBox;
-    [Export] AudioManager sounds;
     [Export] Control itemMenu;
     [Export] Control choiceLayout;
 
     [Signal] public delegate void DialogEndedEventHandler();
+    [Signal] public delegate void DialogStartedEventHandler();
+
 
     Dictionary<string, DialogLine> dialogLines;
     List<string> orderedUids;
@@ -24,8 +25,6 @@ public partial class DialogManager : Node
     public bool IsSpeaking {get; private set;} = false;
     Character LastSpeaker = null;
     Vector2 dialogueBoxOgPosition = new(0, 235.0f);
-
-
 
     public override void _EnterTree()
     {
@@ -50,6 +49,7 @@ public partial class DialogManager : Node
     public void StartDialogScene(Dialog sceneName)
     {
         IsSpeaking = true;
+        EmitSignal(nameof(DialogStarted));
         GameManager.Instance.IsDialogueActive = true;
         dialogLines = sceneName.Conversation;
         orderedUids = sceneName.OrderedUids;
@@ -186,14 +186,14 @@ public partial class DialogManager : Node
             case NextUidType.DiferentLine:
                 if (dialogLines.ContainsKey(nextUid))
                 {
-                    sounds.NextSentence.Play();
+                    AudioManager.Instance.NextSentence.Play();
                     StartDialog(nextUid);
                     return;
                 }
                 break;
         }
 
-        sounds.NextSentence.Play();
+        AudioManager.Instance.NextSentence.Play();
         GoToNextOrderedLine();
     }
 

@@ -121,7 +121,8 @@ public class UiHandler : ICommandHandler
 
     void HideUi(CommandToken commandToken)
     {
-        UiStage.Instance.HideTextBox();
+        UiStage.Instance.AnimateHideTextBox();
+        //UiStage.Instance.HideTextBox();
     }
 
     public void CleanEffects()

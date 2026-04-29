@@ -6,7 +6,6 @@ using Utility;
 public partial class UiStage : Node
 {
     public static UiStage Instance { get; private set; }
-    [Export] AudioManager sounds;
     [Export] Control textBox;
     [Export] DialogManager dialogManager;
     [Export] Label rememberText;
@@ -74,7 +73,7 @@ public partial class UiStage : Node
         ActionBus.ActionStarted();
         dramaticText.Text = char.ToUpper(title[0]) + title[1..];
         dramaticText.Show();
-        sounds.Chorus1.Play();
+        AudioManager.Instance.Chorus1.Play();
         Vector2 originalScale = dramaticText.Scale;
 
         dramaticText.Modulate = dramaticText.Modulate with {A = 0};
@@ -129,7 +128,7 @@ public partial class UiStage : Node
             .SetEase(Tween.EaseType.Out)
             .SetParallel();
         
-        sounds.Remember.Play();
+        AudioManager.Instance.Remember.Play();
 
         tween.TweenProperty(rememberText, "position", originalPosition, 1f);
         tween.TweenProperty(rememberText, "modulate:a", 1f, 1f);
@@ -176,7 +175,7 @@ public partial class UiStage : Node
     {
         itemNotification.Show();
         itemNotificationLabel.Text = $"Has obtenido {objectData.Name}";
-        sounds.NewItem.Play();
+        AudioManager.Instance.NewItem.Play();
 
         Vector2 originalPosition = itemNotificationOriginalPosition;
         Vector2 hiddenPosition = originalPosition + new Vector2(0f, -300f);
@@ -231,7 +230,7 @@ public partial class UiStage : Node
     {
         if(SoundsDataBase.LoadedSounds.TryGetValue(commandToken.Arguments[0], out AudioStream sound))
         {
-           sounds.PlaySfx(sound);
+           AudioManager.Instance.PlaySfx(sound);
         }
         else
         {
@@ -248,7 +247,7 @@ public partial class UiStage : Node
     {
         if(SoundsDataBase.LoadedSounds.TryGetValue(commandToken.Arguments[0], out AudioStream sound))
         {
-            sounds.PlayMusic(sound);
+            AudioManager.Instance.PlayMusic(sound);
         }
         else
         {
@@ -258,11 +257,11 @@ public partial class UiStage : Node
 
     internal void StopMusic()
     {
-        sounds.StopMusic();
+        AudioManager.Instance.StopMusic();
     }
 
     internal void StopSFX()
     {
-        sounds.FadeOutAllSfx();
+        AudioManager.Instance.FadeOutAllSfx();
     }
 }

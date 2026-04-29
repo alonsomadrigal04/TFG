@@ -11,10 +11,10 @@ public partial class ChoiceMaker : Node
 {
     public event Action<string> ChoiceSelected;
 
-    [Export] AudioManager sounds;
-
     [ExportGroup("Options")]
-    [Export] Control choiceLayout;
+    [Export] CanvasLayer choiceLayoutLayer;
+    [Export] CanvasLayer choiceShaderLayer;
+
     [Export] AnimationPlayer animationPlayer;
     [Export] HBoxContainer optionsContainer;
     [Export] ShaderMaterial optionShader;
@@ -31,7 +31,8 @@ public partial class ChoiceMaker : Node
 
     public void ShowChoices(DialogLine line)
     {
-        choiceLayout.Show();
+        choiceLayoutLayer.Show();
+        choiceShaderLayer.Show();
         string[] optionType = line.Type.Split('/', StringSplitOptions.TrimEntries);
         if(optionType.Length == 1)
             GD.PrintErr("Choice subType not declarated: try choice/Impact, choice/Soft");
@@ -44,12 +45,12 @@ public partial class ChoiceMaker : Node
         {
             case "Impact":
                 SetActiveShaders();
-                sounds.impact.Play();
+                AudioManager.Instance.impact.Play();
                 animationPlayer.Play("IntroQuestion");
                 break;
             case "Soft":
                 SetActiveShaders();
-                sounds.soft.Play();
+                AudioManager.Instance.soft.Play();
                 animationPlayer.Play("IntroQuestion"); // TODO: create a Soft Animation
                 break;
             default:
@@ -98,7 +99,7 @@ public partial class ChoiceMaker : Node
         AnimateButtonEntry(button, wrapper.GetIndex());
     }
 
-    void HoverSounds() => sounds.Hover.Play();
+    void HoverSounds() => AudioManager.Instance.Hover.Play();
 
     void SetButtonTextSize()
     {
@@ -119,13 +120,15 @@ public partial class ChoiceMaker : Node
 
     async void ProcessSelection(int uid)
     {
-        sounds.outQuestion.Play();
+        AudioManager.Instance.outQuestion.Play();
         await AnimateOutChoice();
         string nextUid = nextOptions[uid];
         grayBack.Hide();
         shaderBack.Hide();
 
-        choiceLayout.Hide();
+        choiceLayoutLayer.Hide();
+        choiceShaderLayer.Hide();
+
         ChoiceSelected?.Invoke(nextUid);
     }
 
@@ -226,8 +229,8 @@ public partial class ChoiceMaker : Node
 
     void AnimateButtonEntry(Button button, int index)
     {
-        AudioStreamPlayer player = sounds.sfxPool.GetReleased();
-        player.Stream = sounds.flipCard.Stream;
+        AudioStreamPlayer player = AudioManager.sfxPool.GetReleased();
+        player.Stream = AudioManager.Instance.flipCard.Stream;
         player.Play();
 
         Tween tween = CreateTween()

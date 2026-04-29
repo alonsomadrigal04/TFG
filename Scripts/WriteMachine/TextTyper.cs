@@ -13,7 +13,6 @@ public partial class TextTyper : Control
     [Export] TextureRect dialogBoxFrame;
 
     [Export] RichTextLabel nameBox;
-    [Export] AudioManager sounds;
     [Export] SentenceCompleteHud sentenceHud;
     AudioStreamRandomizer audioStreamRandomizer;
     [ExportGroup("Text Boxes Style")]
@@ -22,6 +21,11 @@ public partial class TextTyper : Control
     public bool isTyping;
     public bool skipRequested = false;
     TagProcessor tagProcessor;
+    public bool isSentenceComplete = false;
+    public bool isAcceptPressed = false;
+
+    public bool isFasterDialog = false;
+
 
     public override void _EnterTree()
     {
@@ -30,7 +34,7 @@ public partial class TextTyper : Control
         {
             RandomPitch = 1.3f,
         };
-        sounds.Talk.Stream = audioStreamRandomizer;
+        AudioManager.Instance.Talk.Stream = audioStreamRandomizer;
         tagProcessor = new TagProcessor();
         dialogBox.Text = "";
         nameBox.Text = "";
@@ -45,6 +49,7 @@ public partial class TextTyper : Control
     public async void WriteText(string text, Character speaker)
     {
         isTyping = true;
+        isSentenceComplete = false;
         sentenceHud.StopAndReset();
         if(speaker.Name == "Narrator")
             nameBox.Text = "";
@@ -82,6 +87,7 @@ public partial class TextTyper : Control
 
         //audioModule.StopAll();
         isTyping = false;
+        isSentenceComplete = true;
         sentenceHud.StartHudAnimation();
     }
 
@@ -107,8 +113,8 @@ public partial class TextTyper : Control
             if (waitTime > 0)
                 await ToSignal(GetTree().CreateTimer(waitTime), "timeout");
 
-            if (!char.IsWhiteSpace(c) & c != '.' & c != '!' & c != '?')
-                sounds.Talk.Play();
+            if (!char.IsWhiteSpace(c) & c != '.' & c != '!' & c != '?' & !isFasterDialog)
+                AudioManager.Instance.Talk.Play();
 
             cleanText += c;
             charIndex++;
@@ -163,8 +169,11 @@ public partial class TextTyper : Control
         return closingTags.ToString();
     }
 
-    static float GetWaitTimeForChar(char c, float baseSpeed)
+    float GetWaitTimeForChar(char c, float baseSpeed)
     {
+        if(isFasterDialog || isAcceptPressed)
+            return 0.00001f;
+
         float waitTime = baseSpeed;
 
         switch (c)

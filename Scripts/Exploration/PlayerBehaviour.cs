@@ -29,21 +29,42 @@ public partial class PlayerBehaviour : CharacterBody3D
     [Export] public DustParticles dustParticles;
     [Export] private MeshInstance3D shadowProxy;
 
-    private readonly List<IInteractable> interactablesInRange = [];
+    readonly List<IInteractable> interactablesInRange = [];
 
-    private readonly Dictionary<Direction, string> animationList = new()
+    readonly Dictionary<Direction, string> walkAnimationList = new()
     {
         { Direction.Back,  "Front" },
         { Direction.Front, "Front" },
         { Direction.Left,  "Left"  },
-        { Direction.Right, "Right" },
-        { Direction.None,  "Idle"  }
+        { Direction.Right, "Right" }
     };
 
-    private Direction currentInputDirection = Direction.None;
-    private Direction currentMovementDirection = Direction.None;
-    private Tween rotationTween;
-    private int transitionToken = 0;
+    readonly Dictionary<Direction, string> idleAnimationList = new()
+    {
+        { Direction.Back,  "IdleFront" },
+        { Direction.Front, "IdleFront" },
+        { Direction.Left,  "IdleLeft" },
+        { Direction.Right, "IdleRight" }
+    };
+
+    Direction currentInputDirection = Direction.None;
+    Direction currentMovementDirection = Direction.None;
+    Direction idleFacingDirection = Direction.Front;
+    Direction facingDirection = Direction.Front;
+    bool isTurning = false;
+
+    int lastFrame = -1;
+    readonly Dictionary<Direction, int[]> stepFrames = new()
+    {
+        { Direction.Front, new[] { 0, 23, 48, 70 } },
+        { Direction.Left, new[] { 0, 32 } },
+        { Direction.Right, new[] { 0, 32 } },
+        { Direction.Back, new[] { 0, 23, 48, 70 } },
+    };
+
+
+    Tween rotationTween;
+    int transitionToken = 0;
 
     public bool IsBlocked
     {
@@ -57,7 +78,7 @@ public partial class PlayerBehaviour : CharacterBody3D
             animatedSprite3D.SpeedScale = speed / 2f;
 
         shadowProxy?.Show();
-        SetAnimation(Direction.None);
+        SetIdleAnimation(idleFacingDirection);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -65,17 +86,45 @@ public partial class PlayerBehaviour : CharacterBody3D
         if (isDebugging || !IsBlocked)
         {
             ManageMovement(delta);
+            HandleFootsteps();
             ManageInteractions();
-        }
-        if (IsBlocked)
-        {
-            SetAnimation(Direction.None);
-            dustParticles.Emitting = false;
-            
         }
     }
 
-    private void ManageMovement(double delta)
+    void HandleFootsteps()
+    {
+        if (currentInputDirection == Direction.None)
+            return;
+
+        int frame = animatedSprite3D.Frame;
+
+        if (frame == lastFrame)
+            return;
+
+        lastFrame = frame;
+
+        if (IsStepFrame(frame))
+        {
+            PlayFootstep();
+        }
+    }
+
+    void PlayFootstep()
+    {
+        AudioManager.Instance.WalkingSounds.Play();
+    }
+
+    bool IsStepFrame(int frame)
+    {
+        if (stepFrames.TryGetValue(currentInputDirection, out int[] frameList))
+        {
+            return frameList.Contains(frame);
+        }
+
+        return frame == 2 || frame == 6;
+    }
+
+    void ManageMovement(double delta)
     {
         Vector3 move = Vector3.Zero;
         Direction newInputDirection = ReadInputDirection(ref move);
@@ -90,12 +139,9 @@ public partial class PlayerBehaviour : CharacterBody3D
             dustParticles.Emitting = false;
         }
 
-        if (newInputDirection != currentInputDirection)
-        {
-            currentInputDirection = newInputDirection;
-            dustParticles.ChangeDirection(newInputDirection);
-            UpdateVisualState(newInputDirection);
-        }
+        currentInputDirection = newInputDirection;
+        dustParticles.ChangeDirection(newInputDirection);
+        UpdateVisualState(newInputDirection);
 
         Vector3 desiredVelocity = move * Speed;
 
@@ -110,120 +156,106 @@ public partial class PlayerBehaviour : CharacterBody3D
 
     Direction ReadInputDirection(ref Vector3 move)
     {
-        Direction result = Direction.None;
-
         if (Input.IsActionPressed("moveRight"))
         {
-            result = Direction.Right;
-            move.X += 1;
+            move.X = 1;
+            return Direction.Right;
         }
         if (Input.IsActionPressed("moveLeft"))
         {
-            result = Direction.Left;
-            move.X -= 1;
+            move.X = -1;
+            return Direction.Left;
         }
         if (Input.IsActionPressed("moveFar"))
         {
-            result = Direction.Back;
-            move.Z -= 1;
+            move.Z = -1;
+            return Direction.Back;
         }
         if (Input.IsActionPressed("moveNear"))
         {
-            result = Direction.Front;
-            move.Z += 1;
+            move.Z = 1;
+            return Direction.Front;
         }
 
-        return result;
+        return Direction.None;
     }
 
-    private void UpdateVisualState(Direction newDirection)
+    void UpdateVisualState(Direction newDirection)
     {
-        if (newDirection == currentMovementDirection)
+        
+        if (isTurning)
             return;
-
-        int myToken = ++transitionToken;
-        KillRotationTween();
 
         if (newDirection == Direction.None)
         {
-            if (currentMovementDirection == Direction.None)
+            SetIdleAnimation(facingDirection);
+            return;
+        }
+
+        if (newDirection == facingDirection)
+        {
+            SetWalkAnimation(facingDirection);
+            return;
+        }
+        RotateTo(newDirection);
+    }
+
+    void RotateTo(Direction newDirection)
+    {
+        isTurning = true;
+
+        KillRotationTween();
+
+        float turnAmount = Mathf.DegToRad(90f);
+
+        float directionSign = GetTurnSign(facingDirection, newDirection);
+
+        float targetYaw = directionSign * turnAmount;
+
+
+        rotationTween = CreateTween();
+        rotationTween.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
+
+        rotationTween.TweenProperty(this, "rotation:y", targetYaw, 0.12f);
+
+        rotationTween.Finished += () =>
+        {
+            facingDirection = newDirection;
+
+            SetWalkAnimation(facingDirection);
+
+            Tween back = CreateTween();
+            rotationTween = back;
+            back.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
+            back.TweenProperty(this, "rotation:y", 0f, 0.12f);
+
+            back.Finished += () =>
             {
-                SetAnimation(Direction.None);
-                return;
-            }
-
-            PlayStopSequence(currentMovementDirection, myToken);
-            currentMovementDirection = Direction.None;
-            return;
-        }
-
-        PlayMoveSequence(currentMovementDirection, newDirection, myToken);
-        currentMovementDirection = newDirection;
-    }
-
-    private void PlayMoveSequence(Direction from, Direction to, int token)
-    {
-        float targetYaw = DirectionToYaw(to);
-        float frontYaw = 0f;
-
-        if (to == Direction.Front)
-        {
-            SetAnimation(Direction.Front);
-            Rotation = new Vector3(Rotation.X, frontYaw, Rotation.Z);
-            return;
-        }
-
-        Tween firstTurn = CreateTween();
-        rotationTween = firstTurn;
-        firstTurn.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
-        firstTurn.TweenProperty(this, "rotation:y", targetYaw, 0.14f);
-
-        firstTurn.Finished += () =>
-        {
-            if (token != transitionToken)
-                return;
-
-            SetAnimation(to);
-
-            Tween secondTurn = CreateTween();
-            rotationTween = secondTurn;
-            secondTurn.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
-            secondTurn.TweenProperty(this, "rotation:y", frontYaw, 0.14f);
+                isTurning = false;
+            };
         };
     }
 
-    private void PlayStopSequence(Direction from, int token)
+    float GetTurnSign(Direction from, Direction to)
     {
-        float targetYaw = DirectionToYaw(from);
-        float frontYaw = 0f;
 
-        if (from == Direction.Front)
-        {
-            SetAnimation(Direction.None);
-            Rotation = new Vector3(Rotation.X, frontYaw, Rotation.Z);
-            return;
-        }
+        if (to == Direction.Right)
+            return 1f;
 
-        Tween firstTurn = CreateTween();
-        rotationTween = firstTurn;
-        firstTurn.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
-        firstTurn.TweenProperty(this, "rotation:y", targetYaw, 0.14f);
+        if (to == Direction.Left)
+            return -1f;
 
-        firstTurn.Finished += () =>
-        {
-            if (token != transitionToken)
-                return;
+        if (from == Direction.Left)
+            return 1f;
 
-            SetAnimation(Direction.None);
+        if (from == Direction.Right)
+            return -1f;
 
-            Tween secondTurn = CreateTween();
-            rotationTween = secondTurn;
-            secondTurn.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
-            secondTurn.TweenProperty(this, "rotation:y", frontYaw, 0.14f);
-        };
+        return 1f;
     }
 
-    private void KillRotationTween()
+
+    void KillRotationTween()
     {
         if (rotationTween != null && IsInstanceValid(rotationTween))
         {
@@ -232,42 +264,50 @@ public partial class PlayerBehaviour : CharacterBody3D
         }
     }
 
-    private void SetAnimation(Direction destiny)
+    void SetWalkAnimation(Direction destiny)
     {
+        ApplyAnimation(destiny, walkAnimationList, flipRight: destiny == Direction.Right);
+    }
+
+    void SetIdleAnimation(Direction destiny)
+    {
+        ApplyAnimation(destiny, idleAnimationList, flipRight: destiny == Direction.Right);
+    }
+
+    void ApplyAnimation(Direction destiny, Dictionary<Direction, string> animationMap, bool flipRight)
+    {
+        lastFrame = -1;
         if (animatedSprite3D == null)
             return;
 
-        if (!animationList.TryGetValue(destiny, out string newAnimation))
-            newAnimation = "Idle";
+        if (!animationMap.TryGetValue(destiny, out string newAnimation))
+            newAnimation = "IdleFront";
 
         if (animatedSprite3D.Animation != newAnimation)
             animatedSprite3D.Animation = newAnimation;
 
-        bool flip = ShouldFlip(destiny);
-
-        animatedSprite3D.FlipH = flip;
+        animatedSprite3D.FlipH = flipRight;
     }
 
-    private static bool ShouldFlip(Direction dir) => dir == Direction.Right;
-
-    private static float DirectionToYaw(Direction dir)
+    static float DirectionToYaw(Direction dir)
     {
         return dir switch
         {
             Direction.Front => 0f,
             Direction.Right => Mathf.DegToRad(90f),
-            Direction.Back  => Mathf.DegToRad(180f),
-            Direction.Left  => Mathf.DegToRad(-90f),
+            Direction.Back => Mathf.DegToRad(180f),
+            Direction.Left => Mathf.DegToRad(-90f),
             _ => 0f
         };
     }
 
-    private void ManageInteractions()
+    void ManageInteractions()
     {
         if (Input.IsActionJustPressed("interact") && interactablesInRange.Count > 0)
         {
             IInteractable element = interactablesInRange.OrderByDescending(i => i.priority).FirstOrDefault();
             element?.Interact();
+            SetIdleAnimation(currentInputDirection);
         }
 
         if (Input.IsActionJustPressed("sprint"))

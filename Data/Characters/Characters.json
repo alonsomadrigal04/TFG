@@ -17,10 +17,10 @@
 	},
 	"Treya": {
 		"voice_sample": "res://Audio/Voices/Treya.wav",
-		"color": "#FF69B4"
+		"color": "#d9edff"
 	},
 	"Fled": {
 		"voice_sample": "res://Audio/Voices/Fled.wav",
-		"color": "#000000"
+		"color": "#c7ffd6"
 	}
 }

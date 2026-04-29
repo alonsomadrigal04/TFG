@@ -91,7 +91,12 @@ public static partial class ToolKit
     /// </summary>
     /// <param name="control">The Control node to position.</param>
     /// <param name="screenPosition">The desired screen position.</param>
-    public static void SetPosition(Control control, ScreenPosition screenPosition) => control.Position = GetPosition(screenPosition);
+    public static void SetPosition(this Control control, ScreenPosition screenPosition)
+    {
+        control.Position = GetPosition(screenPosition);
+        control.Position -= new Vector2(control.Size.X/2, control.Size.Y/2);
+    }
+
 
     /// <summary>
     /// Gets the anchor position for a given screen position.

@@ -5,7 +5,7 @@ public static class SoundsDataBase
 {
     public static Dictionary<string, AudioStream> LoadedSounds{get; private set;} = [];
     
-        public static void Load()
+    public static void Load()
     {
         LoadedSounds.Clear();
 

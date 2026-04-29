@@ -3,10 +3,12 @@
 [ext_resource type="AudioStream" uid="uid://kgv4b1fveuyf" path="res://Audio/BgMusic1.wav" id="1_2v5lu"]
 [ext_resource type="Script" uid="uid://pcq10egp6y5d" path="res://Scripts/API/SFX & Music/SoundsLibrary.cs" id="1_157nu"]
 [ext_resource type="AudioStream" uid="uid://wfko1105ro1r" path="res://Audio/warsounds.wav" id="2_tav7r"]
+[ext_resource type="AudioStream" uid="uid://bki146na1fv6e" path="res://Audio/ObjectInteraction.wav" id="3_nr1r2"]
 
 [resource]
 script = ExtResource("1_157nu")
 SoundsStored = Dictionary[String, AudioStream]({
+"ObjectInteraction": ExtResource("3_nr1r2"),
 "bgmusic1": ExtResource("1_2v5lu"),
 "warsounds": ExtResource("2_tav7r")
 })

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://13au6xxt3wgm"]
+
+[ext_resource type="Script" uid="uid://broepqlnvr6nb" path="res://Scripts/Exploration/LorePoint.cs" id="1_x0ehu"]
+[ext_resource type="Texture2D" uid="uid://cj11d07nr2x0w" path="res://Assets/Flavour/exclamationSign.png" id="2_7i5r5"]
+[ext_resource type="Script" uid="uid://dvke0mr2o3aeq" path="res://Scripts/Exploration/InteractIconAnimation.cs" id="3_4u207"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7phqq"]
+radius = 2.3969817
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4wjbt"]
+load_path = "res://.godot/imported/icon.svg-84d3b7bdf58f2eca40aec13f28d551cd.s3tc.ctex"
+
+[node name="LorePoint" type="Node3D" unique_id=1753178380 node_paths=PackedStringArray("interactionArea", "interactIconAnimation")]
+script = ExtResource("1_x0ehu")
+iteractIcon = ExtResource("2_7i5r5")
+interactionArea = NodePath("Area3D")
+interactIconAnimation = NodePath("InteractIcon")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1813703710]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1606978485]
+shape = SubResource("SphereShape3D_7phqq")
+
+[node name="InteractIcon" type="Sprite3D" parent="." unique_id=1934875803]
+transform = Transform3D(0.425, 0, 0, 0, 0.425, 0, 0, 0, 0.425, 0, 1, 0)
+texture = SubResource("CompressedTexture2D_4wjbt")
+script = ExtResource("3_4u207")

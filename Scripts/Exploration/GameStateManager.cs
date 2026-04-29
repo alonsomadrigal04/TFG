@@ -25,7 +25,7 @@ public partial class GameStateManager : Node
         switch (newState)
         {
             case State.Dialog:
-                EnterDialogState(context as NpcBehaviour);
+                EnterDialogState(context as string);
                 break;
             case State.Explore:
                 EnterExploreState();
@@ -57,11 +57,11 @@ public partial class GameStateManager : Node
         GD.Print("Sigamos explorando.");
     }
 
-    void EnterDialogState(NpcBehaviour npc)
+    void EnterDialogState(string dialogId)
     {
         Player.SetInputBlocked(true);
 
-        GameManager.Instance.DialogManager.StartDialogScene(ConversationsDataBase.GetConversation(npc.CharacterInfo.Name));
+        GameManager.Instance.DialogManager.StartDialogScene(ConversationsDataBase.GetConversation(dialogId));
     }
 
 }

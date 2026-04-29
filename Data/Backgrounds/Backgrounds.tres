@@ -5,13 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://leggi1whkbf8" path="res://Data/Backgrounds/Images/pollo.jpg" id="2_jgwo2"]
 [ext_resource type="Texture2D" uid="uid://be1s3kqo0l887" path="res://Data/Backgrounds/Images/Alezkar.jpg" id="3_0rjyo"]
 [ext_resource type="Texture2D" uid="uid://3s2ojhskyew4" path="res://Data/Backgrounds/Images/negro.jpg" id="4_tuiq3"]
+[ext_resource type="Texture2D" uid="uid://cnkqator8nvs5" path="res://Data/Backgrounds/Images/boceto_1.jpg" id="5_qal5x"]
+[ext_resource type="Texture2D" uid="uid://ccg0urlj0wv0" path="res://Assets/UI/transparent.png" id="6_7tkf5"]
 
 [resource]
 script = ExtResource("1_2ju31")
 BackgroundsStored = Dictionary[String, Texture2D]({
 "alezkar": ExtResource("3_0rjyo"),
+"boceto_1": ExtResource("5_qal5x"),
 "llanurasquebradas": ExtResource("1_71815"),
 "negro": ExtResource("4_tuiq3"),
-"pollo": ExtResource("2_jgwo2")
+"pollo": ExtResource("2_jgwo2"),
+"transparent": ExtResource("6_7tkf5")
 })
 metadata/_custom_type_script = "uid://dl73rfdou75xc"

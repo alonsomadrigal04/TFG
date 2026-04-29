@@ -7,8 +7,6 @@ public partial class CameraStage : Node
     public static CameraStage Instance { get; private set; }
     [Export] Control layerDialogBox;
     [Export] Control layerBackground;
-    [Export] AudioManager sounds;
-
 
     public override void _Ready()
     {
@@ -22,7 +20,7 @@ public partial class CameraStage : Node
 
     public void CameraShake(float duration = 0.01f, float intensity = 1f)
     {
-        sounds.Shake.Play();
+        AudioManager.Instance.Shake.Play();
         AnimateShake(duration, intensity, layerDialogBox);
     }
     public void AnimateShake(float duration, float intensity, Control canvasToAnimate)

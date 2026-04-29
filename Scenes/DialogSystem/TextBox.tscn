@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ccg0urlj0wv0" path="res://Assets/UI/transparent.png" id="2_nvnf7"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_s4oty"]
 [ext_resource type="Texture2D" uid="uid://dhhubtdruxl1y" path="res://Assets/UI/nextDialogIcon.png" id="4_h4oya"]
-[ext_resource type="Script" uid="uid://be60ixvdb27x8" path="res://Scenes/DialogSystem/SentenceCompleteHud.cs" id="5_h4oya"]
+[ext_resource type="Script" uid="uid://be60ixvdb27x8" path="res://Scripts/SpecificActions/SentenceCompleteHud.cs" id="5_h4oya"]
 
 [node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "dialogBoxFrame", "nameBox", "sentenceHud")]
 z_index = 2

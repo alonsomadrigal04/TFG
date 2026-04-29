@@ -13,7 +13,6 @@ public partial class ItemInteractionMenu : Control
     [ExportGroup("UI Elements")]
     [Export] VBoxContainer VBoxContainer { get; set; }
     [Export] Label ItemName { get; set; }
-    [Export] AudioManager sounds;
     [Export] Sprite2D decorationCopperFrame;
     [Export] int rotationCopperSpeed = 3;
     [Export] Sprite2D ButtonSpinnerDisplay;
@@ -95,7 +94,7 @@ public partial class ItemInteractionMenu : Control
 
         if (show)
         {
-            sounds.ClockDisplay.Play();
+            AudioManager.Instance.ClockDisplay.Play();
             VBoxContainer.Visible = true;
             appearanceTween.TweenProperty(Spinner, "position", ShowPosition, duration);
             
@@ -104,7 +103,7 @@ public partial class ItemInteractionMenu : Control
         }
         else
         {
-            sounds.ClockHide.Play();
+            AudioManager.Instance.ClockHide.Play();
             appearanceTween.TweenProperty(Spinner, "position", HiddenPosition, duration);
             
             appearanceTween.TweenDelegate<float>(v => VBoxContainer.Modulate = new Color(1, 1, 1, v), 1f, 0f, duration);
@@ -131,7 +130,7 @@ public partial class ItemInteractionMenu : Control
     void AnimateRotation(float angleDelta)
     {
         rotationTween?.Kill();
-        sounds.Spining.Play();
+        AudioManager.Instance.Spining.Play();
 
         float targetRotation = Spinner.Rotation + angleDelta;
 

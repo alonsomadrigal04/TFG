@@ -161,7 +161,9 @@ public partial class NpcBehaviour : RigidBody3D, IInteractable
 	public void Interact()
 	{
 		if (!HasDialog) return;
-		GameStateManager.Instance.ChangeState(State.Dialog, this);
+		AudioManager.Instance.DialogInteract.Play();
+		CameraBehaviour.Instance.Shake();
+		GameStateManager.Instance.ChangeState(State.Dialog, CharacterInfo.Name);
 	}
 
 	void OnBodyEntered(Node3D body)
@@ -180,11 +182,5 @@ public partial class NpcBehaviour : RigidBody3D, IInteractable
 			// dialogIcon.Desactivate();
 			player.UnregisterInteractable(this);
 		}
-	}
-
-	public void SetDialogState(bool hasDialog)
-	{
-		HasDialog = hasDialog;
-		//dialogIcon.UpdateState(hasDialog);
 	}
 }

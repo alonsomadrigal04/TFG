@@ -1,0 +1,468 @@
+[gd_scene format=3 uid="uid://bwk2wyph1oxux"]
+
+[ext_resource type="Script" uid="uid://csef7sfso8fw4" path="res://Scripts/ChapterLogic/ChapterEnv.cs" id="1_adw6x"]
+[ext_resource type="Shader" uid="uid://buatu1w8o7ox2" path="res://Shaders/WarpedFractalNoise.gdshader" id="1_icilb"]
+[ext_resource type="Shader" uid="uid://2337j62ed6t7" path="res://Shaders/DinamicVignette.gdshader" id="2_mb6gd"]
+[ext_resource type="AudioStream" uid="uid://bkaihnguifcih" path="res://Audio/ChapterIntro.wav" id="3_mb6gd"]
+[ext_resource type="FontFile" uid="uid://b7mf51q1yjg00" path="res://Assets/Fonts/Ancient Medium.ttf" id="3_snf86"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adw6x"]
+shader = ExtResource("1_icilb")
+shader_parameter/speed = 0.15
+shader_parameter/pixelation = 2.475
+shader_parameter/zoom = 2.0
+shader_parameter/gradient_pixelation = 0.2
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.0
+shader_parameter/color_mid_threshold = 0.350000016625
+shader_parameter/color_low = Color(0.23137255, 0.10980392, 0.19607843, 1)
+shader_parameter/color_mid = Color(0.32156864, 0.14509805, 0.27450982, 1)
+shader_parameter/color_high = Color(0.53333336, 0.1882353, 0.30588236, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snf86"]
+shader = ExtResource("2_mb6gd")
+shader_parameter/vignette_size = 0.322000015295
+shader_parameter/vignette_softness = 0.5270000250325
+shader_parameter/wobble_strength = 0.0
+shader_parameter/wobble_speed = 2.3390001111025
+shader_parameter/vignette_color = Color(0.11211202, 0.039186325, 0.09226113, 1)
+shader_parameter/circular = true
+shader_parameter/particle_intensity = 0.47200002242
+shader_parameter/noise_octaves = 6
+shader_parameter/noise_scale = 6.286000251085
+
+[sub_resource type="Animation" id="Animation_dahhg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Numero:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Frame:material:shader_parameter/wobble_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.3390001111025]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Bg:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Bg:material:shader_parameter/speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.15]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Frame:material:shader_parameter/vignette_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.322000015295]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Chapter:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Numero:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Chapter:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Frame:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Bg:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer/Subtitle:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasLayer/Subtitle:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_icilb"]
+length = 14.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Numero:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.31378445, 6.447118),
+"transitions": PackedFloat32Array(3.8637445, 1),
+"update": 0,
+"values": [Vector2(0.755, 0.755), Vector2(0.905, 0.905)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Frame:material:shader_parameter/wobble_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.31378445, 6.447118),
+"transitions": PackedFloat32Array(73.51673, 1),
+"update": 0,
+"values": [2.3390001111025, 10.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Bg:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.31378445, 6.447118),
+"transitions": PackedFloat32Array(2.3784142, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.14, 1.14)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Bg:material:shader_parameter/speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.31378445, 6.447118),
+"transitions": PackedFloat32Array(57.679893, 1),
+"update": 0,
+"values": [0.15, 0.415]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Frame:material:shader_parameter/vignette_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.31378445, 6.447118),
+"transitions": PackedFloat32Array(18.379152, 1),
+"update": 0,
+"values": [0.322000015295, 0.138000006555]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Chapter:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.36666667, 6.447118),
+"transitions": PackedFloat32Array(3.1383355, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.905, 0.905)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Numero:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(6.447118, 6.513785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Chapter:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(6.447118, 6.513785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Frame:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(6.447118, 6.513785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Bg:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(6.447118, 6.513785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer/Subtitle:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(6.447118, 13.313785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasLayer/Subtitle:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(6.447118, 13.313785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05)]
+}
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ChapterIntro")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_mb6gd")
+}],
+"times": PackedFloat32Array(0.4471179)
+}
+tracks/12/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wel0"]
+_data = {
+&"RESET": SubResource("Animation_dahhg"),
+&"introChapter": SubResource("Animation_icilb")
+}
+
+[node name="Control" type="Control" unique_id=283968899 node_paths=PackedStringArray("chapterLabel", "numberLabel", "subTitleLabel", "animationPlayer", "introSound")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.5
+offset_right = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_adw6x")
+chapterLabel = NodePath("CanvasLayer/Chapter")
+numberLabel = NodePath("CanvasLayer/Numero")
+subTitleLabel = NodePath("CanvasLayer/Subtitle")
+animationPlayer = NodePath("AnimationPlayer")
+introSound = NodePath("ChapterIntro")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1697101515]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1218561233]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bg" type="ColorRect" parent="CanvasLayer" unique_id=1167637959]
+material = SubResource("ShaderMaterial_adw6x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+metadata/_edit_lock_ = true
+
+[node name="Numero" type="Label" parent="CanvasLayer" unique_id=904461755]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -832.0
+offset_top = -603.0
+offset_right = 832.79736
+offset_bottom = 567.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(834.3336, 604.80347)
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2971635, 0.5778817, 0.51335734, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2784314)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("3_snf86")
+theme_override_font_sizes/font_size = 1000
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chapter" type="Label" parent="CanvasLayer" unique_id=2087149459]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -115.500015
+offset_right = 640.0
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 115.500015)
+theme_override_colors/font_color = Color(0.23308325, 0.45330286, 0.2938538, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.70980394)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_snf86")
+theme_override_font_sizes/font_size = 169
+text = "Capítulo"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Subtitle" type="Label" parent="CanvasLayer" unique_id=140870160]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.00018310547
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_snf86")
+theme_override_font_sizes/font_size = 57
+text = "SUBTITULO DEL CAPITULO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Frame" type="ColorRect" parent="CanvasLayer" unique_id=658246294]
+material = SubResource("ShaderMaterial_snf86")
+offset_right = 1280.0
+offset_bottom = 720.0
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2070603327]
+libraries/ = SubResource("AnimationLibrary_5wel0")
+
+[node name="ChapterIntro" type="AudioStreamPlayer" parent="." unique_id=1300967471]

@@ -8,6 +8,6 @@ script = ExtResource("1_dvroo")
 Title = "Prólogo"
 Subtitle = "El cabo"
 Type = 1
-StartConversation = "Prologo"
+StartConversation = "Test"
 ExplorationEnvironment = ExtResource("1_snjj8")
 metadata/_custom_type_script = "uid://uuyekluu2ar2"

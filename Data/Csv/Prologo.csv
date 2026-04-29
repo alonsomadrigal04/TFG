@@ -1,7 +1,7 @@
 ﻿uid;code;type;speaker;text;next
 A1;UI off;;;;
 A2;UI inventory off;;;;
-A3;UI transparent;;;;
+A3;UI change transparent;;;;
 A4;Dialog move center;;;;
 A5;timer wait 3;;;;
 A6;Music play BgMusic1;;;;
@@ -26,7 +26,7 @@ A24;;say;Narrator;El honor te persigue;A26
 A25;;;;;
 A26;UI off;;;;
 A27;UI inventory off;;;;
-A28;UI transparent;;;;
+A28;UI change transparent;;;;
 A29;timer wait 2;;;;
 A30;title dramatic Venganza;;;;
 A31;;say;Narrator;Pongamos que eres un granjero honrado.;
