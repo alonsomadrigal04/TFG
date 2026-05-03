@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://csdm6cppfbhoh"
+path="res://.godot/imported/FledLaugh01.wav-cef2d958df452b4a0488c9de86407901.sample"
+
+[deps]
+
+source_file="res://Audio/Sounds - Flavour/Fled/FledLaugh01.wav"
+dest_files=["res://.godot/imported/FledLaugh01.wav-cef2d958df452b4a0488c9de86407901.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

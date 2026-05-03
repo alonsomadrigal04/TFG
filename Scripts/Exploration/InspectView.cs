@@ -4,6 +4,7 @@ using Utility;
 
 public partial class InspectView : Control
 {
+    bool isDebugging = false;
     [Export] Control DebugScreen;
 
     [ExportGroup("VIEWPORTS")]
@@ -70,8 +71,8 @@ public partial class InspectView : Control
         ChangeVisibility(false);
         DebugScreen.Hide();
         Hide();
-
-        GameStateManager.Instance.RegisterInspectView(this);
+        if(!isDebugging)
+            GameStateManager.Instance.RegisterInspectView(this);
 
         leaveButton.Pressed += HandleLeaveAction;
         takeButton.Pressed += HandleTakeAction;

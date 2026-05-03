@@ -234,7 +234,7 @@ public partial class UiStage : Node
         }
         else
         {
-            GD.Print("Something goes wrong");
+            GD.Print(commandToken.Arguments[0] + " sound was not found");
         }
     }
 

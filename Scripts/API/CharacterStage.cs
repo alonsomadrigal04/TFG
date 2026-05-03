@@ -177,10 +177,11 @@ public partial class CharacterStage : Node
 
         portrait.PivotOffset = portrait.Size / 2;
         portrait.ZIndex = portraitLayer;
-        portrait.SetPosition(screenPosition);
+        portrait.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+        portrait.Size /= 2.68f;
+        portrait.SetPosition(screenPosition, true);
         portrait.SetAnchorsPreset(Control.LayoutPreset.Center);
 
-        GD.Print(portrait.Name + ": " + portrait.Position);
 
         AppearAnimation(portrait);
     }
@@ -271,9 +272,15 @@ public partial class CharacterStage : Node
             GD.PrintErr($"[CharacterScene] {character} is not in the scene");
             return;
         }
-        ActionBus.ActionStarted();
 
         TextureRect portrait = GetCharacterPortrait(character);
+
+        FlipTextureRect(portrait);
+    }
+
+    public void FlipTextureRect(TextureRect portrait)
+    {
+        ActionBus.ActionStarted();
 
         float duration = 0.5f;
         float half = duration * 0.5f;
@@ -317,7 +324,6 @@ public partial class CharacterStage : Node
 
         tween.Finished += ActionBus.ActionFinished;
     }
-
 
     public async void AnimateShake(TextureRect portrait)
     {

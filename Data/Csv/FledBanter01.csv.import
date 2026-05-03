@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dehkjqvfdvo1e"
+
+[deps]
+
+source_file="res://Data/Csv/FledBanter01.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

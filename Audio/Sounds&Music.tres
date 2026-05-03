@@ -4,12 +4,18 @@
 [ext_resource type="Script" uid="uid://pcq10egp6y5d" path="res://Scripts/API/SFX & Music/SoundsLibrary.cs" id="1_157nu"]
 [ext_resource type="AudioStream" uid="uid://wfko1105ro1r" path="res://Audio/warsounds.wav" id="2_tav7r"]
 [ext_resource type="AudioStream" uid="uid://bki146na1fv6e" path="res://Audio/ObjectInteraction.wav" id="3_nr1r2"]
+[ext_resource type="AudioStream" uid="uid://csdm6cppfbhoh" path="res://Audio/Sounds - Flavour/Fled/FledLaugh01.wav" id="4_rvtj8"]
+[ext_resource type="AudioStream" uid="uid://vs8w03gt3uk5" path="res://Audio/Sounds - Flavour/Fled/FledLaugh02.wav" id="5_y8sg6"]
+[ext_resource type="AudioStream" uid="uid://heaw5puht3h2" path="res://Audio/Sounds - Flavour/Fled/FledLaugh03.wav" id="6_ty1ql"]
 
 [resource]
 script = ExtResource("1_157nu")
 SoundsStored = Dictionary[String, AudioStream]({
 "ObjectInteraction": ExtResource("3_nr1r2"),
 "bgmusic1": ExtResource("1_2v5lu"),
+"fledlaugh01": ExtResource("4_rvtj8"),
+"fledlaugh02": ExtResource("5_y8sg6"),
+"fledlaugh03": ExtResource("6_ty1ql"),
 "warsounds": ExtResource("2_tav7r")
 })
 metadata/_custom_type_script = "uid://pcq10egp6y5d"

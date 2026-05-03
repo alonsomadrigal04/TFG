@@ -56,6 +56,7 @@ material = SubResource("StandardMaterial3D_nnskf")
 [node name="Dust" type="GPUParticles3D" unique_id=391103126]
 amount = 20
 lifetime = 1.2
+visibility_aabb = AABB(-0.75, 0, -0.87, 1.5, 1.565, 1.65)
 process_material = SubResource("ParticleProcessMaterial_eea0q")
 draw_pass_1 = SubResource("QuadMesh_eea0q")
 script = ExtResource("2_doh4g")

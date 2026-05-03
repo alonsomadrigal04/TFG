@@ -111,7 +111,6 @@ public class GameStateHandler : ICommandHandler
         Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
         UiStage.Instance.AnimateRemember(character.Name);
         character.SetAffinity(args[0].ToInt());
-        GD.Print(character.characterState.Afinity);
     }
 
     public void CleanEffects()

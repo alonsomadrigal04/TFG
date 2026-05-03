@@ -4,6 +4,7 @@ using System;
 [GlobalClass]
 public partial class ExplorationZoneCampFire : Node, IExplorationZone
 {
+    [Export] bool isDebugging= false;
     [Export] PackedScene npcScene;
 
     [ExportGroup("NPCS DATA")]
@@ -31,6 +32,7 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
 
     [ExportGroup("UI")]
     [Export] CanvasLayer dialogFrameLayer;
+    [Export] CanvasLayer cinematicLayer;
 
     DialogManager dialogManager;
 
@@ -38,6 +40,14 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
 
     public override void _Ready()
     {
+
+        if (isDebugging)
+        {
+            cinematicLayer.Hide();
+            introPlayed = true;
+            //GameManager.Instance.IsDialogueActive = true;
+        }
+
         GetPlayer();
         ValidateFields();
         SpawnCharacters();
@@ -81,6 +91,11 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
     void GetPlayer()
     {
         GameStateManager.Instance.Player = player;
+        if (isDebugging)
+        {
+            GD.Print("changed debugging player");
+            player.isDebugging = true;
+        }
     }
 
     void GetDialogManager()
@@ -106,12 +121,23 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
     {
         // if (GameManager.Instance.IsDialogueActive)
         //     return;
+        cameraBehaviour.IsActive = false;
+
+        PlayCameraAnimation();
 
         PlayUIAnimation("EnterDialog");
 
         dialogFrameLayer.Show();
 
-        GD.Print("Dialog Enter Animation");
+    }
+
+    void PlayCameraAnimation(bool isIn = false)
+    {
+        Tween tween = CreateTween();
+
+        tween.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
+        Vector3 cameraOffset = cameraBehaviour.Position + new Vector3(0, 0, 3) * (isIn ? -1f : 1f);
+        tween.TweenProperty(cameraBehaviour, "position", cameraOffset, 0.5f);
     }
 
     void OnDialogEnded()
@@ -128,17 +154,16 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
     void StartIntroSequence()
     {
         introPlayed = true;
-
         GameManager.Instance.IsDialogueActive = true;
 
-        GD.Print("Intro Started");
 
         cinematicAnimationPlayer.Play("Post_Prologue");
     }
 
     void EndDialogUI()
     {
-        GD.Print("Dialog Exit Animation");
+        PlayCameraAnimation(true);
+        cameraBehaviour.IsActive = true;
 
         PlayUIAnimation("ExitDialog");
     }
@@ -175,7 +200,6 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
 
         GameManager.Instance.IsDialogueActive = false;
 
-        GD.Print("Gameplay Enabled");
     }
 
     void PlayUIAnimation(string animationName)

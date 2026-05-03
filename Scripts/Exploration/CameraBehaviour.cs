@@ -14,27 +14,38 @@ public partial class CameraBehaviour : Camera3D
     {
         if (Instance == this) Instance = null;
     }
+
     [Export] Node3D target;
     public bool IsActive = false;
 
-    Vector3 offset = new(0f, 3.5f, 7.2f);
-    float followSpeed = 5f;
+    int viewMode = 0;
+    List<Vector3> offsetList = [
+        new(0f, 5f, 9f),    // Normal
+        new(0f, 10f, 5f)   // Up
+    ];
+
+    float followSpeed = 3f;
 
     readonly Dictionary<MeshInstance3D, float> fade = [];
 
     float shakeTimeLeft = 0f;
     float shakeDuration = 0f;
     float shakeIntensity = 0f;
+    Vector3 currentOffset;
+    Tween positionTween;
+    Tween rotationTween;
     Vector3 shakeOffset = Vector3.Zero;
     RandomNumberGenerator rng = new();
 
     public override void _Ready()
     {
+        currentOffset = offsetList[viewMode];
+        GlobalPosition = target.GlobalPosition + currentOffset;
         rng.Randomize();
         if (target == null)
             GD.PushError("[CAMERA] TARGET NOT SET");
         else
-            GlobalPosition = target.GlobalPosition + offset;
+            GlobalPosition = target.GlobalPosition + offsetList[viewMode];
     }
 
     public override void _Process(double delta)
@@ -44,8 +55,7 @@ public partial class CameraBehaviour : Camera3D
 
         float d = (float)delta;
 
-        Vector3 desired = target.GlobalPosition + offset;
-
+        Vector3 desired = target.GlobalPosition + currentOffset;
         if (shakeTimeLeft > 0f)
         {
             shakeTimeLeft -= d;
@@ -75,6 +85,54 @@ public partial class CameraBehaviour : Camera3D
         shakeDuration = duration;
         shakeTimeLeft = duration;
         shakeIntensity = intensity;
+    }
+
+    public void SetViewMode(CameraViewMode mode)
+    {
+        Vector3 targetRotation = RotationDegrees;
+        Vector3 targetOffset = currentOffset;
+
+        switch (mode)
+        {
+            case CameraViewMode.Up:
+                viewMode = 1;
+                targetRotation = new Vector3(-50, 0, 0);
+                targetOffset = offsetList[1];
+                break;
+
+            case CameraViewMode.Normal:
+                viewMode = 0;
+                targetRotation = new Vector3(-14, 0, 0);
+                targetOffset = offsetList[0];
+                break;
+        }
+
+        rotationTween?.Kill();
+        positionTween?.Kill();
+
+        rotationTween = CreateTween();
+        rotationTween
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        rotationTween.TweenProperty(
+            this,
+            "rotation_degrees",
+            targetRotation,
+            1f
+        );
+
+        positionTween = CreateTween();
+        positionTween
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        positionTween.TweenProperty(
+            this,
+            "currentOffset",
+            targetOffset,
+            1f
+        );
     }
 
     void HandleOcclusion(float delta)
@@ -181,4 +239,10 @@ public partial class CameraBehaviour : Camera3D
         c.A = 1f;
         mat.AlbedoColor = c;
     }
+}
+
+public enum CameraViewMode
+{
+    Up,
+    Normal
 }

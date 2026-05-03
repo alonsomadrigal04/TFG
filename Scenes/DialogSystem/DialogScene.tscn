@@ -442,6 +442,7 @@ offset_bottom = 720.0
 grow_horizontal = 2
 pivot_offset = Vector2(640, 53)
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1664417285]
 layout_mode = 0
@@ -677,6 +678,7 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="GeneralLayout/DramaticTitle" unique_id=2066151417]
 layout_mode = 1
@@ -697,3 +699,4 @@ theme_override_font_sizes/font_size = 215
 text = "SAMPLE"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true

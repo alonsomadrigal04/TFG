@@ -22,6 +22,12 @@ public static partial class ToolKit
         return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
     }
 
+    public static Vector2 GetPortraitPosition(ScreenPosition screenPosition)
+    {
+        Vector2 screenSize = DisplayServer.WindowGetSize();
+        return new Vector2(screenSize.X * XPositions[screenPosition], 0);
+    }
+
     public static Vector2 GetScreenSize() => DisplayServer.WindowGetSize();
 
     /// <summary>
@@ -83,20 +89,29 @@ public static partial class ToolKit
         );
     }
 
-
-
-
     /// <summary>
     /// Sets the position of a Control node based on a predefined screen position.
     /// </summary>
     /// <param name="control">The Control node to position.</param>
     /// <param name="screenPosition">The desired screen position.</param>
-    public static void SetPosition(this Control control, ScreenPosition screenPosition)
+    public static void SetPosition(this Control control, ScreenPosition screenPosition, bool isPortrait = false)
     {
-        control.Position = GetPosition(screenPosition);
-        control.Position -= new Vector2(control.Size.X/2, control.Size.Y/2);
-    }
+        if (isPortrait)
+        {
+            control.Position = GetPortraitPosition(screenPosition);
+            control.Position -= new Vector2(control.Size.X/2, 0);
+            if(screenPosition == ScreenPosition.Right || screenPosition == ScreenPosition.FarRight)
+            {
+                CharacterStage.Instance.FlipTextureRect((TextureRect)control);
+            }
+        }
+        else
+        {
+            control.Position = GetPosition(screenPosition);
+            control.Position -= new Vector2(control.Size.X/2, control.Size.Y/2);
+        }
 
+    }
 
     /// <summary>
     /// Gets the anchor position for a given screen position.

@@ -5,7 +5,7 @@ using System.Linq;
 
 public partial class PlayerBehaviour : CharacterBody3D
 {
-    [Export] private bool isDebugging = false;
+    [Export] public bool isDebugging = false;
 
     [ExportGroup("MOVEMENT SETTINGS")]
     [Export] private float speed = 5f;
@@ -27,7 +27,8 @@ public partial class PlayerBehaviour : CharacterBody3D
     [ExportGroup("SFX")]
     [Export] public InteractFlavourAnimation exclamationSprite;
     [Export] public DustParticles dustParticles;
-    [Export] private MeshInstance3D shadowProxy;
+    [Export] MeshInstance3D shadowProxy;
+    [Export] CollisionShape3D bodyCollider;
 
     readonly List<IInteractable> interactablesInRange = [];
 
@@ -76,7 +77,6 @@ public partial class PlayerBehaviour : CharacterBody3D
     {
         if (animatedSprite3D != null)
             animatedSprite3D.SpeedScale = speed / 2f;
-
         shadowProxy?.Show();
         SetIdleAnimation(idleFacingDirection);
     }

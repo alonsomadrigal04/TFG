@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://di0qon56csioa"
+valid=false
+
+[deps]
+
+source_file="res://Data/Csv/TreyaLookingWay.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -5,15 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://bjsmbwxvnhejl" path="res://Assets/UI/PH/inspectIcon.png" id="2_741hp"]
 [ext_resource type="Script" uid="uid://dvke0mr2o3aeq" path="res://Scripts/Exploration/InteractIconAnimation.cs" id="4_63qpb"]
 [ext_resource type="PackedScene" uid="uid://bjntvrqyt1240" path="res://Assets/Particles/Shine.tscn" id="6_g16vu"]
+[ext_resource type="AudioStream" uid="uid://cds41ju2enb55" path="res://Audio/ShiningObject.wav" id="6_uk5kt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bp6ga"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j7glg"]
 
-[node name="Object" type="StaticBody3D" unique_id=336918594 node_paths=PackedStringArray("visualMesh", "colliderBody", "interactionArea", "interactionRangeShape", "interactIcon")]
+[node name="Object" type="StaticBody3D" unique_id=336918594 node_paths=PackedStringArray("colliderBody", "interactionArea", "interactionRangeShape", "interactIcon")]
 script = ExtResource("1_rr520")
 inspectImg = ExtResource("2_741hp")
-visualMesh = NodePath("VisualMesh")
 colliderBody = NodePath("ColliderBody")
 interactionArea = NodePath("InteractionArea")
 interactionRangeShape = NodePath("InteractionArea/CollisionShape3D")
@@ -40,3 +40,10 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.85846686, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1435856787]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_color = Color(1, 1, 0.71112853, 1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1258720214]
+stream = ExtResource("6_uk5kt")
+attenuation_model = 2
+volume_db = -10.0
+autoplay = true
+bus = &"Sfx"

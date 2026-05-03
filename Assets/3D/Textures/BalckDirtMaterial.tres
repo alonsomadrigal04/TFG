@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bkjhicxvwvrul"]
+
+[ext_resource type="Texture2D" uid="uid://2xjtldxxphoj" path="res://Assets/3D/Textures/BlackDirt.jpg" id="1_0diff"]
+
+[resource]
+albedo_texture = ExtResource("1_0diff")
+emission_enabled = true
+emission = Color(0.19434929, 0.19434926, 0.19434926, 1)
+emission_energy_multiplier = 0.14
+uv1_scale = Vector3(8.98, 8.98, 8.98)

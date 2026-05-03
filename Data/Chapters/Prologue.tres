@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ChapterData" format=3 uid="uid://ckj64qkj7g74v"]
 
 [ext_resource type="Script" uid="uid://uuyekluu2ar2" path="res://Scripts/ChapterLogic/ChapterData.cs" id="1_dvroo"]
-[ext_resource type="PackedScene" uid="uid://78syml0hccxr" path="res://Scenes/Exploration/ExplorationZones/exploration_zone_camp_fire.tscn" id="1_snjj8"]
+[ext_resource type="PackedScene" uid="uid://b6mij6vcwn6pg" path="res://Scenes/Exploration/ExplorationZones/exploration_zone_camp_firev2.tscn" id="1_snjj8"]
 
 [resource]
 script = ExtResource("1_dvroo")
