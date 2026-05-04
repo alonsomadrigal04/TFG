@@ -7,4 +7,6 @@
 script = ExtResource("1_4xpi4")
 Name = "Fled"
 WordPortrait = ExtResource("1_k0dtr")
+InitDialog = "FledInit"
+MaxBanters = 1
 metadata/_custom_type_script = "uid://cvhug3hhtedit"

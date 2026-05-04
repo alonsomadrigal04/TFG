@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bjqo5x42b7xkd" path="res://Scripts/Exploration/resources/ObjectData.cs" id="1_2vjvc"]
 [ext_resource type="PackedScene" uid="uid://d2pqu2umlxhc1" path="res://Assets/Objects/3DModels/smokingPipe.tscn" id="1_b60y2"]
-[ext_resource type="Texture2D" uid="uid://dqj8ffbmibkeu" path="res://Assets/Objects/Icons/SmokingPipeIcon.png" id="1_tbpjh"]
+[ext_resource type="Texture2D" uid="uid://ba8ovdypcdhwo" path="res://Data/Objects/pipadefumar_Silueta.png" id="1_tbpjh"]
 
 [resource]
 script = ExtResource("1_2vjvc")
 Name = "Pipa de Fumar"
 Scene = ExtResource("1_b60y2")
 Icon = ExtResource("1_tbpjh")
-Description = "Una pipota de fumar que loco"
-Comentary = "Pipote aqui to random sas que locura"
+Description = "Una pipa palidrense, de más allá del mar Fatuo. Por los dibujos que tiene grabados en el lado, es de una ornamentación un poco exagerada; posiblemente se creó con el objetivo de exponerla más que de usarla. Aunque esta apesta a Rumor Marrón bien fuerte. No sabía que Fled fumase tanto."
+Comentary = "Una pipa... un tanto curiosa. Por su aspecto, posiblemente sea de Palindra. Creo que es de Fled; dijo que la estaba buscando."
 metadata/_custom_type_script = "uid://bjqo5x42b7xkd"

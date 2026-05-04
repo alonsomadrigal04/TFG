@@ -8,11 +8,11 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
     [Export] PackedScene npcScene;
 
     [ExportGroup("NPCS DATA")]
-    [Export] NpcData alonsoData;
+    [Export] NpcData fledData;
 
     [ExportGroup("NPC POSITIONS")]
-    [Export] Vector3 alonsoPosition1;
-    [Export] Vector3 alonsoPosition2;
+    [Export] Vector3 fledPosition1;
+    [Export] Vector3 fledPosition2;
 
     [ExportGroup("STAGE SETTINGS")]
     [Export] CameraBehaviour cameraBehaviour;
@@ -37,6 +37,8 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
     DialogManager dialogManager;
 
     bool introPlayed;
+
+    bool talkedWithFled;
 
     public override void _Ready()
     {
@@ -77,7 +79,7 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
 
     public override void _Process(double delta)
     {
-        DebugDraw3D.DrawSphere(alonsoPosition1);
+        DebugDraw3D.DrawSphere(fledPosition1);
     }
 
     public override void _Input(InputEvent e)
@@ -251,7 +253,7 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
 
     public void SpawnCharacters()
     {
-        SpawnNpc(alonsoData, alonsoPosition1);
+        SpawnNpc(fledData, fledPosition1);
     }
 
     public void ValidateFields()

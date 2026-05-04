@@ -1502,7 +1502,7 @@ _data = {
 [node name="ExplorationZoneCampFire2" type="Node" unique_id=1900525975 node_paths=PackedStringArray("cameraBehaviour", "player", "stage", "cinematicAnimationPlayer", "uiAnimationPlayer", "fireSounds", "ambienceSounds", "lorePoint", "dialogFrameLayer", "cinematicLayer")]
 script = ExtResource("1_dj0qb")
 npcScene = ExtResource("2_r30oa")
-alonsoData = ExtResource("3_o4udn")
+fledData = ExtResource("3_o4udn")
 cameraBehaviour = NodePath("Scenario/Elements/Camera3D")
 player = NodePath("Scenario/Elements/Player")
 stage = NodePath("Scenario/Ground")

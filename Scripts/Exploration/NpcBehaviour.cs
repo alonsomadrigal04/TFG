@@ -163,7 +163,7 @@ public partial class NpcBehaviour : RigidBody3D, IInteractable
 		if (!HasDialog) return;
 		AudioManager.Instance.DialogInteract.Play();
 		CameraBehaviour.Instance.Shake();
-		GameStateManager.Instance.ChangeState(State.Dialog, CharacterInfo.Name);
+		GameStateManager.Instance.ChangeState(State.Dialog, CharacterInfo.GetDialog());
 	}
 
 	void OnBodyEntered(Node3D body)

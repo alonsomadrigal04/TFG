@@ -1122,10 +1122,9 @@ stream_0/stream = ExtResource("35_jn8rg")
 [node name="Game" type="Node" unique_id=1234653959]
 process_mode = 1
 
-[node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseAnimationPlayer", "screenTransition", "safeScreen", "chapterBehaviour")]
+[node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseAnimationPlayer", "screenTransition", "safeScreen", "chapterBehaviour", "audioManager")]
 process_mode = 3
 script = ExtResource("1_gl6un")
-enabledDebugMode = true
 debugDialogName = "Spores1"
 firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
@@ -1133,6 +1132,7 @@ pauseAnimationPlayer = NodePath("../Postprocesing/PauseMenu/PauseLayer/PauseLayo
 screenTransition = NodePath("../Postprocesing/FX/PostProcess/ScreenTransition")
 safeScreen = NodePath("../Postprocesing/FX/ScreenSafeLayer/ScreenSafe")
 chapterBehaviour = NodePath("../ChapterBehaviour")
+audioManager = NodePath("../AudioManager")
 metadata/_custom_type_script = "uid://cdg4q3jx0krqk"
 
 [node name="AudioManager" type="Node" parent="." unique_id=1819042634 node_paths=PackedStringArray("question", "exclamation", "soft", "impact", "outQuestion", "flipCard", "Hover", "Press", "Shake", "Talk", "Impact", "Flashback", "Flash", "NextSentence", "Remember", "NewItem", "Spining", "ClockDisplay", "ClockHide", "Chorus1", "Flipsound", "WalkingSounds", "DialogInteract")]
