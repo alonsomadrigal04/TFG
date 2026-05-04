@@ -1,16 +1,12 @@
 [gd_resource type="Resource" script_class="ObjectsLibrary" format=3 uid="uid://xqgjglcyxk2u"]
 
 [ext_resource type="Script" uid="uid://bjqo5x42b7xkd" path="res://Scripts/Exploration/resources/ObjectData.cs" id="1_18i6k"]
+[ext_resource type="Resource" uid="uid://byjo70eibneq2" path="res://Data/Objects/PipaDeFumar.tres" id="2_0evw0"]
 [ext_resource type="Script" uid="uid://c2uc2muu5p7vv" path="res://Scripts/API/Objects/ObjectsLibrary.cs" id="2_aataa"]
-
-[sub_resource type="Resource" id="Resource_18i6k"]
-script = ExtResource("1_18i6k")
-Name = "Pipad"
-metadata/_custom_type_script = "uid://bjqo5x42b7xkd"
 
 [resource]
 script = ExtResource("2_aataa")
 Itemstored = Dictionary[String, ExtResource("1_18i6k")]({
-"Pipa de fumar": SubResource("Resource_18i6k")
+"pipa": ExtResource("2_0evw0")
 })
 metadata/_custom_type_script = "uid://c2uc2muu5p7vv"

@@ -370,7 +370,7 @@ blurshader = NodePath("../../BlurFilter")
 
 [node name="ObjectStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1147430345 node_paths=PackedStringArray("objectLayer")]
 script = ExtResource("8_dclby")
-objectLayer = NodePath("../../../../Background")
+objectLayer = NodePath("../../../../ShadersTop")
 specialItemFrameScene = ExtResource("9_r0xxx")
 
 [node name="CameraStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=988545879 node_paths=PackedStringArray("layerDialogBox")]

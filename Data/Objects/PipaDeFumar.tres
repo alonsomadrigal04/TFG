@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_2vjvc")
-Name = "Pipa de fumar"
+Name = "Pipa de Fumar"
 Scene = ExtResource("1_b60y2")
 Icon = ExtResource("1_tbpjh")
 Description = "Una pipota de fumar que loco"
