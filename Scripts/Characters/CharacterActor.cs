@@ -93,12 +93,6 @@ public partial class CharacterActor : Control
         return char.ToUpper(emotion[0]) + emotion[1..];
     }
 
-
-    public override void _Ready()
-    {
-        basePosition = Position;
-    }
-
     public void PlayTalk()
     {
         if (isTalking)
@@ -111,6 +105,8 @@ public partial class CharacterActor : Control
     void DoTalkTween()
     {
         ActionBus.ActionStarted();
+
+        basePosition = Position;
 
         Tween tween = CreateTween();
 

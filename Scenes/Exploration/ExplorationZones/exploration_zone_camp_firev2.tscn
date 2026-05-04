@@ -1510,7 +1510,7 @@ cinematicAnimationPlayer = NodePath("Cinematics/AnimationPlayer")
 uiAnimationPlayer = NodePath("CDialogSeparator/DialogFrame")
 fireSounds = NodePath("Scenario/Decoration/Bonefire/Firesounds")
 ambienceSounds = NodePath("WidAmbience")
-lorePoint = NodePath("Scenario/Elements/LorePoint")
+lorePoint = NodePath("Scenario/Elements/LPLookingTheWay")
 dialogFrameLayer = NodePath("CDialogSeparator/CLDialogFrame")
 cinematicLayer = NodePath("Cinematics/Control/CLCinematicLayer")
 metadata/_custom_type_script = "uid://q4jme22dupru"
@@ -2019,9 +2019,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.86999, 4.7001925, 1.3775
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Elements/StaticBody3D" unique_id=2134969475]
 shape = SubResource("BoxShape3D_ld6ji")
 
-[node name="LorePoint" parent="Scenario/Elements" unique_id=1753178380 instance=ExtResource("28_j7fwu")]
+[node name="LPLookingTheWay" parent="Scenario/Elements" unique_id=1753178380 instance=ExtResource("28_j7fwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.18766, 2.8933518, -12.968868)
 dialogTag = "Test"
+
+[node name="LPSpores" parent="Scenario/Elements" unique_id=1342910582 instance=ExtResource("28_j7fwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.960205, 2.8933482, 25.133265)
+dialogTag = "Spores1"
 
 [node name="Ground" type="StaticBody3D" parent="Scenario" unique_id=201284183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
