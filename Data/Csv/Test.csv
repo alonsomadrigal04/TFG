@@ -1,6 +1,15 @@
 ﻿uid;code;type;speaker;text;next
-A1;UI inventory off;;;;
-A2;UI change transparent;;;;
-A3;Dialog move center;;;;
-A4;;say;Alonso;Texto de ejemplo;
-A5;UI off;;;;
+A1;;say;Treya;Esto es una prueba;
+A2;Treya appears right;;;;
+A3;;say;Treya;He aparecido, ahora voy a ponerme feliz;
+A4;Treya is happy;;;;
+A5;;say;Treya;Ya está. Ahora seria.;
+A6;Treya is serious;;;;
+A7;;say;Treya;Ya está. Felix otra vez.;
+A8;Treya is happy;;;;
+A9;;say;Treya;Ya está.;
+A10;;say;Treya;Me muevo a la izquierda.;
+A11;Treya moves right;;;;
+A12;Treya moves farleft;;;;
+A13;Treya moves farright;;;;
+A14;;say;Treya;Que mareo;

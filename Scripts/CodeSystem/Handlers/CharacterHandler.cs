@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class CharacterHanlder : ICommandHandler
 {
@@ -67,7 +68,9 @@ public class CharacterHanlder : ICommandHandler
 
     void ChangePortrait(CommandToken commandToken)
     {
-        throw new NotImplementedException();
+        Character character = CharacterDatabase.GetCharacter(commandToken.Subject);
+        CharacterStage.Instance.SetEmotion(character, commandToken.Arguments[0]);
+
     }
 
     public void CleanEffects()

@@ -1956,7 +1956,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4305115e-06, 4.08795)
 shape = SubResource("BoxShape3D_sky5s")
 
 [node name="MTree13" type="MeshInstance3D" parent="Scenario/Decoration/Trees" unique_id=128352345 groups=["occludable"]]
-transform = Transform3D(1, 0, 0, 0, -1.6292068e-07, 1, 0, -1, -1.6292068e-07, 76.62476, 0, 18.886093)
+transform = Transform3D(1, 0, 0, 0, -1.6292068e-07, 1, 0, -1, -1.6292068e-07, 77.522575, 0, 18.886093)
 mesh = SubResource("ArrayMesh_bhk20")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_308cv")

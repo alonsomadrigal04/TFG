@@ -32,11 +32,7 @@ public class CameraHandler : ICommandHandler
 
     void Reset(CommandToken commandToken)
     {
-            Vector2 resetPosition = ToolKit.GetScreenPosition(ScreenPosition.Center);
-        if(commandToken.Arguments.Count != 0)
-        {
-            resetPosition = CharacterStage.GetCharacterPosition(commandToken, resetPosition);
-        }
+        Vector2 resetPosition = ToolKit.GetScreenPosition(ScreenPosition.Center);
 
         CameraStage.Instance.ResetCamera(resetPosition);
     }
@@ -84,7 +80,7 @@ public class CameraHandler : ICommandHandler
 
         if(CharacterDatabase.TryGetCharacter(commandToken.Arguments[0], out Character character))
         {
-            TextureRect portraitZoomed = CharacterStage.CharactersInScene[character];
+            CharacterActor portraitZoomed = CharacterStage.CharactersInScene[character];
             zoomPosition = portraitZoomed.Position;
         }
         else

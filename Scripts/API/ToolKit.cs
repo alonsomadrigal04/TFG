@@ -18,17 +18,23 @@ public static partial class ToolKit
 
     public static Vector2 GetPosition(ScreenPosition screenPosition)
     {
-        Vector2 screenSize = DisplayServer.WindowGetSize();
+        Vector2 screenSize = GetScreenSize();
         return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
     }
 
     public static Vector2 GetPortraitPosition(ScreenPosition screenPosition)
     {
-        Vector2 screenSize = DisplayServer.WindowGetSize();
+        Vector2 screenSize = GetScreenSize();
         return new Vector2(screenSize.X * XPositions[screenPosition], 0);
     }
 
-    public static Vector2 GetScreenSize() => DisplayServer.WindowGetSize();
+    public static Vector2 GetScreenSize()
+    {
+        return ((SceneTree)Engine.GetMainLoop())
+            .Root
+            .GetVisibleRect()
+            .Size;
+    }
 
     /// <summary>
     /// Adds a percentage-based offset to the position of a Control node. The offset is calculated based on the size of the screen, allowing for responsive positioning. The direction parameter can be used to specify whether the offset should be added (positive) or subtracted (negative) from the current position of the Control node.
@@ -49,7 +55,7 @@ public static partial class ToolKit
             GD.PushWarning("[Toolkit] Offset greater than 100% of screen size");
         }
 
-        Vector2 screenSize = DisplayServer.WindowGetSize();
+        Vector2 screenSize = GetScreenSize();
 
         Vector2 offset = new(
             screenSize.X * (percentageX * 0.01f),
@@ -63,7 +69,7 @@ public static partial class ToolKit
 
     public static ScreenPosition GetScreenSide(Vector2 position)
     {
-        Vector2 screenSize = DisplayServer.WindowGetSize();
+        Vector2 screenSize = GetScreenSize();
         float centerX = screenSize.X * 0.5f;
 
         if (position.X < centerX)
@@ -81,7 +87,7 @@ public static partial class ToolKit
             return Vector2.Zero;
         }
 
-        Vector2 screenSize = DisplayServer.WindowGetSize();
+        Vector2 screenSize = GetScreenSize();
 
         return new Vector2(
             screenSize.X * xNorm,
@@ -100,10 +106,10 @@ public static partial class ToolKit
         {
             control.Position = GetPortraitPosition(screenPosition);
             control.Position -= new Vector2(control.Size.X/2, 0);
-            if(screenPosition == ScreenPosition.Right || screenPosition == ScreenPosition.FarRight)
-            {
-                CharacterStage.Instance.FlipTextureRect((TextureRect)control);
-            }
+            // if(screenPosition == ScreenPosition.Right || screenPosition == ScreenPosition.FarRight)
+            // {
+            //     CharacterStage.Instance.FlipCharacterHorizontally((Character)control);
+            // }
         }
         else
         {

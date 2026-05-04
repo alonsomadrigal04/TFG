@@ -46,12 +46,14 @@ public class CharacterDatabase
         foreach (string key in data.Keys.Select(v => (string)v))
         {
             var entry = (Godot.Collections.Dictionary)data[key];
-            var portraitSet = ResourceLoader.Load<CharacterPortraitSet>($"res://Assets/Portraits/{key}/{key}Portraits.tres");
+            var actorScene = ResourceLoader.Exists($"res://Data/Characters/{key}/{key}Actor.tscn")
+            ? GD.Load<PackedScene>($"res://Data/Characters/{key}/{key}Actor.tscn")
+            : null;
             var character = new Character(key)
             {
                 VoiceSample = GD.Load<AudioStream>(entry.GetValueOrDefault("voice_sample", "").ToString()),
                 TextColor = new Color(entry.GetValueOrDefault("color", "#ffffff").ToString()),
-                Portraits =  portraitSet?.Portraits ?? []
+                ActorScene =  actorScene
             };
             RegisterCharacter(character);
         }

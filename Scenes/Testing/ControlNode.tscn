@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c33crc3qdlrvn"]
+
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_erbhw"]
+
+[node name="Control" type="Control" unique_id=917118399]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1280.0
+offset_top = -720.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="." unique_id=1969768793]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1638.0
+offset_top = -720.0
+offset_right = -358.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=88718753]
+position = Vector2(624, 341)
+texture = ExtResource("1_erbhw")

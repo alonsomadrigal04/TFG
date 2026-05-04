@@ -1,11 +1,7 @@
 {
-	"Alonso": {
-		"voice_sample": "res://Audio/Voices/Alonso.wav",
-		"color": "#66ccff"
-	},
-	"Godot": {
-		"voice_sample": "res://Audio/Voices/Godot.wav",
-		"color": "#800000"
+	"Treya": {
+		"voice_sample": "res://Audio/Voices/Treya.wav",
+		"color": "#d9edff"
 	},
 	"Narrator": {
 		"voice_sample": "res://Audio/Voices/Narrator.wav",
@@ -14,10 +10,6 @@
 	"Feudo": {
 		"voice_sample": "res://Audio/Voices/Feudo.wav",
 		"color": "#FFDB58"
-	},
-	"Treya": {
-		"voice_sample": "res://Audio/Voices/Treya.wav",
-		"color": "#d9edff"
 	},
 	"Fled": {
 		"voice_sample": "res://Audio/Voices/Fled.wav",

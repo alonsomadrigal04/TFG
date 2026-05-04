@@ -4,382 +4,274 @@ using Utility;
 
 public partial class CharacterStage : Node
 {
-    public static CharacterStage Instance {get; private set;}
-    public static bool IsThinking {get; private set;} = false;
-    public static Dictionary<Character, TextureRect> CharactersInScene {get; private set;} = [];
+    public static CharacterStage Instance { get; private set; }
+    public static bool IsThinking { get; private set; } = false;
+
+    public static Dictionary<Character, CharacterActor> CharactersInScene { get; private set; } = [];
 
     [ExportGroup("TIME ANIMATIONS")]
-    [Export(PropertyHint.Range, "0,2,0.1")]
-    float appearTime = 1.0f; // is the time that takes for a character to appear
-    [Export(PropertyHint.Range, "0,2,0.1")]
-    float disAppearTime = 1.0f;
-    [Export(PropertyHint.Range, "0,2,0.1")]
-    float moveTime = 1.0f;
+    [Export(PropertyHint.Range, "0,2,0.1")] float appearTime = 1.0f;
+    [Export(PropertyHint.Range, "0,2,0.1")] float disAppearTime = 1.0f;
+    [Export(PropertyHint.Range, "0,2,0.1")] float moveTime = 1.0f;
 
     [ExportGroup("ANIMATIONS INTENSITY")]
     [Export] float bobIntensity = 15f;
 
-    [ExportGroup("CHARACTER PORTRAIT")]
-    [Export] int portraitLayer = -1;
+    [ExportGroup("CHARACTER ACTORS")]
+    [Export] int actorLayer = -1;
     [Export] Control characterContainer;
+
     [ExportGroup("FILTERS")]
     [Export] ColorRect blurshader;
-    TextureRect currentThinkingPortrait;
 
+    CharacterActor currentThinkingActor;
 
     public override void _Ready()
     {
-        if(Instance != null && Instance != this){
+        if (Instance != null && Instance != this)
+        {
             QueueFree();
             return;
         }
         Instance = this;
     }
 
-    public void MovePortrait(Character character, ScreenPosition targetPosition)
+    public bool IsCharacterInScene(Character character)
+        => CharactersInScene.ContainsKey(character);
+
+    public CharacterActor GetActor(Character character)
     {
         if (!IsCharacterInScene(character))
         {
-            GD.PrintErr($"[CharacterStage] {character} not in the Scene");
+            GD.PrintErr($"[CharacterStage] Actor {character.Name} not in scene");
+            return null;
+        }
+
+        return CharactersInScene[character];
+    }
+
+    // =========================
+    // SPAWN / DESPAWN
+    // =========================
+
+    public void CharacterAppears(Character character, ScreenPosition screenPosition)
+    {
+        if (IsCharacterInScene(character))
+            return;
+
+        if (character.ActorScene == null)
+        {
+            GD.PrintErr($"[CharacterStage] {character.Name} has no ActorScene");
             return;
         }
 
-        TextureRect portrait = CharactersInScene[character];
-        ScreenPosition currentSide = ToolKit.GetScreenSide(portrait.Position);
+        CharacterActor actor = character.ActorScene.Instantiate<CharacterActor>();
 
-        bool currentIsLeft = currentSide == ScreenPosition.FarLeft
-                        || currentSide == ScreenPosition.Left
-                        || currentSide == ScreenPosition.Center;
+        CharactersInScene[character] = actor;
 
-        bool targetIsLeft = targetPosition == ScreenPosition.FarLeft
-                        || targetPosition == ScreenPosition.Left
-                        || targetPosition == ScreenPosition.Center;
-
-        if (currentIsLeft != targetIsLeft)
-            FlipCharacterHorizontally(character);
-
-        MoveAnimation(portrait, targetPosition);
+        AddAndAnimate(actor, screenPosition);
     }
 
+    void AddAndAnimate(CharacterActor actor, ScreenPosition screenPosition)
+    {
+        characterContainer.AddChild(actor);
 
-    void MoveAnimation(TextureRect portrait, ScreenPosition newDirection)
+        actor.ZIndex = actorLayer;
+        actor.Position = ToolKit.GetPosition(screenPosition);
+
+        actor.SetFacing(screenPosition);
+
+        AppearAnimation(actor);
+    }
+
+    void AppearAnimation(CharacterActor actor)
     {
         ActionBus.ActionStarted();
 
         Tween tween = CreateTween();
-        tween.SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
-        tween.TweenProperty(portrait, "position", ToolKit.GetPosition(newDirection) - new Vector2(portrait.Size.X /2, portrait.Size.Y /2), moveTime);
+
+        actor.Modulate = new Color(1, 1, 1, 0);
+        actor.Scale = Vector2.One * 0.5f;
+
+        tween.TweenProperty(actor, "modulate:a", 1f, appearTime)
+            .SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.In);
+
+        tween.Parallel().TweenProperty(actor, "scale", Vector2.One, appearTime)
+            .SetTrans(Tween.TransitionType.Quint)
+            .SetEase(Tween.EaseType.Out);
 
         tween.Finished += ActionBus.ActionFinished;
-    }
-
-    public void SetThinkingLayout(Character character, bool start)
-    {
-        if (!IsCharacterInScene(character))
-        {
-            GD.PrintErr($"[CharacterStage] {character} not in the Scene");
-            return;
-        }
-
-        TextureRect portrait = GetCharacterPortrait(character);
-        if (start)
-        {
-            IsThinking = true;
-            ApplyBackgroundBlur(portrait);
-            return;
-        }
-        IsThinking = false;
-        HideBackgroundBlur();
-    }
-
-    void ApplyBackgroundBlur(TextureRect portrait)
-    {
-        _ = BackgroundStage.Instance.AnimateFlash();
-        portrait.ZIndex = blurshader.ZIndex + 1;
-        currentThinkingPortrait = portrait;
-        characterContainer.RemoveChild(portrait);
-        blurshader.AddChild(portrait);
-
-        blurshader.Show();
-    }
-
-    void HideBackgroundBlur()
-    {
-        currentThinkingPortrait.ZIndex = portraitLayer;
-        blurshader.RemoveChild(currentThinkingPortrait);
-        characterContainer.AddChild(currentThinkingPortrait);
-        currentThinkingPortrait = null;
-
-        blurshader.Hide();
-    }
-
-    /// <summary>
-    /// Makes a character appear on the stage.
-    /// </summary>
-    /// <param name="newCharacter">The character to appear.</param>
-    /// <param name="screenPosition">The position on the screen where the character should appear.</param>
-    public void CharacterAppears(Character newCharacter, ScreenPosition screenPosition)
-    {
-        if (IsCharacterInScene(newCharacter))
-        {
-            GD.PrintErr($"[CharacterStage] {newCharacter.Name} is already in the scene");
-            return;
-        }
-
-        TextureRect newPortrait = new()
-        {
-            Texture = newCharacter.Portraits[0],
-            Modulate = new Color(1, 1, 1, 0)
-        };
-
-        CharactersInScene[newCharacter] = newPortrait;
-        AddAndAnimate(newPortrait, screenPosition);
-        // CallDeferred(nameof(AddAndAnimate), newPortrait);
-
     }
 
     public void CharacterDisappears(Character character)
     {
         if (!IsCharacterInScene(character))
         {
-            GD.PrintErr($"[CharacterStage] {character.Name} is not in the Scene");
+            GD.PrintErr($"[CharacterStage] {character.Name} not in scene");
             return;
         }
-        TextureRect textureToDestroy = CharactersInScene[character];
-        DisappearAnimation(textureToDestroy, character);
+
+        CharacterActor actor = CharactersInScene[character];
+
+        DisappearAnimation(actor, character);
     }
 
-    void DisappearAnimation(TextureRect textureToDestroy, Character character)
+    void DisappearAnimation(CharacterActor actor, Character character)
     {
         ActionBus.ActionStarted();
+
         Tween tween = CreateTween();
 
         tween.SetTrans(Tween.TransitionType.Cubic)
             .SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(textureToDestroy, "scale", textureToDestroy.Scale * 0.75f, disAppearTime);
-        tween.Parallel()
-            .TweenProperty(textureToDestroy, "modulate:a", 0f, disAppearTime);
+        tween.TweenProperty(actor, "scale", actor.Scale * 0.75f, disAppearTime);
+        tween.Parallel().TweenProperty(actor, "modulate:a", 0f, disAppearTime);
 
         tween.TweenCallback(Callable.From(() =>
         {
             CharactersInScene.Remove(character);
-            textureToDestroy.QueueFree();
+            actor.QueueFree();
         }));
+
         tween.Finished += ActionBus.ActionFinished;
     }
 
-    void AddAndAnimate(TextureRect portrait, ScreenPosition screenPosition)
+    // =========================
+    // MOVEMENT
+    // =========================
+
+    public void MovePortrait(Character character, ScreenPosition targetPosition)
     {
-        characterContainer.AddChild(portrait);
+        CharacterActor actor = GetActor(character);
+        if (actor == null) return;
 
-        portrait.ResetSize();
-
-        portrait.PivotOffset = portrait.Size / 2;
-        portrait.ZIndex = portraitLayer;
-        portrait.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
-        portrait.Size /= 2.68f;
-        portrait.SetPosition(screenPosition, true);
-        portrait.SetAnchorsPreset(Control.LayoutPreset.Center);
-
-
-        AppearAnimation(portrait);
+        MoveAnimation(actor, targetPosition);
     }
 
-    void AppearAnimation(TextureRect portrait)
+    void MoveAnimation(CharacterActor actor, ScreenPosition newDirection)
     {
         ActionBus.ActionStarted();
 
         Tween tween = CreateTween();
 
-        Vector2 endPos = portrait.Position;
+        tween.SetTrans(Tween.TransitionType.Cubic)
+            .SetEase(Tween.EaseType.Out);
 
-        portrait.Modulate = new Color(0,0,0,0);
-        portrait.Scale = new Vector2(0.5f, 0.5f);
-
-        tween.TweenProperty(portrait, "modulate", Colors.White, appearTime)
-        .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.In);
-
-        tween.Parallel().TweenProperty(portrait, "scale", Vector2.One, appearTime)
-                        .SetTrans(Tween.TransitionType.Quint).SetEase(Tween.EaseType.Out);
+        tween.TweenProperty(
+            actor,
+            "position",
+            ToolKit.GetPosition(newDirection),
+            moveTime
+        );
 
         tween.Finished += ActionBus.ActionFinished;
-
     }
+    public void FlipCharacterHorizontally(Character character)
+    {
+        CharacterActor actor = GetActor(character);
+        if (actor == null)
+        {
+            GD.PrintErr($"[CharacterStage] {character.Name} is not in the scene");
+            return;
+        }
 
-
-    public bool IsCharacterInScene(Character character) => CharactersInScene.ContainsKey(character);
+        actor.FlipHorizontal();
+    }
 
     public void AnimateTalking(Character speaker)
     {
-        if (IsCharacterInScene(speaker))
-        {
-            TextureRect textureRect = CharactersInScene[speaker];
-            TalkAnimation(textureRect);
+        CharacterActor actor = GetActor(speaker);
+        if (actor == null)
             return;
-        }
-        GD.PrintErr($"[CharacterStage] {speaker.Name} is not on the scene");
+
+        actor.PlayTalk();
     }
 
-    private void TalkAnimation(TextureRect portrait)
+    // =========================
+    // EMOTIONS
+    // =========================
+
+    public void SetEmotion(Character character, string emotion)
     {
-        ActionBus.ActionStarted();
+        CharacterActor actor = GetActor(character);
+        if (actor == null) return;
+        GD.Print($"Change emotion to  {emotion}");
 
-        Tween tween = CreateTween();
-        Vector2 originalPosition= portrait.Position;
-
-        tween.SetTrans(Tween.TransitionType.Cubic);
-        tween.TweenProperty(portrait, "position", originalPosition + new Vector2(0, -bobIntensity), 0.1f);
-
-        tween.TweenProperty(portrait, "position", originalPosition, 0.1f);
-
-        portrait.Position = originalPosition;
-
-        tween.Finished += ActionBus.ActionFinished;
+        actor.PlayEmotion(emotion);
     }
 
-    public static Vector2 GetCharacterPosition(CommandToken commandToken, Vector2 resetPosition)
+    // =========================
+    // THINKING MODE
+    // =========================
+
+    public void SetThinkingLayout(Character character, bool start)
     {
-        if (CharacterDatabase.TryGetCharacter(commandToken.Arguments[0], out Character character))
+        CharacterActor actor = GetActor(character);
+        if (actor == null) return;
+
+        if (start)
         {
-            TextureRect portraitZoomed = CharactersInScene[character];
-            resetPosition = portraitZoomed.Position;
-        }
-
-        return resetPosition;
-    }
-    public TextureRect GetCharacterPortrait(Character character)
-    {
-        if(!IsCharacterInScene(character))
-            GD.PrintErr($"[CharacterStage] {character} not in the Scene");
-        return CharactersInScene[character];
-    }
-
-    public void ShakeCharacter(Character character)
-    {
-        if (!IsCharacterInScene(character))
-            GD.PrintErr($"[CharacterScene] {character} is not in the scene");
-        
-        TextureRect portrait = GetCharacterPortrait(character);
-
-        AnimateShake(portrait);
-    }
-
-    public void FlipCharacterHorizontally(Character character)
-    {
-        if (!IsCharacterInScene(character))
-        {
-            GD.PrintErr($"[CharacterScene] {character} is not in the scene");
+            IsThinking = true;
+            ApplyBackgroundBlur(actor);
             return;
         }
 
-        TextureRect portrait = GetCharacterPortrait(character);
-
-        FlipTextureRect(portrait);
+        IsThinking = false;
+        HideBackgroundBlur();
     }
 
-    public void FlipTextureRect(TextureRect portrait)
+    void ApplyBackgroundBlur(CharacterActor actor)
     {
-        ActionBus.ActionStarted();
+        _ = BackgroundStage.Instance.AnimateFlash();
 
-        float duration = 0.5f;
-        float half = duration * 0.5f;
+        actor.ZIndex = blurshader.ZIndex + 1;
+        currentThinkingActor = actor;
 
-        Tween tween = CreateTween();
-        tween.SetTrans(Tween.TransitionType.Sine)
-            .SetEase(Tween.EaseType.InOut);
+        characterContainer.RemoveChild(actor);
+        blurshader.AddChild(actor);
 
-        tween.TweenDelegate<Color>(
-            v => portrait.Modulate = v,
-            Colors.White,
-            Colors.Black,
-            0.1f
-        );
-
-        tween.TweenDelegate<Vector2>(
-            v => portrait.Scale = v,
-            Vector2.One,
-            new Vector2(0f, 1f),
-            half
-        );
-
-        tween.TweenCallback(Callable.From(() =>
-        {
-            portrait.FlipH = !portrait.FlipH;
-        }));
-
-        tween.TweenDelegate<Vector2>(
-            v => portrait.Scale = v,
-            new Vector2(0f, 1f),
-            Vector2.One,
-            half
-        );
-
-        tween.TweenDelegate<Color>(
-            v => portrait.Modulate = v,
-            Colors.Black,
-            Colors.White,
-            0.1f
-        );
-
-        tween.Finished += ActionBus.ActionFinished;
+        blurshader.Show();
     }
 
-    public async void AnimateShake(TextureRect portrait)
+    void HideBackgroundBlur()
     {
-        ActionBus.ActionStarted();
-        Vector2 originalPos = portrait.Position;
+        if (currentThinkingActor == null)
+            return;
 
-        var tween = portrait.CreateTween();
-        tween.SetTrans(Tween.TransitionType.Sine);
-        tween.SetEase(Tween.EaseType.InOut);
+        currentThinkingActor.ZIndex = actorLayer;
 
-        float strength = 4f;
-        float duration = 0.05f;
-        int shakes = 4;
+        blurshader.RemoveChild(currentThinkingActor);
+        characterContainer.AddChild(currentThinkingActor);
 
-        for (int i = 0; i < shakes; i++)
-        {
-            Vector2 offset = new Vector2(
-                (float)GD.RandRange(-strength, strength),
-                (float)GD.RandRange(-strength, strength)
-            );
+        currentThinkingActor = null;
 
-            tween.TweenProperty(portrait, "position", originalPos + offset, duration);
-        }
-
-        tween.TweenProperty(portrait, "position", originalPos, duration);
-
-        tween.Finished += ActionBus.ActionFinished;
+        blurshader.Hide();
     }
 
-
-
+    // =========================
+    // UTILITIES
+    // =========================
 
     public void HideAllCharacters()
     {
-        foreach (TextureRect character in CharactersInScene.Values)
-        {
-            character.Hide();
-        }
+        foreach (var actor in CharactersInScene.Values)
+            actor.Hide();
     }
 
     public void ShowAllCharacters()
     {
-        foreach (TextureRect character in CharactersInScene.Values)
-        {
-            character.Show();
-        }
+        foreach (var actor in CharactersInScene.Values)
+            actor.Show();
     }
 
     public void CleanEffects()
     {
-        foreach(var character in CharactersInScene)
-        {
-            DisappearAnimation(character.Value, character.Key);
-        }
+        foreach (var kv in CharactersInScene)
+            kv.Value.QueueFree();
+
         CharactersInScene.Clear();
         IsThinking = false;
     }
-
 }

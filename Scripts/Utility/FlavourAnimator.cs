@@ -51,7 +51,7 @@ public partial class FlavourAnimator : Node
             gpuParticles2D.Emitting = true;
             return;
         }
-        TextureRect portrait = CharacterStage.Instance.GetCharacterPortrait(speaker);
+        CharacterActor portrait = CharacterStage.Instance.GetActor(speaker);
         if (portrait == null)
             return;
         
