@@ -1,15 +1,11 @@
 ﻿uid;code;type;speaker;text;next
-A1;;say;Treya;Esto es una prueba;
-A2;Treya appears right;;;;
-A3;;say;Treya;He aparecido, ahora voy a ponerme feliz;
-A4;Treya is happy;;;;
-A5;;say;Treya;Ya está. Ahora seria.;
-A6;Treya is serious;;;;
-A7;;say;Treya;Ya está. Felix otra vez.;
-A8;Treya is happy;;;;
-A9;;say;Treya;Ya está.;
-A10;;say;Treya;Me muevo a la izquierda.;
-A11;Treya moves right;;;;
-A12;Treya moves farleft;;;;
-A13;Treya moves farright;;;;
-A14;;say;Treya;Que mareo;
+A1;;say;Treya;Esto es una eleccion soft;
+A2;;choice/soft;;Repetir|Siguiente;A1|A4
+A3;;;;;
+A4;;say;Treya;Esto es una eleccion normal;
+A5;;choice/normal;;Repetir|Siguiente;A4|A7
+A6;;;;;
+A7;;say;Treya;Esto es una eleccion importante;
+A8;;choice/important;;Repetir|Siguiente;A7|A10
+A9;;;;;
+A10;;say;Treya;Fin de la prueba.;

@@ -29,6 +29,10 @@ public partial class ChoiceMaker : Node
     Tween buttonExitTween;
 
 
+    public override void _Ready()
+    {
+        choiceShaderLayer.Hide();
+    }
     public void ShowChoices(DialogLine line)
     {
         choiceLayoutLayer.Show();
@@ -43,15 +47,17 @@ public partial class ChoiceMaker : Node
     {
         switch (optionType)
         {
-            case "Impact":
+            case "important":
                 SetActiveShaders();
-                AudioManager.Instance.impact.Play();
-                animationPlayer.Play("IntroQuestion");
+                animationPlayer.Play("ImportantIN");
                 break;
-            case "Soft":
+            case "normal":
                 SetActiveShaders();
-                AudioManager.Instance.soft.Play();
-                animationPlayer.Play("IntroQuestion"); // TODO: create a Soft Animation
+                animationPlayer.Play("NormalIN");
+                break;
+            case "soft":
+                SetActiveShaders();
+                animationPlayer.Play("SoftIN");
                 break;
             default:
                 break;

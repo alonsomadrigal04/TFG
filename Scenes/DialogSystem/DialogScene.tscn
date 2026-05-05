@@ -223,6 +223,42 @@ tracks/11/keys = {
 "update": 1,
 "values": [ExtResource("23_pfbu6")]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CSDecorationChoice/TRInterrogation:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(549, 193.00002)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CSDecorationChoice/TRInterrogation:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CSDecorationChoice/TRExclamation:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ak5v8"]
 resource_name = "IntroQuestion"
@@ -280,7 +316,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.33333334, 1.1333333, 1.6333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-1.4416419621473167, 0.4118977034706622, 0.0, 0.4799655442984406]
+"values": [-1.4416419621473169, 0.4118977034706622, 0.0, 0.4799655442984406]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -353,6 +389,30 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
 "update": 0,
 "values": [Vector2(1347, -195), Vector2(-124.99988, 81), Vector2(-216.00002, 110.000015), Vector2(-1780, 355)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CSDecorationChoice/TRInterrogation:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(549, 193.00002)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CSDecorationChoice/TRInterrogation:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_lipur"]
@@ -541,9 +601,45 @@ tracks/14/keys = {
 "update": 1,
 "values": [SubResource("CompressedTexture2D_cxyfr")]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("CSDecorationChoice/TRInterrogation:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(549, 193.00002)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("CSDecorationChoice/TRInterrogation:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("CSDecorationChoice/TRExclamation:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_jn18p"]
-resource_name = "SoftIn"
+resource_name = "SoftIN"
 length = 2.5666666
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -570,7 +666,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.90000004),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.3490658503988659, 0.017453292519943295, -0.08726646259971647, -0.3490658503988659]
+"values": [0.3490658503988659, 0.01745329251994329, -0.08726646259971647, -0.3490658503988659]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -608,6 +704,30 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CSDecorationChoice/TRInterrogation:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(549, 193.00002)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CSDecorationChoice/TRInterrogation:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x033f"]
 _data = {
@@ -616,7 +736,7 @@ _data = {
 &"NormalIN": SubResource("Animation_cxyfr"),
 &"OutQuestion": SubResource("Animation_lipur"),
 &"RESET": SubResource("Animation_x033f"),
-&"SoftIn": SubResource("Animation_jn18p")
+&"SoftIN": SubResource("Animation_jn18p")
 }
 
 [node name="DialogManager" type="Control" unique_id=628620988 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox", "itemMenu", "choiceLayout")]
@@ -928,7 +1048,7 @@ metadata/_edit_lock_ = true
 offset_left = -1771.0
 offset_top = 231.0
 offset_right = -82.72412
-offset_bottom = 333.0
+offset_bottom = 333.00006
 rotation = -0.14660765
 pivot_offset = Vector2(844, 55)
 texture = SubResource("CompressedTexture2D_cxyfr")
@@ -945,6 +1065,7 @@ texture = ExtResource("23_pfbu6")
 expand_mode = 1
 
 [node name="TRExclamation" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=387718824]
+visible = false
 offset_left = 539.0
 offset_top = 223.0
 offset_right = 729.0
@@ -953,6 +1074,7 @@ pivot_offset = Vector2(86, -223)
 texture = ExtResource("25_7awbk")
 
 [node name="TRInterrogation" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=1716795111]
+visible = false
 offset_left = 549.0
 offset_top = 193.00002
 offset_right = 724.1273
