@@ -62,7 +62,7 @@ public partial class ChoiceMaker : Node
             default:
                 break;
         }
-        await ToSignal(GetTree().CreateTimer(0.8f), "timeout");
+        await ToSignal(GetTree().CreateTimer(1.2f), "timeout");
         string[] texts = line.Text.Split('|', StringSplitOptions.TrimEntries);
         for(int i = 0; i < texts.Length; i++)
         {

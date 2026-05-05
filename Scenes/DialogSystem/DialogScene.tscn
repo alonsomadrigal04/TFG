@@ -316,7 +316,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.33333334, 1.1333333, 1.6333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-1.4416419621473169, 0.4118977034706622, 0.0, 0.4799655442984406]
+"values": [-1.4416419621473169, 0.08726646259971647, 0.0, 0.4799655442984406]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1057,8 +1057,8 @@ expand_mode = 1
 [node name="TRImporantRight" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=121203002]
 offset_left = 1336.0
 offset_top = 417.00006
-offset_right = 3024.274
-offset_bottom = 518.99677
+offset_right = 3024.2747
+offset_bottom = 518.99664
 rotation = -0.14660765
 pivot_offset = Vector2(-936.51556, -687.7911)
 texture = ExtResource("23_pfbu6")
