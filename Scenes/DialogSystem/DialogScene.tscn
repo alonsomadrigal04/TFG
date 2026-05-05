@@ -25,11 +25,18 @@
 [ext_resource type="Script" uid="uid://bbh5xd5cchgu0" path="res://Scripts/DialogSystem/ItemInteractionMenu.cs" id="21_cxyfr"]
 [ext_resource type="Texture2D" uid="uid://c8u01urfy72tw" path="res://Assets/UI/PH/IDeinventario.png" id="22_ngurm"]
 [ext_resource type="Texture2D" uid="uid://bvvmfv7rray7o" path="res://Assets/UI/PH/copper.png" id="22_r68ee"]
+[ext_resource type="Texture2D" uid="uid://dndpl2x8novcw" path="res://Assets/UI/PH/BandaImportante.png" id="23_pfbu6"]
 [ext_resource type="Texture2D" uid="uid://cfna65dtgmjfo" path="res://Assets/UI/InventoryWhell.png" id="24_p8x5j"]
+[ext_resource type="Texture2D" uid="uid://cj11d07nr2x0w" path="res://Assets/Flavour/exclamationSign.png" id="25_7awbk"]
+[ext_resource type="AudioStream" uid="uid://ck8mhdrgp8xm1" path="res://Audio/importantv2.wav" id="26_7awbk"]
+[ext_resource type="Texture2D" uid="uid://dspn7h0focdc6" path="res://Assets/Flavour/interrogationSign.png" id="26_ngurm"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="26_yr3c2"]
 [ext_resource type="Texture2D" uid="uid://dn6ob4eug2mj2" path="res://Assets/UI/InventoryCenter.png" id="27_2370t"]
 [ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://Assets/Fonts/Roboto-Bold.ttf" id="27_mmhpi"]
+[ext_resource type="AudioStream" uid="uid://kw6topbfyktl" path="res://Audio/moderate.wav" id="28_cxyfr"]
+[ext_resource type="Texture2D" uid="uid://d2au8f65mdc0f" path="res://Assets/UI/PH/BandaModerada.png" id="29_w3e4s"]
 [ext_resource type="Texture2D" uid="uid://b3cc6g5i0fd45" path="res://Assets/UI/UsarObjectoBoton.png" id="30_p8x5j"]
+[ext_resource type="AudioStream" uid="uid://dhwua6t10g04x" path="res://Audio/Soft.wav" id="30_r68ee"]
 [ext_resource type="Texture2D" uid="uid://dfd3qqt0lixup" path="res://Assets/UI/UsarObjetoCuadro.png" id="31_p8x5j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nssry"]
@@ -50,6 +57,9 @@ shader = ExtResource("6_e0sb1")
 shader_parameter/lod = 1.7690000840275
 shader_parameter/mix_percentage = 0.25600001216
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttbwo"]
+shader = ExtResource("19_4nqsh")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oho3u"]
 shader = ExtResource("6_x033f")
 shader_parameter/vignette_size = 0.488000014376853
@@ -60,170 +70,554 @@ shader_parameter/vignette_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 shader_parameter/circular = false
 shader_parameter/particle_intensity = 0.3
 
-[sub_resource type="Animation" id="Animation_ak5v8"]
-resource_name = "IntroQuestion"
-length = 5.0
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cxyfr"]
+load_path = "res://.godot/imported/BandaImportante.png-2925012c05ec60e459e2611ae5ad2f4f.ctex"
+
+[sub_resource type="Animation" id="Animation_7awbk"]
+resource_name = "ImportantIN"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CLayoutChoice/BigQuestionMark:scale")
+tracks/0/path = NodePath("CSDecorationChoice/ShaderChoice:material:shader_parameter/vignette_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.13869627, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333337, 0.5833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.92, 1.92), Vector2(0.8, 0.8)]
+"values": [Color(0.9372549, 0.9372549, 0.9372549, 1), Color(1, 0.2249124, 0.31720933, 1), Color(0.9372549, 0.9372549, 0.9372549, 1), Color(1, 0.2249124, 0.31720933, 1), Color(0.9372549, 0.9372549, 0.9372549, 1), Color(1, 0.2249124, 0.31720933, 1), Color(0.9372549, 0.9372549, 0.9372549, 1)]
 }
-tracks/1/type = "value"
+tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CLayoutChoice/BigQuestionMark:position")
+tracks/1/path = NodePath("CLayoutChoice/ChoiceSoundsPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 1.5),
-"transitions": PackedFloat32Array(0.13869627, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -721.99994)]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("26_7awbk")
+}],
+"times": PackedFloat32Array(0)
 }
+tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CLayoutChoice/BigQuestionMark:rotation")
+tracks/2/path = NodePath("CSDecorationChoice/TRImporantLeft:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.13869627, 1),
+"times": PackedFloat32Array(0, 0.32918826, 0.6333333, 1.0666667),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 2),
 "update": 0,
-"values": [0.5235988, 0.0]
+"values": [Vector2(-1771, 231), Vector2(-196.00012, 55), Vector2(-196.00012, 55), Vector2(1347, -195)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CLayoutChoice/BigQuestionMark:theme_override_colors/default_color")
+tracks/3/path = NodePath("CSDecorationChoice/TRImporantRight:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.43333334),
-"transitions": PackedFloat32Array(0.13869627, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 1.0666667),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 1.9318726),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Vector2(1336, 500), Vector2(-159, 750), Vector2(-159, 750), Vector2(-1850, 1000)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CSDecorationChoice/Gray:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CSDecorationChoice/TRExclamation:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666663, 0.1666666, 0.26666662, 0.29999992, 0.33333334, 0.36666667, 0.56666666, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.4590952, -1.4590952, 0.1884955592153878, -0.3595378259108323, 0.1186823891356146, -0.1186823891356146, 0.0, 0.0, -0.4118977034706622]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CSDecorationChoice/TRExclamation:pivot_offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5333333, 0.5666667),
+"transitions": PackedFloat32Array(1, 2, 2),
+"update": 0,
+"values": [Vector2(86, -418), Vector2(86, -418), Vector2(80, 127)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CSDecorationChoice/TRExclamation:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.56666666, 0.9),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CSDecorationChoice/TRExclamation:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.70000017, 0.9),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.91, 1.91)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CSDecorationChoice/ShaderChoice:material:shader_parameter/vignette_size")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.488000014376853]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CSDecorationChoice/TRImporantRight:texture")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_pfbu6")]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CSDecorationChoice/TRImporantLeft:texture")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_pfbu6")]
+}
+
+[sub_resource type="Animation" id="Animation_ak5v8"]
+resource_name = "IntroQuestion"
+length = 5.0
+
+[sub_resource type="Animation" id="Animation_cxyfr"]
+resource_name = "NormalIN"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSDecorationChoice/ShaderChoice:material:shader_parameter/vignette_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.488000014376853]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CLayoutChoice/ChoiceSoundsPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("28_cxyfr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSDecorationChoice/TRInterrogation:pivot_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.0666667, 1.1333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(87.97922, -331.84113), Vector2(87.97922, -331.84113), Vector2(79, 139)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CSDecorationChoice/TRInterrogation:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 1.1333333, 1.6333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.4416419621473167, 0.4118977034706622, 0.0, 0.4799655442984406]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CSDecorationChoice/TRInterrogation:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1333334, 1.6333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1.4)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CSDecorationChoice/TRInterrogation:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.1333334, 1.6430818),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CSDecorationChoice/TRImporantRight:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("29_w3e4s")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CSDecorationChoice/TRImporantLeft:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("29_w3e4s")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CSDecorationChoice/TRImporantRight:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.1, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(-1850, 1000), Vector2(-319, 803.00006), Vector2(-248.00003, 786.00006), Vector2(1202, 521.00006)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CSDecorationChoice/TRImporantLeft:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.1, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(1347, -195), Vector2(-124.99988, 81), Vector2(-216.00002, 110.000015), Vector2(-1780, 355)]
 }
 
 [sub_resource type="Animation" id="Animation_lipur"]
 resource_name = "OutQuestion"
 length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CLayoutChoice/BigQuestionMark:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CLayoutChoice/BigQuestionMark:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CLayoutChoice/BigQuestionMark:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CLayoutChoice/BigQuestionMark:theme_override_colors/default_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_x033f"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CLayoutChoice/BigQuestionMark:scale")
+tracks/0/path = NodePath("CSDecorationChoice/ShaderChoice:material:shader_parameter/vignette_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(0.9372549, 0.9372549, 0.9372549, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CLayoutChoice/BigQuestionMark:position")
+tracks/1/path = NodePath("CSDecorationChoice/TRImporantLeft:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-1771, 231)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CLayoutChoice/BigQuestionMark:rotation")
+tracks/2/path = NodePath("CSDecorationChoice/TRImporantRight:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1336, 417.00006)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CLayoutChoice/BigQuestionMark:theme_override_colors/default_color")
+tracks/3/path = NodePath("CSDecorationChoice/Gray:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CSDecorationChoice/TRExclamation:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CSDecorationChoice/TRExclamation:pivot_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(86, -223)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CSDecorationChoice/TRExclamation:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CSDecorationChoice/TRExclamation:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CSDecorationChoice/ShaderChoice:material:shader_parameter/vignette_size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.488000014376853]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CSDecorationChoice/TRInterrogation:pivot_offset")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CSDecorationChoice/TRInterrogation:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CSDecorationChoice/TRInterrogation:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CSDecorationChoice/TRInterrogation:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CSDecorationChoice/TRImporantRight:texture")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_pfbu6")]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CSDecorationChoice/TRImporantLeft:texture")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_cxyfr")]
+}
+
+[sub_resource type="Animation" id="Animation_jn18p"]
+resource_name = "SoftIn"
+length = 2.5666666
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CLayoutChoice/ChoiceSoundsPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("30_r68ee")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSDecorationChoice/TRInterrogation:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.3490658503988659, 0.017453292519943295, -0.08726646259971647, -0.3490658503988659]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSDecorationChoice/TRInterrogation:pivot_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(87.56369, 139.0073)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CSDecorationChoice/TRInterrogation:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.4, 1.4), Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CSDecorationChoice/TRInterrogation:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6315994, 0.8982661),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x033f"]
 _data = {
+&"ImportantIN": SubResource("Animation_7awbk"),
 &"IntroQuestion": SubResource("Animation_ak5v8"),
+&"NormalIN": SubResource("Animation_cxyfr"),
 &"OutQuestion": SubResource("Animation_lipur"),
-&"RESET": SubResource("Animation_x033f")
+&"RESET": SubResource("Animation_x033f"),
+&"SoftIn": SubResource("Animation_jn18p")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttbwo"]
-shader = ExtResource("19_4nqsh")
 
 [node name="DialogManager" type="Control" unique_id=628620988 node_paths=PackedStringArray("choiceMaker", "textTyper", "dialogueBox", "itemMenu", "choiceLayout")]
 layout_mode = 3
@@ -485,13 +879,13 @@ metadata/_edit_lock_ = true
 [node name="ChoiceMaker" type="Node" parent="GeneralLayout/DialogSystem" unique_id=698217489 node_paths=PackedStringArray("choiceLayoutLayer", "choiceShaderLayer", "animationPlayer", "optionsContainer", "shaderBack", "grayBack")]
 script = ExtResource("4_ak5v8")
 choiceLayoutLayer = NodePath("../ChoiceLayout/CLayoutChoice")
-choiceShaderLayer = NodePath("../ChoiceLayout/CShaderChoice")
+choiceShaderLayer = NodePath("../ChoiceLayout/CSDecorationChoice")
 animationPlayer = NodePath("../ChoiceLayout/CLayoutChoice/AnimationPlayer")
 optionsContainer = NodePath("../ChoiceLayout/CLayoutChoice/HBoxContainer")
 optionShader = ExtResource("6_d3awe")
 separation = 40
-shaderBack = NodePath("../ChoiceLayout/CShaderChoice/ShaderChoice")
-grayBack = NodePath("../ChoiceLayout/CLayoutChoice/Gray")
+shaderBack = NodePath("../ChoiceLayout/CSDecorationChoice/ShaderChoice")
+grayBack = NodePath("../ChoiceLayout/CSDecorationChoice/Gray")
 metadata/_edit_lock_ = true
 
 [node name="ChoiceLayout" type="Control" parent="GeneralLayout/DialogSystem" unique_id=131375595]
@@ -505,11 +899,22 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="CShaderChoice" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1616460335]
+[node name="CSDecorationChoice" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1616460335]
 layer = 11
-visible = false
 
-[node name="ShaderChoice" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CShaderChoice" unique_id=596100438]
+[node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=1808876110]
+visible = false
+material = SubResource("ShaderMaterial_ttbwo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.50980395, 0.50980395, 0.50980395, 0.7843136)
+metadata/_edit_lock_ = true
+
+[node name="ShaderChoice" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=596100438]
 material = SubResource("ShaderMaterial_oho3u")
 anchors_preset = 15
 anchor_right = 1.0
@@ -519,9 +924,43 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
+[node name="TRImporantLeft" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=1338938203]
+offset_left = -1771.0
+offset_top = 231.0
+offset_right = -82.72412
+offset_bottom = 333.0
+rotation = -0.14660765
+pivot_offset = Vector2(844, 55)
+texture = SubResource("CompressedTexture2D_cxyfr")
+expand_mode = 1
+
+[node name="TRImporantRight" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=121203002]
+offset_left = 1336.0
+offset_top = 417.00006
+offset_right = 3024.274
+offset_bottom = 518.99677
+rotation = -0.14660765
+pivot_offset = Vector2(-936.51556, -687.7911)
+texture = ExtResource("23_pfbu6")
+expand_mode = 1
+
+[node name="TRExclamation" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=387718824]
+offset_left = 539.0
+offset_top = 223.0
+offset_right = 729.0
+offset_bottom = 507.0
+pivot_offset = Vector2(86, -223)
+texture = ExtResource("25_7awbk")
+
+[node name="TRInterrogation" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=1716795111]
+offset_left = 549.0
+offset_top = 193.00002
+offset_right = 724.1273
+offset_bottom = 471.01465
+texture = ExtResource("26_ngurm")
+
 [node name="CLayoutChoice" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1689770322]
 layer = 11
-visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/DialogSystem/ChoiceLayout/CLayoutChoice" unique_id=930759866]
 z_index = 3
@@ -541,34 +980,7 @@ metadata/_edit_lock_ = true
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_x033f")
 
-[node name="BigQuestionMark" type="RichTextLabel" parent="GeneralLayout/DialogSystem/ChoiceLayout/CLayoutChoice" unique_id=1188170206]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(626.7686, 379.19916)
-mouse_filter = 2
-mouse_behavior_recursive = 1
-theme_override_colors/default_color = Color(1, 1, 1, 0)
-theme_override_font_sizes/normal_font_size = 521
-text = "?"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CLayoutChoice" unique_id=1808876110]
-visible = false
-z_index = 2
-material = SubResource("ShaderMaterial_ttbwo")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.50980395, 0.50980395, 0.50980395, 0.7843136)
-metadata/_edit_lock_ = true
+[node name="ChoiceSoundsPlayer" type="AudioStreamPlayer" parent="GeneralLayout/DialogSystem/ChoiceLayout/CLayoutChoice" unique_id=83608844]
 
 [node name="ItemMenu" type="Control" parent="GeneralLayout/DialogSystem" unique_id=446959301 node_paths=PackedStringArray("Spinner", "Icons", "VBoxContainer", "ItemName", "decorationCopperFrame", "ButtonSpinnerDisplay")]
 anchors_preset = 0
@@ -589,11 +1001,13 @@ z_index = 3
 position = Vector2(63.642086, 64.64208)
 scale = Vector2(0.67791665, 0.67791665)
 texture = ExtResource("24_p8x5j")
+metadata/_edit_lock_ = true
 
 [node name="Frame" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=1120215889]
 z_index = -1
 scale = Vector2(1.0964963, 1.0964965)
 texture = ExtResource("22_r68ee")
+metadata/_edit_lock_ = true
 
 [node name="IconItem" type="Sprite2D" parent="GeneralLayout/DialogSystem/ItemMenu/Spinner" unique_id=367583361]
 z_index = 1
