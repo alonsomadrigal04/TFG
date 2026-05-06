@@ -2,12 +2,12 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://b6s0fpt4dwk2e"
+uid="uid://c2gsy1nq6vu6x"
 valid=false
 
 [deps]
 
-source_file="res://Data/Csv/FledBanter0.csv"
+source_file="res://Data/Csv/FledInitv2.csv"
 
 [params]
 

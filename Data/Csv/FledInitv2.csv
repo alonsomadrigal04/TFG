@@ -1,0 +1,217 @@
+﻿uid;code;type;speaker;text;next
+A1;Treya appears left;;;;
+A2;Fled appears right;;;;
+A3;;say;Fled;Treya [s]La Paranoica[/s].;
+A4;;say;Fled;No me acaba de convencer.;
+A5;;say;Fled;¿Qué te parece a ti?;
+A6;;choice/soft;;Ser borde|Seguir la broma|No responder;A8|A11|A15
+A7;;;;;
+A8;;say/question;Treya;¿A qué viene eso ahora, Fled?;
+A9;;say;Fled;Tienes todas las fibras de tu cuerpo en tensión.;A20
+A10;;;;;
+A11;;say;Treya;No está mal, pero un poco forzado.;
+A12;;say;Treya;¿Fled [s]Grano En El Culo[/s], que te parece ese para ti?;
+A13;;say;Fled;Oh veo que la pupila se va convirtiendo en maestro.;A19
+A14;;;;;
+A15;;say;Treya;…;
+A16;;say;Fled;Oh, vamos.;
+A17;;say;Fled;No era una broma tan terrible como para que me ignores así.;A19
+A18;;;;;
+A19;;say;Fled;Pero, Treya…;
+A20;Sfx play FledLaugh01;;;;
+A21;;say;Fled;Relájate, te juro por mis espirales que nadie nos sigue.;
+A22;;say;Fled;Seguro que es por este ambiente tan seco.;
+A23;;say;Fled;Se te romperá el cuello de tanto mirarte el trasero.;
+A24;;say;Fled;No se como los Jaleanos podeis estar tan lejos del mar.;
+A25;;say;Fled;El sonido de las olas del mar, el olor a salitre...;
+A26;;say;Fled;Echo de menos mi hogar;
+A27;;say;Treya;¿Te parece raro que me preocupe?;
+A28;;say;Treya;Estamos en territorio enemigo.;
+A29;;say;Treya;Tú eres el que debería estar menos relajado.;
+A30;camera flash;;;;
+A31;;say/question;Fled;¿Nuestros enemigos? La Federación no es nuestra enemiga.;
+A32;;say;Fled;Y aunque lo fuera, nadie nos encontraría aquí.;
+A33;;choice/soft;;Dudar|Creer;A35|A45
+A34;;;;;
+A35;;say;Treya;¿Nadie?;
+A36;;say;Treya;Estamos al lado del camino que lleva a Guardoblanco.;
+A37;;say;Treya;Lo que me parece raro es que no nos hayan capturado.;
+A38;;say;Fled;Nadie nos ha capturado por que soy el mejor escondiendose;
+A39;;say;Treya;…;
+A40;;say;Treya;"Lo de ""Al lado del camino"" es literal, Fled.";
+A41;;say;Fled;Pero si nos encontrásemos a alguien no pasaría nada.;
+A42;;say;Fled;Tenemos un plan, lo recuerdas, no?;
+A43;;say;Treya;Ese estupido plan no servirá para nada.;A53
+A44;;;;;
+A45;;say;Treya;Si que es verdad que nadie se ha acercado.;
+A46;;say;Fled;He de admitir que el escondrijo es mejor de lo que pensaba;
+A47;;say;Fled;JA!;
+A48;;say;Fled;Lo sabía, mis dotes del escondrijo son inmejorables.;
+A49;;say;Treya;Tampoco te lo has tenido que pensar.;
+A50;;say;Fled;Almenos te sabras el plan, verdad?;
+A51;;say;Treya;No me convence mucho Fled....;A53
+A52;;;;;
+A53;;say;Fled;Conque si que te lo sabes…;
+A54;;say;Fled;¿Qué mercancía llevamos?;A56
+A55;;;;;
+A56;;choice/soft;;Cuero tratado|Pescado;A58|A61
+A57;;;;;
+A58;;say;Treya;Barniz especial, cuero tratado y algunas planchas de cobre.;
+A59;;say;Fled;Bien, bien.;A66
+A60;;;;;
+A61;;say;Treya;Redes, cebos y pescado fresco.;
+A62;;say;Fled;¿Pescado? ¿Fresco?;
+A63;;say;Fled;Pero si me acabo de quejar de lo seco que está vuestra tierra;
+A64;;say;Fled;Además, llevar pescado de noche, no es lo más sensato.;
+A65;;say;Fled;…;
+A66;;say;Fled;¿Por qué viajamos de noche?;A68
+A67;;;;;
+A68;;choice/soft;;El camino es más seguro| El pescado no se estropea;A70|A73
+A69;;;;;
+A70;;say;Treya;Hay menos bandidos por los caminos.;
+A71;;say;Fled;Parece que es verdad, te lo has estudiado.;A78
+A72;;;;;
+A73;;say;Treya;El Pescado se conserva mejor con el frio.;
+A74;;say;Fled;...;
+A75;;say;Fled;¿Me estas tomando el pelo Treya La Paranoica?;
+A76;;say;Fled;En fin...;A78
+A77;;;;;
+A78;;say;Fled;Última pregunta.;
+A79;;say;Fled;Que debemos responder si alguien nos dice…;
+A80;;say;Fled;¿Por quién lucháis?;A82
+A81;;;;;
+A82;;choice/soft;;De quien me brinde pan.|De quien me ofrezca pan.;A84|90
+A83;;;;;
+A84;;say;Treya;De quien me brinde comida y refugio.;
+A85;;say;Fled;¿Brindar?;
+A86;;say;Fled;¿Crees que una paleta de pueblo diría algo así?;
+A87;;say;Fled;¿De quien me ofrezca comida y refugio?;
+A88;;say;Fled;Casi perfecto, te sabes el discurso de memoria.;A93
+A89;;;;;
+A90;;say;Treya;De quien me ofrezca comida y refugio.;
+A91;;say;Fled;No te lo sabes muy bien....;
+A92;;say;Fled;Creo que solo te falta una cosa.;
+A93;;say;Fled;Lo único que te falta es no decirlo como si tuvieras una guarnición metida por el…;
+A94;camera flash;;;;
+A95;;say;Treya;Menuda sarta de sandeces.;
+A96;;say;Treya;Mentir de esa manera tan obvia nos delatará.;
+A97;;say;Fled;El arte del subterfugio es tan importante como el de la espada o la lanza.;
+A98;;say;Fled;Míralo como una forma de combatir.;
+A99;;say;Fled;Las palabras son estocadas.;
+A100;;say;Fled;La credibilidad de la gente es su postura.;
+A101;;say;Fled;Si sabes hacer fintas correctas, puedes desestabilizarlos.;
+A102;;say;Fled;Y asestarles el golpe de gracia.;
+A103;camera zoom Treya;;;;
+A104;UI wait 1;;;;
+A105;;say;Treya;No lo veo para nada lo mismo.;
+A106;camera reset;;;;
+A107;;say;Fled;Porque no piensas con libertad.;
+A108;;say;Fled;Dime, ¿qué hay en tu mente?;
+A109;;say;Fled;¿Guerra, muerte, hambre…?;
+A110;camera flash;;;;
+A111;;say/exclamation;Fled;¿…venganza?;
+A112;;say;Treya;No entraré en tus juegos, Fled.;
+A113;;say;Treya;Canaliza esa energía que tienes para dentro de unos [s]latidos[/s].;
+A114;;say;Treya;¿Crees que serás capaz de dormir y cerrar la boca durante tanto tiempo?;
+A115;;say;Fled;Dormir, será sencillo…;
+A116;Sfx play FledLaugh02;;;;
+A117;;say;Fled;Pero callarme llevo milenios intentándolo y tampoco me ha ido bien;
+A118;;say;Treya;Céntrate Fled. Por una sola vez.;
+A119;;say;Treya;Céntrate.;
+A120;;say;Treya;No podemos cometer ni un error.;
+A121;;say/question;Fled;Te crees que somos imprescindibles, ¿verdad?;
+A122;;say;Fled;No te apures, la juventud es sinónimo de credulidad.;
+A123;;say/question;Fled;Cuánta importancia le das, chiquilla.;
+A124;;say;Treya;…;
+A125;camera flash;;;;
+A126;;say;Treya;¿Chiquilla?;
+A127;;say;Fled;Somos una mano en una partida muy larga.;
+A128;;say;Fled;¿Ves esto, tu también las tienes, verdad?;
+A129;UI off;;;;
+A130;Boceto_1 bg;;;;
+A131;Game wait 2;;;;
+A132;;say;Fled;¿Una recompensa por lo útiles que somos?;
+A133;;say;Fled;No.;
+A134;;say;Fled;Más bien una prueba de lo fugaces que somos.;
+A135;;say;Fled;Somos prescindibles.;
+A136;;say;Fled;Desechables.;
+A137;;say;Fled;Que tú no las lleves no te hace superior, Treya la paranoica.;
+A138;UI off;;;;
+A139;Bg vanish;;;;
+A140;Game wait 2;;;;
+A141;;say;Fled;Somos soldados de octavo grado.;
+A142;;choice/soft;;Valemos más|Valgo más;A144|A148
+A143;;;;;
+A144;;say;Treya;Esta misión no la puede hacer cualquiera.;
+A145;;say;Treya;Fuimos elegidos por Quion para infiltrarnos.;
+A146;;say;Fled;Y aun así, aquí estamos, soldados cualquiera.;A151
+A147;;;;;
+A148;;say;Treya;Que tú te subestimes no es mi maldito problema.;
+A149;;say;Treya;Reclamaré mi gloria ante Quion, mientras digo que tu te estabas escondiendo.;A151
+A150;;;;;
+A151;;say;Fled;No dejes que ese viejo zorro de Quion te coma la cabeza con humo y ceniza.;
+A152;;say;Fled;Él solo busca cosechar la gloria que tú siembres con tu sangre.;
+A153;;say;Treya;¿Esa es tu excusa para ser un cobarde e inútil?;
+A154;;say;Fled;Ese es tu problema, ¿sabes?;
+A155;;say;Fled;Piensas que todo lo que dicen tus superiores es la verdad absoluta.;
+A156;;say;Fled;Y el poder tiene la mala costumbre de volver necia a la gente.;
+A157;;say;Fled;Y los necios con poder son los que más vidas ajenas desperdician.;
+A158;;say;Fled;¿Quieres obedecer a necios?;
+A159;;say;Treya;El único necio aquí eres tú, Fled, no puedes hablar así de tus superiores.;
+A160;Sfx play FledLaugh03;;;;
+A161;;say;Fled;JA JA JA.;
+A162;;say;Fled;¿Los ves por alguna parte?;
+A163;;say;Fled;Ellos no pueden hacerme nada aquí.;
+A164;;say;Fled;A no ser que…;
+A165;camera flash;;;;
+A166;;say;Fled;...Tú me delates.;
+A167;;say;Treya;…;
+A168;;choice/moderada;;Lo haría|No lo haría|No responder.;A170|A177|A183
+A169;;;;;
+A170;;say;Treya;Pues puede que lo haga, Fled.;
+A171;;say;Treya;Cuidado con lo que dices.;
+A172;Fled affinity -5;;;;
+A173;;say;Fled;A la hora de la verdad, dudo que lo hicieras.;
+A174;;say;Treya;¿Puedes parar de hablar?;
+A175;;say;Treya;No dices nada con sentido.;A185
+A176;;;;;
+A177;;say;Treya;No traicionaría la confianza de un aliado.;
+A178;Fled affinity +5;;;;
+A179;;say;Fled;"Con que ""aliado"", eh.";
+A180;;say;Fled;¿Cómo puedo ascender al título de amigo?;
+A181;;say;Treya;Empezando por cerrar la boca durante unos instantes.;A185
+A182;;;;;
+A183;;say;Treya;…;A174
+A184;;;;;
+A185;;say;Fled;¿Serás tú la que nos brinde reflexiones y humor?;
+A186;;say;Fled;El mundo sería demasiado sombrío.;
+A187;;say;Fled;Tienes el ceño tan fruncido que creo que te explotará la cara.;
+A188;;say;Fled;Treya Ceñofruncido.;
+A189;;say;Treya;Ojalá te lleve el [s]Mal morado[/s].;
+A190;;say;Fled;¡Ahí está! Esa mirada gélida que podría congelar un desierto en verano.;
+A191;;say;Fled;¿Por qué eres así, chiquilla?;
+A192;;say;Fled;Me intriga.;
+A193;;think;Treya;Lo ha vuelto a hacer.;
+A194;;think;Treya;¿Chiquilla…?;
+A195;;choice/moderada;;Reprenderle | Dejarlo pasar.;A197|209
+A196;;;;;
+A197;;say;Treya;Repite eso.;
+A198;;say;Fled;¿Eh…?;
+A199;;say;Treya;Llámame chiquilla de nuevo y afilaré las dagas con tu lengua.;
+A200;;say;Treya;Te has divertido durante un rato, Fled.;
+A201;;say;Treya;Pero no soy tu ardilla para que juegues con ella.;
+A202;Fled affinity +10;;;;A132
+A203;;say;Fled;¡De acuerdo, de acuerdo! Treya está bien.;
+A204;;say;Fled;…;
+A205;;say;Fled;Treya Robalenguas.;
+A206;;say;Fled;Ese sí me gusta.;A213
+A207;;;;;
+A208;;;;;
+A209;;say;Treya;…;
+A210;;say;Fled;Sin palabras, eh…;
+A211;Fled affinity -5;;;;A213
+A212;;;;;
+A213;;say;Treya;Si prefieres gastar saliva a descansar, Fled, adelante.;
+A214;;say;Treya;Echaré un último vistazo.;
+A215;;say;Fled;No apuñales a un conejillo pensando que es un enemigo.;
+A216;;say;Fled;Sería demasiado triste.;END

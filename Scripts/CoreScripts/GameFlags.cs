@@ -79,6 +79,7 @@ public class GameFlagsManager
 }
 
 public enum GameFlags{
+    fled_mad,
     Chapter1Completed,
     Chapter2Completed,
     Chaper3Completed

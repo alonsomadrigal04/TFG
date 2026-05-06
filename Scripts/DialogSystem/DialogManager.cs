@@ -24,7 +24,14 @@ public partial class DialogManager : Node
     bool isInChoiceMode = false;
     public bool IsSpeaking {get; private set;} = false;
     Character LastSpeaker = null;
+    public Character CurrentTalker {get; set;}
+
     Vector2 dialogueBoxOgPosition = new(0, 235.0f);
+
+    string previousUid;
+    Dialog previousDialog;
+    Dialog currentDialog;
+
 
     public override void _EnterTree()
     {
@@ -46,8 +53,9 @@ public partial class DialogManager : Node
     /// <summary>
     /// Starts a dialog scene by loading dialog lines from a CSV file.
     /// </summary>
-    public void StartDialogScene(Dialog sceneName)
+    public void StartDialogScene(Dialog sceneName, string initialUID = null)
     {
+        currentDialog = sceneName;
         IsSpeaking = true;
         EmitSignal(nameof(DialogStarted));
         GameManager.Instance.IsDialogueActive = true;
@@ -58,7 +66,10 @@ public partial class DialogManager : Node
 
         if (orderedUids.Count > 0 )
         {
-            StartDialog(orderedUids[0]);
+            if(initialUID != null)
+                StartDialog(initialUID);
+            else
+                StartDialog(orderedUids[0]);
         }
         else
         {
@@ -129,6 +140,7 @@ public partial class DialogManager : Node
 
     void ProcessDialogLine(DialogLine line, string[] typePortions, bool isThought = false)
     {
+        CurrentTalker = line.Speaker;
         if(!isThought && CharacterStage.IsThinking)
             CharacterStage.Instance.SetThinkingLayout(line.Speaker, false);
         if(UiStage.Instance.IsTextBoxHide())
@@ -190,6 +202,9 @@ public partial class DialogManager : Node
                     StartDialog(nextUid);
                     return;
                 }
+                break;
+            case NextUidType.ChargePreviousDialog:
+                ChargePreviousDialog();
                 break;
         }
 
@@ -292,6 +307,8 @@ public partial class DialogManager : Node
                 return NextUidType.ChangeDialog;
             else if(parts[2] == "explorezone")
                 return NextUidType.ExploreZone;
+            else if(parts[0] == "charge" && parts[1] == "previous" && parts[2] == "dialog")
+                return NextUidType.ChargePreviousDialog;
             else
                 GD.PrintErr("[DialogManager] wrong command entered, try 'go to dialog [name of the dialog]'");
         }
@@ -309,6 +326,22 @@ public partial class DialogManager : Node
             tween.TweenProperty(dialogueBox, "position", ToolKit.GetScreenPosition(position) - new Vector2(dialogueBox.Size.X / 2, dialogueBox.Size.Y / 2), 0.2f);
         tween.Finished += ActionBus.ActionFinished;
     }
+
+    public void StoreCurrentDialog()
+    {
+        previousDialog = currentDialog;
+        previousUid = currentLine.Uid;
+    }
+
+    public void ChargePreviousDialog()
+    {
+        if(previousDialog == null)
+        {
+            GD.Print("[DialogManager] Not Active Dialog");
+        }
+        StartDialogScene(previousDialog/*, previousUid*/);
+    }
+
 }
 
 public enum NextUidType
@@ -318,5 +351,6 @@ public enum NextUidType
     EndGame,
     NextLine,
     DiferentLine,
-    ExploreZone
+    ExploreZone,
+    ChargePreviousDialog
 }

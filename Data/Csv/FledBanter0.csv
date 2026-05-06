@@ -5,41 +5,159 @@ A3;;say;Fled;¿Ya has vuelto?;
 A4;;say;Fled;¿Tanto me echas de menos?;
 A5;camera shake;;;;
 A6;;say;Treya;Mi locura no ha llegado tan lejos.;
-A7;;say;Treya;He estado vigilando el camino hacia el pueblo.;
-A8;;say;Treya;¿Cuánta gente hay en Guardoblanco?;
-A9;;say;Fled;Más que pueblo es una aldea.;
-A10;;say;Fled;Poca gente hay en el paso.;
-A11;;say;Fled;Pero al ser una frontera, hay algunos [w]Marchitos[/w];
-A12;;say;Treya;…;
-A13;camera flash;;;;
-A14;;say;Treya;¿Marchitos?;
-A15;;say;Fled;"Los guardias de la Federación. ""Los Marcios"". ";
-A16;;say/question;Fled;Lo llamais aquí ¿verdad?;
-A17;;say;Fled;Suena imponente, cualquier apodo queda gracioso para un nombre que tanto impone.;
-A18;;say;Fled;Marchitos les queda que ni pintado.;
-A19;;say/question;Treya;El caso... ¿cuántos Marchitos habrá en el paso?;
-A20;;say;Fled;No muchos. ;
-A21;;say;Fled;Unos pocos, quizá dos o tres pelotones.;
-A22;;say;Fled;…;
-A23;pipa shows;;;;
-A24;;say/question;Fled;¿Has visto una pipa por ahí?;
-A25;pipa hides;;;;
-A26;camera shake;;;;
-A27;;say;Treya;Por las lagrimas de Tal.;
-A28;camera flash;;;;
-A29;;say/exclamation;Treya;¿¡Pócos!?;
-A30;;say;Treya;Estamos hablando de veinte soldados como mínimo.;
-A31;;say;Fled;¿Qué esperabas, Treya Robalenguas?;
-A32;;say;Fled;¿Iban a defender una frontera con tres hombres y un perro?;
-A33;;say;Fled;…;
-A34;;say;Fled;Has visto mi pipa o no.;
-A35;camera shake;;;;
-A36;;say;Treya;No, Fled, no he visto tu condenada pipa.;
-A37;;say;Fled;Una pena, era una buena pipa.;
-A38;;say;Fled;En fin ¿donde estabamos?;
-A39;;say/question;Fled;Ah sí. Veinte soldados.;
-A40;;say;Fled;Entiendo que es tu primera misión [w]de verdad[/w].;
-A41;;say;Fled;Pero tienes que saber adaptarte a las dificultades, [s]Treya Cortalenguas[/s].;
-A42;;say;Fled;Me he aburrido del anterior. Este parece más feroz. ¿No te parece?;
-A43;;say;Treya;¿Cuántas misiones llevas tú?;
-A44;;say;Fled;Las suficientes como para haber perdido mejores cosas que mi pipa.;
+A7;;say;Treya;Quería preguntarte una cosa.;
+A8;;choice/soft;;Sobre la mision|Sobre Fled|Sobre el pueblo|Solo miraba;M10|F65|A115|A141
+A9;;;;;
+M10;;say;Treya;Repasemos una vez más el plan;
+M11;;say;Fled;¿Ha vuelto Treya La Paranoica?;
+DEC1;camera shake;;;;
+M12;;say;Treya;Me drenas la energía…;
+M13;;say;Fled;Esta bien, Esta bien...;
+M14;;say;Fled;Déjame buscar el mapa;
+DEC1;UI off;;;;
+DEC2;FledMap_1 bg;;;;
+DEC3;time wait 1s;;;;
+M15;;say;Fled;Salimos hace más o menos 2 lunas de la avanzada Jaleana;
+M16;;say;Fled;Esto de aquí, la de la cruz roja;
+M17;;say;Fled;Como echo de menos mi hornillo.;
+M18;;say;Fled;Estoy arto de la carne de caza asada.;
+M19;;say;Treya;Fled…;
+M20;;say;Fled;Oh, si, el plan.;
+M21;;say;Fled;Entonces… Hemos seguido todo el camino hasta llegar a Guardoblanco;
+DEC4;FledMap_2 trans blur;;;;
+M22;;say;Fled;Ahora esperaremos a que entre por completo la noche para que comience la [s]verdadera oscuridad[/s].;
+M23;;say;Fled;En cuanto tengamos la oportunidad, cruzaremos la frontera que tenemos con la Federación Marcia.;
+M24;;say;Fled;Una vez ahí, seguiremos el camino arras de montaña y llegaremos aquí, al valle marcado por un circulo.;
+DEC5;FledMap_3 trans blur;;;;
+M25;;say;Fled;Desde ahi nos adentraremos al Gran Conducto.;
+DEC6;UI off;;;;
+DEC7;Bg vanish;;;;
+DEC8;time wait 1s;;;;
+M26;;say;Treya;El Conducto será nuestro de nuevo.;
+M27;;say;Fled;Bueno, eso no nos importa por ahora.;
+DEC9;UI off;;;;
+DEC10;FledMap_3 Bg;;;;
+DEC11;time wait 1s;;;;
+M28;;say;Fled;De ahí directos al Palacio Dorado;
+DEC12;FledMap_4 trans blur;;;;
+M29;;say;Fled;Y solo Tal sabe como deberemos proceder ahí.;
+DEC13;UI off;;;;
+DEC14;Bg vanish;;;;
+DEC15;time wait 1s;;;;
+M30;;say;Treya;Bien. Lo haremos bien.;
+M31;;say;Fled;Sin duda alguna, Treya la Feroz.;MAS1
+A32;;;;;
+A33;;;;;
+MAS1;;say/question;Fled;En fin ¿Algo más?;
+A35;;choice/soft;;Sobre Fled|Sobre el pueblo.|Eso es todo.;F65|A115|A46
+A36;;;;;
+MAS2;;say/question;Fled;En fin ¿Algo más?;
+A38;;choice/soft;;Sobre la misión|Sobre el pueblo.|Eso es todo.;M10|A115|A51
+A39;;;;;
+MAS3;;say/question;Fled;En fin ¿Algo más?;
+A41;;choice/soft;;Sobre Fled.|Sobre la misión.|Eso es todo.;F65|M10|A46
+A42;;;;;
+MAS4;;say/question;Fled;En fin ¿Algo más?;
+A44;;choice/soft;;Sobre la misión|Sobre el pueblo|Eso es todo.;M10|A115|A60
+A45;;;;;
+A46;;say;Fled;No te alejes demasiado.;
+A47;;say;Fled;Deberíamos descansar antes de salir.;
+A48;;say;Fled;Además... me da miedo estar solo.;
+A49;;say;Fled;Este bosque me hiela la sangre.;END
+A50;;;;;
+A51;;say;Fled;Ya parecía un interrogatorio, Treya La Mortifera.;
+A52;;say;Fled;Je je...;
+A53;;say;Fled;...;END
+A54;;;;;
+A55;;say;Fled;La misión saldrá bien Treya.;
+A56;;say;Fled;Quiero decir, cuando es de noche, empieza la verdadera oscuridad;
+A57;;say;Fled;A no ser que seamos ruidosos, nadie nos verá.;
+A58;;say;Fled;¡Compartiremos la gloria!;END
+A59;;;;;
+A60;;say/question;Fled;¿Sólo era eso?;
+A61;Game setflag fled_mad ;;;;
+A62;;say;Fled;Estoy... cansado, creo que dormitaré hasta que partamos;END
+A63;;;;;
+A64;;;;;
+F65;;say;Treya;Hablas como si Ghalendir no fuera tu casa.;
+F66;;say;Fled;Lo es y no lo es, Treya Robalenguas.;
+F67;Fled_affinity > 55 : F75;;;;
+F68;;say;Fled;Es difícil de explicar...;
+F69;;say;Fled;Te la contaré en otro momento.;
+F70;;think;Treya;Que raro...;
+F71;;think;Treya;Normalmente Fled no rechazaría hablar de si mismo.;
+F72;;think;Treya;Quizá me haya pasado antes...;
+F73;;think;Treya;Se lo volveré a preguntar en otro momento.;MAS4
+F74;;;;;
+F75;;say;Fled;Mi casa siempre será Venita Estolfeo.;
+F76;;say;Treya;Venita Estolfeo... Ahí le... habláis a las aves ¿no?;
+F77;;say;Fled;¿¡Hablar a las aves!?;
+F78;;say;Fled;El dios de los Venitas es el rey Alado. Vosotros lo llamáis Ul.;
+F79;;say;Fled;Pero de ahí a hablar con aves... No somos dementes.;
+F80;;say;Treya;Lo... Lo siento, no lo sabía.;
+F81;;say;Fled;No me ofende.;
+F82;;say;Fled;Las babosas de mar me han impactado más que la iglesia Venita.;
+F83;;say;Fled;Que cualquier religión en realidad.;
+F84;;say;Fled;Y eso que he conocido muchas religiones.;
+F85;;say;Fled;Incluso la Antiscoritia de los Almanos no reconocen la leyenda de la creación Talverista.;
+F86;;say;Treya;¿Los Almanos? ¿No son los salvajes de vuestras tierras?;
+F87;;say;Fled;Serán salvajes, pero oh... Como cocinan.;
+F88;;say;Fled;Tienen una gastronomía más elaborada que la vuestra;
+F89;;choice/soft;;Incluirle en eso|Ofenderse;F91|F107
+F90;;;;;
+F91;;say;Treya;"Que la nuestra querrás decir.""";
+F92;;say;Treya;Antes me has señalados los Grados de tu uniforme.;
+F93;;say;Treya;Ahora eres parte de los Jaleanos, Fled;
+F94;;say;Fled;Si... tienes razón. Seré parte durante un tiempo.;
+F95;;say;Treya;¿Un... tiempo?;
+F96;;say;Fled;Si, ehm... Dejémoslo ahí por ahora.;
+F97;;think;Treya;¿Qué ha sido eso....?;
+F98;;choice/soft;;Preguntar|Dejarlo pasar;F100|F103
+F99;;;;;
+F100;;think;Treya;No creo que sea buena idea insistir.;
+F101;;think;Treya;Se lo volveré a preguntar más adelante.;F105
+F102;;;;;
+F103;;think;Treya;¿Qué ocultará?;F105
+F104;;;;;
+F105;;say;Fled;...;MAS2
+F106;;;;;
+F107;;say;Fled;Dudo que unos salvajes come piedras sepan hacer algo más que carne a la brasa.;
+F108;;say;Treya;Te sorprendería de que son capaces esos come piedras.;
+F109;;say;Treya;Y como un viajero como tu, ha llegado hasta Ghalendir.;
+F110;;say;Fled;Eso, es otra historia bastante larga.;
+F111;;say;Fled;Espero estar el tiempo suficiente para contartela.;
+F112;;say;Treya;¿Cómo?;
+F113;;say;Treya;¿A que te refieres con tiempo suficiente?;F96
+A114;;;;;
+A115;;say;Fled;He estado vigilando el camino hacia el pueblo.;
+A116;;say;Treya;¿Cuánta gente hay en Guardoblanco?;
+A117;;say;Fled;Más que pueblo es una aldea.;
+A118;;say;Fled;En el paso,de todas formas, no hay casi gente.;
+A119;;say;Fled;Pero al ser una frontera, hay algunos [w]Marchitos[/w];
+A120;;say;Treya;…;
+A121;;say;Treya;¿Marchitos?;
+A122;;say;Fled;Los guardias de la Federación.;
+A123;;say;Fled;"""Los Marcios"". Lo llamáis aquí ¿verdad?";
+A124;;say;Fled;Suena imponente, cualquier apodo queda gracioso para un nombre que tanto impone.;
+A125;;say;Fled;Marchitos les queda que ni pintado.;
+A126;;say;Treya;¿Cuántos Marchitos habrá en el paso?;
+A127;;say;Fled;No muchos.;
+A128;;say;Fled;Unos pocos, quizá dos o tres pelotones.;
+A129;;say;Fled;…;
+A130;;say;Fled;¿Has visto una pipa por ahí?;
+A131;;say;Fled;Por las lagrimas de Tal.;
+A132;;say;Treya;¿¡Pócos!?;
+A133;;say;Treya;Estamos hablando de veinte soldados como mínimo.;
+A134;;say;Fled;¿Qué esperabas, Treya Robalenguas?;
+A135;;say;Fled;¿Iban a defender una frontera con tres hombres y un perro?;
+A136;;say;Fled;…;
+A137;;say;Fled;Has visto mi pipa o no.;
+A138;;say;Treya;No, Fled, no he visto tu condenada pipa.;
+A139;;say;Fled;Una pena, era una buena pipa.;MAS3
+A140;;;;;
+A141;;say;Fled;¿Encandilada por mi belleza?;
+A142;;say;Fled;Una victima más de mis encant...;
+A143;;say;Treya;¿Fled?;
+A144;;say;Fled;¿Si?;
+A145;;say;Treya;Cállate;
+A146;;say;Fled;Está bien.;END

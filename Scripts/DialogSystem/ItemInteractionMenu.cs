@@ -4,6 +4,7 @@ using Utility;
 
 public partial class ItemInteractionMenu : Control
 {
+    [Export] Button useButton;
     [ExportGroup("Spinner Config")]
     [Export] Sprite2D Spinner { get; set; }
     [Export] Sprite2D[] Icons { get; set; }
@@ -33,10 +34,40 @@ public partial class ItemInteractionMenu : Control
         VBoxContainer.Scale = Vector2.Zero;
         VBoxContainer.Visible = false;
 
+        useButton.Pressed += ManageGift;
+
         if (GetInventorySize() > 0)
         {
             InitialSetup();
         }
+    }
+
+    void ManageGift()
+    {
+        if(!GameManager.Instance.IsDialogueActive) return;
+
+        Character targetCharacter = GameManager.Instance.DialogManager.CurrentTalker;
+        if(targetCharacter.Name != "Treya")
+        {
+            ToggleMenu(false);
+            var currentObject = GetCurrentItemData();
+            if(currentObject == null) return;
+            var targetConv = ConversationsDataBase.GetConversation($"{targetCharacter.Name}Gifted{currentObject.Name}");
+            if(targetConv == null)
+            {
+                GameManager.Instance.DialogManager.StoreCurrentDialog();
+                GameManager.Instance.DialogManager.StartDialogScene(ConversationsDataBase.GetConversation("UNUSABLEITEM"));
+            }
+        }
+        else
+        {
+            UseButtonError();
+        }
+    }
+
+    void UseButtonError()
+    {
+        GD.Print("YOU CAN'T GIVE THE ITEM TO YOURSELF");
     }
 
     public override void _Process(double delta)
@@ -170,6 +201,14 @@ public partial class ItemInteractionMenu : Control
         var data = ObjectDataBase.PlayerInventory[actualInvIdx];
         Icons[iconArrayIndex].Texture = data?.Icon;
         Icons[iconArrayIndex].Visible = data != null;
+    }
+
+    ObjectData GetCurrentItemData()
+    {
+        int size = GetInventorySize();
+        if (size == 0) return null;
+        int actualInvIdx = WrapIndex(currentIndex, size);
+        return ObjectDataBase.PlayerInventory[actualInvIdx];
     }
 
     void UpdateUI() => ItemName.Text = ObjectDataBase.PlayerInventory[currentIndex]?.Name ?? "";

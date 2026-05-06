@@ -28,7 +28,7 @@ public class UiHandler : ICommandHandler
                 HideUi(commandToken);
                 break;
             case "inventory":
-                HideInventory(commandToken);
+                HandleInventory(commandToken);
                 break;
             case "dramatic":
                 HandleDramaticText(commandToken);
@@ -105,9 +105,23 @@ public class UiHandler : ICommandHandler
         UiStage.Instance.ChangeBoxStyle(style);
     }
 
-    void HideInventory(CommandToken commandToken)
+    void HandleInventory(CommandToken commandToken)
     {
-        UiStage.Instance.HideInventory();
+        var arg = commandToken.Arguments;
+        if(arg.Count != 1)
+        {
+            GD.Print("[UiHandler] Invalid arguments. Try 'on' or 'off' ");
+            return;
+        }
+        if(commandToken.Arguments[0] == "on")
+            UiStage.Instance.ShowInventory();
+        else if (commandToken.Arguments[0] == "off")
+            UiStage.Instance.HideInventory();
+        else
+        {
+            GD.Print("[UiHandler] Invalid arguments. Try 'on' or 'off' ");
+            return;
+        }
     }
 
     void HandleDramaticText(CommandToken commandToken)

@@ -17,10 +17,13 @@ public static class ObjectDataBase
         
         LoadedSpecialItems = packItems.Itemstored;
 
+        AddObjectByName("pipa");
+
         DebugService.Register("Items in BBDD", () => LoadedSpecialItems.Count.ToString());
     }
     public static void AddObjectToInventory(ObjectData newObject) 
     {
+        GD.Print($"{newObject} has been added to the inventory.");
         PlayerInventory.Add(newObject);
     }
 

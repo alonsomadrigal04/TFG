@@ -1,11 +1,6 @@
 ﻿uid;code;type;speaker;text;next
-A1;;say;Treya;Esto es una eleccion soft;
-A2;;choice/soft;;Repetir|Siguiente;A1|A4
-A3;;;;;
-A4;;say;Treya;Esto es una eleccion normal;
-A5;;choice/normal;;Repetir|Siguiente;A4|A7
-A6;;;;;
-A7;;say;Treya;Esto es una eleccion importante;
-A8;;choice/important;;Repetir|Siguiente;A7|A10
-A9;;;;;
-A10;;say;Treya;Fin de la prueba.;
+A1;Treya appears left;;;;
+A2;Fled appears right;;;;
+A3;UI inventory on;;;;
+A4;;say;Treya;Estoy hablando yo;
+A5;;say;Fled;Está hablando Fled;

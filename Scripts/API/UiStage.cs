@@ -33,19 +33,11 @@ public partial class UiStage : Node
 
     }
 
-    public void HideTextBox()
-    {
-        textBox.Hide();
-    }
+    public void HideTextBox() => textBox.Hide();
 
-    public void HideInventory()
-    {
-        inventory.Hide();
-    }
-    public void ShowTextBox()
-    {
-        textBox.Show();
-    }
+    public void HideInventory() => inventory.Hide();
+    public void ShowInventory() => inventory.Show();
+    public void ShowTextBox() => textBox.Show();
 
     public bool IsTextBoxHide() =>  !textBox.Visible;
 
