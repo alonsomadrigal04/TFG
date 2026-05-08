@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fwpw2fclhu7n" path="res://Scripts/Utility/DebugScreen.cs" id="1_1brux"]
 
-[node name="DebugScreen" type="Control" unique_id=1184607513]
+[node name="DebugScreen" type="Control" unique_id=1184607513 node_paths=PackedStringArray("fpsLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,8 +10,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1brux")
+fpsLabel = NodePath("LfpsLabel")
 
 [node name="Label" type="Label" parent="." unique_id=1424738928]
 layout_mode = 0
 offset_right = 206.0
 offset_bottom = 143.0
+
+[node name="LfpsLabel" type="Label" parent="." unique_id=2046531957]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 34

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ccpm34rujuvtr" path="res://Assets/UI/CogerDejarBoton.png" id="3_ai7qr"]
 [ext_resource type="Texture2D" uid="uid://76ificdxflxm" path="res://Assets/PH/man-thinking-silhouette-hi.png" id="3_ct0y8"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_drd2b"]
-[ext_resource type="AudioStream" uid="uid://b87j0e3numxjc" path="res://Audio/ObjectDisapear.wav" id="4_n1rb6"]
+[ext_resource type="AudioStream" uid="uid://c8sv80211ib1x" path="res://Audio/grab.wav" id="5_7to0m"]
 [ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://Assets/Fonts/Roboto-Bold.ttf" id="5_fjme0"]
 [ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="6_wdtra"]
 [ext_resource type="AudioStream" uid="uid://b4kvc3b2l7iu2" path="res://Audio/Unhover.wav" id="7_v0fid"]
@@ -437,7 +437,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(-1.4901161e-08, 0.10000001, 0.23333333),
 "transitions": PackedFloat32Array(1, 1, 0.29730183),
 "update": 0,
-"values": [Vector2(1062, 495.125), Vector2(1028, 495.125), Vector2(1386, 495.125)]
+"values": [Vector2(1062, 495.125), Vector2(1028, 495.125), Vector2(1500, 495.125)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -449,7 +449,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(-1.4901161e-08, 0.10000001, 0.23333333),
 "transitions": PackedFloat32Array(1, 1, 0.3077863),
 "update": 0,
-"values": [Vector2(1110, 605), Vector2(1078, 605), Vector2(1371, 605)]
+"values": [Vector2(1110, 605), Vector2(1078, 605), Vector2(1500, 605)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -567,7 +567,7 @@ tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "clips": [{
-"end_offset": 0.0,
+"end_offset": 0.68000007,
 "start_offset": 0.0,
 "stream": ExtResource("12_ai7qr")
 }],
@@ -1190,7 +1190,7 @@ _data = {
 &"RESET": SubResource("Animation_jgdsr")
 }
 
-[node name="InspectView" type="Control" unique_id=506745726 node_paths=PackedStringArray("DebugScreen", "subViewportContainer", "viewportCamera", "subViewport", "canvasLayer", "backgroundFilter", "objectContainer", "takeButton", "leaveButton", "comentaryLabel", "thinkingSilhouette", "animationPlayer", "hoverAnimationPlayer", "disappearSound")]
+[node name="InspectView" type="Control" unique_id=506745726 node_paths=PackedStringArray("debugScreen", "viewportContainer", "viewport", "viewportCamera", "canvasLayer", "backgroundFilter", "objectRoot", "takeButton", "leaveButton", "commentaryLabel", "thinkingSilhouette", "disappearSound", "transitionAnimationPlayer", "hoverAnimationPlayer")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -1204,21 +1204,21 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jmeq7")
-DebugScreen = NodePath("InspectElements/DebugScreen")
-subViewportContainer = NodePath("InspectElements/SubViewportContainer")
+debugScreen = NodePath("InspectElements/DebugScreen")
+viewportContainer = NodePath("InspectElements/SubViewportContainer")
+viewport = NodePath("InspectElements/SubViewportContainer/SubViewport")
 viewportCamera = NodePath("InspectElements/SubViewportContainer/SubViewport/Camera3D")
-subViewport = NodePath("InspectElements/SubViewportContainer/SubViewport")
 canvasLayer = NodePath("InspectElements")
 backgroundFilter = NodePath("InspectElements/BackgroundFilter")
-objectContainer = NodePath("InspectElements/SubViewportContainer/SubViewport/Container")
+objectRoot = NodePath("InspectElements/SubViewportContainer/SubViewport/Container")
 takeButton = NodePath("InspectElements/ButtonTake")
 leaveButton = NodePath("InspectElements/ButtonLeave")
-comentaryLabel = NodePath("InspectElements/ThinkingTreya/BocadilloNubeGrande/ComentaryLabel")
+commentaryLabel = NodePath("InspectElements/ThinkingTreya/BocadilloNubeGrande/ComentaryLabel")
 thinkingSilhouette = NodePath("InspectElements/ThinkingTreya/ThinkingSilhouette")
-pickParticles = ExtResource("2_jjdb0")
-animationPlayer = NodePath("AnimationPlayer")
-hoverAnimationPlayer = NodePath("HoverAnimations")
+pickParticlesScene = ExtResource("2_jjdb0")
 disappearSound = NodePath("InspectElements/DebugScreen/ObjectDisapear")
+transitionAnimationPlayer = NodePath("AnimationPlayer")
+hoverAnimationPlayer = NodePath("HoverAnimations")
 metadata/_edit_lock_ = true
 
 [node name="BlurFilter" type="CanvasLayer" parent="." unique_id=1036014584]
@@ -1319,7 +1319,7 @@ text = "INSPECT VIEW"
 metadata/_edit_lock_ = true
 
 [node name="ObjectDisapear" type="AudioStreamPlayer" parent="InspectElements/DebugScreen" unique_id=1668430278]
-stream = ExtResource("4_n1rb6")
+stream = ExtResource("5_7to0m")
 
 [node name="VoiceLines" type="AudioStreamPlayer" parent="InspectElements/DebugScreen" unique_id=931790494]
 bus = &"Voices"
@@ -1385,7 +1385,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 387.0
 offset_top = 135.125
-offset_right = 597.532
+offset_right = 597.5322
 offset_bottom = 189.12518
 grow_horizontal = 2
 grow_vertical = 2
@@ -1395,7 +1395,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("3_drd2b")
 theme_override_font_sizes/font_size = 33
-text = "Take"
+text = "Coger"
 flat = true
 
 [node name="TakeFrame" type="TextureRect" parent="InspectElements/ButtonTake" unique_id=691225190]
@@ -1427,7 +1427,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("5_fjme0")
 theme_override_font_sizes/font_size = 25
-text = "Leave"
+text = "Irse"
 flat = true
 
 [node name="LeaveFrame" type="TextureRect" parent="InspectElements/ButtonLeave" unique_id=2059621982]

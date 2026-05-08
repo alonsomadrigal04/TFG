@@ -4,97 +4,125 @@ using Utility;
 
 public partial class InspectView : Control
 {
-    bool isDebugging = false;
-    [Export] Control DebugScreen;
+    [Export] bool isDebugMode = false;
+    [Export] Control debugScreen;
 
-    [ExportGroup("VIEWPORTS")]
-    [Export] SubViewportContainer subViewportContainer;
+    [ExportGroup("Viewport")]
+    [Export] SubViewportContainer viewportContainer;
+    [Export] SubViewport viewport;
     [Export] Camera3D viewportCamera;
-    [Export] SubViewport subViewport;
     [Export] CanvasLayer canvasLayer;
 
-    [ExportGroup("OBJECT")]
+    [ExportGroup("Object Display")]
     [Export] ColorRect backgroundFilter;
-    [Export] Node3D objectContainer;
+    [Export] Node3D objectRoot;
 
-    [ExportGroup("INSPECT VIEW FIELDS")]
+    [ExportGroup("UI")]
     [Export] Button takeButton;
     [Export] Button leaveButton;
-    [Export] Label comentaryLabel;
+    [Export] Label commentaryLabel;
     [Export] Sprite2D thinkingSilhouette;
 
-    [ExportGroup("ANIMATION SETTINGS")]
+    [ExportGroup("Transitions")]
     [Export] float maxBlur = 1f;
     [Export] float maxDarkness = 0.5f;
     [Export] float transitionDuration = 2f;
 
-    [Export] float idealSize = 4f;
-    [Export] float apparitionDuration = 1f;
+    [Export] float targetObjectSize = 4f;
+    [Export] float objectAppearDuration = 1f;
 
+    [ExportGroup("Zoom")]
     [Export] float zoomFov = 40f;
-    [Export] float normalFov = 75f;
-    [Export] float zoomSpeed = 5f;
+    [Export] float defaultFov = 75f;
+    [Export] float zoomLerpSpeed = 5f;
 
-    [Export] Vector2 rotationSpeed = new(0.5f, 0.5f);
-    [Export] float damping = 6f;
+    [ExportGroup("Rotation")]
+    [Export] Vector2 rotationSensitivity = new(0.5f, 0.5f);
+    [Export] float rotationDamping = 6f;
 
-    [ExportGroup("UI IDLE ANIMATION")]
-    [Export] PackedScene pickParticles;
+    [ExportGroup("Effects")]
+    [Export] PackedScene pickParticlesScene;
     [Export] float textRevealDuration = 1.5f;
-
-    [Export] AnimationPlayer animationPlayer;
-    [Export] AnimationPlayer hoverAnimationPlayer;
     [Export] AudioStreamPlayer disappearSound;
 
-    public ObjectBehaviour ObjectInspected { get; private set; }
+    [ExportGroup("Animation Players")]
+    [Export] AnimationPlayer transitionAnimationPlayer;
+    [Export] AnimationPlayer hoverAnimationPlayer;
 
-    Node3D currentInstance;
-    MeshInstance3D currentMesh;
+    public ObjectBehaviour CurrentObject { get; private set; }
+    public bool CanInspect { get; private set; } = true;
 
-    float interactionRange = 3f;
-    bool blockInput = true;
-    bool dragging = false;
-    bool isZoomed = false;
-    public bool EnableSelect = true;
+    Node3D displayedObject;
+    MeshInstance3D displayedMesh;
 
-    Vector2 lastMousePos;
+    bool isInputBlocked = true;
+    bool isDragging;
+    bool isZoomEnabled;
+
+    Vector2 previousMousePosition;
     Vector2 rotationVelocity = Vector2.Zero;
 
-    Tween textTween;
+    Tween commentaryTween;
 
     public override void _Ready()
     {
-        if (!ValidateReferences())
+        if (!HasValidReferences())
             return;
 
-        InitializeLayout();
-        ChangeVisibility(false);
-        DebugScreen.Hide();
-        Hide();
-        if(!isDebugging)
-            GameStateManager.Instance.RegisterInspectView(this);
+        ConfigureViewport();
+        ConfigureInitialState();
+        ConnectSignals();
 
-        leaveButton.Pressed += HandleLeaveAction;
-        takeButton.Pressed += HandleTakeAction;
-
-        leaveButton.MouseEntered += () => hoverAnimationPlayer.Play("LeaveHover");
-        takeButton.MouseEntered += () => hoverAnimationPlayer.Play("TakeHover");
-        leaveButton.MouseExited += () => hoverAnimationPlayer.Play("LeaveUnHover");
-        takeButton.MouseExited += () => hoverAnimationPlayer.Play("TakeUnHover");
-
-        animationPlayer.AnimationFinished += HandleAnimationEnded;
+        GameStateManager.Instance.RegisterInspectView(this);
     }
 
-    bool ValidateReferences()
+    /// <summary>
+    /// Displays an inspectable object inside the viewport.
+    /// </summary>
+    public void DisplayObject(ObjectBehaviour targetObject)
     {
-        if (backgroundFilter == null ||
-            subViewportContainer == null ||
-            subViewport == null ||
-            objectContainer == null ||
+        if (!CanInspect)
+            return;
+
+        if (!IsValidInspectable(targetObject))
+            return;
+
+        CurrentObject = targetObject;
+
+        CreateDisplayInstance();
+        ResetInspectionState();
+        ShowInspectView();
+        PlayOpenAnimation();
+        AnimateCommentaryText();
+    }
+
+    public override void _Process(double delta)
+    {
+        if (isInputBlocked)
+            return;
+
+        float deltaTime = (float)delta;
+
+        UpdateObjectRotation(deltaTime);
+        UpdateZoom(deltaTime);
+    }
+
+    /// <summary>
+    /// Validates required exported references.
+    /// </summary>
+    bool HasValidReferences()
+    {
+        bool missingReferences =
+            backgroundFilter == null ||
+            viewportContainer == null ||
+            viewport == null ||
             viewportCamera == null ||
+            objectRoot == null ||
             canvasLayer == null ||
             takeButton == null ||
-            leaveButton == null)
+            leaveButton == null;
+
+        if (missingReferences)
         {
             GD.PrintErr("[InspectView] Missing exported references.");
             return false;
@@ -102,238 +130,404 @@ public partial class InspectView : Control
 
         if (backgroundFilter.Material is not ShaderMaterial)
         {
-            GD.PrintErr("[InspectView] Background filter requires ShaderMaterial.");
+            GD.PrintErr("[InspectView] BackgroundFilter requires ShaderMaterial.");
             return false;
         }
 
         return true;
     }
 
-    void InitializeLayout()
+    /// <summary>
+    /// Initializes viewport and shader configuration.
+    /// </summary>
+    void ConfigureViewport()
     {
         Vector2 screenSize = GetViewport().GetVisibleRect().Size;
 
         backgroundFilter.Size = screenSize;
+        viewportContainer.Size = screenSize;
+        viewport.Size = (Vector2I)screenSize;
 
-        var shader = (ShaderMaterial)backgroundFilter.Material;
-        shader.SetShaderParameter("lod", 0.0f);
-        shader.SetShaderParameter("darkness", 0.0f);
+        ShaderMaterial shader = (ShaderMaterial)backgroundFilter.Material;
 
-        subViewportContainer.Size = screenSize;
-        subViewport.Size = (Vector2I)screenSize;
+        shader.SetShaderParameter("lod", 0f);
+        shader.SetShaderParameter("darkness", 0f);
 
-        objectContainer.Scale = Vector3.Zero;
+        objectRoot.Scale = Vector3.Zero;
     }
 
-    public void DisplayObject(ObjectBehaviour obj)
+    /// <summary>
+    /// Configures initial visibility and state.
+    /// </summary>
+    void ConfigureInitialState()
     {
-        if (!EnableSelect) return;
+        SetInspectViewVisible(false);
 
-        if (obj == null || obj.ObjectInfo == null)
+        debugScreen.Hide();
+        Hide();
+    }
+
+    /// <summary>
+    /// Connects UI and animation signals.
+    /// </summary>
+    void ConnectSignals()
+    {
+        leaveButton.Pressed += HandleLeavePressed;
+        takeButton.Pressed += HandleTakePressed;
+
+        leaveButton.MouseEntered += () => hoverAnimationPlayer.Play("LeaveHover");
+        leaveButton.MouseExited += () => hoverAnimationPlayer.Play("LeaveUnHover");
+
+        takeButton.MouseEntered += () => hoverAnimationPlayer.Play("TakeHover");
+        takeButton.MouseExited += () => hoverAnimationPlayer.Play("TakeUnHover");
+
+        transitionAnimationPlayer.AnimationFinished += OnAnimationComplete;
+    }
+
+    /// <summary>
+    /// Checks if the object can be inspected.
+    /// </summary>
+    bool IsValidInspectable(ObjectBehaviour targetObject)
+    {
+        if (targetObject == null || targetObject.ObjectInfo == null)
         {
-            GD.PrintErr("[InspectView] Invalid object.");
+            GD.PrintErr("[InspectView] Invalid inspectable object.");
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Creates the viewport instance for the inspected object.
+    /// </summary>
+    void CreateDisplayInstance()
+    {
+        ClearCurrentDisplay();
+
+        if (CurrentObject.ObjectInfo.Scene == null)
+        {
+            GD.PrintErr("[InspectView] Object scene is null.");
             return;
         }
 
-        ObjectInspected = obj;
+        displayedObject = CurrentObject.ObjectInfo.Scene.Instantiate<Node3D>();
+        objectRoot.AddChild(displayedObject);
 
-        SetupObject();
-        ResetState();
-        ChangeVisibility(true);
-        animationPlayer.Play("OpenInspectView");
-        StartShowingText();
-    }
+        displayedMesh = displayedObject.FindChild("*", true, false) as MeshInstance3D;
 
-    void SetupObject()
-    {
-        if (currentInstance != null)
-        {
-            currentInstance.QueueFree();
-            currentInstance = null;
-            currentMesh = null;
-        }
-
-        if (ObjectInspected.ObjectInfo.Scene == null)
-        {
-            GD.PrintErr("[InspectView] Object has no scene.");
-            return;
-        }
-
-        currentInstance = ObjectInspected.ObjectInfo.Scene.Instantiate<Node3D>();
-        objectContainer.AddChild(currentInstance);
-
-        currentMesh = currentInstance.FindChild("*", true, false) as MeshInstance3D;
-
-        if (currentMesh == null)
+        if (displayedMesh == null)
         {
             GD.PrintErr("[InspectView] No MeshInstance3D found.");
             return;
         }
 
-        if (ObjectInspected.ObjectInfo.Material != null)
-            currentMesh.MaterialOverride = ObjectInspected.ObjectInfo.Material;
-
-        Vector3 size = currentMesh.GetAabb().Size;
-
-        float maxDim = Mathf.Max(size.X, Mathf.Max(size.Y, size.Z));
-        float scale = idealSize / maxDim;
-
-        currentInstance.Scale = new Vector3(scale, scale, scale);
-        currentInstance.Position = new Vector3(0f, -(size.Y * scale) / 2f, 0f);
+        ApplyDisplayMaterial();
+        ScaleAndPositionObject();
     }
 
-    void ResetState()
+    /// <summary>
+    /// Removes the currently displayed object instance.
+    /// </summary>
+    void ClearCurrentDisplay()
     {
-        blockInput = true;
-        dragging = false;
+        if (displayedObject == null)
+            return;
+
+        displayedObject.QueueFree();
+
+        displayedObject = null;
+        displayedMesh = null;
+    }
+
+    /// <summary>
+    /// Applies override material to the displayed mesh.
+    /// </summary>
+    void ApplyDisplayMaterial()
+    {
+        if (CurrentObject.ObjectInfo.Material == null)
+            return;
+
+        displayedMesh.MaterialOverride = CurrentObject.ObjectInfo.Material;
+    }
+
+    /// <summary>
+    /// Scales and centers the displayed object.
+    /// </summary>
+    void ScaleAndPositionObject()
+    {
+        Vector3 meshSize = displayedMesh.GetAabb().Size;
+
+        float largestAxis = Mathf.Max(meshSize.X, Mathf.Max(meshSize.Y, meshSize.Z));
+        float scaleFactor = targetObjectSize / largestAxis;
+
+        displayedObject.Scale = Vector3.One * scaleFactor;
+
+        displayedObject.Position = new Vector3(
+            0f,
+            -(meshSize.Y * scaleFactor) / 2f,
+            0f
+        );
+    }
+
+    /// <summary>
+    /// Resets interaction and camera state.
+    /// </summary>
+    void ResetInspectionState()
+    {
+        isInputBlocked = true;
+        isDragging = false;
+        isZoomEnabled = false;
+
         rotationVelocity = Vector2.Zero;
-        objectContainer.Rotation = Vector3.Zero;
-        objectContainer.Scale = Vector3.Zero;
-        viewportCamera.Fov = normalFov;
+
+        objectRoot.Rotation = Vector3.Zero;
+        objectRoot.Scale = Vector3.Zero;
+
+        viewportCamera.Fov = defaultFov;
     }
 
-    void StartShowingText()
+    /// <summary>
+    /// Starts commentary reveal animation.
+    /// </summary>
+    void AnimateCommentaryText()
     {
-        comentaryLabel.VisibleRatio = 0f;
-        comentaryLabel.Text = ObjectInspected.ObjectInfo.Comentary;
+        commentaryLabel.VisibleRatio = 0f;
+        commentaryLabel.Text = CurrentObject.ObjectInfo.Comentary;
 
-        textTween?.Kill();
+        commentaryTween?.Kill();
 
-        textTween = CreateTween();
-        textTween.TweenProperty(
-            comentaryLabel,
+        commentaryTween = CreateTween();
+
+        commentaryTween.TweenProperty(
+            commentaryLabel,
             "visible_ratio",
             1f,
             textRevealDuration
         );
     }
 
-    void HandleLeaveAction()
+    /// <summary>
+    /// Plays inspect opening transition.
+    /// </summary>
+    void PlayOpenAnimation()
     {
-        HideObject();
+        transitionAnimationPlayer.Play("OpenInspectView");
     }
 
-    void HandleTakeAction()
+    /// <summary>
+    /// Handles leave button interaction.
+    /// </summary>
+    void HandleLeavePressed()
     {
-        EnableSelect = false;
-
-        if (ObjectInspected == null) return;
-
-        InventoryBehaviour.Instance.AddItem(ObjectInspected.ObjectInfo);
-        HideObject();
-        DisappearAnimation();
+        CloseInspectView();
     }
 
-    void DisappearAnimation()
+    /// <summary>
+    /// Handles take button interaction.
+    /// </summary>
+    void HandleTakePressed()
     {
-        if (currentInstance == null)
+        if (CurrentObject == null)
             return;
 
-        var objRef = ObjectInspected;
-        var mesh = currentInstance;
+        CanInspect = false;
+
+        transitionAnimationPlayer.Play("CloseInspectView");
+        AnimateObjectPickup();
+
+        GameStateManager.Instance.ChangeState(State.Explore);
+    }
+
+
+    /// <summary>
+    /// Spawns pickup particle effect.
+    /// </summary>
+    void SpawnParticles(Vector3 position)
+    {
+        if (pickParticlesScene.Instantiate() is not GpuParticles3D particles)
+            return;
+
+        particles.GlobalPosition = position;
+
+        AddChild(particles);
+
+        particles.Emitting = true;
+    }
+
+    /// <summary>
+    /// Handles inspect transition animation completion.
+    /// </summary>
+    void OnAnimationComplete(StringName animationName)
+    {
+        if (animationName == "OpenInspectView")
+        {
+            isInputBlocked = false;
+            return;
+        }
+
+        if (animationName == "CloseInspectView")
+        {
+            SetInspectViewVisible(false);
+        }
+    }
+
+    void AnimateObjectPickup()
+    {
+        if (CurrentObject == null)
+            return;
+
+        Node3D worldObject = CurrentObject;
 
         Tween tween = CreateTween();
 
         tween.SetParallel();
-        tween.TweenProperty(mesh, "position:y", mesh.Position.Y + 2.5f, 1f);
-        tween.TweenProperty(mesh, "rotation_degrees:y", mesh.RotationDegrees.Y + 360f, 1f);
+        tween.SetTrans(Tween.TransitionType.Quart);
+        tween.SetEase(Tween.EaseType.Out);
+
+        tween.TweenProperty(
+            worldObject,
+            "position:y",
+            worldObject.Position.Y + 2.5f,
+            0.8f
+        );
+
+        tween.TweenProperty(
+            worldObject,
+            "rotation_degrees:y",
+            worldObject.RotationDegrees.Y + 360f,
+            0.8f
+        );
 
         tween.Chain();
-        tween.TweenProperty(mesh, "scale", Vector3.Zero, 0.5f);
+
+        tween.TweenProperty(
+            worldObject,
+            "scale",
+            new Vector3(0.01f, 0.01f, 0.01f),
+            0.25f
+        );
 
         tween.Finished += () =>
         {
+            if (!isDebugMode)
+                InventoryBehaviour.Instance.AddItem(CurrentObject.ObjectInfo);
+
             disappearSound.Play();
 
-            if (pickParticles.Instantiate() is GpuParticles3D particles)
-            {
-                particles.Position = objRef.Position + new Vector3(0, 3f, 0);
-                particles.Emitting = true;
-                AddChild(particles);
-            }
+            SpawnParticles(worldObject.GlobalPosition);
 
-            objRef.QueueFree();
-            ObjectInspected = null;
-            EnableSelect = true;
+            CurrentObject.QueueFree();
+            CurrentObject = null;
+
+            CanInspect = true;
         };
     }
 
-    void HandleAnimationEnded(StringName anim)
-    {
-        if (anim == "OpenInspectView")
-            blockInput = false;
 
-        if (anim == "CloseInspectView")
-        {
-            ObjectInspected = null;
-            ChangeVisibility(false);
-        }
-    }
-
-    void HideObject()
+    /// <summary>
+    /// Closes the inspect interface.
+    /// </summary>
+    void CloseInspectView()
     {
-        animationPlayer.Play("CloseInspectView");
+        transitionAnimationPlayer.Play("CloseInspectView");
+
         GameStateManager.Instance.ChangeState(State.Explore);
     }
 
-    public override void _Process(double delta)
+    /// <summary>
+    /// Updates object rotation using mouse drag input.
+    /// </summary>
+    void UpdateObjectRotation(float deltaTime)
     {
-        if (blockInput) return;
-
-        float dt = (float)delta;
-        HandleRotation(dt);
-        HandleZoom(dt);
-    }
-
-    void HandleRotation(float dt)
-    {
-        Vector2 mousePos = GetViewport().GetMousePosition();
+        Vector2 currentMousePosition = GetViewport().GetMousePosition();
 
         if (Input.IsActionPressed("singleClick"))
         {
-            if (!dragging)
-            {
-                dragging = true;
-                lastMousePos = mousePos;
-                return;
-            }
-
-            Vector2 deltaMouse = mousePos - lastMousePos;
-            lastMousePos = mousePos;
-
-            rotationVelocity = deltaMouse * rotationSpeed * dt;
-
-            objectContainer.RotateY(deltaMouse.X * rotationSpeed.Y * dt);
-            objectContainer.RotateX(deltaMouse.Y * rotationSpeed.X * dt);
+            HandleDraggingRotation(currentMousePosition, deltaTime);
+            return;
         }
-        else
+
+        ApplyRotationInertia(deltaTime);
+    }
+
+    /// <summary>
+    /// Handles direct drag rotation.
+    /// </summary>
+    void HandleDraggingRotation(Vector2 currentMousePosition, float deltaTime)
+    {
+        if (!isDragging)
         {
-            dragging = false;
-
-            if (rotationVelocity.Length() > 0.001f)
-            {
-                objectContainer.RotateY(rotationVelocity.X);
-                objectContainer.RotateX(rotationVelocity.Y);
-                rotationVelocity = rotationVelocity.Lerp(Vector2.Zero, damping * dt);
-            }
+            isDragging = true;
+            previousMousePosition = currentMousePosition;
+            return;
         }
+
+        Vector2 mouseDelta = currentMousePosition - previousMousePosition;
+
+        previousMousePosition = currentMousePosition;
+
+        rotationVelocity = mouseDelta * rotationSensitivity * deltaTime;
+
+        objectRoot.RotateY(mouseDelta.X * rotationSensitivity.Y * deltaTime);
+        objectRoot.RotateX(mouseDelta.Y * rotationSensitivity.X * deltaTime);
     }
 
-    void HandleZoom(float dt)
+    /// <summary>
+    /// Applies smooth rotational slowdown.
+    /// </summary>
+    void ApplyRotationInertia(float deltaTime)
     {
-        if (isZoomed && Input.IsActionJustReleased("unZoom"))
-            isZoomed = false;
+        isDragging = false;
 
-        if (!isZoomed && Input.IsActionJustReleased("zoom"))
-            isZoomed = true;
+        if (rotationVelocity.Length() <= 0.001f)
+            return;
 
-        float target = isZoomed ? zoomFov : normalFov;
-        viewportCamera.Fov = Mathf.Lerp(viewportCamera.Fov, target, zoomSpeed * dt);
+        objectRoot.RotateY(rotationVelocity.X);
+        objectRoot.RotateX(rotationVelocity.Y);
+
+        rotationVelocity = rotationVelocity.Lerp(
+            Vector2.Zero,
+            rotationDamping * deltaTime
+        );
     }
 
-    void ChangeVisibility(bool value)
+    /// <summary>
+    /// Updates camera zoom interpolation.
+    /// </summary>
+    void UpdateZoom(float deltaTime)
     {
-        Visible = value;
-        canvasLayer.Visible = value;
+        if (isZoomEnabled && Input.IsActionJustReleased("unZoom"))
+            isZoomEnabled = false;
+
+        if (!isZoomEnabled && Input.IsActionJustReleased("zoom"))
+            isZoomEnabled = true;
+
+        float targetFov = isZoomEnabled
+            ? zoomFov
+            : defaultFov;
+
+        viewportCamera.Fov = Mathf.Lerp(
+            viewportCamera.Fov,
+            targetFov,
+            zoomLerpSpeed * deltaTime
+        );
+    }
+
+    /// <summary>
+    /// Sets inspect view visibility.
+    /// </summary>
+    void SetInspectViewVisible(bool isVisible)
+    {
+        Visible = isVisible;
+        canvasLayer.Visible = isVisible;
+    }
+
+    /// <summary>
+    /// Shows inspect interface.
+    /// </summary>
+    void ShowInspectView()
+    {
+        SetInspectViewVisible(true);
     }
 }

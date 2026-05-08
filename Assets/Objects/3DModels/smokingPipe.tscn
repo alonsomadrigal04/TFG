@@ -154,7 +154,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_20bc4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" unique_id=2047153953]
+[node name="PipeMesh" type="MeshInstance3D" unique_id=2047153953]
 
 [node name="defaultMaterial" type="MeshInstance3D" parent="." unique_id=878006886]
 transform = Transform3D(0.0815015, -0.056201033, -0.11268963, 0.085152864, 0.12348681, -2.974918e-09, 0.09277121, -0.063972294, 0.09900026, 0, 0, 0)

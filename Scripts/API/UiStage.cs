@@ -163,22 +163,28 @@ public partial class UiStage : Node
             textBox.Position = originalPosition;};
     }
 
-    public async void AddItemAnimation(ObjectData objectData)
+
+    public async void AddItem(ObjectData objectData)
+    {
+        ThrowMessage($"¡Has obtenido {objectData.Name}!");
+    }
+
+    public async void ThrowMessage(string what, float xOffset = 0)
     {
         itemNotification.Show();
-        itemNotificationLabel.Text = $"Has obtenido {objectData.Name}";
+        itemNotificationLabel.Text = what;
         AudioManager.Instance.NewItem.Play();
 
         Vector2 originalPosition = itemNotificationOriginalPosition;
         Vector2 hiddenPosition = originalPosition + new Vector2(0f, -300f);
 
-        itemNotification.Position = hiddenPosition;
+        itemNotification.Position = hiddenPosition + new Vector2(xOffset, 0);
         itemNotification.Modulate = Colors.White with { A = 0f };
 
         Tween tweenIn = CreateTween();
         tweenIn.SetParallel(true);
 
-        tweenIn.TweenProperty(itemNotification, "position", originalPosition, 0.32f)
+        tweenIn.TweenProperty(itemNotification, "position", originalPosition + new Vector2(xOffset, 0), 0.32f)
             .SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.Out);
 
         tweenIn.TweenProperty(itemNotification, "modulate", Colors.White, 0.16f)
@@ -191,7 +197,7 @@ public partial class UiStage : Node
         Tween tweenOut = CreateTween();
         tweenOut.SetParallel(true);
 
-        tweenOut.TweenProperty(itemNotification, "position", hiddenPosition, 0.28f)
+        tweenOut.TweenProperty(itemNotification, "position", hiddenPosition + new Vector2(xOffset, 0), 0.28f)
             .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
 
         tweenOut.TweenProperty(itemNotification, "modulate", Colors.White with { A = 0f }, 0.24f)

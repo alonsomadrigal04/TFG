@@ -277,7 +277,7 @@ public partial class InventoryBehaviour : Control
     public void AddItem(ObjectData item)
     {
         ObjectDataBase.AddObjectToInventory(item);
-        UiStage.Instance.AddItemAnimation(item);
+        UiStage.Instance.AddItem(item);
         UpdateSlots();
         GD.Print(ObjectDataBase.PlayerInventory);
     }
@@ -285,6 +285,6 @@ public partial class InventoryBehaviour : Control
     {
         ObjectDataBase.AddObjectByName(item);
         ObjectData objectData = ObjectDataBase.GetObject(item);
-        UiStage.Instance.AddItemAnimation(objectData);
+        UiStage.Instance.AddItem(objectData);
     }
 }

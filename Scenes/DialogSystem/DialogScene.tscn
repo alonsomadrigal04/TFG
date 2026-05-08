@@ -958,7 +958,7 @@ pivot_offset = Vector2(640, 53)
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1664417285]
+[node name="TRNewItemFrame" type="TextureRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1664417285]
 layout_mode = 0
 offset_left = 343.0
 offset_top = -105.0
@@ -1048,7 +1048,7 @@ metadata/_edit_lock_ = true
 offset_left = -1771.0
 offset_top = 231.0
 offset_right = -82.72412
-offset_bottom = 333.00006
+offset_bottom = 333.00012
 rotation = -0.14660765
 pivot_offset = Vector2(844, 55)
 texture = SubResource("CompressedTexture2D_cxyfr")
@@ -1057,7 +1057,7 @@ expand_mode = 1
 [node name="TRImporantRight" type="TextureRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=121203002]
 offset_left = 1336.0
 offset_top = 417.00006
-offset_right = 3024.2747
+offset_right = 3024.2744
 offset_bottom = 518.99664
 rotation = -0.14660765
 pivot_offset = Vector2(-936.51556, -687.7911)
@@ -1083,6 +1083,7 @@ texture = ExtResource("26_ngurm")
 
 [node name="CLayoutChoice" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1689770322]
 layer = 11
+visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/DialogSystem/ChoiceLayout/CLayoutChoice" unique_id=930759866]
 z_index = 3

@@ -69,8 +69,20 @@ public partial class PlayerBehaviour : CharacterBody3D
 
     public bool IsBlocked
     {
-        get => GameManager.Instance.IsDialogueActive;
-        set => GameManager.Instance.IsDialogueActive = value;
+        get
+        {
+            if (!isDebugging)
+                return GameManager.Instance.IsDialogueActive;
+
+            return false;
+        }
+
+        set
+        {
+            if(!isDebugging)
+                GameManager.Instance.IsDialogueActive = value;
+        }
+
     }
 
     public override void _Ready()
@@ -111,6 +123,7 @@ public partial class PlayerBehaviour : CharacterBody3D
 
     void PlayFootstep()
     {
+        if(isDebugging) return;
         AudioManager.Instance.WalkingSounds.Play();
     }
 

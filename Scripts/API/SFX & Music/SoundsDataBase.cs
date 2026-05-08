@@ -18,4 +18,28 @@ public static class SoundsDataBase
 
         DebugService.Register("Sounds in BBDD", () => LoadedSounds.Count.ToString());
     }
+
+    public static AudioStream GetSound(string audioName)
+    {
+        if(LoadedSounds.TryGetValue(audioName, out AudioStream sound))
+        {
+            return sound;
+        }
+        return null;
+    }
+
+
+    public static void TryPlaySound(string audioName)
+    {
+        if(LoadedSounds.TryGetValue(audioName, out AudioStream sound))
+        {
+            AudioManager.Instance.PlaySfx(sound);
+        }
+        else
+        {
+            GD.Print(audioName + " sound was not found");
+        }
+    }
+
+
 }

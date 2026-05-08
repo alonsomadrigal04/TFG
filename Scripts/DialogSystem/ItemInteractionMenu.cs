@@ -25,6 +25,7 @@ public partial class ItemInteractionMenu : Control
     
     readonly float stepAngle = Mathf.DegToRad(120f);
     int activeIconInternalIndex = 0;
+    Tween errorTween;
 
     public override void _Ready()
     {
@@ -67,8 +68,28 @@ public partial class ItemInteractionMenu : Control
 
     void UseButtonError()
     {
-        GD.Print("YOU CAN'T GIVE THE ITEM TO YOURSELF");
+        errorTween?.Kill();
+        errorTween = CreateTween().SetParallel(true);
+        Color originalModulate = useButton.Modulate;
+        Vector2 originalPosition = useButton.Position;
+        
+        SoundsDataBase.TryPlaySound("error1");
+        UiStage.Instance.ThrowMessage("Treya no acepta objetos", 300f);
+        
+        errorTween.TweenProperty(useButton, "modulate", new Color(1, 0.2f, 0.2f, 1), 0.1f);
+        
+        float shakeAmount = 6f;
+        float shakeStep = 0.05f;
+        var shakeTween = CreateTween();
+        shakeTween.TweenProperty(useButton, "position", originalPosition + new Vector2(shakeAmount, 0), shakeStep);
+        shakeTween.TweenProperty(useButton, "position", originalPosition + new Vector2(-shakeAmount, 0), shakeStep);
+        shakeTween.TweenProperty(useButton, "position", originalPosition + new Vector2(shakeAmount, 0), shakeStep);
+        shakeTween.TweenProperty(useButton, "position", originalPosition + new Vector2(-shakeAmount, 0), shakeStep);
+        shakeTween.TweenProperty(useButton, "position", originalPosition, shakeStep);
+        
+        shakeTween.TweenProperty(useButton, "modulate", originalModulate, 0.2f);
     }
+
 
     public override void _Process(double delta)
     {
@@ -103,16 +124,23 @@ public partial class ItemInteractionMenu : Control
     void HandleClick(Vector2 globalPos)
     {
         Rect2 spinnerRect = new(ButtonSpinnerDisplay.GlobalPosition - (ButtonSpinnerDisplay.GetRect().Size / 2), ButtonSpinnerDisplay.GetRect().Size);
+        Rect2 wheelRect = new(Spinner.GlobalPosition - (Spinner.GetRect().Size / 2), Spinner.GetRect().Size);
+        Rect2 useButtonRect = useButton.GetGlobalRect();
 
-        if (spinnerRect.HasPoint(globalPos))
+        bool clickedOnDisplay = spinnerRect.HasPoint(globalPos);
+        bool clickedOnWheel = isMenuOpen && wheelRect.HasPoint(globalPos);
+        bool clickedOnUseButton = isMenuOpen && useButtonRect.HasPoint(globalPos);
+
+        if (clickedOnDisplay)
         {
             if (!isMenuOpen) ToggleMenu(true);
         }
-        else
+        else if (!clickedOnWheel && !clickedOnUseButton)
         {
             if (isMenuOpen) ToggleMenu(false);
         }
     }
+
 
     void ToggleMenu(bool show)
     {

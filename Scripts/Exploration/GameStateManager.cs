@@ -40,9 +40,10 @@ public partial class GameStateManager : Node
 
     bool EnterInspectState(ObjectBehaviour obj)
     {
-        if (inspectView != null && inspectView.EnableSelect)
-		{
-			Player.SetInputBlocked(true);
+        if (inspectView != null && inspectView.CanInspect)
+		{   
+            if(!Player.isDebugging)
+			    Player.SetInputBlocked(true);
 			inspectView.DisplayObject(obj);
             return false;
 		}

@@ -1,85 +1,131 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class CameraBehaviour : Camera3D
 {
+    public static CameraBehaviour Instance { get; private set; }
 
-    public static CameraBehaviour Instance { get => instance; set => instance = value; }
-
-    static CameraBehaviour instance;
     public override void _EnterTree() => Instance = this;
 
     public override void _ExitTree()
     {
-        if (Instance == this) Instance = null;
+        if (Instance == this)
+            Instance = null;
     }
 
     [Export] Node3D target;
-    public bool IsActive = false;
+
+    [Export] float followSpeed = 5f;
+    [Export] float offsetSmooth = 4f;
+    [Export] float lookSmooth = 8f;
+
+    public bool IsActive = true;
 
     int viewMode = 0;
-    List<Vector3> offsetList = [
-        new(0f, 5f, 9f),    // Normal
-        new(0f, 10f, 5f)   // Up
+
+    readonly List<Vector3> offsetList =
+    [
+        new Vector3(0f, 5f, 9f),
+        new Vector3(0f, 10f, 5f)
     ];
 
-    float followSpeed = 3f;
+    Vector3 currentOffset;
+    Vector3 targetOffset;
 
     readonly Dictionary<MeshInstance3D, float> fade = [];
 
     float shakeTimeLeft = 0f;
     float shakeDuration = 0f;
     float shakeIntensity = 0f;
-    Vector3 currentOffset;
-    Tween positionTween;
-    Tween rotationTween;
+
     Vector3 shakeOffset = Vector3.Zero;
-    RandomNumberGenerator rng = new();
+
+    readonly RandomNumberGenerator rng = new();
 
     public override void _Ready()
     {
-        currentOffset = offsetList[viewMode];
-        GlobalPosition = target.GlobalPosition + currentOffset;
         rng.Randomize();
+
         if (target == null)
+        {
             GD.PushError("[CAMERA] TARGET NOT SET");
-        else
-            GlobalPosition = target.GlobalPosition + offsetList[viewMode];
+            return;
+        }
+
+        currentOffset = offsetList[viewMode];
+        targetOffset = currentOffset;
+
+        GlobalPosition = target.GlobalPosition + currentOffset;
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (target == null || !IsActive)
             return;
 
-        float d = (float)delta;
+        float dt = (float)delta;
 
-        Vector3 desired = target.GlobalPosition + currentOffset;
+        HandleShake(dt);
+
+        currentOffset = currentOffset.Lerp(
+            targetOffset,
+            1f - Mathf.Exp(-offsetSmooth * dt)
+        );
+
+        Vector3 desiredPosition =
+            target.GlobalPosition +
+            currentOffset +
+            shakeOffset;
+
+        GlobalPosition = GlobalPosition.Lerp(
+            desiredPosition,
+            1f - Mathf.Exp(-followSpeed * dt)
+        );
+
+        SmoothLookAt(target.GlobalPosition, dt);
+
+        HandleOcclusion(dt);
+    }
+
+    void SmoothLookAt(Vector3 targetPosition, float dt)
+    {
+        Basis targetBasis = Transform.LookingAt(
+            targetPosition + new Vector3(0,3,0),
+            Vector3.Up
+        ).Basis;
+
+        Transform3D t = Transform;
+
+        t.Basis = t.Basis.Slerp(
+            targetBasis,
+            1f - Mathf.Exp(-lookSmooth * dt)
+        );
+
+        Transform = t;
+    }
+
+    void HandleShake(float dt)
+    {
         if (shakeTimeLeft > 0f)
         {
-            shakeTimeLeft -= d;
+            shakeTimeLeft -= dt;
 
             float t = shakeTimeLeft / shakeDuration;
-            float currentIntensity = shakeIntensity * t;
+
+            float intensity = shakeIntensity * t;
 
             shakeOffset = new Vector3(
                 rng.RandfRange(-1f, 1f),
                 rng.RandfRange(-1f, 1f),
                 rng.RandfRange(-1f, 1f)
-            ) * currentIntensity;
+            ) * intensity;
         }
         else
         {
             shakeOffset = Vector3.Zero;
         }
-
-        desired += shakeOffset;
-
-        GlobalPosition = GlobalPosition.Lerp(desired, followSpeed * d);
-
-        HandleOcclusion(d);
     }
+
     public void Shake(float duration = 0.4f, float intensity = 1f)
     {
         shakeDuration = duration;
@@ -89,66 +135,35 @@ public partial class CameraBehaviour : Camera3D
 
     public void SetViewMode(CameraViewMode mode)
     {
-        Vector3 targetRotation = RotationDegrees;
-        Vector3 targetOffset = currentOffset;
-
         switch (mode)
         {
             case CameraViewMode.Up:
                 viewMode = 1;
-                targetRotation = new Vector3(-50, 0, 0);
                 targetOffset = offsetList[1];
                 break;
 
             case CameraViewMode.Normal:
                 viewMode = 0;
-                targetRotation = new Vector3(-14, 0, 0);
                 targetOffset = offsetList[0];
                 break;
         }
-
-        rotationTween?.Kill();
-        positionTween?.Kill();
-
-        rotationTween = CreateTween();
-        rotationTween
-            .SetTrans(Tween.TransitionType.Quad)
-            .SetEase(Tween.EaseType.Out);
-
-        rotationTween.TweenProperty(
-            this,
-            "rotation_degrees",
-            targetRotation,
-            1f
-        );
-
-        positionTween = CreateTween();
-        positionTween
-            .SetTrans(Tween.TransitionType.Quad)
-            .SetEase(Tween.EaseType.Out);
-
-        positionTween.TweenProperty(
-            this,
-            "currentOffset",
-            targetOffset,
-            1f
-        );
     }
 
     void HandleOcclusion(float delta)
     {
         var space = GetWorld3D().DirectSpaceState;
 
-        Vector3 from = GlobalPosition;
-        Vector3 to = target.GlobalPosition;
+        var query = PhysicsRayQueryParameters3D.Create(
+            GlobalPosition,
+            target.GlobalPosition
+        );
 
-        var query = PhysicsRayQueryParameters3D.Create(from, to);
         query.CollideWithAreas = false;
         query.CollideWithBodies = true;
 
         var hit = space.IntersectRay(query);
 
-        HashSet<MeshInstance3D> currentlyBlocked = [];
+        HashSet<MeshInstance3D> blocked = [];
 
         if (hit.Count > 0)
         {
@@ -156,39 +171,40 @@ public partial class CameraBehaviour : Camera3D
 
             MeshInstance3D mesh = FindMeshUpwards(collider);
 
-
             if (mesh != null && mesh.IsInGroup("occludable"))
-                currentlyBlocked.Add(mesh);
+                blocked.Add(mesh);
         }
 
-        var keys = new List<MeshInstance3D>(fade.Keys);
-
-        foreach (var m in keys)
+        foreach (var mesh in new List<MeshInstance3D>(fade.Keys))
         {
-            if (!currentlyBlocked.Contains(m))
+            if (!blocked.Contains(mesh))
             {
-                fade[m] -= delta * 2.5f;
+                fade[mesh] -= delta * 2.5f;
 
-                if (fade[m] <= 0f)
+                if (fade[mesh] <= 0f)
                 {
-                    fade.Remove(m);
-                    Restore(m);
+                    fade.Remove(mesh);
+                    Restore(mesh);
                 }
                 else
                 {
-                    ApplyFade(m, fade[m]);
+                    ApplyFade(mesh, fade[mesh]);
                 }
             }
         }
 
-        foreach (var m in currentlyBlocked)
+        foreach (var mesh in blocked)
         {
-            if (!fade.ContainsKey(m))
-                fade[m] = 0f;
+            if (!fade.ContainsKey(mesh))
+                fade[mesh] = 0f;
 
-            fade[m] = Mathf.Clamp(fade[m] + delta * 5f, 0f, 1f);
+            fade[mesh] = Mathf.Clamp(
+                fade[mesh] + delta * 5f,
+                0f,
+                1f
+            );
 
-            ApplyFade(m, fade[m]);
+            ApplyFade(mesh, fade[mesh]);
         }
     }
 
@@ -201,16 +217,13 @@ public partial class CameraBehaviour : Camera3D
 
             node = node.GetParent();
         }
+
         return null;
     }
 
     void ApplyFade(MeshInstance3D mesh, float t)
     {
-        if (mesh == null)
-            return;
-
-
-        if (mesh.GetActiveMaterial(0) is not StandardMaterial3D mat)
+        if (mesh?.GetActiveMaterial(0) is not StandardMaterial3D mat)
             return;
 
         if (!mat.ResourceLocalToScene)
@@ -223,20 +236,22 @@ public partial class CameraBehaviour : Camera3D
 
         Color c = mat.AlbedoColor;
         c.A = Mathf.Lerp(1f, 0.15f, t);
+
         mat.AlbedoColor = c;
     }
 
     void Restore(MeshInstance3D mesh)
     {
-        if (mesh == null)
-            return;
-
-        if (mesh.GetActiveMaterial(0) is not StandardMaterial3D mat)
+        if (mesh?.GetActiveMaterial(0) is not StandardMaterial3D mat)
             return;
 
         Color c = mat.AlbedoColor;
-        mat.Transparency = BaseMaterial3D.TransparencyEnum.AlphaScissor;
+
+        mat.Transparency =
+            BaseMaterial3D.TransparencyEnum.AlphaScissor;
+
         c.A = 1f;
+
         mat.AlbedoColor = c;
     }
 }

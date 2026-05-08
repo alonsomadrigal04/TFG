@@ -51,7 +51,7 @@ particles_anim_loop = true
 [sub_resource type="QuadMesh" id="QuadMesh_1r64i"]
 material = SubResource("StandardMaterial3D_pnhig")
 
-[node name="GPUParticles3D" type="GPUParticles3D" unique_id=647183052]
+[node name="DustParticles" type="GPUParticles3D" unique_id=647183052]
 amount = 30
 lifetime = 2.0
 visibility_aabb = AABB(-20.81, 0, -11.575, 41.165, 7.045, 22.785)

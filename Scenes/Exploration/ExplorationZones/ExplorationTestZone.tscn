@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://d2igd6pxm5v71"]
+
+[ext_resource type="Script" uid="uid://bs623ore35um0" path="res://Scripts/Exploration/ExplorationTestZone.cs" id="1_squji"]
+[ext_resource type="Script" uid="uid://6ycf3k1utqii" path="res://Scripts/Exploration/GameStateManager.cs" id="2_v355v"]
+[ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/Player/player.tscn" id="2_xwwrp"]
+[ext_resource type="Script" uid="uid://qcla4g802rvw" path="res://Scripts/Exploration/SimpleCameraBehaviour.cs" id="3_xwwrp"]
+[ext_resource type="PackedScene" uid="uid://bt8xfctwne0hy" path="res://Scenes/Exploration/Interactables/Object.tscn" id="5_kgwx7"]
+[ext_resource type="Resource" uid="uid://byjo70eibneq2" path="res://Data/Objects/PipaDeFumar.tres" id="6_glcww"]
+[ext_resource type="PackedScene" uid="uid://cdgqq34uem5m2" path="res://Assets/WorldObjects/GrassGround.tscn" id="6_xwwrp"]
+[ext_resource type="PackedScene" uid="uid://dyddrn2lof815" path="res://Scenes/Exploration/InspectView.tscn" id="7_uox34"]
+
+[node name="ExplorationTestZone" type="Node" unique_id=2103000482]
+script = ExtResource("1_squji")
+metadata/_custom_type_script = "uid://bs623ore35um0"
+
+[node name="GameStateManager" type="Node" parent="." unique_id=1871183874 node_paths=PackedStringArray("Player")]
+script = ExtResource("2_v355v")
+Player = NodePath("../Elements/Player")
+metadata/_custom_type_script = "uid://6ycf3k1utqii"
+
+[node name="Elements" type="Node3D" parent="." unique_id=103630771]
+
+[node name="Player" parent="Elements" unique_id=1961554038 instance=ExtResource("2_xwwrp")]
+process_priority = 2
+collision_priority = 2.0
+isDebugging = true
+
+[node name="Camera3D" type="Camera3D" parent="Elements" unique_id=414202056 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2687087, 7.18691, 7.5479894)
+cull_mask = 1048573
+fov = 56.0
+far = 120.0
+script = ExtResource("3_xwwrp")
+target = NodePath("../Player")
+offset = Vector3(0, 10, 10)
+
+[node name="Item" parent="Elements" unique_id=336918594 instance=ExtResource("5_kgwx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2885313, 1.6118206, 0.8646622)
+ObjectInfo = ExtResource("6_glcww")
+
+[node name="GrassGroundBig" parent="Elements" unique_id=1216065228 instance=ExtResource("6_xwwrp")]
+
+[node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("7_uox34")]
+isDebugMode = true

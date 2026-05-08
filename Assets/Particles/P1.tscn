@@ -62,7 +62,6 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_i60oc")
 
 [node name="GPUParticles3D" type="GPUParticles3D" unique_id=1624362931]
-emitting = false
 amount = 28
 lifetime = 4.0
 one_shot = true

@@ -59,7 +59,7 @@ public partial class PauseMenu : Control
 
     void UpdateSFXVolume(double value)
     {
-        SetBusVolume("SFX", (float)value);
+        SetBusVolume("Sfx", (float)value);
         indicatorSoundSFX.Play();
     }
 
