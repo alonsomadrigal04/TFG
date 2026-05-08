@@ -1534,10 +1534,19 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 73.9
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 62.21592, -0.65898436, 16.647148)
 
 [node name="MTree8" parent="Scenario/Decoration/Trees" unique_id=1063199612 instance=ExtResource("23_7ppvj")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 70.16457, -0.65898436, 16.24244)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 69.25984, -0.65898436, 16.334335)
 
 [node name="MTree9" parent="Scenario/Decoration/Trees" unique_id=231900688 instance=ExtResource("23_7ppvj")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 76.90487, -0.65898436, 17.864578)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 76.44813, -0.65898436, 17.850662)
+
+[node name="MTree13" parent="Scenario/Decoration/Trees" unique_id=1141600496 instance=ExtResource("23_7ppvj")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19.854372, -0.65898436, 29.892853)
+
+[node name="MTree14" parent="Scenario/Decoration/Trees" unique_id=844234866 instance=ExtResource("23_7ppvj")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 41.621216, -0.65898436, 29.951084)
+
+[node name="MTree15" parent="Scenario/Decoration/Trees" unique_id=453833325 instance=ExtResource("23_7ppvj")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 78.389305, -0.65898436, 31.211845)
 
 [node name="MTree5" parent="Scenario/Decoration/Trees" unique_id=1295010172 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(0.9999959, -0.0025494075, -0.0012947993, 0.0012951328, 0.0001286228, 0.99999917, -0.002549238, -0.9999967, 0.00013193718, 91.20387, -0.65898436, -22.224617)
@@ -1602,7 +1611,7 @@ dialogTag = "Spores1"
 
 [node name="Player" parent="Scenario/Elements" unique_id=1961554038 instance=ExtResource("24_u8cp1")]
 process_priority = 2
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.60053, 0.8129554, 30.446709)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.760635, 0.8129554, -15.850004)
 collision_priority = 2.0
 
 [node name="WindParticles" parent="Scenario/Elements/Player" unique_id=1833939752 instance=ExtResource("22_k5h31")]
@@ -1664,6 +1673,21 @@ skeleton = NodePath("../../../..")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 100, 0, -21.621)
 skeleton = NodePath("../../../..")
 
+[node name="GrassGround" parent="Scenario/Ground/GroupTreeGroundv2" unique_id=1820950062 instance=ExtResource("32_bse0j")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 40.604)
+
+[node name="GrassGround2" parent="Scenario/Ground/GroupTreeGroundv2" unique_id=1193578367 instance=ExtResource("32_bse0j")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 25, 0, 40.604)
+
+[node name="GrassGround3" parent="Scenario/Ground/GroupTreeGroundv2" unique_id=1761498011 instance=ExtResource("32_bse0j")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 50, 0, 40.604)
+
+[node name="GrassGround4" parent="Scenario/Ground/GroupTreeGroundv2" unique_id=342317801 instance=ExtResource("32_bse0j")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 75, 0, 40.604)
+
+[node name="GrassGround5" parent="Scenario/Ground/GroupTreeGroundv2" unique_id=848947958 instance=ExtResource("32_bse0j")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 100, 0, 40.604)
+
 [node name="GroupTreeeGroundv1" type="Node3D" parent="Scenario/Ground" unique_id=742281974]
 
 [node name="TreeGround1" parent="Scenario/Ground/GroupTreeeGroundv1" unique_id=631612026 instance=ExtResource("41_3mcur")]
@@ -1719,7 +1743,7 @@ skeleton = NodePath("../../../..")
 
 [node name="GroupGrassGround" type="Node3D" parent="Scenario/Ground" unique_id=1650702029]
 
-[node name="GrassGround" parent="Scenario/Ground/GroupGrassGround" unique_id=1820950062 instance=ExtResource("32_bse0j")]
+[node name="GrassGround" parent="Scenario/Ground/GroupGrassGround" unique_id=1876664839 instance=ExtResource("32_bse0j")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 25, 0, 28.128)
 
 [node name="GrassGround2" parent="Scenario/Ground/GroupGrassGround" unique_id=3658694 instance=ExtResource("32_bse0j")]
