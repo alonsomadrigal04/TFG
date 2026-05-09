@@ -2166,6 +2166,9 @@ dustParticles = NodePath("DustParticles")
 shadowProxy = NodePath("ShadowProxy")
 metadata/_edit_lock_ = true
 
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1015469339]
+current = true
+
 [node name="ShadowProxy" type="MeshInstance3D" parent="." unique_id=1645429205]
 transform = Transform3D(1.4112751, 0, 0, 0, 4.916134, 0, 0, 0, 0.034331143, 0, 2.392354, 0)
 cast_shadow = 3

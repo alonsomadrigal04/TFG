@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://grifc5weng23" path="res://Assets/3D/bad_tent/source/Efortless tent_1.png" id="17_hxjbp"]
 [ext_resource type="Texture2D" uid="uid://dguf425opjq2o" path="res://Assets/3D/BondFire/Texture/bonfire logs txtr.png" id="18_5xdib"]
 [ext_resource type="PackedScene" uid="uid://dpde5hkvuqtc0" path="res://Assets/Particles/Fire.tscn" id="19_8w4a5"]
-[ext_resource type="AudioStream" uid="uid://ci2rj2i8o01m6" path="res://Audio/Sounds/AmbientSounds/BoneFire.mp3" id="20_k02ux"]
+[ext_resource type="AudioStream" uid="uid://bha8tuay4looc" path="res://Audio/Sounds/AmbientSounds/BoneFire.wav" id="20_7ppvj"]
 [ext_resource type="Script" uid="uid://dauu7ky3wsoqd" path="res://Scripts/SpecificActions/BoneFire.cs" id="21_cik28"]
 [ext_resource type="PackedScene" uid="uid://cp1fdwher20a4" path="res://Assets/Particles/wind.tscn" id="22_k5h31"]
 [ext_resource type="PackedScene" uid="uid://nf44kmjagcx6" path="res://Assets/3D/stone-pack/BigRock.tscn" id="23_1cmqq"]
@@ -66,6 +66,7 @@ tonemap_mode = 3
 tonemap_exposure = 0.33
 glow_enabled = true
 glow_blend_mode = 0
+fog_enabled = true
 fog_mode = 1
 fog_density = 1.0
 volumetric_fog_enabled = true
@@ -938,7 +939,8 @@ size = Vector3(112.29736, 125.08411, 46.24182)
 
 [sub_resource type="FogMaterial" id="FogMaterial_uskuy"]
 albedo = Color(0.58388877, 0.00024912477, 0.5838849, 1)
-edge_fade = 0.0013602338
+height_falloff = 8.282123e-05
+edge_fade = 0.11993793
 
 [sub_resource type="QuadMesh" id="QuadMesh_djent"]
 size = Vector2(25, 25)
@@ -1469,10 +1471,11 @@ transform = Transform3D(1.385, 0, 0, 0, 1.385, 0, 0, 0, 1.385, 0.13801193, 0, -0
 
 [node name="Firesounds" type="AudioStreamPlayer3D" parent="Scenario/Decoration/Bonefire" unique_id=753922685]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24395561, 0, 0.07288933)
-stream = ExtResource("20_k02ux")
+stream = ExtResource("20_7ppvj")
+volume_db = -10.0
 
 [node name="FireLight" type="OmniLight3D" parent="Scenario/Decoration/Bonefire" unique_id=1121685087]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04373741, 0, -0.09057236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24228358, 1.9131589, -0.09057236)
 light_color = Color(1, 0.79595864, 0.48452926, 1)
 light_energy = 1.565
 light_volumetric_fog_energy = 2.953
@@ -1576,17 +1579,20 @@ shape = SubResource("BoxShape3D_0v362")
 [node name="Spores" parent="Scenario/Decoration" unique_id=797422950 instance=ExtResource("41_uskuy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9696627, 0, 24.340733)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Scenario/Decoration/Spores" unique_id=2120784831]
+[node name="PurpleLight" type="OmniLight3D" parent="Scenario/Decoration/Spores" unique_id=2120784831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.012353, 0)
 light_color = Color(1, 0.5500907, 0.98549265, 1)
 light_energy = 4.706
 light_volumetric_fog_energy = 0.812
 light_specular = 0.029
 omni_range = 8.884321
+script = ExtResource("21_cik28")
 
-[node name="FogVolume" type="FogVolume" parent="Scenario/Decoration/Spores/OmniLight3D" unique_id=866511095]
+[node name="FogVolume" type="FogVolume" parent="Scenario/Decoration/Spores/PurpleLight" unique_id=866511095]
+size = Vector3(2.1428223, 2, 2)
 material = SubResource("FogMaterial_uskuy")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Scenario/Decoration/Spores" unique_id=45625525]
+[node name="HeartBeatSound" type="AudioStreamPlayer3D" parent="Scenario/Decoration/Spores" unique_id=45625525]
 stream = ExtResource("40_uskuy")
 attenuation_model = 2
 volume_db = -20.0
@@ -1603,7 +1609,7 @@ dialogTag = "Test"
 
 [node name="LPIDontGoFar" parent="Scenario/Elements/LorePoints" unique_id=1469642203 instance=ExtResource("28_j7fwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.719505, 2.8933537, 34.440865)
-dialogTag = "Test"
+dialogTag = "Dontgofar"
 
 [node name="LPSpores" parent="Scenario/Elements/LorePoints" unique_id=1342910582 instance=ExtResource("28_j7fwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.960205, 2.8933482, 25.133265)
@@ -1616,9 +1622,6 @@ collision_priority = 2.0
 
 [node name="WindParticles" parent="Scenario/Elements/Player" unique_id=1833939752 instance=ExtResource("22_k5h31")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.842804, 7.412521, 0.62079334)
-
-[node name="AudioListener3D" type="AudioListener3D" parent="Scenario/Elements/Player" unique_id=344207834]
-current = true
 
 [node name="Camera3D" type="Camera3D" parent="Scenario/Elements" unique_id=113618063 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.163391, 5.129331, 1.9648652)
@@ -1799,6 +1802,7 @@ shadow_blur = 0.0
 sky_mode = 1
 
 [node name="EditorLight" type="DirectionalLight3D" parent="Scenario/Light" unique_id=915341291]
+visible = false
 light_energy = 3.252
 editor_only = true
 

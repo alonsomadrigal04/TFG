@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://byjo70eibneq2" path="res://Data/Objects/PipaDeFumar.tres" id="6_glcww"]
 [ext_resource type="PackedScene" uid="uid://cdgqq34uem5m2" path="res://Assets/WorldObjects/GrassGround.tscn" id="6_xwwrp"]
 [ext_resource type="PackedScene" uid="uid://dyddrn2lof815" path="res://Scenes/Exploration/InspectView.tscn" id="7_uox34"]
+[ext_resource type="PackedScene" uid="uid://13au6xxt3wgm" path="res://Scenes/Exploration/Interactables/Lorepoint.tscn" id="8_kgwx7"]
 
 [node name="ExplorationTestZone" type="Node" unique_id=2103000482]
 script = ExtResource("1_squji")
@@ -39,6 +40,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2885313, 1.6118206, 0.86466
 ObjectInfo = ExtResource("6_glcww")
 
 [node name="GrassGroundBig" parent="Elements" unique_id=1216065228 instance=ExtResource("6_xwwrp")]
+
+[node name="LorePoint" parent="Elements" unique_id=1753178380 instance=ExtResource("8_kgwx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+YOffset = 2.0
 
 [node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("7_uox34")]
 isDebugMode = true

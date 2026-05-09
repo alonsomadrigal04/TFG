@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://h4l1wr7x4dkm"
+
+[deps]
+
+source_file="res://Data/Csv/Dontgofar.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -29,6 +29,7 @@ public partial class ItemInteractionMenu : Control
 
     public override void _Ready()
     {
+        Hide();
         ShowPosition = Spinner.Position;
         Spinner.Position = HiddenPosition;
         VBoxContainer.Modulate = new Color(1, 1, 1, 0);
@@ -73,7 +74,7 @@ public partial class ItemInteractionMenu : Control
         Color originalModulate = useButton.Modulate;
         Vector2 originalPosition = useButton.Position;
         
-        SoundsDataBase.TryPlaySound("error1");
+        SoundsDataBase.TryPlay("error1");
         UiStage.Instance.ThrowMessage("Treya no acepta objetos", 300f);
         
         errorTween.TweenProperty(useButton, "modulate", new Color(1, 0.2f, 0.2f, 1), 0.1f);

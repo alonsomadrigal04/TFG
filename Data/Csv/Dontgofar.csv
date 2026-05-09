@@ -1,0 +1,11 @@
+﻿uid;code;type;speaker;text;next
+A1;Treya appears left;;;;
+A2;;say;Treya;No debería acercarme más al camino.;
+A3;;say;Treya;No tengo nada que hacer ahí... ;
+A4;;say;Treya;Todavía.;
+A5;;say;Treya;…;
+A6;;say;Treya;Ese olor de nuevo…;
+A7;camera flash;;;;
+A8;;say;Treya;¿Qué es? ¿De dónde viene?;
+;;say;Treya;…;
+A9;;say;Treya;Si que huele un poco mal…;

@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bt8xfctwne0hy"]
 
-[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_mis3g"]
 [ext_resource type="Script" uid="uid://cksroi58er8ub" path="res://Scripts/Exploration/ObjectBehaviour.cs" id="1_rr520"]
 [ext_resource type="Texture2D" uid="uid://cj11d07nr2x0w" path="res://Assets/Flavour/exclamationSign.png" id="2_uk5kt"]
 [ext_resource type="Script" uid="uid://dvke0mr2o3aeq" path="res://Scripts/Exploration/InteractIconAnimation.cs" id="4_63qpb"]
@@ -25,8 +24,8 @@ interactIcon = NodePath("InteractIcon")
 shape = SubResource("BoxShape3D_bp6ga")
 
 [node name="InteractIcon" type="Sprite3D" parent="." unique_id=217495732]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 1.1713265, 0)
-texture = ExtResource("1_mis3g")
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 1.8915702, 0)
+texture = ExtResource("2_uk5kt")
 script = ExtResource("4_63qpb")
 
 [node name="InteractionArea" type="Area3D" parent="." unique_id=1297561107]
@@ -43,6 +42,6 @@ light_color = Color(1, 1, 0.71112853, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1258720214]
 stream = ExtResource("6_uk5kt")
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
 bus = &"Sfx"

@@ -8,11 +8,13 @@
 [ext_resource type="AudioStream" uid="uid://vs8w03gt3uk5" path="res://Audio/Sounds - Flavour/Fled/FledLaugh02.wav" id="5_y8sg6"]
 [ext_resource type="AudioStream" uid="uid://heaw5puht3h2" path="res://Audio/Sounds - Flavour/Fled/FledLaugh03.wav" id="6_ty1ql"]
 [ext_resource type="AudioStream" uid="uid://dra3h0ddjpwjq" path="res://Audio/Sounds/Buttons/error1.wav" id="7_y8sg6"]
+[ext_resource type="AudioStream" uid="uid://bfuej7d51qx3a" path="res://Audio/Songs/I Dream of Broken Machines.mp3" id="8_ty1ql"]
 
 [resource]
 script = ExtResource("1_157nu")
 SoundsStored = Dictionary[String, AudioStream]({
 "ObjectInteraction": ExtResource("3_nr1r2"),
+"Track1": ExtResource("8_ty1ql"),
 "bgmusic1": ExtResource("1_2v5lu"),
 "error1": ExtResource("7_y8sg6"),
 "fledlaugh01": ExtResource("4_rvtj8"),

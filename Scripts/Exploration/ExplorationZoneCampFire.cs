@@ -186,9 +186,16 @@ public partial class ExplorationZoneCampFire : Node, IExplorationZone
 
                 EnableGameplay();
 
+                PlayMusic();
+
                 break;
 
         }
+    }
+
+    void PlayMusic()
+    {
+        SoundsDataBase.TryPlay("Track1", true);
     }
 
     public void HideLayer()

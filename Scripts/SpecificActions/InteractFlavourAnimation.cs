@@ -31,14 +31,14 @@ public partial class InteractFlavourAnimation : Sprite3D
         Show();
 
         activeTween = CreateTween()
-        .SetTrans(Tween.TransitionType.Back)
+        .SetTrans(Tween.TransitionType.Elastic)
         .SetEase(Tween.EaseType.Out);
 
         activeTween.TweenDelegate<Vector3>(
             value => Scale = value,
             Vector3.Zero,
             originalScale,
-            0.2f
+            0.9f
         );
     }
 
