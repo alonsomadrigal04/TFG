@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b535tsofklk3n"]
+
+[ext_resource type="Texture2D" uid="uid://dkmjlda577oiw" path="res://Assets/3D/pine-trees-pack-ps1-low-poly/pine_trees_pack__ps1_low_poly_0.png" id="1_5cjyo"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_5cjyo")

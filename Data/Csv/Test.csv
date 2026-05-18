@@ -2,5 +2,10 @@
 A1;Treya appears left;;;;
 A2;Fled appears right;;;;
 A3;UI inventory on;;;;
-A4;;say;Treya;Estoy hablando yo;
-A5;;say;Fled;Está hablando Fled;
+A4;;say/question;Treya;Estoy hablando yo;
+A5;camera zoom Treya;;;;
+A6;;say;Treya;Zoom super epico a mi cara;
+A7;camera zoom Fled;;;;
+A8;;say;Fled;Zoom super epico a mi cara;
+A9;camera zoom Treya;;;;
+A10;;say;Treya;Zoom super epico a mi cara;

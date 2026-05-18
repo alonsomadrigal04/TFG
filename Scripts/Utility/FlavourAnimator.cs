@@ -70,7 +70,7 @@ public partial class FlavourAnimator : Node
         }
 
         Vector2 horizontalOffset = directionToCenter * 40f;
-        Vector2 verticalOffset = new(0, -portrait.Size.Y * 0.4f);
+        Vector2 verticalOffset = new(0, -portrait.Size.Y - 100f);
 
         gpuParticles2D.Position = portraitCenter + horizontalOffset + verticalOffset;
 

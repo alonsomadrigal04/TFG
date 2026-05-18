@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://nf44kmjagcx6" path="res://Assets/3D/stone-pack/BigRock.tscn" id="23_1cmqq"]
 [ext_resource type="PackedScene" uid="uid://bfrrk0vkt6db0" path="res://Assets/WorldObjects/MTree.tscn" id="23_7ppvj"]
 [ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/Player/player.tscn" id="24_u8cp1"]
+[ext_resource type="Material" uid="uid://b535tsofklk3n" path="res://Assets/3D/trees/new_standard_material_3d.tres" id="24_uskuy"]
 [ext_resource type="PackedScene" uid="uid://bt8xfctwne0hy" path="res://Scenes/Exploration/Interactables/Object.tscn" id="25_20wvd"]
 [ext_resource type="Resource" uid="uid://byjo70eibneq2" path="res://Data/Objects/PipaDeFumar.tres" id="26_3r6i5"]
 [ext_resource type="Script" uid="uid://dr5isq3vby701" path="res://Scripts/Exploration/CameraBehaviour.cs" id="27_xlhfm"]
@@ -70,7 +71,7 @@ fog_enabled = true
 fog_mode = 1
 fog_density = 1.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0139
+volumetric_fog_density = 0.0242
 volumetric_fog_albedo = Color(0.9452769, 1, 1, 1)
 volumetric_fog_sky_affect = 0.44
 
@@ -1520,42 +1521,68 @@ shape = SubResource("BoxShape3D_sky5s")
 
 [node name="MTree2" parent="Scenario/Decoration/Trees" unique_id=741350888 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 62.823288, -0.65898436, -13.309156)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree10" parent="Scenario/Decoration/Trees" unique_id=1774467181 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 45.39328, -0.65898436, -8.503126)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree11" parent="Scenario/Decoration/Trees" unique_id=81305010 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.4960804, -0.65898436, 1.5775261)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree12" parent="Scenario/Decoration/Trees" unique_id=1288745234 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -10.715984, -0.65898436, 12.857093)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree3" parent="Scenario/Decoration/Trees" unique_id=1768962745 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 73.937, -0.65898436, 1.6221666)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree7" parent="Scenario/Decoration/Trees" unique_id=743018421 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 62.21592, -0.65898436, 16.647148)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree8" parent="Scenario/Decoration/Trees" unique_id=1063199612 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 69.25984, -0.65898436, 16.334335)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree9" parent="Scenario/Decoration/Trees" unique_id=231900688 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 76.44813, -0.65898436, 17.850662)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree13" parent="Scenario/Decoration/Trees" unique_id=1141600496 instance=ExtResource("23_7ppvj")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19.854372, -0.65898436, 29.892853)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19.854372, -0.65898436, 31.613499)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree14" parent="Scenario/Decoration/Trees" unique_id=844234866 instance=ExtResource("23_7ppvj")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 41.621216, -0.65898436, 29.951084)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 41.621216, -0.65898436, 31.471886)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree15" parent="Scenario/Decoration/Trees" unique_id=453833325 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 78.389305, -0.65898436, 31.211845)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree5" parent="Scenario/Decoration/Trees" unique_id=1295010172 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(0.9999959, -0.0025494075, -0.0012947993, 0.0012951328, 0.0001286228, 0.99999917, -0.002549238, -0.9999967, 0.00013193718, 91.20387, -0.65898436, -22.224617)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="MTree6" parent="Scenario/Decoration/Trees" unique_id=1348926567 instance=ExtResource("23_7ppvj")]
 transform = Transform3D(0.9999959, -0.0025494075, -0.0012947993, 0.0012951328, 0.0001286228, 0.99999917, -0.002549238, -0.9999967, 0.00013193718, 105.0505, -0.65898436, -14.6131)
+material_override = ExtResource("24_uskuy")
+surface_material_override/0 = null
 
 [node name="StoneClift" type="Node3D" parent="Scenario/Decoration" unique_id=1077324879]
 transform = Transform3D(-2.4041265e-09, 0.055, 2.4041262e-09, 0, -2.4041262e-09, 0.055, 0.055, 2.4041265e-09, 1.05087705e-16, -3.7958174, 2.7511501, -32.537678)

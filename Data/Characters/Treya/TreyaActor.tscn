@@ -805,7 +805,7 @@ script = ExtResource("1_gyi67")
 animateSprites = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1400432990]
-scale = Vector2(0.4200006, 0.42000058)
+scale = Vector2(0.37457278, 0.37457272)
 sprite_frames = SubResource("SpriteFrames_2yq5m")
 animation = &"SeriousOut"
 frame = 11

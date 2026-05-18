@@ -153,7 +153,7 @@ public partial class TextTyper : Control
         }
     }
 
-     static string BuildClosingTags(IEnumerable<string> tagStack)
+    static string BuildClosingTags(IEnumerable<string> tagStack)
     {
         if (!tagStack.Any())
             return string.Empty;

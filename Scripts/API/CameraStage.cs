@@ -54,7 +54,7 @@ public partial class CameraStage : Node
         tween.Finished += ActionBus.ActionFinished;
     }
 
-    public void CameraZoom(Vector2 zoomPosition, float seconds)
+    public void CameraZoom(Vector2 zoomPosition, float seconds = 1)
     {
         ActionBus.ActionStarted();
 
@@ -63,11 +63,12 @@ public partial class CameraStage : Node
         tween.SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.InOut);
 
-        layerDialogBox.PivotOffset = zoomPosition;
+        // layerDialogBox.PivotOffset = zoomPosition;
+        zoomPosition += new Vector2(0, -500);
 
         tween.TweenProperty(layerDialogBox, "scale", new Vector2(1.2f, 1.2f), seconds);
         tween.SetTrans(Tween.TransitionType.Quart).SetEase(Tween.EaseType.In);
-        //tween.SetParallel().TweenProperty(camera2D, "position", zoomPosition, seconds);
+        tween.SetParallel().TweenProperty(layerDialogBox, "pivot_offset", zoomPosition, 0.3);
         tween.Finished += ActionBus.ActionFinished;
 
     }
