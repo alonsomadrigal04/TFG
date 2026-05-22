@@ -4,9 +4,18 @@
 [ext_resource type="Script" uid="uid://b54s7qrf2581h" path="res://Scripts/CodexSystem/CodexBehaviour.cs" id="1_n4peq"]
 [ext_resource type="PackedScene" uid="uid://bjrqpi6wucgt3" path="res://Scenes/Inventory/contentField.tscn" id="1_qil4n"]
 [ext_resource type="Script" uid="uid://bc1guwdjkdlja" path="res://Scripts/CodexSystem/ContentDisplayer.cs" id="3_507l3"]
+[ext_resource type="Script" uid="uid://bm6l4g3ika2xx" path="res://Scripts/Utility/ButtonFeedback.cs" id="3_boflq"]
 [ext_resource type="FontFile" uid="uid://b155oknr2pxb7" path="res://Assets/Fonts/CrimsonPro-VariableFont_wght.ttf" id="4_kgpv8"]
+[ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="4_n58wi"]
+[ext_resource type="AudioStream" uid="uid://c44tub4pv3gkk" path="res://Audio/Sounds/Buttons/Click.mp3" id="5_24bn7"]
+[ext_resource type="AudioStream" uid="uid://cd1125caacu67" path="res://Audio/Sounds/Buttons/Click.wav" id="5_boflq"]
 [ext_resource type="FontFile" uid="uid://bkwyo3rug11be" path="res://Assets/Fonts/IMFellEnglish-Regular.ttf" id="6_q27xx"]
 [ext_resource type="FontFile" uid="uid://kxhpn0nphiwc" path="res://Assets/Fonts/CrimsonPro-Italic-VariableFont_wght.ttf" id="7_6y0yw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n58wi"]
+random_pitch = 1.3122871
+streams_count = 1
+stream_0/stream = ExtResource("5_boflq")
 
 [node name="Codex" type="Control" unique_id=668818190 node_paths=PackedStringArray("displayer", "entryButtonContainer", "bCharacters", "bTerms", "bLocalizations")]
 layout_mode = 3
@@ -16,6 +25,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n4peq")
+hoverSound = SubResource("AudioStreamRandomizer_n58wi")
+clickSound = ExtResource("5_24bn7")
 displayer = NodePath("DisplayedContent/DisplayedExplanations")
 entryButtonContainer = NodePath("DisplayedContent/DisplayedItems/VBoxDisplayedItems")
 bCharacters = NodePath("HBoxCodexOptions/BCharacters")
@@ -48,6 +59,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_q27xx")
 theme_override_font_sizes/font_size = 40
 text = "Personajes"
+script = ExtResource("3_boflq")
+HoverSound = ExtResource("4_n58wi")
+ClickSound = ExtResource("5_boflq")
 
 [node name="MarginLeft" type="MarginContainer" parent="HBoxCodexOptions" unique_id=1226957916]
 custom_minimum_size = Vector2(50, 0)
@@ -59,6 +73,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_q27xx")
 theme_override_font_sizes/font_size = 40
 text = "Localizaciones"
+script = ExtResource("3_boflq")
+HoverSound = ExtResource("4_n58wi")
+ClickSound = ExtResource("5_24bn7")
 
 [node name="MarginRight" type="MarginContainer" parent="HBoxCodexOptions" unique_id=1727792045]
 custom_minimum_size = Vector2(50, 0)
@@ -70,6 +87,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_q27xx")
 theme_override_font_sizes/font_size = 40
 text = "Terminos"
+script = ExtResource("3_boflq")
+HoverSound = ExtResource("4_n58wi")
+ClickSound = ExtResource("5_24bn7")
 
 [node name="DisplayedContent" type="Control" parent="." unique_id=762299155]
 layout_mode = 1

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PauseMenu : Control
+public partial class SoundMenu : Control
 {
     [ExportGroup("Sliders")]
     [Export] HSlider musicSlider;
@@ -12,17 +12,8 @@ public partial class PauseMenu : Control
     [Export] AudioStreamPlayer indicatorSoundSFX;
     [Export] AudioStreamPlayer indicatorSoundVoices;
 
-
-
-    [ExportGroup("Buttons")]
-
-    [Export] Button continueButton;
-    [Export] Button exitButton;
-
     public override void _Ready()
     {
-        continueButton.Pressed += ResumeGame;
-        exitButton.Pressed += ExitGame;
 
         sfxSlider.ValueChanged += UpdateSFXVolume;
         musicSlider.ValueChanged += UpdateMusicVolume;
@@ -38,7 +29,6 @@ public partial class PauseMenu : Control
         SetSliderToBusValue(sfxSlider, "Sfx");
         SetSliderToBusValue(musicSlider, "Music");
         SetSliderToBusValue(voiceSlider, "Voices");
-
     }
 
     void SetSliderToBusValue(HSlider slider, string busName)
@@ -91,8 +81,4 @@ public partial class PauseMenu : Control
 
     static float LinearToDb(float linear) =>(linear <= 0) ? -80f : 20f * Mathf.Log(linear);
 
-    void ResumeGame() => GameManager.Instance.PauseGame();
-
-
-    void ExitGame() => GameManager.Instance.ExitGame();
 }

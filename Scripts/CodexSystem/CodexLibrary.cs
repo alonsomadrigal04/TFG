@@ -78,7 +78,7 @@ public class CodexLibrary
             string subtitle = parts[2].Trim();
             string content  = parts[3].Trim();
 
-            if (!System.Enum.TryParse<CodexType>(typeStr, ignoreCase: true, out var type))
+            if (!System.Enum.TryParse<CodexType>(typeStr, true, out var type))
             {
                 GD.PrintErr($"[CodexLibrary] {path}:{lineIndex} — unknown type: '{typeStr}'");
                 continue;

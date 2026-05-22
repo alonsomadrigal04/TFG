@@ -18,8 +18,7 @@ public partial class GameManager : Node
     [ExportSubgroup("Dialog Path")]
     [Export] NodePath dialogManagerPath;
     [ExportSubgroup("Pause Menu")]
-    [Export] AnimationPlayer pauseAnimationPlayer;
-
+    [Export] PauseMenu pauseMenu;
 
     [ExportSubgroup("Loading Screen")]
     [Export] ScreenTransition screenTransition;
@@ -144,10 +143,7 @@ public partial class GameManager : Node
     {
         if(!GameStarted) return;
         PauseManager.GamePaused = !PauseManager.GamePaused;
-        if(PauseManager.GamePaused)
-            pauseAnimationPlayer.Play("OnPause");
-        else
-            pauseAnimationPlayer.Play("OutPause");
+        pauseMenu.SetPause(PauseManager.GamePaused);
     }
 
     public override void _Input(InputEvent e)

@@ -1,11 +1,53 @@
 [gd_scene format=3 uid="uid://djjdb70e0fh6f"]
 
-[ext_resource type="Script" uid="uid://b3rw0nm8qkdin" path="res://Scenes/Inventory/ContentMenu.cs" id="1_n1gkd"]
+[ext_resource type="Script" uid="uid://dtvovdbx57xdi" path="res://Scripts/CodexSystem/PauseMenu.cs" id="1_oyf0e"]
 [ext_resource type="Texture2D" uid="uid://ciu2swkhfonmr" path="res://Assets/FullBody/Treyasilhouette.png" id="2_37qp6"]
 [ext_resource type="PackedScene" uid="uid://dcvyl38r3s5hd" path="res://Scenes/Inventory/inventory.tscn" id="3_htacr"]
 [ext_resource type="PackedScene" uid="uid://dlb7ymulk8bgm" path="res://Scenes/Inventory/codex.tscn" id="4_edjnt"]
+[ext_resource type="Shader" uid="uid://nkp7leqca4uo" path="res://Shaders/PauseShader.gdshader" id="6_3k8i2"]
+[ext_resource type="PackedScene" uid="uid://bg066cpe4jogn" path="res://Scenes/Inventory/SoundMenu.tscn" id="6_lb5ye"]
 
-[node name="ContentMenu" type="Control" unique_id=1464376574]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a2nf"]
+shader = ExtResource("6_3k8i2")
+shader_parameter/intensity = 0.85
+shader_parameter/speed = 1.0
+shader_parameter/warp = 0.0
+shader_parameter/shake = 0.45
+shader_parameter/chromatic = 0.0
+shader_parameter/blur_amount = 0.25
+shader_parameter/blur_mip = 0.0
+shader_parameter/grain = 0.2
+shader_parameter/scanline_strength = 0.1
+shader_parameter/vignette_strength = 0.38
+shader_parameter/color_drift = 0.55
+shader_parameter/ghosting = 0.12
+shader_parameter/line_jitter = 0.0015
+
+[sub_resource type="Animation" id="Animation_lb5ye"]
+resource_name = "DisplayIn"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_squ4s"]
+_data = {
+&"DisplayIn": SubResource("Animation_lb5ye")
+}
+
+[sub_resource type="Animation" id="Animation_x1ny2"]
+resource_name = "DisplayIn"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1axj"]
+_data = {
+&"DisplayIn": SubResource("Animation_x1ny2")
+}
+
+[sub_resource type="Animation" id="Animation_squ4s"]
+resource_name = "DisplayIn"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1ny2"]
+_data = {
+&"DisplayIn": SubResource("Animation_squ4s")
+}
+
+[node name="PauseMenu" type="Control" unique_id=1464376574 node_paths=PackedStringArray("bContinue", "bCodex", "bSound", "bInventory", "bExit", "SoundMenu", "Inventory", "CodexMenu", "pauseAnimator", "soundAnimator", "codexAnimator", "inventotyAnimator")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,7 +62,25 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-script = ExtResource("1_n1gkd")
+script = ExtResource("1_oyf0e")
+bContinue = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/BResume")
+bCodex = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/BCodex")
+bSound = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/Sound")
+bInventory = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/BInventory")
+bExit = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/BExit")
+SoundMenu = NodePath("PrincipalLayer/SoundMenu")
+Inventory = NodePath("PrincipalLayer/InventoryMenu")
+CodexMenu = NodePath("PrincipalLayer/CodexMenu")
+pauseAnimator = NodePath("Animators/APPauseGame")
+soundAnimator = NodePath("Animators/APSound")
+codexAnimator = NodePath("Animators/APCodex")
+inventotyAnimator = NodePath("Animators/APInventory")
+
+[node name="ShaderPause" type="ColorRect" parent="." unique_id=609684430]
+material = SubResource("ShaderMaterial_7a2nf")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="PrincipalLayer" type="CanvasLayer" parent="." unique_id=241787274]
 
@@ -47,7 +107,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TreyaSilhouette" type="Sprite2D" parent="PrincipalLayer/PrincipalMenu/DecorativeContent" unique_id=448485599]
-visible = false
 position = Vector2(1150, 720)
 texture = ExtResource("2_37qp6")
 
@@ -78,12 +137,41 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Codex"
 
+[node name="BInventory" type="Button" parent="PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer" unique_id=753929291]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Inventario"
+
+[node name="Sound" type="Button" parent="PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer" unique_id=951857820]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sound"
+
 [node name="BExit" type="Button" parent="PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer" unique_id=2133082450]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Salir"
 
-[node name="Inventory" parent="PrincipalLayer" unique_id=2095963872 instance=ExtResource("3_htacr")]
+[node name="InventoryMenu" parent="PrincipalLayer" unique_id=2095963872 instance=ExtResource("3_htacr")]
 visible = false
 
-[node name="Codex" parent="PrincipalLayer" unique_id=668818190 instance=ExtResource("4_edjnt")]
+[node name="CodexMenu" parent="PrincipalLayer" unique_id=668818190 instance=ExtResource("4_edjnt")]
+visible = false
+
+[node name="SoundMenu" parent="PrincipalLayer" unique_id=1182755429 instance=ExtResource("6_lb5ye")]
+visible = false
+
+[node name="Animators" type="Node" parent="." unique_id=1910384707]
+
+[node name="APPauseGame" type="AnimationPlayer" parent="Animators" unique_id=1441523733]
+
+[node name="APSound" type="AnimationPlayer" parent="Animators" unique_id=1077607695]
+libraries/ = SubResource("AnimationLibrary_squ4s")
+
+[node name="PauseSounds" type="AudioStreamPlayer" parent="Animators/APSound" unique_id=301811395]
+
+[node name="APCodex" type="AnimationPlayer" parent="Animators" unique_id=1164300950]
+libraries/ = SubResource("AnimationLibrary_x1axj")
+
+[node name="APInventory" type="AnimationPlayer" parent="Animators" unique_id=1415849068]
+libraries/ = SubResource("AnimationLibrary_x1ny2")

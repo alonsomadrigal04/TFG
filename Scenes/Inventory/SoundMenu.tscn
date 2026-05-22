@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://bg066cpe4jogn"]
+
+[ext_resource type="Script" uid="uid://b7f2uuv42o0nu" path="res://Scripts/Interface/SoundMenu.cs" id="1_vapgt"]
+[ext_resource type="Texture2D" uid="uid://8dkdgp7bwg47" path="res://Assets/UI/CuadroFondoInspectView.png" id="2_grgbw"]
+[ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://Assets/Fonts/Roboto-Bold.ttf" id="3_nwefm"]
+[ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="6_8jcs8"]
+[ext_resource type="AudioStream" uid="uid://dlk6gg7wgvgox" path="res://Audio/Voices/Alonso.wav" id="7_wnlwm"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gy4s0"]
+random_pitch = 1.4983071
+streams_count = 1
+stream_0/stream = ExtResource("6_8jcs8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1y8qa"]
+random_pitch = 1.4983071
+streams_count = 1
+stream_0/stream = ExtResource("7_wnlwm")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_24oy4"]
+random_pitch = 1.4983071
+streams_count = 1
+stream_0/stream = ExtResource("6_8jcs8")
+
+[node name="SoundMenu" type="Control" unique_id=1182755429 node_paths=PackedStringArray("musicSlider", "sfxSlider", "voiceSlider", "indicatorSoundMusic", "indicatorSoundSFX", "indicatorSoundVoices")]
+z_index = 10
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_vapgt")
+musicSlider = NodePath("BlackPanel/MusicSlider")
+sfxSlider = NodePath("BlackPanel/SFXSounds")
+voiceSlider = NodePath("BlackPanel/VoicesSlider")
+indicatorSoundMusic = NodePath("MusicIndicator")
+indicatorSoundSFX = NodePath("SFXIndicator")
+indicatorSoundVoices = NodePath("VoicesIndicator")
+
+[node name="BlackPanel" type="TextureRect" parent="." unique_id=1347130045]
+layout_mode = 0
+offset_left = -899.0
+offset_top = -105.0
+offset_right = -27.0
+offset_bottom = 769.0
+texture = ExtResource("2_grgbw")
+
+[node name="SFXSlider" type="Label" parent="BlackPanel" unique_id=134668172]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 310.0
+offset_right = 823.0
+offset_bottom = 342.0
+theme_override_fonts/font = ExtResource("3_nwefm")
+theme_override_font_sizes/font_size = 26
+text = "SFX Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSounds" type="HSlider" parent="BlackPanel" unique_id=817170801]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 310.0
+offset_right = 830.0
+offset_bottom = 417.0
+max_value = 1.2
+step = 0.12
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="VoicesVolume" type="Label" parent="BlackPanel" unique_id=1154160854]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 527.0
+offset_right = 823.0
+offset_bottom = 559.0
+theme_override_fonts/font = ExtResource("3_nwefm")
+theme_override_font_sizes/font_size = 26
+text = "Voices Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VoicesSlider" type="HSlider" parent="BlackPanel" unique_id=1379981347]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 527.0
+offset_right = 830.0
+offset_bottom = 634.0
+max_value = 1.2
+step = 0.12
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="MusicVolume" type="Label" parent="BlackPanel" unique_id=74449212]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 417.0
+offset_right = 823.0
+offset_bottom = 449.0
+theme_override_fonts/font = ExtResource("3_nwefm")
+theme_override_font_sizes/font_size = 26
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="BlackPanel" unique_id=688932179]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 417.0
+offset_right = 830.0
+offset_bottom = 524.0
+max_value = 1.2
+step = 0.12
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="MusicIndicator" type="AudioStreamPlayer" parent="." unique_id=786218358]
+stream = SubResource("AudioStreamRandomizer_gy4s0")
+bus = &"Music"
+
+[node name="VoicesIndicator" type="AudioStreamPlayer" parent="." unique_id=799528487]
+stream = SubResource("AudioStreamRandomizer_1y8qa")
+bus = &"Voices"
+
+[node name="SFXIndicator" type="AudioStreamPlayer" parent="." unique_id=1738045955]
+stream = SubResource("AudioStreamRandomizer_24oy4")

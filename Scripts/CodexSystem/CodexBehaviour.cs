@@ -1,8 +1,15 @@
 using Godot;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Threading;
 
 public partial class CodexBehaviour : Node
 {
+    [ExportGroup("UI Sounds")]
+    [Export] AudioStream hoverSound;
+    [Export] AudioStream clickSound;
+
+
     [ExportGroup("Displayer")]
     [Export] ContentDisplayer displayer;
     [Export] Container entryButtonContainer;
@@ -20,9 +27,16 @@ public partial class CodexBehaviour : Node
         library = new CodexLibrary();
         library.LoadAll();
 
+
+
         bCharacters.Pressed    += () => SwitchMode(CodexType.Character);
         bTerms.Pressed         += () => SwitchMode(CodexType.Term);
         bLocalizations.Pressed += () => SwitchMode(CodexType.Localization);
+        
+        bCharacters.Resized += () => bCharacters.PivotOffset = bCharacters.Size / 2f;
+        bTerms.Resized += () => bTerms.PivotOffset = bTerms.Size / 2f;
+        bLocalizations.Resized += () => bLocalizations.PivotOffset = bLocalizations.Size / 2f;
+
 
         SwitchMode(CodexType.Character);
     }
@@ -42,12 +56,14 @@ public partial class CodexBehaviour : Node
         {
             var capturedEntry = entry;
 
-            var button = new Button
+            var button = new ButtonFeedback
             {
                 Text = entry.Title,
-                // Opcional: si tienes un tema/estilo definido, asígnalo aquí
-                // Theme = myButtonTheme
+                HoverSound = hoverSound,
+                ClickSound = clickSound
             };
+
+            button.PivotOffset = new Vector2(button.Size.X / 2, button.Size.Y / 2);
 
             button.Pressed += () => displayer.DisplayContent(capturedEntry);
             entryButtonContainer.AddChild(button);
