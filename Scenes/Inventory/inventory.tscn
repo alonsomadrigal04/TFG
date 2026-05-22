@@ -1,23 +1,23 @@
-[gd_scene format=3 uid="uid://djjdb70e0fh6f"]
+[gd_scene format=3 uid="uid://dcvyl38r3s5hd"]
 
-[ext_resource type="Script" uid="uid://t3vn56657cob" path="res://Scripts/Exploration/InventoryBehaviour.cs" id="1_ubet6"]
-[ext_resource type="PackedScene" uid="uid://c7ojrtvec8i6r" path="res://Scenes/Inventory/itemSlot.tscn" id="2_n1gkd"]
-[ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_37qp6"]
-[ext_resource type="AudioStream" uid="uid://cq5rkjsqoxc1c" path="res://Audio/closingbag.wav" id="4_1cl0s"]
-[ext_resource type="AudioStream" uid="uid://bxcnl6o22lvpl" path="res://Audio/openingbag.wav" id="5_uuft3"]
-[ext_resource type="AudioStream" uid="uid://bsyg7qkfl15tr" path="res://Audio/daggerHit.wav" id="6_k1yvg"]
-[ext_resource type="Texture2D" uid="uid://cjg2mxihh03y0" path="res://Assets/UI/mochilita.png" id="7_oglie"]
-[ext_resource type="AudioStream" uid="uid://m00y27g26i3x" path="res://Audio/flipPage1.wav" id="8_3d65x"]
-[ext_resource type="AudioStream" uid="uid://shkfldpv78ir" path="res://Audio/flipPage2.wav" id="9_1sr3f"]
-[ext_resource type="AudioStream" uid="uid://cnxb6xnbujtmh" path="res://Audio/flipPage3.wav" id="10_vv4sd"]
-[ext_resource type="AudioStream" uid="uid://cqoe1f1m07imo" path="res://Audio/flipPage4.wav" id="11_ciwba"]
+[ext_resource type="Script" uid="uid://t3vn56657cob" path="res://Scripts/Exploration/InventoryBehaviour.cs" id="1_anlbx"]
+[ext_resource type="PackedScene" uid="uid://c7ojrtvec8i6r" path="res://Scenes/Inventory/itemSlot.tscn" id="2_scl7r"]
+[ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_n21lg"]
+[ext_resource type="AudioStream" uid="uid://cq5rkjsqoxc1c" path="res://Audio/closingbag.wav" id="4_mp33w"]
+[ext_resource type="AudioStream" uid="uid://bxcnl6o22lvpl" path="res://Audio/openingbag.wav" id="5_isa8m"]
+[ext_resource type="AudioStream" uid="uid://bsyg7qkfl15tr" path="res://Audio/daggerHit.wav" id="6_dqgsn"]
+[ext_resource type="Texture2D" uid="uid://cjg2mxihh03y0" path="res://Assets/UI/mochilita.png" id="7_c675e"]
+[ext_resource type="AudioStream" uid="uid://m00y27g26i3x" path="res://Audio/flipPage1.wav" id="8_ko4qv"]
+[ext_resource type="AudioStream" uid="uid://shkfldpv78ir" path="res://Audio/flipPage2.wav" id="9_w7w2e"]
+[ext_resource type="AudioStream" uid="uid://cnxb6xnbujtmh" path="res://Audio/flipPage3.wav" id="10_tqppa"]
+[ext_resource type="AudioStream" uid="uid://cqoe1f1m07imo" path="res://Audio/flipPage4.wav" id="11_iuvok"]
 
 [sub_resource type="Animation" id="Animation_8r6kd"]
 resource_name = "CloseInventory"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rightPanel:position")
+tracks/0/path = NodePath("Inventory/rightPanel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("leftPanel:position")
+tracks/1/path = NodePath("Inventory/leftPanel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,7 +41,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("leftPanel/DecorationPanel1:position")
+tracks/2/path = NodePath("Inventory/leftPanel/DecorationPanel1:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -53,7 +53,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("rightPanel/DecorationPanel2:position")
+tracks/3/path = NodePath("Inventory/rightPanel/DecorationPanel2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -65,7 +65,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("BgInventory:visible")
+tracks/4/path = NodePath("Inventory/BgInventory:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -77,14 +77,14 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/path = NodePath("Inventory/AudioStreamPlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("4_1cl0s")
+"stream": ExtResource("4_mp33w")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -92,7 +92,7 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ItemContainer:visible")
+tracks/6/path = NodePath("Inventory/ItemContainer:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -104,7 +104,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("rightPanel/ItemDescription:modulate")
+tracks/7/path = NodePath("Inventory/rightPanel/ItemDescription:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -121,7 +121,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rightPanel/DecorationPanel2:position")
+tracks/0/path = NodePath("Inventory/rightPanel/DecorationPanel2:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +133,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("rightPanel/DecorationPanel2:rotation")
+tracks/1/path = NodePath("Inventory/rightPanel/DecorationPanel2:rotation")
 tracks/1/interp = 4
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -145,7 +145,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("leftPanel/DecorationPanel1:position")
+tracks/2/path = NodePath("Inventory/leftPanel/DecorationPanel1:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -157,7 +157,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("leftPanel/DecorationPanel1:rotation")
+tracks/3/path = NodePath("Inventory/leftPanel/DecorationPanel1:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -173,7 +173,7 @@ length = 2.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("InventoryIcon:position")
+tracks/0/path = NodePath("Inventory/InventoryIcon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -185,7 +185,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("InventoryIcon:rotation")
+tracks/1/path = NodePath("Inventory/InventoryIcon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -197,7 +197,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InventoryIcon:modulate")
+tracks/2/path = NodePath("Inventory/InventoryIcon:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -209,7 +209,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("InventoryIcon:scale")
+tracks/3/path = NodePath("Inventory/InventoryIcon:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -221,7 +221,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("leftPanel:position")
+tracks/4/path = NodePath("Inventory/leftPanel:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -233,7 +233,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("leftPanel/DecorationPanel1:position")
+tracks/5/path = NodePath("Inventory/leftPanel/DecorationPanel1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -245,7 +245,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("rightPanel:position")
+tracks/6/path = NodePath("Inventory/rightPanel:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -257,7 +257,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("rightPanel/DecorationPanel2:position")
+tracks/7/path = NodePath("Inventory/rightPanel/DecorationPanel2:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -269,7 +269,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("leftPanel:rotation")
+tracks/8/path = NodePath("Inventory/leftPanel:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -281,7 +281,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("rightPanel:rotation")
+tracks/9/path = NodePath("Inventory/rightPanel:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -293,7 +293,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("BgInventory:visible")
+tracks/10/path = NodePath("Inventory/BgInventory:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -305,14 +305,14 @@ tracks/10/keys = {
 tracks/11/type = "audio"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("AudioStreamPlayer")
+tracks/11/path = NodePath("Inventory/AudioStreamPlayer")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "clips": [{
 "end_offset": 0.20598044,
 "start_offset": 0.0,
-"stream": ExtResource("5_uuft3")
+"stream": ExtResource("5_isa8m")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -320,7 +320,7 @@ tracks/11/use_blend = true
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("ItemContainer:visible")
+tracks/12/path = NodePath("Inventory/ItemContainer:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -332,7 +332,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("rightPanel/ItemDescription:modulate")
+tracks/13/path = NodePath("Inventory/rightPanel/ItemDescription:modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -344,7 +344,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("rightPanel/ItemDescription:position")
+tracks/14/path = NodePath("Inventory/rightPanel/ItemDescription:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -356,14 +356,14 @@ tracks/14/keys = {
 tracks/15/type = "audio"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("AudioStreamPlayer")
+tracks/15/path = NodePath("Inventory/AudioStreamPlayer")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "clips": [{
 "end_offset": 0.15751445,
 "start_offset": 0.0,
-"stream": ExtResource("6_k1yvg")
+"stream": ExtResource("6_dqgsn")
 }],
 "times": PackedFloat32Array(2.0333333)
 }
@@ -374,7 +374,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("InventoryIcon:position")
+tracks/0/path = NodePath("Inventory/InventoryIcon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -386,7 +386,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("InventoryIcon:rotation")
+tracks/1/path = NodePath("Inventory/InventoryIcon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -398,7 +398,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InventoryIcon:modulate")
+tracks/2/path = NodePath("Inventory/InventoryIcon:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -410,7 +410,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("InventoryIcon:scale")
+tracks/3/path = NodePath("Inventory/InventoryIcon:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -422,7 +422,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("leftPanel:position")
+tracks/4/path = NodePath("Inventory/leftPanel:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -434,7 +434,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("leftPanel/DecorationPanel1:position")
+tracks/5/path = NodePath("Inventory/leftPanel/DecorationPanel1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -446,7 +446,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("rightPanel:position")
+tracks/6/path = NodePath("Inventory/rightPanel:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -458,7 +458,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("rightPanel/DecorationPanel2:position")
+tracks/7/path = NodePath("Inventory/rightPanel/DecorationPanel2:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -470,7 +470,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("leftPanel:rotation")
+tracks/8/path = NodePath("Inventory/leftPanel:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -482,7 +482,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("rightPanel:rotation")
+tracks/9/path = NodePath("Inventory/rightPanel:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -494,7 +494,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("rightPanel/DecorationPanel2:rotation")
+tracks/10/path = NodePath("Inventory/rightPanel/DecorationPanel2:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -506,7 +506,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("leftPanel/DecorationPanel1:rotation")
+tracks/11/path = NodePath("Inventory/leftPanel/DecorationPanel1:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -518,7 +518,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("BgInventory:visible")
+tracks/12/path = NodePath("Inventory/BgInventory:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -530,7 +530,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("ItemContainer:visible")
+tracks/13/path = NodePath("Inventory/ItemContainer:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -542,7 +542,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("rightPanel/ItemDescription:modulate")
+tracks/14/path = NodePath("Inventory/rightPanel/ItemDescription:modulate")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -554,7 +554,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("rightPanel/ItemDescription:position")
+tracks/15/path = NodePath("Inventory/rightPanel/ItemDescription:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -574,28 +574,17 @@ _data = {
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iyesh"]
 streams_count = 4
-stream_0/stream = ExtResource("8_3d65x")
-stream_1/stream = ExtResource("9_1sr3f")
-stream_2/stream = ExtResource("10_vv4sd")
-stream_3/stream = ExtResource("11_ciwba")
+stream_0/stream = ExtResource("8_ko4qv")
+stream_1/stream = ExtResource("9_w7w2e")
+stream_2/stream = ExtResource("10_tqppa")
+stream_3/stream = ExtResource("11_iuvok")
 
-[node name="Inventory" type="Control" unique_id=1464376574 node_paths=PackedStringArray("animationPlayer", "BgInventory", "LeftPanel", "rightPanel", "flipPageSounds", "itemDescription", "objectContainer", "sampleItem")]
-visible = false
+[node name="Inventory" type="Control" unique_id=2095963872 node_paths=PackedStringArray("animationPlayer", "BgInventory", "LeftPanel", "rightPanel", "flipPageSounds", "itemDescription", "objectContainer", "sampleItem")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-mouse_filter = 2
-script = ExtResource("1_ubet6")
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_anlbx")
 animationPlayer = NodePath("AnimationPlayer")
 BgInventory = NodePath("BgInventory")
 LeftPanel = NodePath("leftPanel")
@@ -604,9 +593,9 @@ flipPageSounds = NodePath("FlipPageSounds")
 itemDescription = NodePath("rightPanel/ItemDescription")
 objectContainer = NodePath("ItemContainer")
 sampleItem = NodePath("ItemContainer/ItemSlot")
-itemSlotScene = ExtResource("2_n1gkd")
+itemSlotScene = ExtResource("2_scl7r")
 
-[node name="BgInventory" type="ColorRect" parent="." unique_id=2006916941]
+[node name="BgInventory" type="ColorRect" parent="." unique_id=215363439]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -614,56 +603,56 @@ pivot_offset = Vector2(25, 20)
 color = Color(0.5409905, 0.5409905, 0.5409905, 1)
 metadata/_edit_lock_ = true
 
-[node name="ItemContainer" type="Control" parent="." unique_id=1089614507]
+[node name="ItemContainer" type="Control" parent="." unique_id=279258837]
 visible = false
 anchors_preset = 0
 offset_left = 13.39
 offset_right = 53.39
 offset_bottom = 40.0
 
-[node name="ItemSlot" parent="ItemContainer" unique_id=1884305001 instance=ExtResource("2_n1gkd")]
+[node name="ItemSlot" parent="ItemContainer" unique_id=1884305001 instance=ExtResource("2_scl7r")]
 layout_mode = 0
 offset_left = 113.0
 offset_top = 99.0
 offset_right = 485.0
 offset_bottom = 190.0
 
-[node name="leftPanel" type="ColorRect" parent="." unique_id=552916570]
+[node name="leftPanel" type="ColorRect" parent="." unique_id=1209418520]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -826.74
-offset_top = -360.0
+offset_top = -20.0
 offset_right = 32.26001
-offset_bottom = 830.0
+offset_bottom = 1170.0
 grow_vertical = 2
 pivot_offset = Vector2(430, 612)
 color = Color(0.6627451, 1, 1, 1)
 
-[node name="DecorationPanel1" type="ColorRect" parent="leftPanel" unique_id=1435016745]
+[node name="DecorationPanel1" type="ColorRect" parent="leftPanel" unique_id=1801519923]
 layout_mode = 0
 offset_right = 778.06335
 offset_bottom = 1190.0
 pivot_offset = Vector2(389.03174, 595)
 
-[node name="rightPanel" type="ColorRect" parent="." unique_id=973868677]
+[node name="rightPanel" type="ColorRect" parent="." unique_id=1848171614]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -438.0
-offset_top = -360.0
-offset_right = 836.177
-offset_bottom = 830.0
+offset_left = 802.0
+offset_top = -20.0
+offset_right = 2076.177
+offset_bottom = 1170.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(430, 588)
 color = Color(0.6627451, 1, 1, 1)
 
-[node name="DecorationPanel2" type="ColorRect" parent="rightPanel" unique_id=273838264]
+[node name="DecorationPanel2" type="ColorRect" parent="rightPanel" unique_id=185734179]
 layout_mode = 0
 offset_left = 46.0
 offset_right = 1274.178
@@ -671,7 +660,7 @@ offset_bottom = 1190.0
 pivot_offset = Vector2(614.0884, 594.9998)
 color = Color(0.29351652, 0.16879693, 0.014867373, 1)
 
-[node name="ItemDescription" type="Label" parent="rightPanel" unique_id=780656727]
+[node name="ItemDescription" type="Label" parent="rightPanel" unique_id=96147466]
 layout_mode = 0
 offset_left = 65.56636
 offset_top = 547.09534
@@ -679,14 +668,14 @@ offset_right = 733.56635
 offset_bottom = 855.09534
 rotation = 0.05235988
 pivot_offset = Vector2(334, 154.00006)
-theme_override_fonts/font = ExtResource("3_37qp6")
+theme_override_fonts/font = ExtResource("3_n21lg")
 theme_override_font_sizes/font_size = 32
 text = "Lorem ipsum dolor sit amet consectetur adipiscing elit est litora, dictum aptent nisl facilisi condimentum nibh cum luctus integer, tortor dictumst fusce nulla tristique turpis nullam tempus."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="rightPanel" unique_id=350055721]
+[node name="TextureRect" type="TextureRect" parent="rightPanel" unique_id=110624819]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.20700002
@@ -700,10 +689,11 @@ offset_bottom = 4.100006
 expand_mode = 1
 stretch_mode = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1297949633]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=610286148]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8r6kd")
 
-[node name="InventoryIcon" type="TextureRect" parent="." unique_id=587553501]
+[node name="InventoryIcon" type="TextureRect" parent="." unique_id=1557630575]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -713,9 +703,9 @@ offset_right = 690.0
 offset_bottom = 817.0
 scale = Vector2(0.12, 0.12)
 pivot_offset = Vector2(336.5, 400)
-texture = ExtResource("7_oglie")
+texture = ExtResource("7_c675e")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=397528122]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=220307088]
 
-[node name="FlipPageSounds" type="AudioStreamPlayer" parent="." unique_id=1463107546]
+[node name="FlipPageSounds" type="AudioStreamPlayer" parent="." unique_id=810174731]
 stream = SubResource("AudioStreamRandomizer_iyesh")

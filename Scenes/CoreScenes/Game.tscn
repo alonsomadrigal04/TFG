@@ -49,7 +49,7 @@
 [ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://Assets/Fonts/Roboto-Bold.ttf" id="34_0iyqm"]
 [ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="35_jn8rg"]
 [ext_resource type="AudioStream" uid="uid://dlk6gg7wgvgox" path="res://Audio/Voices/Alonso.wav" id="35_umnjm"]
-[ext_resource type="PackedScene" uid="uid://djjdb70e0fh6f" path="res://Scenes/Inventory/inventory.tscn" id="50_21svs"]
+[ext_resource type="PackedScene" uid="uid://djjdb70e0fh6f" path="res://Scenes/Inventory/GameMenu.tscn" id="50_21svs"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a8kki"]
 random_pitch = 1.4142135
@@ -549,7 +549,6 @@ process_mode = 1
 [node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseAnimationPlayer", "screenTransition", "safeScreen", "chapterBehaviour", "audioManager")]
 process_mode = 3
 script = ExtResource("1_gl6un")
-enabledDebugMode = true
 debugDialogName = "Test"
 firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
@@ -928,3 +927,4 @@ bus = &"Voices"
 stream = SubResource("AudioStreamRandomizer_4eqlp")
 
 [node name="Inventory" parent="ContenLayer" unique_id=1464376574 instance=ExtResource("50_21svs")]
+visible = false

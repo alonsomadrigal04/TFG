@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://dlb7ymulk8bgm"]
+
+[ext_resource type="Texture2D" uid="uid://cuwopvvjrdpa5" path="res://Assets/Portraits/Alonso/icon.svg" id="1_em2bm"]
+[ext_resource type="Script" uid="uid://b54s7qrf2581h" path="res://Scripts/CodexSystem/CodexBehaviour.cs" id="1_n4peq"]
+[ext_resource type="PackedScene" uid="uid://bjrqpi6wucgt3" path="res://Scenes/Inventory/contentField.tscn" id="1_qil4n"]
+[ext_resource type="Script" uid="uid://bc1guwdjkdlja" path="res://Scripts/CodexSystem/ContentDisplayer.cs" id="3_507l3"]
+[ext_resource type="FontFile" uid="uid://b155oknr2pxb7" path="res://Assets/Fonts/CrimsonPro-VariableFont_wght.ttf" id="4_kgpv8"]
+[ext_resource type="FontFile" uid="uid://bkwyo3rug11be" path="res://Assets/Fonts/IMFellEnglish-Regular.ttf" id="6_q27xx"]
+[ext_resource type="FontFile" uid="uid://kxhpn0nphiwc" path="res://Assets/Fonts/CrimsonPro-Italic-VariableFont_wght.ttf" id="7_6y0yw"]
+
+[node name="Codex" type="Control" unique_id=668818190 node_paths=PackedStringArray("displayer", "entryButtonContainer", "bCharacters", "bTerms", "bLocalizations")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n4peq")
+displayer = NodePath("DisplayedContent/DisplayedExplanations")
+entryButtonContainer = NodePath("DisplayedContent/DisplayedItems/VBoxDisplayedItems")
+bCharacters = NodePath("HBoxCodexOptions/BCharacters")
+bTerms = NodePath("HBoxCodexOptions/BTerms")
+bLocalizations = NodePath("HBoxCodexOptions/BLocalizations")
+
+[node name="BGGeneral" type="ColorRect" parent="." unique_id=2103083071]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+pivot_offset = Vector2(640, 360)
+color = Color(0.39688927, 0.39688927, 0.39688924, 1)
+metadata/_edit_lock_ = true
+
+[node name="HBoxCodexOptions" type="HBoxContainer" parent="." unique_id=134413448]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 91.0
+grow_horizontal = 2
+pivot_offset = Vector2(640, 46)
+alignment = 1
+
+[node name="BCharacters" type="Button" parent="HBoxCodexOptions" unique_id=980364369]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_q27xx")
+theme_override_font_sizes/font_size = 40
+text = "Personajes"
+
+[node name="MarginLeft" type="MarginContainer" parent="HBoxCodexOptions" unique_id=1226957916]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="BLocalizations" type="Button" parent="HBoxCodexOptions" unique_id=1839335811]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_q27xx")
+theme_override_font_sizes/font_size = 40
+text = "Localizaciones"
+
+[node name="MarginRight" type="MarginContainer" parent="HBoxCodexOptions" unique_id=1727792045]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="BTerms" type="Button" parent="HBoxCodexOptions" unique_id=1868619644]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_q27xx")
+theme_override_font_sizes/font_size = 40
+text = "Terminos"
+
+[node name="DisplayedContent" type="Control" parent="." unique_id=762299155]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.62100005
+anchor_right = 0.5
+anchor_bottom = 0.62100005
+offset_left = -640.0
+offset_top = -356.12003
+offset_right = 640.0
+offset_bottom = 272.87997
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+size_flags_horizontal = 4
+
+[node name="DisplayedItems" type="Control" parent="DisplayedContent" unique_id=1394289765]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -314.5
+offset_right = 432.0
+offset_bottom = 314.5
+grow_vertical = 2
+pivot_offset = Vector2(216, 315)
+metadata/_edit_lock_ = true
+
+[node name="BGDisplayedItems" type="ColorRect" parent="DisplayedContent/DisplayedItems" unique_id=2014619894]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -314.5
+offset_right = 432.0
+offset_bottom = 314.5
+grow_vertical = 2
+pivot_offset = Vector2(216, 315)
+color = Color(0.31061712, 0.31061712, 0.3106171, 1)
+metadata/_edit_lock_ = true
+
+[node name="VBoxDisplayedItems" type="VBoxContainer" parent="DisplayedContent/DisplayedItems" unique_id=206518953]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -314.5
+offset_right = 432.0
+offset_bottom = 314.5
+grow_vertical = 2
+pivot_offset = Vector2(216, 315)
+metadata/_edit_lock_ = true
+
+[node name="ContentField" parent="DisplayedContent/DisplayedItems/VBoxDisplayedItems" unique_id=586732767 instance=ExtResource("1_qil4n")]
+layout_mode = 2
+
+[node name="DisplayedExplanations" type="Control" parent="DisplayedContent" unique_id=1367538314 node_paths=PackedStringArray("CharacterLayout", "TitleCharacter", "SubTitle", "PortraitImage", "ContentCharacter", "TermsLayout", "TitleTerms", "ContentTerms", "SupportImages")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -848.0
+offset_top = -314.5
+offset_bottom = 314.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(424, 315)
+script = ExtResource("3_507l3")
+CharacterLayout = NodePath("CharacterExplanation")
+TitleCharacter = NodePath("CharacterExplanation/HBoxExplanation/VBoxContainer/LTtile")
+SubTitle = NodePath("CharacterExplanation/HBoxExplanation/VBoxContainer/LSubTitle")
+PortraitImage = NodePath("CharacterExplanation/HBoxExplanation/TRPortraitImg")
+ContentCharacter = NodePath("CharacterExplanation/ScrollContainer/LContent")
+TermsLayout = NodePath("TermExplanation")
+TitleTerms = NodePath("TermExplanation/LTtile")
+ContentTerms = NodePath("TermExplanation/HBoxExplanation/ScrollContainer/LContent")
+SupportImages = NodePath("TermExplanation/HBoxExplanation/VBoxContainer")
+
+[node name="CharacterExplanation" type="Control" parent="DisplayedContent/DisplayedExplanations" unique_id=1988979620]
+visible = false
+anchors_preset = 0
+offset_right = 848.0
+offset_bottom = 629.0
+
+[node name="BGContentExplanation" type="ColorRect" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation" unique_id=461959440]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -848.0
+offset_top = -314.5
+offset_bottom = 314.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(424, 315)
+color = Color(0.23753911, 0.23753914, 0.23753911, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation" unique_id=1381452832]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 166.0
+offset_right = 808.0
+offset_bottom = 596.0
+pivot_offset = Vector2(388, 215)
+
+[node name="LContent" type="Label" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation/ScrollContainer" unique_id=1170019663]
+custom_minimum_size = Vector2(730, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_kgpv8")
+theme_override_font_sizes/font_size = 30
+text = "Lorem ipsum dolor sit amet consectetur adipiscing elit in, risus etiam faucibus consequat neque tristique erat, enim nisl accumsan eu quisque imperdiet rutrum. Est cum sagittis nunc platea nascetur diam at fusce hac in risus sapien penatibus, pharetra magna aenean sociosqu volutpat ornare cursus habitant nam natoque conubia et. Sagittis ut vivamus nec dictum natoque posuere cubilia quisque vehicula, magna per et lacus eros pulvinar non netus fermentum, ante proin ultricies venenatis erat arcu suscipit fusce.
+
+Sem ad pellentesque cursus potenti litora egestas nascetur pharetra, vivamus commodo duis facilisi phasellus luctus morbi non sed, ut curae pulvinar semper cras sollicitudin enim. Quam primis fringilla diam semper magnis scelerisque mollis urna suspendisse, montes tortor ac eget taciti tempus per nibh, erat dui eleifend metus ad mi pulvinar viverra. Felis sem luctus bibendum dis platea auctor praesent aenean nunc vel ac suscipit pharetra, commodo natoque risus cras in hendrerit cum facilisis faucibus nascetur eros curae, porttitor dignissim tempus dictum ridiculus eu orci inceptos mattis mus vulputate mauris.
+
+Blandit faucibus euismod nam convallis habitasse proin elementum nec himenaeos, ac dapibus risus mus tempus facilisi praesent lobortis, magna etiam fames taciti vel imperdiet non fusce. Malesuada senectus risus duis cras molestie penatibus ultricies, primis ut dignissim habitasse non elementum egestas fusce, viverra eleifend semper sapien per volutpat. Lacus vitae nulla potenti nascetur sed porttitor eleifend semper ullamcorper magna lobortis hac libero venenatis, accumsan congue mus sapien parturient erat class mattis urna donec etiam nullam ligula."
+autowrap_mode = 2
+
+[node name="HBoxExplanation" type="HBoxContainer" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation" unique_id=81724128]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 808.0
+offset_bottom = 139.0
+pivot_offset = Vector2(349, 62)
+
+[node name="TRPortraitImg" type="TextureRect" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation/HBoxExplanation" unique_id=1137225330]
+layout_mode = 2
+texture = ExtResource("1_em2bm")
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation/HBoxExplanation" unique_id=487844951]
+layout_mode = 2
+theme_override_constants/margin_right = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation/HBoxExplanation" unique_id=1740720800]
+layout_mode = 2
+alignment = 1
+
+[node name="LTtile" type="Label" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation/HBoxExplanation/VBoxContainer" unique_id=863498311]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_q27xx")
+theme_override_font_sizes/font_size = 50
+text = "SAMPLE TEXT"
+
+[node name="LSubTitle" type="Label" parent="DisplayedContent/DisplayedExplanations/CharacterExplanation/HBoxExplanation/VBoxContainer" unique_id=117558513]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_6y0yw")
+theme_override_font_sizes/font_size = 30
+text = "SUB SAMPLE TEXT"
+
+[node name="TermExplanation" type="Control" parent="DisplayedContent/DisplayedExplanations" unique_id=2100599532]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.0
+offset_top = -314.5
+offset_right = 424.0
+offset_bottom = 314.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(424, 315)
+
+[node name="BGContentExplanation" type="ColorRect" parent="DisplayedContent/DisplayedExplanations/TermExplanation" unique_id=1745176082]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -848.0
+offset_top = -314.5
+offset_bottom = 314.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(424, 315)
+color = Color(0.23753911, 0.23753914, 0.23753911, 1)
+metadata/_edit_lock_ = true
+
+[node name="LTtile" type="Label" parent="DisplayedContent/DisplayedExplanations/TermExplanation" unique_id=1094683358]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.072000004
+anchor_right = 0.18
+anchor_bottom = 0.072000004
+offset_left = -128.64
+offset_top = -27.288002
+offset_right = 128.36
+offset_bottom = 27.711998
+pivot_offset = Vector2(129, 28)
+theme_override_fonts/font = ExtResource("6_q27xx")
+theme_override_font_sizes/font_size = 50
+text = "SAMPLE TEXT"
+
+[node name="HBoxExplanation" type="HBoxContainer" parent="DisplayedContent/DisplayedExplanations/TermExplanation" unique_id=177009734]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 87.0
+offset_right = 808.0
+offset_bottom = 588.0
+pivot_offset = Vector2(398, 251)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation" unique_id=1393535193]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+
+[node name="LContent" type="Label" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation/ScrollContainer" unique_id=1521827715]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_kgpv8")
+theme_override_font_sizes/font_size = 30
+text = "Lorem ipsum dolor sit amet consectetur adipiscing elit in, risus etiam faucibus consequat neque tristique erat, enim nisl accumsan eu quisque imperdiet rutrum. Est cum sagittis nunc platea nascetur diam at fusce hac in risus sapien penatibus, pharetra magna aenean sociosqu volutpat ornare cursus habitant nam natoque conubia et. Sagittis ut vivamus nec dictum natoque posuere cubilia quisque vehicula, magna per et lacus eros pulvinar non netus fermentum, ante proin ultricies venenatis erat arcu suscipit fusce.
+
+Sem ad pellentesque cursus potenti litora egestas nascetur pharetra, vivamus commodo duis facilisi phasellus luctus morbi non sed, ut curae pulvinar semper cras sollicitudin enim. Quam primis fringilla diam semper magnis scelerisque mollis urna suspendisse, montes tortor ac eget taciti tempus per nibh, erat dui eleifend metus ad mi pulvinar viverra. Felis sem luctus bibendum dis platea auctor praesent aenean nunc vel ac suscipit pharetra, commodo natoque risus cras in hendrerit cum facilisis faucibus nascetur eros curae, porttitor dignissim tempus dictum ridiculus eu orci inceptos mattis mus vulputate mauris.
+
+Blandit faucibus euismod nam convallis habitasse proin elementum nec himenaeos, ac dapibus risus mus tempus facilisi praesent lobortis, magna etiam fames taciti vel imperdiet non fusce. Malesuada senectus risus duis cras molestie penatibus ultricies, primis ut dignissim habitasse non elementum egestas fusce, viverra eleifend semper sapien per volutpat. Lacus vitae nulla potenti nascetur sed porttitor eleifend semper ullamcorper magna lobortis hac libero venenatis, accumsan congue mus sapien parturient erat class mattis urna donec etiam nullam ligula."
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation" unique_id=1159663679]
+layout_mode = 2
+theme_override_constants/margin_right = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation" unique_id=1793479182]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation/VBoxContainer" unique_id=121247888]
+layout_mode = 2
+texture = ExtResource("1_em2bm")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation/VBoxContainer" unique_id=883890498]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://djjdb70e0fh6f"]
+
+[ext_resource type="Script" uid="uid://b3rw0nm8qkdin" path="res://Scenes/Inventory/ContentMenu.cs" id="1_n1gkd"]
+[ext_resource type="Texture2D" uid="uid://ciu2swkhfonmr" path="res://Assets/FullBody/Treyasilhouette.png" id="2_37qp6"]
+[ext_resource type="PackedScene" uid="uid://dcvyl38r3s5hd" path="res://Scenes/Inventory/inventory.tscn" id="3_htacr"]
+[ext_resource type="PackedScene" uid="uid://dlb7ymulk8bgm" path="res://Scenes/Inventory/codex.tscn" id="4_edjnt"]
+
+[node name="ContentMenu" type="Control" unique_id=1464376574]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+script = ExtResource("1_n1gkd")
+
+[node name="PrincipalLayer" type="CanvasLayer" parent="." unique_id=241787274]
+
+[node name="PrincipalMenu" type="Control" parent="PrincipalLayer" unique_id=1256722913]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DecorativeContent" type="Control" parent="PrincipalLayer/PrincipalMenu" unique_id=699903412]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TreyaSilhouette" type="Sprite2D" parent="PrincipalLayer/PrincipalMenu/DecorativeContent" unique_id=448485599]
+visible = false
+position = Vector2(1150, 720)
+texture = ExtResource("2_37qp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="PrincipalLayer/PrincipalMenu/DecorativeContent" unique_id=1079988982]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PrincipalLayer/PrincipalMenu/DecorativeContent" unique_id=1842233741]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -50.5
+offset_right = 43.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BResume" type="Button" parent="PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer" unique_id=1974535883]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Continuar"
+
+[node name="BCodex" type="Button" parent="PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer" unique_id=46656378]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Codex"
+
+[node name="BExit" type="Button" parent="PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer" unique_id=2133082450]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Salir"
+
+[node name="Inventory" parent="PrincipalLayer" unique_id=2095963872 instance=ExtResource("3_htacr")]
+visible = false
+
+[node name="Codex" parent="PrincipalLayer" unique_id=668818190 instance=ExtResource("4_edjnt")]

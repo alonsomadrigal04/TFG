@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://crlykvp8dy3bv"
+valid=false
+
+[deps]
+
+source_file="res://Data/Codex/CodexBible.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

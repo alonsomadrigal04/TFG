@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://cw7xrb8nb207o" path="res://Scripts/WriteMachine/TextTyper.cs" id="1_1hl6y"]
 [ext_resource type="Texture2D" uid="uid://cbhwjvlx50sij" path="res://Assets/UI/dialogBox.png" id="2_4xj7t"]
 [ext_resource type="Texture2D" uid="uid://ccg0urlj0wv0" path="res://Assets/UI/transparent.png" id="2_nvnf7"]
-[ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_s4oty"]
+[ext_resource type="FontFile" uid="uid://b155oknr2pxb7" path="res://Assets/Fonts/CrimsonPro-VariableFont_wght.ttf" id="4_esxvy"]
 [ext_resource type="Texture2D" uid="uid://dhhubtdruxl1y" path="res://Assets/UI/nextDialogIcon.png" id="4_h4oya"]
 [ext_resource type="Script" uid="uid://be60ixvdb27x8" path="res://Scripts/SpecificActions/SentenceCompleteHud.cs" id="5_h4oya"]
+[ext_resource type="FontFile" uid="uid://bkwyo3rug11be" path="res://Assets/Fonts/IMFellEnglish-Regular.ttf" id="5_hsx0a"]
 
 [node name="Control" type="Control" unique_id=1847514292 node_paths=PackedStringArray("dialogBox", "dialogBoxFrame", "nameBox", "sentenceHud")]
 z_index = 2
@@ -60,7 +61,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DialogText" type="RichTextLabel" parent="TextureRect/MarginContainer" unique_id=1750638901]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_s4oty")
+theme_override_fonts/normal_font = ExtResource("4_esxvy")
 theme_override_font_sizes/normal_font_size = 58
 theme_override_font_sizes/bold_font_size = 58
 theme_override_font_sizes/bold_italics_font_size = 58
@@ -89,7 +90,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SpeakerName" type="RichTextLabel" parent="TextureRect/MarginContainer2" unique_id=1705052146]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_s4oty")
+theme_override_fonts/normal_font = ExtResource("5_hsx0a")
 theme_override_font_sizes/normal_font_size = 52
 bbcode_enabled = true
 text = "JAIME"
