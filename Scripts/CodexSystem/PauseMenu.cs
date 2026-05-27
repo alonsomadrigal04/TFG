@@ -78,7 +78,8 @@ public partial class PauseMenu : Control
         {
             GameManager.Instance.PauseGame();
             SetPause(false);
-            actualMenu = MenuDisplayed.None;
+            if(actualMenu != MenuDisplayed.None)
+                ReturnAction();
         }
     }
 

@@ -108,23 +108,6 @@ public partial class InventoryBehaviour : Control
 
     public override void _Input(InputEvent e)
     {
-        if (e.IsActionPressed("openInventory") && !inventoryOpened && animationsFinished && GameManager.GlobalInputsEnabled && /*GameManager.GameStarted && */!PauseManager.GamePaused)
-        {
-            Show();
-            RefreshInventoryUI();
-            UpdateSlots();
-            animationPlayer.Play("OpenInventory");
-            inventoryOpened = true;
-            animationsFinished = false;
-        }
-
-        if (e.IsActionPressed("closeInventory") && inventoryOpened && animationsFinished)
-        {
-            animationPlayer.Play("CloseInventory");
-            inventoryOpened = false;
-            animationsFinished = false;
-        }
-
         if (!inventoryOpened) return;
 
         if (e.IsActionPressed("moveDownInventory"))
@@ -137,6 +120,29 @@ public partial class InventoryBehaviour : Control
             MoveUp();
         }
     }
+
+    public void CloseInventory()
+    {
+        if(!inventoryOpened && !animationsFinished) return;
+        
+        animationPlayer.Play("CloseInventory");
+        inventoryOpened = false;
+        animationsFinished = false;
+    }
+
+
+    public void OpenInventory()
+    {
+        if(inventoryOpened && !animationsFinished) return;
+
+        Show();
+        RefreshInventoryUI();
+        UpdateSlots();
+        animationPlayer.Play("OpenInventory");
+        inventoryOpened = true;
+        animationsFinished = false;
+    }
+
 
     void MoveDown()
     {

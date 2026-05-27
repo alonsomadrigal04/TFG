@@ -92,7 +92,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../ShaderPause:material:shader_parameter/intensity")
+tracks/5/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/intensity")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -104,7 +104,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../ShaderPause:material:shader_parameter/warp")
+tracks/6/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/warp")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -116,7 +116,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../ShaderPause:material:shader_parameter/chromatic")
+tracks/7/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/chromatic")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -128,7 +128,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../ShaderPause:visible")
+tracks/8/path = NodePath("../PrincipalLayer/ShaderPause:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -144,7 +144,7 @@ length = 1.4333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../ShaderPause:material:shader_parameter/intensity")
+tracks/0/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/intensity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -156,7 +156,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../ShaderPause:material:shader_parameter/chromatic")
+tracks/1/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/chromatic")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -168,7 +168,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../ShaderPause:material:shader_parameter/warp")
+tracks/2/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/warp")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -180,7 +180,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../ShaderPause:material:shader_parameter/blur_mip")
+tracks/3/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/blur_mip")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -252,7 +252,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../ShaderPause:visible")
+tracks/9/path = NodePath("../PrincipalLayer/ShaderPause:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -303,7 +303,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../ShaderPause:material:shader_parameter/intensity")
+tracks/3/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/intensity")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -315,7 +315,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../ShaderPause:material:shader_parameter/chromatic")
+tracks/4/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/chromatic")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -327,7 +327,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../ShaderPause:material:shader_parameter/warp")
+tracks/5/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/warp")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -339,7 +339,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../ShaderPause:material:shader_parameter/blur_mip")
+tracks/6/path = NodePath("../PrincipalLayer/ShaderPause:material:shader_parameter/blur_mip")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -411,7 +411,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../ShaderPause:visible")
+tracks/12/path = NodePath("../PrincipalLayer/ShaderPause:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -487,18 +487,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.34151012),
 "update": 1,
 "values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../PrincipalLayer/BReturn:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.34151012, 0.34151012),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.51, 0.51)]
 }
 
 [sub_resource type="Animation" id="Animation_3k8i2"]
@@ -622,9 +610,38 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_squ4s"]
 resource_name = "DisplayIn"
+length = 0.26666668
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PrincipalLayer/InventoryMenu")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OpenInventory"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_x6hei"]
 resource_name = "DisplayOut"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PrincipalLayer/InventoryMenu")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"CloseInventory"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x1ny2"]
 _data = {
@@ -662,13 +679,13 @@ soundAnimator = NodePath("Animators/APSound")
 codexAnimator = NodePath("Animators/APCodex")
 inventoryAnimator = NodePath("Animators/APInventory")
 
-[node name="ShaderPause" type="ColorRect" parent="." unique_id=609684430]
+[node name="PrincipalLayer" type="CanvasLayer" parent="." unique_id=241787274]
+layer = 15
+
+[node name="ShaderPause" type="ColorRect" parent="PrincipalLayer" unique_id=609684430]
 material = SubResource("ShaderMaterial_7a2nf")
-layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
-
-[node name="PrincipalLayer" type="CanvasLayer" parent="." unique_id=241787274]
 
 [node name="PrincipalMenu" type="Control" parent="PrincipalLayer" unique_id=1256722913]
 layout_mode = 3

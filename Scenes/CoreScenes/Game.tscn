@@ -98,12 +98,13 @@ stream_0/stream = ExtResource("12_wxwew")
 [node name="Game" type="Node" unique_id=1234653959]
 process_mode = 1
 
-[node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("screenTransition", "safeScreen", "chapterBehaviour", "audioManager")]
+[node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseMenu", "screenTransition", "safeScreen", "chapterBehaviour", "audioManager")]
 process_mode = 3
 script = ExtResource("1_gl6un")
 debugDialogName = "Test"
 firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
+pauseMenu = NodePath("../ContenLayer/PauseMenu")
 screenTransition = NodePath("../ContenLayer/FX/PostProcess/ScreenTransition")
 safeScreen = NodePath("../ContenLayer/FX/ScreenSafeLayer/ScreenSafe")
 chapterBehaviour = NodePath("../ChapterBehaviour")
@@ -235,6 +236,10 @@ metadata/_custom_type_script = "uid://c4f6ujc2r5nm6"
 mouse_filter = 2
 
 [node name="ContenLayer" type="CanvasLayer" parent="." unique_id=1519700872]
+layer = 15
+
+[node name="PauseMenu" parent="ContenLayer" unique_id=1464376574 instance=ExtResource("50_21svs")]
+process_mode = 3
 
 [node name="FX" type="Control" parent="ContenLayer" unique_id=2116797528]
 layout_mode = 3
@@ -276,6 +281,3 @@ stream = SubResource("AudioStreamRandomizer_wxwew")
 [node name="DebugScreen" parent="ContenLayer/FX/PostProcess" unique_id=1323278458 instance=ExtResource("3_2irst")]
 mouse_filter = 2
 metadata/_edit_lock_ = true
-
-[node name="PauseMenu" parent="ContenLayer" unique_id=1464376574 instance=ExtResource("50_21svs")]
-visible = false
