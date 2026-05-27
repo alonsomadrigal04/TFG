@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 
-public partial class CodexBehaviour : Node
+public partial class CodexBehaviour : Control
 {
     [ExportGroup("UI Sounds")]
     [Export] AudioStream hoverSound;

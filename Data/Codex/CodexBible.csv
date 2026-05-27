@@ -1,13 +1,13 @@
-﻿TYPE;TITLE;SUBTITLE;CONTENT;text;next
-Character;Aldric Voss;;Un mercenario de pocas palabras que lleva años trabajando para el mejor postor. Nadie sabe de dónde viene, pero todos conocen su reputación.;;
-Character;Seraphine Mael;La Tejedora;Hechicera de la Corte del Crepúsculo. Domina los hilos del destino con una sonrisa que nunca llega a los ojos.;No debería acercarme más al camino.;
-Character;Torben Ashguard;El Roto;Antiguo paladín que perdió su fe tras el Colapso de Irenmoor. Ahora vaga buscando algo en lo que volver a creer.;No tengo nada que hacer ahí... ;
-Character;Nyssa;Sombra del Gremio;Asesina al servicio del Gremio de la Aguja. Siempre aparece cuando menos se la espera y desaparece antes de que puedas hacer preguntas.;Todavía.;
-Term;El Colapso de Irenmoor;;El evento que destruyó la ciudad sagrada de Irenmoor hace treinta años. Las causas oficiales hablan de un fallo en los sellos de contención. Nadie que estuvo allí cuenta la misma historia.;…;
-Term;Tejido;Magia primordial;La energía invisible que conecta todos los seres vivos. Los hechiceros aprenden a tirarlo, doblarlo y en casos extremos cortarlo. Cortarlo tiene un precio.;Ese olor de nuevo…;
-Term;El Gremio de la Aguja;;Organización criminal que opera en las ciudades del sur. Se especializan en información, extorsión y trabajos que otros no quieren hacer. Su símbolo es una aguja atravesando un ojo.;;
-Term;Sellos de Contención;;Runas antiguas grabadas en piedra viva que mantienen encerradas las anomalías del Tejido. Requieren mantenimiento constante. Muchos de los que quedan están deteriorados.;¿Qué es? ¿De dónde viene?;
-Localization;Irenmoor;Ruinas del norte;Lo que queda de la ciudad santa. Nadie vive allí desde el Colapso, aunque hay quien dice que de noche se ven luces entre las piedras.;…;
-Localization;Corte del Crepúsculo;Ciudad flotante;La ciudad que nunca toca el suelo. Flota sobre las Llanuras Grises sostenida por sellos de contención de primera generación. Sede del poder mágico del continente.;Si que huele un poco mal…;
-Localization;Puerto Cincel;Ciudad costera;El puerto más sucio y más honesto del sur. Todo tiene un precio en Cincel, incluyendo la información que no debería existir.;;
-Localization;Las Llanuras Grises;Región central;Una extensión de tierra yerma donde el Tejido es inestable. Los viajeros que se internan sin guía raramente salen por donde entraron.;;
+﻿TYPE;TITLE;SUBTITLE;CONTENT
+Character;Aldric Voss;;Un mercenario de pocas palabras que lleva años trabajando para el mejor postor. Nadie sabe de dónde viene, pero todos conocen su reputación.
+Character;Seraphine Mael;La Tejedora;Hechicera de la Corte del Crepúsculo. Domina los hilos del destino con una sonrisa que nunca llega a los ojos.
+Character;Torben Ashguard;El Roto;Antiguo paladín que perdió su fe tras el Colapso de Irenmoor. Ahora vaga buscando algo en lo que volver a creer.
+Character;Nyssa;Sombra del Gremio;Asesina al servicio del Gremio de la Aguja. Siempre aparece cuando menos se la espera y desaparece antes de que puedas hacer preguntas.
+Term;El Colapso de Irenmoor;;El evento que destruyó la ciudad sagrada de Irenmoor hace treinta años. Las causas oficiales hablan de un fallo en los sellos de contención. Nadie que estuvo allí cuenta la misma historia.
+Term;Tejido;Magia primordial;La energía invisible que conecta todos los seres vivos. Los hechiceros aprenden a tirarlo, doblarlo y en casos extremos cortarlo. Cortarlo tiene un precio.
+Term;El Gremio de la Aguja;;Organización criminal que opera en las ciudades del sur. Se especializan en información, extorsión y trabajos que otros no quieren hacer. Su símbolo es una aguja atravesando un ojo.
+Term;Sellos de Contención;;Runas antiguas grabadas en piedra viva que mantienen encerradas las anomalías del Tejido. Requieren mantenimiento constante. Muchos de los que quedan están deteriorados.
+Localization;Irenmoor;Ruinas del norte;Lo que queda de la ciudad santa. Nadie vive allí desde el Colapso, aunque hay quien dice que de noche se ven luces entre las piedras.
+Localization;Corte del Crepúsculo;Ciudad flotante;La ciudad que nunca toca el suelo. Flota sobre las Llanuras Grises sostenida por sellos de contención de primera generación. Sede del poder mágico del continente.
+Localization;Puerto Cincel;Ciudad costera;El puerto más sucio y más honesto del sur. Todo tiene un precio en Cincel, incluyendo la información que no debería existir.
+Localization;Las Llanuras Grises;Región central;Una extensión de tierra yerma donde el Tejido es inestable. Los viajeros que se internan sin guía raramente salen por donde entraron.
