@@ -1,13 +1,26 @@
-﻿TYPE;TITLE;SUBTITLE;CONTENT
-Character;Aldric Voss;;Un mercenario de pocas palabras que lleva años trabajando para el mejor postor. Nadie sabe de dónde viene, pero todos conocen su reputación.
-Character;Seraphine Mael;La Tejedora;Hechicera de la Corte del Crepúsculo. Domina los hilos del destino con una sonrisa que nunca llega a los ojos.
-Character;Torben Ashguard;El Roto;Antiguo paladín que perdió su fe tras el Colapso de Irenmoor. Ahora vaga buscando algo en lo que volver a creer.
-Character;Nyssa;Sombra del Gremio;Asesina al servicio del Gremio de la Aguja. Siempre aparece cuando menos se la espera y desaparece antes de que puedas hacer preguntas.
-Term;El Colapso de Irenmoor;;El evento que destruyó la ciudad sagrada de Irenmoor hace treinta años. Las causas oficiales hablan de un fallo en los sellos de contención. Nadie que estuvo allí cuenta la misma historia.
-Term;Tejido;Magia primordial;La energía invisible que conecta todos los seres vivos. Los hechiceros aprenden a tirarlo, doblarlo y en casos extremos cortarlo. Cortarlo tiene un precio.
-Term;El Gremio de la Aguja;;Organización criminal que opera en las ciudades del sur. Se especializan en información, extorsión y trabajos que otros no quieren hacer. Su símbolo es una aguja atravesando un ojo.
-Term;Sellos de Contención;;Runas antiguas grabadas en piedra viva que mantienen encerradas las anomalías del Tejido. Requieren mantenimiento constante. Muchos de los que quedan están deteriorados.
-Localization;Irenmoor;Ruinas del norte;Lo que queda de la ciudad santa. Nadie vive allí desde el Colapso, aunque hay quien dice que de noche se ven luces entre las piedras.
-Localization;Corte del Crepúsculo;Ciudad flotante;La ciudad que nunca toca el suelo. Flota sobre las Llanuras Grises sostenida por sellos de contención de primera generación. Sede del poder mágico del continente.
-Localization;Puerto Cincel;Ciudad costera;El puerto más sucio y más honesto del sur. Todo tiene un precio en Cincel, incluyendo la información que no debería existir.
-Localization;Las Llanuras Grises;Región central;Una extensión de tierra yerma donde el Tejido es inestable. Los viajeros que se internan sin guía raramente salen por donde entraron.
+﻿TYPE;TITLE;SUBTITLE;CONTENT;Video
+Character;Treya Meiden;"Huellas Verdes; Círculo 7";"Treya nació en el núcleo ajetreado de Ghalendir, justo cuando la guerra de sucesión estaba en su punto más cruel. Desde muy pequeña, estuvo rodeada del ruido de las armas, la sangre y el dolor de una guerra cruel. Su familia apoyaba al rey Colfosirium, el legítimo y justo monarca que se oponía a Drin Krake, su padre fue uno de los líderes más destacados de las reyertas que lograron contener a las tropas invasoras.
+
+Se unió al ejercito Jaleano cuando... ¿Cuándo?";false
+Character;Fled Sorindu;"Huellas Verdes; Círculo 7";"Fled es autóctono de Venita Estolfeo, más allá del mar Nimio, el llamado ""Antiguo Paraíso"". Según él, lleva años en el ejército Jaleano, en la división de las Lanzas Blancas. Ha visto muchos reinos de toda Noctyra, recolectando los mejores platos de cada uno. También tiene fama de gran embustero y mentiroso. Se unió al ejército Jaleano hace muchos Pulsos, lo que a Treya le parece raro porque parecen de la misma edad, ayudando en línea y como apoyo de cuerpo, pero lo trasladaron a los Huellas Verdes porque una vez cocinó algo demasiado picante para su líder de Círculo; fue la gota que colmó el vaso y le expulsaron.
+
+Es una de las pocas historias suyas que Treya se cree.";false
+Character;Colfosirium I;Anthaval Supremo;???;false
+Character;Quion Statt;" Huella Verdes; Círculo 5";"
+El curtido líder del Círculo de Treya que está al frente de esta misión. Muestra un ceño fruncido de manera continua y da la impresión de que nunca está satisfecho con el trabajo de quienes están bajo su mando. Aun así, protege la seguridad de aquellos que están bajo su autoridad. Parece tenerle un cariño especial a Treya.";false
+;;;;
+;;;;
+Term;Guerra de Sucesión: Parte I;;"En 1212, el gobernante de Ghalendir, Antrius I, murió de forma repentina por un ataque al corazón. Durante el tiempo en el que se buscaba a un nuevo rey, el Anthaval Colfosirium, líder del dominio central, fue nombrado regente hasta que encontraran a un sucesor al trono.
+
+El sobrino de Antrius, Drin Krake, se encontraba en Hatmaa, el país vecino, y con todas sus huestes reclamó el trono que tenía por derecho. 
+
+Una parte del pueblo veía a Colfos como un verdadero líder, por lo que comenzaron a apoyar su causa y lo reclamaban como rey. Algunos, debido al odio que ostentaban a Antrius, se negaban a que alguien que compartiera su sangre reinase de nuevo. Entre ellos, el general Colfos.
+
+Comenzaron las tensiones cuando una parte de la población reivindicaba el derecho de Drin Krake al reclamo del trono y otros apoyaban la causa de Colfos.";true
+;;;;
+Localization;Ghalendir;;"Ghalendir fue uno de los reinos más poderosos de todo el  antiguo paraíso. Actualmente lo gobierna Colfosirium I aclamado y elegido por el pueblo en la guerra de sucesión de hace unos años.
+
+Su reino se divide en cuatro dominios, organizados por diferentes líderes, llamados Anthavals. Su capital, Oria, se encuentra en el dominio central.";false
+Localization;La Gran Durnak;;;false
+Localization;El Conducto;;;false
+Localization;Guardo Blanco;;;false

@@ -5,6 +5,9 @@ using System.Linq.Expressions;
 public partial class PauseMenu : Control
 {
     bool GamePaused = false;
+    [Export] CanvasLayer layer;
+    [Export] ColorRect shader;
+
     [ExportGroup("BUTTONS")]
     [Export] Button bContinue;
     [Export] Button bCodex;
@@ -20,6 +23,7 @@ public partial class PauseMenu : Control
     [Export] Control soundMenu;
     [Export] Control inventoryMenu;
     [Export] Control codexMenu;
+    [Export] Control principalMenu;
 
     [ExportGroup("Animators")]
     [Export] AnimationPlayer pauseAnimator;
@@ -27,12 +31,35 @@ public partial class PauseMenu : Control
     [Export] AnimationPlayer codexAnimator;
     [Export] AnimationPlayer inventoryAnimator;
 
-    public void SetPause(bool gamePaused)
+    public bool SetPause(bool gamePaused)
     {
-        if(gamePaused)
+        if (gamePaused)
+        {
+            shader.Show();
+            layer.Show();
+            principalMenu.Show();
             pauseAnimator.Play("PauseOn");
+            return true;
+        }
         else
-            pauseAnimator.Play("PauseOff");
+        {
+            if(actualMenu != MenuDisplayed.None)
+            {
+                ReturnAction();
+                return false;
+            }
+            else
+            {
+                pauseAnimator.Play("PauseOff");
+                return true;
+            }
+        }
+    }
+
+    public void HidePauseLayout()
+    {
+        shader.Hide();
+        layer.Hide();
     }
 
     public override void _Ready()
@@ -44,6 +71,8 @@ public partial class PauseMenu : Control
         soundMenu.Hide();
         codexMenu.Hide();
         inventoryMenu.Hide();
+        shader.Hide();
+        principalMenu.Hide();
 
         bCodex.Pressed += () => SetMenuType(MenuDisplayed.Codex);
         bSound.Pressed += () => SetMenuType(MenuDisplayed.Sound);
@@ -71,6 +100,7 @@ public partial class PauseMenu : Control
         actualMenu = MenuDisplayed.None;       
     }
 
+    bool IsMenuOpen() => actualMenu != MenuDisplayed.None;
 
     void ResumeGame()
     {
@@ -78,13 +108,16 @@ public partial class PauseMenu : Control
         {
             GameManager.Instance.PauseGame();
             SetPause(false);
-            if(actualMenu != MenuDisplayed.None)
+            if(IsMenuOpen())
                 ReturnAction();
         }
     }
 
     void SetMenuType(MenuDisplayed type)
     {
+        if(IsMenuOpen())
+            ReturnAction();
+        
         actualMenu = type;
         pauseAnimator.Play("ReturnIn");
         bReturn.Show();

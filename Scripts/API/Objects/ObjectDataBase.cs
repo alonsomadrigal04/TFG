@@ -17,7 +17,12 @@ public static class ObjectDataBase
         
         LoadedSpecialItems = packItems.Itemstored;
 
+        // TODO DELETE THIS
         AddObjectByName("pipa");
+        AddObjectByName("pipa");
+        AddObjectByName("pipa");
+        AddObjectByName("pipa");
+
 
         DebugService.Register("Items in BBDD", () => LoadedSpecialItems.Count.ToString());
     }

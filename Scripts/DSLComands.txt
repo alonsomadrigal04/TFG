@@ -44,8 +44,8 @@ LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT
 ·   UI off                             -- The UI disappears from the screen
 ·   UI transparent                       -- The UI becomes transparent
 ·   UI dramatic [TEXT]                      -- The UI becomes dramatic (e.g., darkens the background and highlights the dialogue box)
-·   UI inventory shows                       -- The inventory appears on the screen
-·   UI inventory hides                       -- The inventory disappears from the screen
+·   UI inventory on                       -- The inventory appears on the screen
+·   UI inventory off                       -- The inventory disappears from the screen
 ·   [Music/Sfx] play [NAME]                   -- A music track or sound effect plays (e.g., Music play Theme, Sfx play DoorOpen)
 ·   UI move [POSITION]                    -- The UI moves to a specific position on the screen (e.g., UI move Left)
 ·   [Music/Sfx] stop                   -- A music track or sound effect stops playing (e.g., Music stop Theme, Sfx stop DoorOpen)

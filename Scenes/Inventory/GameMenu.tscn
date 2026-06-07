@@ -9,6 +9,8 @@
 [ext_resource type="Shader" uid="uid://nkp7leqca4uo" path="res://Shaders/PauseShader.gdshader" id="6_3k8i2"]
 [ext_resource type="PackedScene" uid="uid://bg066cpe4jogn" path="res://Scenes/Inventory/SoundMenu.tscn" id="6_lb5ye"]
 [ext_resource type="FontFile" uid="uid://b155oknr2pxb7" path="res://Assets/Fonts/CrimsonPro-VariableFont_wght.ttf" id="7_squ4s"]
+[ext_resource type="AudioStream" uid="uid://chl4kfk5ngpsi" path="res://Audio/PauseOff.wav" id="10_nb22v"]
+[ext_resource type="AudioStream" uid="uid://jcea17wsyvbw" path="res://Audio/PauseSound.wav" id="10_x1f54"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7a2nf"]
 shader = ExtResource("6_3k8i2")
@@ -137,6 +139,35 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HidePauseLayout"
+}]
+}
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("APPauseGame/AudioStreamPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_nb22v")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/10/use_blend = true
 
 [sub_resource type="Animation" id="Animation_eo0vw"]
 resource_name = "PauseOn"
@@ -261,6 +292,21 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("APPauseGame/AudioStreamPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.44,
+"start_offset": 0.0,
+"stream": ExtResource("10_x1f54")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/10/use_blend = true
 
 [sub_resource type="Animation" id="Animation_x1f54"]
 length = 0.001
@@ -649,7 +695,7 @@ _data = {
 &"DisplayOut": SubResource("Animation_x6hei")
 }
 
-[node name="PauseMenu" type="Control" unique_id=1464376574 node_paths=PackedStringArray("bContinue", "bCodex", "bSound", "bInventory", "bExit", "bReturn", "soundMenu", "inventoryMenu", "codexMenu", "pauseAnimator", "soundAnimator", "codexAnimator", "inventoryAnimator")]
+[node name="PauseMenu" type="Control" unique_id=1464376574 node_paths=PackedStringArray("layer", "shader", "bContinue", "bCodex", "bSound", "bInventory", "bExit", "bReturn", "soundMenu", "inventoryMenu", "codexMenu", "principalMenu", "pauseAnimator", "soundAnimator", "codexAnimator", "inventoryAnimator")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -665,6 +711,8 @@ grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 script = ExtResource("1_oyf0e")
+layer = NodePath("PrincipalLayer")
+shader = NodePath("PrincipalLayer/ShaderPause")
 bContinue = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/BResume")
 bCodex = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/BCodex")
 bSound = NodePath("PrincipalLayer/PrincipalMenu/DecorativeContent/VBoxContainer/Sound")
@@ -674,6 +722,7 @@ bReturn = NodePath("PrincipalLayer/BReturn")
 soundMenu = NodePath("PrincipalLayer/SoundMenu")
 inventoryMenu = NodePath("PrincipalLayer/InventoryMenu")
 codexMenu = NodePath("PrincipalLayer/CodexMenu")
+principalMenu = NodePath("PrincipalLayer/PrincipalMenu")
 pauseAnimator = NodePath("Animators/APPauseGame")
 soundAnimator = NodePath("Animators/APSound")
 codexAnimator = NodePath("Animators/APCodex")
@@ -688,6 +737,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 
 [node name="PrincipalMenu" type="Control" parent="PrincipalLayer" unique_id=1256722913]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -775,6 +825,7 @@ offset_left = 1280.0
 offset_right = 1280.0005
 
 [node name="SoundMenu" parent="PrincipalLayer" unique_id=1182755429 instance=ExtResource("6_lb5ye")]
+visible = false
 pivot_offset = Vector2(640, 373)
 
 [node name="BReturn" type="Button" parent="PrincipalLayer" unique_id=645433053]
@@ -793,6 +844,8 @@ script = ExtResource("5_x1axj")
 
 [node name="APPauseGame" type="AnimationPlayer" parent="Animators" unique_id=1441523733]
 libraries/ = SubResource("AnimationLibrary_oyf0e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Animators/APPauseGame" unique_id=2134251683]
 
 [node name="APSound" type="AnimationPlayer" parent="Animators" unique_id=1077607695]
 libraries/ = SubResource("AnimationLibrary_squ4s")

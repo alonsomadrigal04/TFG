@@ -5,12 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://bjrqpi6wucgt3" path="res://Scenes/Inventory/contentField.tscn" id="1_qil4n"]
 [ext_resource type="Script" uid="uid://bc1guwdjkdlja" path="res://Scripts/CodexSystem/ContentDisplayer.cs" id="3_507l3"]
 [ext_resource type="Script" uid="uid://bm6l4g3ika2xx" path="res://Scripts/Utility/ButtonFeedback.cs" id="3_boflq"]
+[ext_resource type="Texture2D" uid="uid://bca2exwwi58io" path="res://Assets/UI/PH/hasVideeoInd.png" id="4_hscpn"]
 [ext_resource type="FontFile" uid="uid://b155oknr2pxb7" path="res://Assets/Fonts/CrimsonPro-VariableFont_wght.ttf" id="4_kgpv8"]
 [ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="4_n58wi"]
 [ext_resource type="AudioStream" uid="uid://c44tub4pv3gkk" path="res://Audio/Sounds/Buttons/Click.mp3" id="5_24bn7"]
 [ext_resource type="AudioStream" uid="uid://cd1125caacu67" path="res://Audio/Sounds/Buttons/Click.wav" id="5_boflq"]
 [ext_resource type="FontFile" uid="uid://bkwyo3rug11be" path="res://Assets/Fonts/IMFellEnglish-Regular.ttf" id="6_q27xx"]
 [ext_resource type="FontFile" uid="uid://kxhpn0nphiwc" path="res://Assets/Fonts/CrimsonPro-Italic-VariableFont_wght.ttf" id="7_6y0yw"]
+[ext_resource type="PackedScene" uid="uid://xf1sa44u30ls" path="res://Scenes/Inventory/VideoButton.tscn" id="9_24bn7"]
+[ext_resource type="Script" uid="uid://cperpin2gcoyl" path="res://Scripts/CoreScripts/VideoLayout.cs" id="13_mjn0l"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n58wi"]
 random_pitch = 1.3122871
@@ -29,6 +32,8 @@ hoverSound = SubResource("AudioStreamRandomizer_n58wi")
 clickSound = ExtResource("5_24bn7")
 displayer = NodePath("DisplayedContent/DisplayedExplanations")
 entryButtonContainer = NodePath("DisplayedContent/DisplayedItems/VBoxDisplayedItems")
+iconHasVideo = ExtResource("4_hscpn")
+ContentField = ExtResource("1_qil4n")
 bCharacters = NodePath("HBoxCodexOptions/BCharacters")
 bTerms = NodePath("HBoxCodexOptions/BTerms")
 bLocalizations = NodePath("HBoxCodexOptions/BLocalizations")
@@ -105,6 +110,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(640, 360)
 size_flags_horizontal = 4
+metadata/_edit_lock_ = true
 
 [node name="DisplayedItems" type="Control" parent="DisplayedContent" unique_id=1394289765]
 layout_mode = 1
@@ -146,7 +152,7 @@ metadata/_edit_lock_ = true
 [node name="ContentField" parent="DisplayedContent/DisplayedItems/VBoxDisplayedItems" unique_id=586732767 instance=ExtResource("1_qil4n")]
 layout_mode = 2
 
-[node name="DisplayedExplanations" type="Control" parent="DisplayedContent" unique_id=1367538314 node_paths=PackedStringArray("CharacterLayout", "TitleCharacter", "SubTitle", "PortraitImage", "ContentCharacter", "TermsLayout", "TitleTerms", "ContentTerms", "SupportImages")]
+[node name="DisplayedExplanations" type="Control" parent="DisplayedContent" unique_id=1367538314 node_paths=PackedStringArray("CharacterLayout", "TitleCharacter", "SubTitle", "PortraitImage", "ContentCharacter", "TermsLayout", "TitleTerms", "ContentTerms", "SupportImages", "videoLayout")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -169,6 +175,8 @@ TermsLayout = NodePath("TermExplanation")
 TitleTerms = NodePath("TermExplanation/LTtile")
 ContentTerms = NodePath("TermExplanation/HBoxExplanation/ScrollContainer/LContent")
 SupportImages = NodePath("TermExplanation/HBoxExplanation/VBoxContainer")
+videoLayout = NodePath("VideoLayout")
+playButton = ExtResource("9_24bn7")
 
 [node name="CharacterExplanation" type="Control" parent="DisplayedContent/DisplayedExplanations" unique_id=1988979620]
 visible = false
@@ -325,9 +333,49 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation/VBoxContainer" unique_id=121247888]
 layout_mode = 2
 texture = ExtResource("1_em2bm")
+expand_mode = 1
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="DisplayedContent/DisplayedExplanations/TermExplanation/HBoxExplanation/VBoxContainer" unique_id=883890498]
 layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 0
+
+[node name="VideoLayout" type="Control" parent="DisplayedContent/DisplayedExplanations" unique_id=1502769166 node_paths=PackedStringArray("player", "supportText")]
+layout_mode = 1
+anchor_left = -0.509
+anchor_top = -0.14500001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.36801147
+offset_top = 0.20500946
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(573, 360)
+mouse_filter = 2
+script = ExtResource("13_mjn0l")
+player = NodePath("VideoStreamPlayer")
+supportText = NodePath("SupportText")
+metadata/_edit_lock_ = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="DisplayedContent/DisplayedExplanations/VideoLayout" unique_id=1029032578]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand = true
+
+[node name="SupportText" type="Label" parent="DisplayedContent/DisplayedExplanations/VideoLayout" unique_id=646812109]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 0
+offset_top = 16.0
+offset_right = 1280.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("4_kgpv8")
+theme_override_font_sizes/font_size = 21
+text = "Pulsa cualquier tecla para salir"
+horizontal_alignment = 1
+uppercase = true

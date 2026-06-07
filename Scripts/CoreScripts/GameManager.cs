@@ -142,8 +142,8 @@ public partial class GameManager : Node
     public void PauseGame()
     {
         if(!GameStarted) return;
+        if(!pauseMenu.SetPause(!PauseManager.GamePaused)) return;
         PauseManager.GamePaused = !PauseManager.GamePaused;
-        pauseMenu.SetPause(PauseManager.GamePaused);
     }
 
     public override void _Input(InputEvent e)

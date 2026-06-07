@@ -1799,6 +1799,10 @@ skeleton = NodePath("../../../..")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 25, 0, 0)
 skeleton = NodePath("../../../..")
 
+[node name="GrassGroundBig4" parent="Scenario/Ground/GroupGrassGround" unique_id=1604755132 instance=ExtResource("52_8hjc6")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -24, 0, -24.521872)
+skeleton = NodePath("../../../..")
+
 [node name="GrassGroundBig3" parent="Scenario/Ground/GroupGrassGround" unique_id=1719421643 instance=ExtResource("52_8hjc6")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 50, 0, 0)
 skeleton = NodePath("../../../..")

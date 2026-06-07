@@ -56,7 +56,7 @@ public class CameraHandler : ICommandHandler
     bool TryParseZoomArgs(CommandToken commandToken, out Vector2 zoomPosition, out float duration)
     {
         zoomPosition = ToolKit.GetPosition(ScreenPosition.Center);
-        duration = 1.00f;
+        duration = 0.40f;
         if(commandToken.Arguments.Count < 1)
             GD.PushError($"[CameraHanlder] No overload for few arguments");
         else if (commandToken.Arguments.Count > 2)

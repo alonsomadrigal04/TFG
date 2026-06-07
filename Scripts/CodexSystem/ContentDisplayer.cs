@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations;
 using Godot;
 
 public partial class ContentDisplayer : Control
@@ -14,6 +16,11 @@ public partial class ContentDisplayer : Control
     [Export] Label TitleTerms;
     [Export] Label ContentTerms;
     [Export] VBoxContainer SupportImages;
+    
+    [ExportGroup("Video Settings")]
+    [Export] VideoLayout videoLayout;
+    [Export] PackedScene playButton;
+
 
     public void DisplayContent(CoreInformation information)
     {
@@ -27,7 +34,7 @@ public partial class ContentDisplayer : Control
 
                 TitleCharacter.Text = information.Title;
                 SubTitle.Text = information.SubTitle;
-                PortraitImage.Texture = (Texture2D)information.CharacterPortrait;
+                PortraitImage.Texture = information.CharacterPortrait;
                 ContentCharacter.Text = information.Content;
                 break;
 
@@ -44,18 +51,46 @@ public partial class ContentDisplayer : Control
                 foreach (var image in SupportImages.GetChildren())
                     image.QueueFree();
 
+                if (information.Video)
+                {
+                    Button instance = (Button)playButton.Instantiate();
+                    MarginContainer margin = new();
+                    margin.AddThemeConstantOverride("margin_top", 20);
+                    SupportImages.AddChild(margin);
+                    SupportImages.AddChild(instance);
+                    instance.Pressed += () => PlayVideo(information.videoStream);
+                }
+
+
                 foreach (var image in information.SupportImages)
                 {
+                    MarginContainer margin = new();
+                    margin.AddThemeConstantOverride("margin_top", 20);
+                    SupportImages.AddChild(margin);
+
                     var textureRect = new TextureRect
                     {
-                        Texture = (Texture2D)image
+                        Texture = image,
+                        ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                        StretchMode = TextureRect.StretchModeEnum.Keep
                     };
+
                     SupportImages.AddChild(textureRect);
                 }
                 break;
         }
     }
 
+    void PlayVideo(VideoStream videoStream)
+    {
+        videoLayout.StartVideo(videoStream);
+    }
 
-
+    public void Clean()
+    {
+        TitleTerms.Text = "";
+        ContentTerms.Text = "";
+        TitleCharacter.Text = "";
+        SubTitle.Text = "";
+    }
 }

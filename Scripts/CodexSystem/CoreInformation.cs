@@ -14,6 +14,10 @@ public partial class CoreInformation : Resource
     [Export] public string Title = "";
     [Export] public string SubTitle = "";
     [Export] public string Content = "";
+    [Export] public bool Video = false;
     [Export] public Texture2D CharacterPortrait;
+    [Export] public Texture2D CharacterEyes;
+
     [Export] public Texture2D[] SupportImages = [];
+    [Export] public VideoStream videoStream;
 }

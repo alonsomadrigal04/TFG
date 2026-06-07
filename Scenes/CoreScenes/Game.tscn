@@ -22,7 +22,6 @@
 [ext_resource type="AudioStream" uid="uid://1x0qf7pvxjd7" path="res://Audio/Sounds/Impact_1.wav" id="9_ym08v"]
 [ext_resource type="AudioStream" uid="uid://djnu3xm715pa7" path="res://Audio/Sounds/FlavourSounds/question2.wav" id="10_8ekww"]
 [ext_resource type="AudioStream" uid="uid://dlmrqhbysybo4" path="res://Audio/FadeIn.wav" id="11_3cx6b"]
-[ext_resource type="PackedScene" uid="uid://78syml0hccxr" path="res://Scenes/Exploration/ExplorationZones/exploration_zone_camp_fire.tscn" id="11_4q8tf"]
 [ext_resource type="AudioStream" uid="uid://dcv4i2qsfnv6w" path="res://Audio/Sounds/FlavourSounds/exclamation1.wav" id="11_dwhu0"]
 [ext_resource type="AudioStream" uid="uid://dp4gfkp0uh8iq" path="res://Audio/Sounds/flash.wav" id="12_nojon"]
 [ext_resource type="AudioStream" uid="uid://c4lqyd6ruk82q" path="res://Audio/Fadeout.wav" id="12_wxwew"]
@@ -39,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://b7y7hwa61ghc2" path="res://Audio/Sounds/Footsteps/DirtSteps2.wav" id="24_n2ugt"]
 [ext_resource type="AudioStream" uid="uid://cwo2tltf5mmrl" path="res://Audio/Sounds/Footsteps/DirtSteps3.wav" id="25_n24vg"]
 [ext_resource type="AudioStream" uid="uid://ysuevt630hbs" path="res://Audio/InteractDialogue.wav" id="26_n24vg"]
+[ext_resource type="PackedScene" uid="uid://b6mij6vcwn6pg" path="res://Scenes/Exploration/ExplorationZones/exploration_zone_camp_firev2.tscn" id="32_sb2g0"]
 [ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="35_jn8rg"]
 [ext_resource type="PackedScene" uid="uid://djjdb70e0fh6f" path="res://Scenes/Inventory/GameMenu.tscn" id="50_21svs"]
 
@@ -227,7 +227,7 @@ metadata/_custom_type_script = "uid://2wlmnk3f6oyy"
 [node name="GameEnvironments" type="Node" parent="." unique_id=968756839]
 script = ExtResource("2_kldst")
 mainMenu = ExtResource("4_fgofq")
-campfireScene = ExtResource("11_4q8tf")
+campfireScene = ExtResource("32_sb2g0")
 onlyTextBox = ExtResource("7_wxwew")
 chapterEnv = ExtResource("7_dahhg")
 metadata/_custom_type_script = "uid://c4f6ujc2r5nm6"
@@ -240,6 +240,7 @@ layer = 15
 
 [node name="PauseMenu" parent="ContenLayer" unique_id=1464376574 instance=ExtResource("50_21svs")]
 process_mode = 3
+visible = false
 
 [node name="FX" type="Control" parent="ContenLayer" unique_id=2116797528]
 layout_mode = 3

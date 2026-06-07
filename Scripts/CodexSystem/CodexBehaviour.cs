@@ -13,6 +13,8 @@ public partial class CodexBehaviour : Control
     [ExportGroup("Displayer")]
     [Export] ContentDisplayer displayer;
     [Export] Container entryButtonContainer;
+    [Export] Texture2D iconHasVideo;
+    [Export] PackedScene ContentField;
 
     [ExportGroup("Mode Buttons")]
     [Export] Button bCharacters;
@@ -20,14 +22,14 @@ public partial class CodexBehaviour : Control
     [Export] Button bLocalizations;
 
     CodexLibrary library;
-    CodexType    currentMode = CodexType.Character;
+    CodexType currentMode = CodexType.Character;
 
     public override void _Ready()
     {
         library = new CodexLibrary();
         library.LoadAll();
 
-
+        displayer.Clean();
 
         bCharacters.Pressed    += () => SwitchMode(CodexType.Character);
         bTerms.Pressed         += () => SwitchMode(CodexType.Term);
@@ -44,7 +46,7 @@ public partial class CodexBehaviour : Control
     void SwitchMode(CodexType type)
     {
         currentMode = type;
-        RebuildEntryButtons(library.GetList(type));
+        RebuildEntryButtons(CodexLibrary.GetList(type));
     }
 
     void RebuildEntryButtons(List<CoreInformation> entries)
@@ -56,12 +58,22 @@ public partial class CodexBehaviour : Control
         {
             var capturedEntry = entry;
 
-            var button = new ButtonFeedback
+            var button = (ButtonFeedback)ContentField.Instantiate();
+
+            button.Text = entry.Title;
+            button.HoverSound = hoverSound;
+            button.ClickSound = clickSound;
+
+            if(entry.DisplayType == CodexType.Character)
             {
-                Text = entry.Title,
-                HoverSound = hoverSound,
-                ClickSound = clickSound
-            };
+                button.Icon = entry.CharacterEyes;
+            }
+
+            if (entry.Video)
+            {
+                button.Icon = iconHasVideo;
+                button.ExpandIcon = true;
+            }
 
             button.PivotOffset = new Vector2(button.Size.X / 2, button.Size.Y / 2);
 

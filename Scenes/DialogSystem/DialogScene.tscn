@@ -17,6 +17,9 @@
 [ext_resource type="Script" uid="uid://248808w4dew5" path="res://Scripts/API/Objects/ObjectStage.cs" id="8_dclby"]
 [ext_resource type="PackedScene" uid="uid://c1vbgjqjuv7ab" path="res://Scenes/DialogSystem/SpecialItemFrame.tscn" id="9_r0xxx"]
 [ext_resource type="Script" uid="uid://db5ua5y7j2bcn" path="res://Scripts/Utility/FlavourAnimator.cs" id="11_n1mmy"]
+[ext_resource type="Script" uid="uid://cgi6av37yoohr" path="res://Scripts/Interface/CodexToast.cs" id="13_3b5i8"]
+[ext_resource type="Texture2D" uid="uid://bx2r4w6nwcs40" path="res://Assets/UI/PH/CodexNotification.png" id="13_jn18p"]
+[ext_resource type="AudioStream" uid="uid://d2mt8g0ld2tdu" path="res://Audio/CodexNotification.wav" id="14_fpum5"]
 [ext_resource type="Texture2D" uid="uid://20l7bf5g2xu1" path="res://Assets/Flavour/Exclamation.png" id="15_2rb1s"]
 [ext_resource type="Texture2D" uid="uid://k0af4whpqc86" path="res://Assets/UI/PopUpsCuadro.png" id="17_p8x5j"]
 [ext_resource type="PackedScene" uid="uid://bjigg7pxsd6r8" path="res://Assets/Flavour/Interrogation.tscn" id="18_1mrl1"]
@@ -839,6 +842,97 @@ metadata/_edit_lock_ = true
 [node name="GeneralLayout" type="CanvasLayer" parent="." unique_id=1610666286]
 layer = 10
 
+[node name="Toasts" type="Control" parent="GeneralLayout" unique_id=1653643840]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemToast" type="Control" parent="GeneralLayout/Toasts" unique_id=585923529]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 1260.0
+offset_bottom = 720.0
+grow_horizontal = 2
+pivot_offset = Vector2(640, 53)
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TRNewItemFrame" type="TextureRect" parent="GeneralLayout/Toasts/ItemToast" unique_id=1664417285]
+layout_mode = 0
+offset_left = 343.0
+offset_top = -105.0
+offset_right = 927.2923
+offset_bottom = 176.0
+texture = ExtResource("17_p8x5j")
+expand_mode = 1
+
+[node name="ItemLabel" type="Label" parent="GeneralLayout/Toasts/ItemToast" unique_id=1122127271]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50600004
+anchor_right = 0.50600004
+offset_left = -266.68005
+offset_right = 250.31995
+offset_bottom = 138.0
+pivot_offset = Vector2(225, 41)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("27_mmhpi")
+theme_override_font_sizes/font_size = 34
+text = "Has conseguido!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterToast" type="Control" parent="GeneralLayout/Toasts" unique_id=1030869185]
+visible = false
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="LToastText" type="Label" parent="GeneralLayout/Toasts/CharacterToast" unique_id=1199579503]
+visible = false
+layout_mode = 1
+offset_left = 80.0
+offset_right = 485.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 34
+text = "Alonso recordara esto."
+vertical_alignment = 1
+
+[node name="SToastSprite" type="Sprite2D" parent="GeneralLayout/Toasts/CharacterToast" unique_id=1469012162]
+visible = false
+position = Vector2(47, 44)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_2rb1s")
+
+[node name="CodexToast" type="Control" parent="GeneralLayout/Toasts" unique_id=733592885 node_paths=PackedStringArray("toastIcon", "playerSound")]
+visible = false
+layout_mode = 1
+anchor_right = 32.0
+anchor_bottom = 18.0
+grow_horizontal = 2
+pivot_offset = Vector2(650, 360)
+mouse_filter = 2
+script = ExtResource("13_3b5i8")
+toastIcon = NodePath("CodexSprite")
+notificationSound = ExtResource("14_fpum5")
+playerSound = NodePath("CodexToastPlayer")
+metadata/_edit_lock_ = true
+
+[node name="CodexSprite" type="Sprite2D" parent="GeneralLayout/Toasts/CodexToast" unique_id=1975662604]
+position = Vector2(1206, 77.00001)
+rotation = -0.286234
+scale = Vector2(0.2875, 0.2875)
+texture = ExtResource("13_jn18p")
+
+[node name="CodexToastPlayer" type="AudioStreamPlayer" parent="GeneralLayout/Toasts/CodexToast" unique_id=1936450667]
+
 [node name="DialogSystem" type="Control" parent="GeneralLayout" unique_id=128116944]
 layout_mode = 3
 anchors_preset = 15
@@ -876,6 +970,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(640, 341)
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="CharacterStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=501401635 node_paths=PackedStringArray("characterContainer", "blurshader")]
 script = ExtResource("1_0fon4")
@@ -900,15 +995,16 @@ flashTransition = NodePath("../../../../ShadersTop/ScreenFlash")
 imageFrame = NodePath("../../../../Background/BgFrame")
 sepiaFilter = NodePath("../../../../ShadersTop/SepiaFilter")
 
-[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox", "dialogManager", "rememberText", "rememberImage", "itemNotification", "itemNotificationLabel", "dramaticText", "inventory")]
+[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox", "dialogManager", "rememberText", "rememberImage", "itemNotification", "itemNotificationLabel", "dramaticText", "itemLayer", "inventory")]
 script = ExtResource("6_qhtgt")
 textBox = NodePath("../../DialogBox")
 dialogManager = NodePath("../../../..")
-rememberText = NodePath("../../RememberUI/Label")
-rememberImage = NodePath("../../RememberUI/Sprite2D")
-itemNotification = NodePath("../../NewItemNotification")
-itemNotificationLabel = NodePath("../../NewItemNotification/ItemLabel")
+rememberText = NodePath("../../../Toasts/CharacterToast/LToastText")
+rememberImage = NodePath("../../../Toasts/CharacterToast/SToastSprite")
+itemNotification = NodePath("../../../Toasts/ItemToast")
+itemNotificationLabel = NodePath("../../../Toasts/ItemToast/ItemLabel")
 dramaticText = NodePath("../../../DramaticTitle/Label")
+itemLayer = NodePath("../../CVItemMenu")
 inventory = NodePath("../../CVItemMenu/ItemMenu")
 
 [node name="BlurFilter" type="ColorRect" parent="GeneralLayout/DialogSystem" unique_id=764443550]
@@ -921,67 +1017,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
-
-[node name="RememberUI" type="Control" parent="GeneralLayout/DialogSystem" unique_id=1030869185]
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Label" type="Label" parent="GeneralLayout/DialogSystem/RememberUI" unique_id=1199579503]
-visible = false
-layout_mode = 1
-offset_left = 80.0
-offset_right = 485.0
-offset_bottom = 81.0
-theme_override_font_sizes/font_size = 34
-text = "Alonso recordara esto."
-vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="GeneralLayout/DialogSystem/RememberUI" unique_id=1469012162]
-visible = false
-position = Vector2(47, 44)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("15_2rb1s")
-
-[node name="NewItemNotification" type="Control" parent="GeneralLayout/DialogSystem" unique_id=585923529]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -640.0
-offset_right = 640.0
-offset_bottom = 720.0
-grow_horizontal = 2
-pivot_offset = Vector2(640, 53)
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="TRNewItemFrame" type="TextureRect" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1664417285]
-layout_mode = 0
-offset_left = 343.0
-offset_top = -105.0
-offset_right = 927.2923
-offset_bottom = 176.0
-texture = ExtResource("17_p8x5j")
-expand_mode = 1
-
-[node name="ItemLabel" type="Label" parent="GeneralLayout/DialogSystem/NewItemNotification" unique_id=1122127271]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.50600004
-anchor_right = 0.50600004
-offset_left = -266.68005
-offset_right = 250.31995
-offset_bottom = 138.0
-pivot_offset = Vector2(225, 41)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("27_mmhpi")
-theme_override_font_sizes/font_size = 34
-text = "Has conseguido!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="DialogBox" parent="GeneralLayout/DialogSystem" unique_id=350530710 instance=ExtResource("2_50ct6")]
 layout_mode = 1
@@ -1021,6 +1056,7 @@ metadata/_edit_lock_ = true
 
 [node name="CSDecorationChoice" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1616460335]
 layer = 11
+visible = false
 
 [node name="Gray" type="ColorRect" parent="GeneralLayout/DialogSystem/ChoiceLayout/CSDecorationChoice" unique_id=1808876110]
 visible = false
@@ -1107,6 +1143,7 @@ libraries/ = SubResource("AnimationLibrary_x033f")
 
 [node name="CVItemMenu" type="CanvasLayer" parent="GeneralLayout/DialogSystem" unique_id=295925576]
 layer = 50
+visible = false
 
 [node name="ItemMenu" type="Control" parent="GeneralLayout/DialogSystem/CVItemMenu" unique_id=446959301 node_paths=PackedStringArray("useButton", "Spinner", "Icons", "VBoxContainer", "ItemName", "decorationCopperFrame", "ButtonSpinnerDisplay")]
 layout_mode = 3
@@ -1207,6 +1244,7 @@ texture = ExtResource("31_p8x5j")
 metadata/_edit_lock_ = true
 
 [node name="DramaticTitle" type="Control" parent="GeneralLayout" unique_id=2099592669]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

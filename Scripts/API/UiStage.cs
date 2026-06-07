@@ -13,6 +13,7 @@ public partial class UiStage : Node
     [Export] Control itemNotification;
     [Export] Label itemNotificationLabel;
     [Export] Label dramaticText;
+    [Export] CanvasLayer itemLayer;
     [Export] ItemInteractionMenu inventory;
     Vector2 itemNotificationOriginalPosition;
 
@@ -35,8 +36,18 @@ public partial class UiStage : Node
 
     public void HideTextBox() => textBox.Hide();
 
-    public void HideInventory() => inventory.Hide();
-    public void ShowInventory() => inventory.Show();
+    public void HideInventory()
+    {
+        inventory.Hide();
+        itemLayer.Hide();
+    }
+
+    public void ShowInventory()
+    {
+        inventory.Show();
+        itemLayer.Show();
+    }
+
     public void ShowTextBox() => textBox.Show();
 
     public bool IsTextBoxHide() =>  !textBox.Visible;

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://xf1sa44u30ls"]
+
+[ext_resource type="Script" uid="uid://bm6l4g3ika2xx" path="res://Scripts/Utility/ButtonFeedback.cs" id="1_70qt4"]
+
+[node name="Button" type="Button" unique_id=206947336]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Video"
+script = ExtResource("1_70qt4")
