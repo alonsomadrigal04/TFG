@@ -12,6 +12,8 @@ public partial class UiStage : Node
     [Export] Sprite2D rememberImage;
     [Export] Control itemNotification;
     [Export] Label itemNotificationLabel;
+    [Export] Control dramaticTextLayout;
+
     [Export] Label dramaticText;
     [Export] CanvasLayer itemLayer;
     [Export] ItemInteractionMenu inventory;
@@ -31,6 +33,7 @@ public partial class UiStage : Node
         itemNotification.Modulate = itemNotification.Modulate with {A = 0};
         itemNotification.Hide();
         dramaticText.Hide();
+        dramaticTextLayout.Hide();
 
     }
 
@@ -76,6 +79,7 @@ public partial class UiStage : Node
         ActionBus.ActionStarted();
         dramaticText.Text = char.ToUpper(title[0]) + title[1..];
         dramaticText.Show();
+        dramaticTextLayout.Show();
         AudioManager.Instance.Chorus1.Play();
         Vector2 originalScale = dramaticText.Scale;
 
@@ -110,6 +114,8 @@ public partial class UiStage : Node
         tween.Finished += () =>{
             ActionBus.ActionFinished();
             dramaticText.Scale = originalScale;
+            dramaticText.Hide();
+            dramaticTextLayout.Hide();
         };
     }
 

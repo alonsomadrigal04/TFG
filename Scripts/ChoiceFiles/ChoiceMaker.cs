@@ -23,19 +23,23 @@ public partial class ChoiceMaker : Node
     [ExportGroup("Animated Objects")]
     [Export] ColorRect shaderBack;
     [Export] ColorRect grayBack;
+    [ExportGroup("Button Settings")]
+    [Export] PackedScene choiceButton;
+
 
     string[] nextOptions;
     List<Button> currentButtons = [];
     Tween buttonExitTween;
 
-
     public override void _Ready()
     {
+        optionsContainer.Hide();
         choiceShaderLayer.Hide();
     }
     public void ShowChoices(DialogLine line)
     {
         choiceLayoutLayer.Show();
+        optionsContainer.Show();
         choiceShaderLayer.Show();
         string[] optionType = line.Type.Split('/', StringSplitOptions.TrimEntries);
         if(optionType.Length == 1)
@@ -86,16 +90,13 @@ public partial class ChoiceMaker : Node
         optionsContainer.AddThemeConstantOverride("separation", separation);
 
         var wrapper = CreateWrapper(buttonWidth, buttonHeight);
-        var button = CreateButton(optionText, buttonWidth, buttonHeight, i);
-        var overlay = CreateShaderOverlay();
+        var button = CreateButton(optionText, buttonWidth, i);
 
         currentButtons.Add(button);
 
         button.SelectedSignal += ProcessSelection;
         button.MouseEntered += HoverSounds;
         
-
-        button.AddChild(overlay);
         wrapper.AddChild(button);
         
         optionsContainer.AddChild(wrapper);
@@ -134,6 +135,7 @@ public partial class ChoiceMaker : Node
 
         choiceLayoutLayer.Hide();
         choiceShaderLayer.Hide();
+        optionsContainer.Hide();
 
         ChoiceSelected?.Invoke(nextUid);
     }
@@ -164,46 +166,19 @@ public partial class ChoiceMaker : Node
     {
         return new Control
         {
-            CustomMinimumSize = new Vector2(width, height),
+            CustomMinimumSize = new Vector2(width, width),
             VisibilityLayer = 9
         };
     }
 
-    static ChoiceButton CreateButton(string text, float width, float height, int uid)
+    ChoiceButton CreateButton(string text, float width, int uid)
     {
         // TODO: all this parametres should be in the default constructor of this class
-        var button = new ChoiceButton
-        {
-            Text = text,
-            CustomMinimumSize = new Vector2(width, height),
-            PivotOffset = new Vector2(width / 2, height / 2),
-            SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter | Control.SizeFlags.Expand,
-            SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
-            Uid = uid,
-            VisibilityLayer = 10
-        };
-        return button;
-    }
+        ChoiceButton newButton = choiceButton.Instantiate<ChoiceButton>();
 
-    ColorRect CreateShaderOverlay()
-    {
-        var overlay = new ColorRect
-        {
-            AnchorLeft = 0,
-            AnchorTop = 0,
-            AnchorRight = 1,
-            AnchorBottom = 1,
-
-            OffsetLeft = 0,
-            OffsetTop = 0,
-            OffsetRight = 0,
-            OffsetBottom = 0,
-
-            Material = optionShader,
-            MouseFilter = Control.MouseFilterEnum.Pass
-        };
-
-        return overlay;
+        newButton.SetProperties(width, uid);
+        newButton.choiceLabel.Text = text;
+        return newButton;
     }
 
     void AnimateExitButtons(Button button, int index)

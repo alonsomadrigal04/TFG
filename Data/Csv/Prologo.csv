@@ -16,7 +16,7 @@ A14;;say;Narrator;Quizá solo te estás castigando por volver a equivocarte.;
 A15;;say;Narrator;O simplmente te estas equivocando.;
 A16;;say;Narrator;¿Existen de verdad las decisiones equivocadas?;
 A17;;say;Narrator;¿Tú qué piensas, toda decisión decide que dejas de [s]ser[/s]?;
-A18;;choice/Soft;;Si|No;A20|A23
+A18;;choice/soft;;Si|No;A20|A23
 A19;;;;;
 A20;;say;Narrator;Curioso;
 A21;;say;Narrator;No te tenía por alguien tan decidido.;A26
@@ -50,7 +50,7 @@ A51;;say;Feudo;[speed s=0.1][s]No quiero morir[/s][/speed].;
 A52;;say;Narrator;Tienes la medicina en la mano derecha.;
 A53;;say;Narrator;Y el veneno en la izquierda.;
 A54;;say;Narrator;¿Cuál le das?;
-A55;;choice/Soft;;Veneno|Medicina;A56|A56
+A55;;choice/normal;;Veneno|Medicina;A56|A56
 A56;;say;Narrator;…;
 A57;;say;Narrator;Ya veo;
 A58;UI off;;;;
@@ -77,7 +77,7 @@ A78;;say;Narrator;Tomar una ciudad no siempre significa matar.;
 A79;;say;Narrator;Pero esta vez tu rey ordena que no quede ningún testigo.;
 A80;;say;Narrator;¿Tomarías la ciudad…?;
 A81;;say;Narrator;¿… o traicionas a tu rey?;
-A82;;choice/Soft;;Ejecutar ordenes|Traicionar;A86|A84
+A82;;choice/important;;Ejecutar ordenes|Traicionar;A86|A84
 A83;;;;;
 A84;;say;Narrator;Sucia traidora ¿cómo te atreves?;
 A85;;say;Narrator;Sin honor, sin justicia ni coraje.;

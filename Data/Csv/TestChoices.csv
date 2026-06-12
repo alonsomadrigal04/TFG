@@ -1,0 +1,9 @@
+﻿uid;code;type;speaker;text;next
+B1;UI inventory off;;;;
+A1;;say;Treya;TEST SOFT OPTIONS;
+A2;;choice/soft;;Repetir|Siguiente|Siguiente|Siguiente;A1|A3|A3|A3
+A3;;say;Treya;TEST NORMAL OPTIONS;
+A4;;choice/normal;;Repetir|Siguiente;A3|A5
+A5;;say;Treya;TEST IMPORTANT OPTIONS;
+A6;;choice/important;;Repetir|Siguiente;A5|A7
+A7;;say;Treya;FIN;

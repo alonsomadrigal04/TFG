@@ -7,9 +7,30 @@ using System;
 public partial class ChoiceButton : Button
 {
     [Signal] public delegate void SelectedSignalEventHandler(int uid);
-    float hoverShakeAmount = 15f;
-    float hoverShakeSpeed = 1f;
-    float clickScale = 0.9f;
+
+    [ExportGroup("Sound")]
+    [Export] public AudioStream HoverSound;
+    [Export] public AudioStream ClickSound;
+    [Export] float volume = 0f;
+    [ExportGroup("Hover Animation")]
+    [Export] float hoverScale = 1.08f;
+    [Export] float hoverDuration = 0.12f;
+    [Export] Tween.EaseType hoverEase = Tween.EaseType.Out;
+
+    [ExportGroup("Click Animation")]
+    [Export] float clickScale = 0.93f;
+    [Export] float clickDuration = 0.08f;
+
+    [ExportGroup("BUTTONS ELEMENTS")]
+    [Export] public Label choiceLabel;
+    [Export] public TextureRect choiceTexture;
+
+
+    AudioStreamPlayer audioPlayer;
+    Tween tween;
+    Vector2 originalScale;
+    
+    float rotationSpeed = 4f;
 
     Vector2 baseScale;
     Vector2 basePosition;
@@ -19,9 +40,15 @@ public partial class ChoiceButton : Button
 
     Tween hoverTween;
     Tween clickTween;
+    float hoverVelocity = 16f;
+    float idleVelocity = 4f;
 
-    AudioStream hoverSound;
-    AudioStream pressSound;
+
+    public override void _Process(double delta)
+    {
+        RotationDegrees += rotationSpeed * (float)delta;
+        choiceLabel.RotationDegrees -= rotationSpeed * (float)delta;
+    }
 
 
     public override void _Ready()
@@ -31,54 +58,66 @@ public partial class ChoiceButton : Button
         baseRotation = RotationDegrees;
         ConnectSignals();
 
-        // pressSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/press.wav");
-        // hoverSound = GD.Load<AudioStream>("res://Audio/Sounds/Buttons/Hover2.wav");
+        originalScale = Scale;
+
+        audioPlayer = new AudioStreamPlayer
+        {
+            VolumeDb = volume
+        };
+        
+        AddChild(audioPlayer);
+
+        
+
+        Resized += OnResized;
+        choiceTexture.Resized += OnResized;
+
+    }
+
+    void OnResized()
+    {
+        PivotOffset = Size / 2f;
+        choiceTexture.PivotOffset = choiceTexture.Size / 2f;
+        choiceTexture.Position = Vector2.Zero;
+    }
+
+    void OnRelease()
+    {
+        bool stillHovered = GetRect().HasPoint(
+            GetLocalMousePosition()
+        );
+
+        float targetScale = stillHovered ? hoverScale : 1f;
+        AnimateTo(Vector2.One * targetScale, hoverDuration, Tween.EaseType.Out);
+    }
+
+
+    void OnHoverExit()
+    {
+        AnimateTo(originalScale, hoverDuration, hoverEase);
+        rotationSpeed = idleVelocity;
+    }
+
+    void OnClick()
+    {
+        PlaySound(ClickSound);
+        AnimateTo(Vector2.One * clickScale, clickDuration, Tween.EaseType.In);
+        EmitSignal(nameof(SelectedSignal), Uid);
+    }
+
+    void OnHoverEnter()
+    {
+        PlaySound(HoverSound);
+        AnimateTo(Vector2.One * hoverScale, hoverDuration, hoverEase);
+        rotationSpeed = hoverVelocity;
     }
 
     void ConnectSignals()
     {
-        MouseEntered += OnMouseEntered;
-        MouseExited += OnMouseExited;
-        Pressed += OnPressed;
-    }
-
-    void OnMouseEntered()
-    {
-        StartHoverShake();
-    }
-
-    void OnMouseExited()
-    {
-        StopHoverShake();
-    }
-
-    void OnPressed()
-    {
-        //TODO: add soudns to this
-        AnimateClick();
-        //AudioManager.Instance.;
-        EmitSignal(nameof(SelectedSignal), Uid);
-    }
-
-
-    void StartHoverShake()
-    {
-        StopHoverShake();
-        Vector2 originalPosition = Position;
-
-        //AudioManager.PlayAudio(hoverSound);
-
-        hoverTween = CreateTween();
-        hoverTween.SetLoops();
-        hoverTween.SetTrans(Tween.TransitionType.Quad)
-                .SetEase(Tween.EaseType.InOut);
-
-        // hoverTween.TweenProperty(this, "position", Position + new Vector2(Position.X, Position.Y + hoverShakeAmount), hoverShakeSpeed);
-        // hoverTween.TweenProperty(this, "position", originalPosition + new Vector2(Position.X, Position.Y - hoverShakeAmount), hoverShakeSpeed);
-
-        hoverTween.TweenProperty(this, "rotation_degrees", RotationDegrees + 5f, hoverShakeSpeed);
-        hoverTween.TweenProperty(this, "rotation_degrees", RotationDegrees - 10f, hoverShakeSpeed);
-
+        MouseEntered += OnHoverEnter;
+        MouseExited  += OnHoverExit;
+        ButtonDown   += OnClick;
+        ButtonUp     += OnRelease;
     }
 
     void StopHoverShake()
@@ -89,20 +128,34 @@ public partial class ChoiceButton : Button
         RotationDegrees = baseRotation;
     }
 
-
-    void AnimateClick()
+    void AnimateTo(Vector2 targetScale, float duration, Tween.EaseType ease)
     {
-        clickTween?.Kill();
-        clickTween = CreateTween();
+        PivotOffset = Size / 2f;
 
-        clickTween.TweenProperty(this, "scale", baseScale * clickScale, 0.08f)
-            .SetTrans(Tween.TransitionType.Quint)
-            .SetEase(Tween.EaseType.Out);
+        tween?.Kill();
+        tween = CreateTween();
+        tween.SetEase(ease);
+        tween.SetTrans(Tween.TransitionType.Back);
+        tween.TweenProperty(this, "scale", targetScale, duration);
+    }
 
-        clickTween.Parallel()
-            .TweenProperty(this, "scale", baseScale, 0.08f)
-            .SetTrans(Tween.TransitionType.Quint)
-            .SetEase(Tween.EaseType.Out)
-            .SetDelay(0.08f);
+    void PlaySound(AudioStream stream)
+    {
+        if (stream == null) return;
+        audioPlayer.Stream = stream;
+        audioPlayer.Play();
+    }
+
+    public void SetProperties(float width, int uid)
+    {
+        CustomMinimumSize = new Vector2(width, width);
+        choiceTexture.CallDeferred(Control.MethodName.SetSize, new Vector2(width, width));
+        Size = new(width, width);
+
+        SizeFlagsHorizontal = SizeFlags.ShrinkCenter | SizeFlags.Expand;
+        SizeFlagsVertical = SizeFlags.ShrinkCenter;
+        Uid = uid;
+        VisibilityLayer = 10;
+
     }
 }

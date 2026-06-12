@@ -1,6 +1,3 @@
 ﻿uid;code;type;speaker;text;next
-B1;UI inventory on;;;;
-A1;Treya appears left;;;;
-A2;;say;Treya;Estoy hablando yo;
-A3;Camera zoom Treya;;;;
-A4;;say;Treya;Estoy hablando yo;
+B1;UI inventory off;;;;
+A1;;say;Treya;Texto de ejemplo;

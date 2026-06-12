@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://de0omw5n4n2ld"
+
+[deps]
+
+files=["res://Data/LocalizationTables/translations_KeyActions.es.translation", "res://Data/LocalizationTables/translations_KeyActions.en.translation"]
+
+source_file="res://Data/LocalizationTables/translations_KeyActions.csv"
+dest_files=["res://Data/LocalizationTables/translations_KeyActions.es.translation", "res://Data/LocalizationTables/translations_KeyActions.en.translation"]
+
+[params]
+
+compress=1
+delimiter=1
+unescape_keys=false
+unescape_translations=true

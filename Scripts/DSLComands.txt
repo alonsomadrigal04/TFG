@@ -9,8 +9,9 @@
 ·   SAY                                             -- A character says a line of dialogue
 ·   SAY/question                                    -- A small question mark appears next to the character
 ·   SAY/exclamation                                 -- A small exclamation mark appears next to the character
-·   CHOICE/Soft                                     -- A choice appears with a soft transition
-·   CHOICE/Impact                                   -- A choice appears with a Impact transition
+·   CHOICE/soft                                     -- A choice appears with a soft transition
+·   CHOICE/normal   
+·   CHOICE/important
 [CODE COMMANDS]
 // POSITIONS //
 LEFT, CENTER, RIGHT, FARRIGHT, FARLEFT

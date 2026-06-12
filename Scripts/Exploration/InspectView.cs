@@ -212,6 +212,8 @@ public partial class InspectView : Control
         }
 
         displayedObject = CurrentObject.ObjectInfo.Scene.Instantiate<Node3D>();
+        //TODO HARDCODED
+        displayedObject.Scale = new(0.145f, 0.145f, 0.145f);
         objectRoot.AddChild(displayedObject);
 
         displayedMesh = displayedObject.FindChild("*", true, false) as MeshInstance3D;
@@ -260,7 +262,6 @@ public partial class InspectView : Control
 
         float largestAxis = Mathf.Max(meshSize.X, Mathf.Max(meshSize.Y, meshSize.Z));
         float scaleFactor = targetObjectSize / largestAxis;
-
         displayedObject.Scale = Vector3.One * scaleFactor;
 
         displayedObject.Position = new Vector3(

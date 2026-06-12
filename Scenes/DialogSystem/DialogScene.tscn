@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dndpl2x8novcw" path="res://Assets/UI/PH/BandaImportante.png" id="23_pfbu6"]
 [ext_resource type="Texture2D" uid="uid://cfna65dtgmjfo" path="res://Assets/UI/InventoryWhell.png" id="24_p8x5j"]
 [ext_resource type="Texture2D" uid="uid://cj11d07nr2x0w" path="res://Assets/Flavour/exclamationSign.png" id="25_7awbk"]
+[ext_resource type="PackedScene" uid="uid://dxd32odd5s0vw" path="res://Scenes/DialogSystem/ChoiceButton.tscn" id="25_yr3c2"]
 [ext_resource type="AudioStream" uid="uid://ck8mhdrgp8xm1" path="res://Audio/importantv2.wav" id="26_7awbk"]
 [ext_resource type="Texture2D" uid="uid://dspn7h0focdc6" path="res://Assets/Flavour/interrogationSign.png" id="26_ngurm"]
 [ext_resource type="FontFile" uid="uid://bkky1i47l31d8" path="res://Assets/Fonts/Coolvetica Rg.otf" id="26_yr3c2"]
@@ -41,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://b3cc6g5i0fd45" path="res://Assets/UI/UsarObjectoBoton.png" id="30_p8x5j"]
 [ext_resource type="AudioStream" uid="uid://dhwua6t10g04x" path="res://Audio/Soft.wav" id="30_r68ee"]
 [ext_resource type="Texture2D" uid="uid://dfd3qqt0lixup" path="res://Assets/UI/UsarObjetoCuadro.png" id="31_p8x5j"]
+[ext_resource type="FontFile" uid="uid://bkwyo3rug11be" path="res://Assets/Fonts/IMFellEnglish-Regular.ttf" id="42_fpum5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nssry"]
 shader = ExtResource("6_e0sb1")
@@ -995,7 +997,7 @@ flashTransition = NodePath("../../../../ShadersTop/ScreenFlash")
 imageFrame = NodePath("../../../../Background/BgFrame")
 sepiaFilter = NodePath("../../../../ShadersTop/SepiaFilter")
 
-[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox", "dialogManager", "rememberText", "rememberImage", "itemNotification", "itemNotificationLabel", "dramaticText", "itemLayer", "inventory")]
+[node name="UiStage" type="Node" parent="GeneralLayout/DialogSystem/API\'s" unique_id=1561718366 node_paths=PackedStringArray("textBox", "dialogManager", "rememberText", "rememberImage", "itemNotification", "itemNotificationLabel", "dramaticTextLayout", "dramaticText", "itemLayer", "inventory")]
 script = ExtResource("6_qhtgt")
 textBox = NodePath("../../DialogBox")
 dialogManager = NodePath("../../../..")
@@ -1003,6 +1005,7 @@ rememberText = NodePath("../../../Toasts/CharacterToast/LToastText")
 rememberImage = NodePath("../../../Toasts/CharacterToast/SToastSprite")
 itemNotification = NodePath("../../../Toasts/ItemToast")
 itemNotificationLabel = NodePath("../../../Toasts/ItemToast/ItemLabel")
+dramaticTextLayout = NodePath("../../../DramaticTitle")
 dramaticText = NodePath("../../../DramaticTitle/Label")
 itemLayer = NodePath("../../CVItemMenu")
 inventory = NodePath("../../CVItemMenu/ItemMenu")
@@ -1041,6 +1044,7 @@ optionShader = ExtResource("6_d3awe")
 separation = 40
 shaderBack = NodePath("../ChoiceLayout/CSDecorationChoice/ShaderChoice")
 grayBack = NodePath("../ChoiceLayout/CSDecorationChoice/Gray")
+choiceButton = ExtResource("25_yr3c2")
 metadata/_edit_lock_ = true
 
 [node name="ChoiceLayout" type="Control" parent="GeneralLayout/DialogSystem" unique_id=131375595]
@@ -1119,9 +1123,9 @@ texture = ExtResource("26_ngurm")
 
 [node name="CLayoutChoice" type="CanvasLayer" parent="GeneralLayout/DialogSystem/ChoiceLayout" unique_id=1689770322]
 layer = 11
-visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GeneralLayout/DialogSystem/ChoiceLayout/CLayoutChoice" unique_id=930759866]
+visible = false
 z_index = 3
 anchors_preset = 14
 anchor_top = 0.5
@@ -1274,7 +1278,7 @@ offset_bottom = 129.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(462, 131)
-theme_override_fonts/font = ExtResource("26_yr3c2")
+theme_override_fonts/font = ExtResource("42_fpum5")
 theme_override_font_sizes/font_size = 215
 text = "SAMPLE"
 horizontal_alignment = 1

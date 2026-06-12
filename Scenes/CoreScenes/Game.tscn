@@ -281,4 +281,5 @@ stream = SubResource("AudioStreamRandomizer_wxwew")
 
 [node name="DebugScreen" parent="ContenLayer/FX/PostProcess" unique_id=1323278458 instance=ExtResource("3_2irst")]
 mouse_filter = 2
+enable = false
 metadata/_edit_lock_ = true

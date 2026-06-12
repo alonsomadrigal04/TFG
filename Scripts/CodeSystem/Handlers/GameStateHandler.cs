@@ -13,7 +13,8 @@ public class GameStateHandler : ICommandHandler
         "<",
         "needs",
         "setflag",
-        "wait"
+        "wait",
+        "update"
     ];
 
     public void Execute(CommandToken commandToken)
@@ -38,9 +39,21 @@ public class GameStateHandler : ICommandHandler
             case "wait":
                 HandleWaitCondition(commandToken);
                 break;
+            case "update":
+                HandleUpdate(commandToken);
+                break;
             default:
                 break;
         }
+    }
+
+    void HandleUpdate(CommandToken commandToken)
+    {
+        //CODEX UPDATE
+        IReadOnlyList<string> arg = commandToken.Arguments;
+        if(arg.Count != 1)
+            GD.PrintErr("[GameStateHandler] arguments of Codex Update entry must be the name in lowercase");
+        CodexLibrary.ChargeEntry(arg[0].Trim().ToLower());
     }
 
     static void HandleWaitCondition(CommandToken commandToken)
