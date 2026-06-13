@@ -1,4 +1,7 @@
 key;es;en
 ACTION_INTERACT;Interactuar;Interact
+ACTION_DRAG;Arrastrar;Drag
+ACTION_ZOOM;Acercarte;Zoom
+ACTION_UNZOOM;Alejarte;Unzoom
 TEXT_PRESS;pulsa;press
 TEXT_FOR;para;for

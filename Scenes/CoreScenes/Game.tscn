@@ -40,6 +40,7 @@
 [ext_resource type="AudioStream" uid="uid://ysuevt630hbs" path="res://Audio/InteractDialogue.wav" id="26_n24vg"]
 [ext_resource type="PackedScene" uid="uid://b6mij6vcwn6pg" path="res://Scenes/Exploration/ExplorationZones/exploration_zone_camp_firev2.tscn" id="32_sb2g0"]
 [ext_resource type="AudioStream" uid="uid://bnwvj3caof4v5" path="res://Audio/Sounds/Buttons/Hover2.wav" id="35_jn8rg"]
+[ext_resource type="PackedScene" uid="uid://d4je4463ebd0v" path="res://Scenes/CoreScenes/FeedBackUI.tscn" id="37_0naew"]
 [ext_resource type="PackedScene" uid="uid://djjdb70e0fh6f" path="res://Scenes/Inventory/GameMenu.tscn" id="50_21svs"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a8kki"]
@@ -241,6 +242,8 @@ layer = 15
 [node name="PauseMenu" parent="ContenLayer" unique_id=1464376574 instance=ExtResource("50_21svs")]
 process_mode = 3
 visible = false
+
+[node name="FeedBackUi" parent="ContenLayer" unique_id=1924059355 instance=ExtResource("37_0naew")]
 
 [node name="FX" type="Control" parent="ContenLayer" unique_id=2116797528]
 layout_mode = 3

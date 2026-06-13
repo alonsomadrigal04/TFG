@@ -1,7 +1,4 @@
 using Godot;
-using System;
-using Utility;
-
 public partial class InspectView : Control
 {
     [Export] bool isDebugMode = false;
@@ -49,6 +46,8 @@ public partial class InspectView : Control
     [Export] AnimationPlayer transitionAnimationPlayer;
     [Export] AnimationPlayer hoverAnimationPlayer;
 
+    bool isTutorialEnabled;
+
     public ObjectBehaviour CurrentObject { get; private set; }
     public bool CanInspect { get; private set; } = true;
 
@@ -68,6 +67,7 @@ public partial class InspectView : Control
     {
         if (!HasValidReferences())
             return;
+        isTutorialEnabled = true;
 
         ConfigureViewport();
         ConfigureInitialState();
@@ -89,12 +89,34 @@ public partial class InspectView : Control
 
         CurrentObject = targetObject;
 
+        FeedBackUi.Instance.SetInteractionPrompt("drag", UiPosition.Down);
+
         CreateDisplayInstance();
         ResetInspectionState();
         ShowInspectView();
         PlayOpenAnimation();
         AnimateCommentaryText();
     }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("drag") && !isInputBlocked && isTutorialEnabled)
+        {
+            FeedBackUi.Instance.SetInteractionPrompt("zoom", UiPosition.Down);
+        }
+
+        if (@event.IsActionPressed("zoom") && !isInputBlocked && isTutorialEnabled)
+        {
+            FeedBackUi.Instance.SetInteractionPrompt("unZoom", UiPosition.Down);
+        }
+
+        if (@event.IsActionPressed("unZoom") && !isInputBlocked && isTutorialEnabled)
+        {
+            FeedBackUi.Instance.StartFadeOutAnimation();
+            isTutorialEnabled = false;
+        }
+    }
+
 
     public override void _Process(double delta)
     {
@@ -432,6 +454,8 @@ public partial class InspectView : Control
     void CloseInspectView()
     {
         transitionAnimationPlayer.Play("CloseInspectView");
+
+        FeedBackUi.Instance.StartFadeOutAnimation();
 
         GameStateManager.Instance.ChangeState(State.Explore);
     }

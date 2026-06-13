@@ -4,9 +4,7 @@ using System;
 [GlobalClass]
 public partial class AudioManager : Node
 {
-
     public static AudioManager Instance { get => instance; set => instance = value; }
-
     static AudioManager instance;
     public override void _EnterTree() => Instance = this;
 

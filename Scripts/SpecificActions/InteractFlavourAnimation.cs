@@ -40,6 +40,8 @@ public partial class InteractFlavourAnimation : Sprite3D
             originalScale,
             0.9f
         );
+
+        FeedBackUi.Instance.SetInteractionPrompt("interact", UiPosition.Down);
     }
 
     public void HideInteraction()
@@ -56,6 +58,8 @@ public partial class InteractFlavourAnimation : Sprite3D
             Vector3.Zero,
             0.15f
         );
+
+        FeedBackUi.Instance.StartFadeOutAnimation();
 
         activeTween.TweenCallback(Callable.From(Hide));
     }

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cdgqq34uem5m2" path="res://Assets/WorldObjects/GrassGround.tscn" id="6_xwwrp"]
 [ext_resource type="PackedScene" uid="uid://dyddrn2lof815" path="res://Scenes/Exploration/InspectView.tscn" id="7_uox34"]
 [ext_resource type="PackedScene" uid="uid://13au6xxt3wgm" path="res://Scenes/Exploration/Interactables/Lorepoint.tscn" id="8_kgwx7"]
+[ext_resource type="PackedScene" uid="uid://d4je4463ebd0v" path="res://Scenes/CoreScenes/FeedBackUI.tscn" id="10_glcww"]
 
 [node name="ExplorationTestZone" type="Node" unique_id=2103000482]
 script = ExtResource("1_squji")
@@ -47,3 +48,5 @@ YOffset = 2.0
 
 [node name="InspectView" parent="." unique_id=506745726 instance=ExtResource("7_uox34")]
 isDebugMode = true
+
+[node name="FeedBackUi" parent="." unique_id=1924059355 instance=ExtResource("10_glcww")]

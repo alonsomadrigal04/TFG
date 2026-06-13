@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://cda0p852i2enc" path="res://Scripts/CoreScripts/FeedBackUi.cs" id="1_8unnm"]
 [ext_resource type="Texture2D" uid="uid://du2b5srivc2rl" path="res://addons/KenneyIcons/kenney_input-prompts-pixel-1-bit/Tiles (White)/space.png" id="2_7db08"]
 [ext_resource type="FontFile" uid="uid://b155oknr2pxb7" path="res://Assets/Fonts/CrimsonPro-VariableFont_wght.ttf" id="2_e2y8w"]
+[ext_resource type="Texture2D" uid="uid://d0hwv2jtn0338" path="res://addons/KenneyIcons/kenney_input-prompts-pixel-1-bit/Tiles (White)/tile_0111.png" id="3_mvmev"]
 [ext_resource type="Texture2D" uid="uid://c432v4efkc08o" path="res://addons/KenneyIcons/kenney_fantasy-ui-borders/Default/Divider Fade/divider-fade-002.png" id="4_p8i7t"]
+[ext_resource type="Texture2D" uid="uid://cy21qgt57pbnj" path="res://addons/KenneyIcons/kenney_input-prompts-pixel-1-bit/Tiles (White)/tile_0114.png" id="4_qsy8b"]
+[ext_resource type="Texture2D" uid="uid://dvifmts5udccc" path="res://addons/KenneyIcons/kenney_input-prompts-pixel-1-bit/Tiles (White)/tile_0115.png" id="5_1oova"]
 
 [node name="FeedBackUi" type="Control" unique_id=1924059355 node_paths=PackedStringArray("toastContainer", "feedbackToastLeft", "feedbackToastRight", "inputIcon")]
 layout_mode = 3
@@ -12,15 +15,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(690, 914)
+pivot_offset = Vector2(624, 360)
 size_flags_horizontal = 4
 script = ExtResource("1_8unnm")
 toastContainer = NodePath("CLFeedbackUi/FeedbackToast")
 feedbackToastLeft = NodePath("CLFeedbackUi/FeedbackToast/LeftLabel")
 feedbackToastRight = NodePath("CLFeedbackUi/FeedbackToast/RightLabel")
 inputIcon = NodePath("CLFeedbackUi/FeedbackToast/TextureIcon")
-keyActionsIcon = Dictionary[int, Texture2D]({
-32: ExtResource("2_7db08")
+inputIcons = Dictionary[String, Texture2D]({
+"KEY_SPACE": ExtResource("2_7db08"),
+"MOUSE_LEFT": ExtResource("3_mvmev"),
+"MOUSE_WHEEL_DOWN": ExtResource("5_1oova"),
+"MOUSE_WHEEL_UP": ExtResource("4_qsy8b")
 })
 
 [node name="CLFeedbackUi" type="CanvasLayer" parent="." unique_id=1296451602]
