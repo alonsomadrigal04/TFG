@@ -22,7 +22,23 @@ shader = ExtResource("2_ybnf2")
 shader_parameter/lod = 0.0
 shader_parameter/darkness = 0.0
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fjme0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_qknxy"]
+sky_material = SubResource("ProceduralSkyMaterial_fjme0")
+
+[sub_resource type="Environment" id="Environment_7to0m"]
+background_mode = 2
+sky = SubResource("Sky_qknxy")
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 5.0
+glow_strength = 1.31
+
 [sub_resource type="World3D" id="World3D_vu4pm"]
+environment = SubResource("Environment_7to0m")
 
 [sub_resource type="Animation" id="Animation_egqik"]
 resource_name = "LeaveHover"
@@ -1312,12 +1328,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.2)
 current = true
 metadata/_edit_lock_ = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="InspectElements/SubViewportContainer/SubViewport" unique_id=87779462]
-light_energy = 1.5
-metadata/_edit_lock_ = true
-
 [node name="SpotLight3D" type="SpotLight3D" parent="InspectElements/SubViewportContainer/SubViewport" unique_id=1299511917]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="InspectElements/SubViewportContainer/SubViewport" unique_id=649622151]
+environment = SubResource("Environment_7to0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="InspectElements/SubViewportContainer/SubViewport" unique_id=938066042]
+transform = Transform3D(-0.985996, -0.12528737, -0.110067666, 0, -0.66000175, 0.7512641, -0.16676874, 0.7407434, 0.6507591, 0, 0, 0)
+shadow_enabled = true
+shadow_blur = 2.449
 
 [node name="DebugScreen" type="Control" parent="InspectElements" unique_id=2010062068]
 layout_mode = 3
