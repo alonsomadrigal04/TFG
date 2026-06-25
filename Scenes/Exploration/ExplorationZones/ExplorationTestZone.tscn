@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bs623ore35um0" path="res://Scripts/Exploration/ExplorationTestZone.cs" id="1_squji"]
 [ext_resource type="Script" uid="uid://6ycf3k1utqii" path="res://Scripts/Exploration/GameStateManager.cs" id="2_v355v"]
-[ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/Player/player.tscn" id="2_xwwrp"]
+[ext_resource type="PackedScene" uid="uid://dv6vy3g67l346" path="res://Scenes/Exploration/player/player.tscn" id="2_xwwrp"]
 [ext_resource type="Script" uid="uid://qcla4g802rvw" path="res://Scripts/Exploration/SimpleCameraBehaviour.cs" id="3_xwwrp"]
 [ext_resource type="PackedScene" uid="uid://bt8xfctwne0hy" path="res://Scenes/Exploration/Interactables/Object.tscn" id="5_kgwx7"]
 [ext_resource type="Resource" uid="uid://byjo70eibneq2" path="res://Data/Objects/PipaDeFumar.tres" id="6_glcww"]
