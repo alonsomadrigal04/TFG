@@ -5,6 +5,7 @@ using System.Resources;
 
 public static partial class ToolKit
 {
+    static float offsetY = 50;
     static public readonly Dictionary<ScreenPosition, float> XPositions = [];
     public static void InitializePositions()
     {
@@ -19,7 +20,7 @@ public static partial class ToolKit
     public static Vector2 GetPosition(ScreenPosition screenPosition)
     {
         Vector2 screenSize = GetScreenSize();
-        return new Vector2(screenSize.X * XPositions[screenPosition], screenSize.Y * 0.5f);
+        return new Vector2(screenSize.X * XPositions[screenPosition], (screenSize.Y * 0.5f) + offsetY);
     }
 
     public static Vector2 GetPortraitPosition(ScreenPosition screenPosition)

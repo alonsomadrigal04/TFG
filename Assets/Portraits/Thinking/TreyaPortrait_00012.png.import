@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkxjeejcvwlux"
-path="res://.godot/imported/TreyaPortrait_00006.png-ed8f2489d233c8c281ec69e04626cc0e.ctex"
+uid="uid://bsnuxg5qdy3vo"
+path="res://.godot/imported/TreyaPortrait_00012.png-be851ffbb3c2de834aada5ad46b99d6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00006.png"
-dest_files=["res://.godot/imported/TreyaPortrait_00006.png-ed8f2489d233c8c281ec69e04626cc0e.ctex"]
+source_file="res://Assets/Portraits/Thinking/TreyaPortrait_00012.png"
+dest_files=["res://.godot/imported/TreyaPortrait_00012.png-be851ffbb3c2de834aada5ad46b99d6a.ctex"]
 
 [params]
 

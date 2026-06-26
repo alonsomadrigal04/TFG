@@ -1,0 +1,9 @@
+﻿uid;code;type;speaker;text;next
+A1;Treya appears left;;;;
+A2;Fled appears right;;;;
+A3;camera zoom Fled;;;;
+A4;;say;Fled;…;
+A5;camera zoom Treya;;;;
+A6;;say;Treya;…;
+A7;camera zoom reset;;;;
+A6;;say;Treya;…;A3

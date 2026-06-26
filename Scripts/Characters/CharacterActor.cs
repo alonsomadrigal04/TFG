@@ -7,6 +7,7 @@ public partial class CharacterActor : Control
     [Export]public AnimatedSprite2D animateSprites;
 
     [Export] float bobIntensity = 15f;
+    [Export] string defaultEmotion;
     bool isFlipped;
     Vector2 basePosition;
     bool isTalking;
@@ -45,7 +46,15 @@ public partial class CharacterActor : Control
 
     public override void _Ready()
     {
-        
+        GD.Print(animateSprites);
+        GD.Print(defaultEmotion);
+
+        SetDefaultAnimation(defaultEmotion);
+    }
+
+    void SetDefaultAnimation(string defaultAnimation)
+    {
+        SetEmotionImmediate(defaultAnimation);
     }
 
     /// <summary>

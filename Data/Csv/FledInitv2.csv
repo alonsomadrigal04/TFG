@@ -10,6 +10,7 @@ A8;;say/question;Treya;¿A qué viene eso ahora, Fled?;
 A9;;say;Fled;Tienes todas las fibras de tu cuerpo en tensión.;A20
 A10;;;;;
 A11;;say;Treya;No está mal, pero un poco forzado.;
+B1;Treya is happy;;;;
 A12;;say;Treya;¿Fled [s]Grano En El Culo[/s], que te parece ese para ti?;
 A13;;say;Fled;Oh veo que la pupila se va convirtiendo en maestro.;A19
 A14;;;;;

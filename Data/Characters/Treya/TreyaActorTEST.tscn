@@ -1,0 +1,1973 @@
+[gd_scene format=3 uid="uid://djxpkdwvfcijv"]
+
+[ext_resource type="Script" uid="uid://ctnjdb2yfmxcc" path="res://Scripts/Characters/CharacterActor.cs" id="1_lf5bc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00012.png" id="2_2hor4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00013.png" id="3_gisua"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00014.png" id="4_ubup3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00015.png" id="5_1gfs1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00016.png" id="6_q3u6b"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00017.png" id="7_suo7q"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00018.png" id="8_7pwvr"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00019.png" id="9_q8qie"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00020.png" id="10_kjx26"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00021.png" id="11_s5bbh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00022.png" id="12_dud2j"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00023.png" id="13_p7nlu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00024.png" id="14_naodf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00025.png" id="15_q1xtb"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00026.png" id="16_ja4of"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00027.png" id="17_uxn68"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00028.png" id="18_nd167"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00029.png" id="19_csrj0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00030.png" id="20_g5ngj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00031.png" id="21_42ujy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00032.png" id="22_38to1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00033.png" id="23_1l8kv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00034.png" id="24_lrjsl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00035.png" id="25_dhok5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00036.png" id="26_rhblj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00037.png" id="27_rq4ey"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00038.png" id="28_xvd2p"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00039.png" id="29_wljl2"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00040.png" id="30_sn7ie"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00041.png" id="31_my6fp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00042.png" id="32_nll0y"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00043.png" id="33_fo1sv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00044.png" id="34_ot56n"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00045.png" id="35_12yvq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00046.png" id="36_e6ubn"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00047.png" id="37_3csdv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00048.png" id="38_5s7n7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00049.png" id="39_nsr1h"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00050.png" id="40_1rctr"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00051.png" id="41_0010q"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00052.png" id="42_g8pf1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00053.png" id="43_tngg3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00054.png" id="44_kkq1v"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00055.png" id="45_t3377"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00056.png" id="46_gq0r5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00057.png" id="47_2wigm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00058.png" id="48_qswcs"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00059.png" id="49_cmwww"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00060.png" id="50_wobjn"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00061.png" id="51_j3qo0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00062.png" id="52_j7tux"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00063.png" id="53_ofc7q"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00064.png" id="54_tso43"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00065.png" id="55_nqnrh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00066.png" id="56_8qgaa"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00067.png" id="57_xbgv1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00068.png" id="58_ixxuk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00069.png" id="59_s8140"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00070.png" id="60_gcsu6"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00071.png" id="61_xtgyc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00072.png" id="62_68j7r"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00073.png" id="63_x8r4s"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00074.png" id="64_hdvur"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00075.png" id="65_ervcj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00076.png" id="66_vt407"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00077.png" id="67_owgia"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00078.png" id="68_iw4t8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00079.png" id="69_uuxsf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00080.png" id="70_cpjvv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00081.png" id="71_rhiy7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00082.png" id="72_jm8pu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00083.png" id="73_6nigm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Idle/TreyaPortrait_00084.png" id="74_uwlw4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00001.png" id="75_4lc0t"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00002.png" id="76_sq4hu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00003.png" id="77_ra584"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00004.png" id="78_xhuxh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00005.png" id="79_nng3u"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00006.png" id="80_lvpv0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00007.png" id="81_gwany"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00008.png" id="82_g4oae"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00009.png" id="83_cgjp2"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00010.png" id="84_fassc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00011.png" id="85_skihd"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaConfused/Intro/TreyaPortrait_00012.png" id="86_3tdpm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00012.png" id="87_2gh30"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00013.png" id="88_fkokr"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00014.png" id="89_qvn0s"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00015.png" id="90_x7pjc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00016.png" id="91_mbhrq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00017.png" id="92_0lk86"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00018.png" id="93_mlsvl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00019.png" id="94_3qua7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00020.png" id="95_7r6la"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00021.png" id="96_i4ci5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00022.png" id="97_s16yw"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00023.png" id="98_ppe60"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00024.png" id="99_366wf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00025.png" id="100_6y8xl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00026.png" id="101_7uyf3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00027.png" id="102_cbuqt"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00028.png" id="103_457nn"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00029.png" id="104_4wov4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00030.png" id="105_aqqw3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00031.png" id="106_pcywj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00032.png" id="107_odwyq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00033.png" id="108_kh8fa"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00034.png" id="109_5pu7f"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00035.png" id="110_gtpfy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00036.png" id="111_txvgl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00037.png" id="112_8q4cv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00038.png" id="113_482nx"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00039.png" id="114_sywr3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00040.png" id="115_ok58d"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00041.png" id="116_k3sb2"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00042.png" id="117_2ng44"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00043.png" id="118_50ulo"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00044.png" id="119_qr5ru"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00045.png" id="120_53rds"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00046.png" id="121_8epge"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00047.png" id="122_72alo"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00048.png" id="123_vnpxe"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00049.png" id="124_pgocf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00050.png" id="125_eovlc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00051.png" id="126_jofeg"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00052.png" id="127_iuscc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00053.png" id="128_kxxp1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00054.png" id="129_r2kur"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00055.png" id="130_63fqy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00056.png" id="131_lt6e3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00057.png" id="132_qt7w5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00058.png" id="133_sanak"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00059.png" id="134_bisis"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00060.png" id="135_716hj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00061.png" id="136_xt74n"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00062.png" id="137_tajsi"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00063.png" id="138_vrhk1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00064.png" id="139_jt6ek"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00065.png" id="140_amgj8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00066.png" id="141_xd6pf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00067.png" id="142_dufmj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00068.png" id="143_jy2au"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00069.png" id="144_cy38r"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00070.png" id="145_2hl5p"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00071.png" id="146_74g13"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00072.png" id="147_1igdp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00073.png" id="148_to4pk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00074.png" id="149_ipqmo"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00075.png" id="150_0ynmo"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00076.png" id="151_ypcyy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00077.png" id="152_f2pou"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00078.png" id="153_f6wm6"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00079.png" id="154_jcgvj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00080.png" id="155_g4v0o"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00081.png" id="156_vb33k"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00082.png" id="157_lxgh4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00083.png" id="158_77ivj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Idle/Frame_00084.png" id="159_6bp7j"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00001.png" id="160_syfu1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00002.png" id="161_m8aqq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00003.png" id="162_tt42c"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00004.png" id="163_pxtpp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00005.png" id="164_nvhbm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00006.png" id="165_83ht3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00007.png" id="166_duisn"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00008.png" id="167_kklns"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00009.png" id="168_3wekk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00010.png" id="169_fx5i1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00011.png" id="170_nlqgi"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaHappy/Intro/Frame_00012.png" id="171_pc1po"]
+[ext_resource type="Texture2D" uid="uid://17app6wlgkkf" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00012.png" id="172_yf5l0"]
+[ext_resource type="Texture2D" uid="uid://bmk7jvp7nyjvk" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00013.png" id="173_po77o"]
+[ext_resource type="Texture2D" uid="uid://d2hkf8iuiathg" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00014.png" id="174_xowt3"]
+[ext_resource type="Texture2D" uid="uid://cb6h30ubvndqa" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00015.png" id="175_atbjr"]
+[ext_resource type="Texture2D" uid="uid://b1mwk6rirowlx" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00016.png" id="176_n16dv"]
+[ext_resource type="Texture2D" uid="uid://cfve6r6tvdsks" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00017.png" id="177_uxd6r"]
+[ext_resource type="Texture2D" uid="uid://xt7vb857d8x5" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00018.png" id="178_fpfde"]
+[ext_resource type="Texture2D" uid="uid://ctre3bvvgeori" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00019.png" id="179_jawq3"]
+[ext_resource type="Texture2D" uid="uid://cefq4sfjxe6ig" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00020.png" id="180_8kuil"]
+[ext_resource type="Texture2D" uid="uid://3qfgu66wfodb" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00021.png" id="181_7ljpf"]
+[ext_resource type="Texture2D" uid="uid://dbsbaili2m6vn" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00022.png" id="182_uhgel"]
+[ext_resource type="Texture2D" uid="uid://4ikgc3dfuwne" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00023.png" id="183_bm77k"]
+[ext_resource type="Texture2D" uid="uid://crf8qa8ds3anp" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00024.png" id="184_umlxf"]
+[ext_resource type="Texture2D" uid="uid://ccq1nuckqddn4" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00025.png" id="185_1dpal"]
+[ext_resource type="Texture2D" uid="uid://cc1fbaeexink6" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00026.png" id="186_pdi1l"]
+[ext_resource type="Texture2D" uid="uid://cpft84qxwxybg" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00027.png" id="187_3n6vy"]
+[ext_resource type="Texture2D" uid="uid://l80n7p31lpph" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00028.png" id="188_4b3sg"]
+[ext_resource type="Texture2D" uid="uid://bydu4rd3u8fmm" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00029.png" id="189_nps44"]
+[ext_resource type="Texture2D" uid="uid://bpq512dydd4lt" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00030.png" id="190_e032w"]
+[ext_resource type="Texture2D" uid="uid://r23n6cewtc2" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00031.png" id="191_2te6f"]
+[ext_resource type="Texture2D" uid="uid://dl3pgsbuxwtcb" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00032.png" id="192_j0qy8"]
+[ext_resource type="Texture2D" uid="uid://mcmofgaygkwt" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00033.png" id="193_cakhi"]
+[ext_resource type="Texture2D" uid="uid://dix6jyd3r28ro" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00034.png" id="194_oyqwr"]
+[ext_resource type="Texture2D" uid="uid://ctotqgcfnbio0" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00035.png" id="195_onpxh"]
+[ext_resource type="Texture2D" uid="uid://blmnwe5pvk3qk" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00036.png" id="196_dhmbh"]
+[ext_resource type="Texture2D" uid="uid://cffdknska7itl" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00037.png" id="197_nwgde"]
+[ext_resource type="Texture2D" uid="uid://iidguv2431ss" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00038.png" id="198_va50w"]
+[ext_resource type="Texture2D" uid="uid://cgx8pfs2gxsv6" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00039.png" id="199_lom4p"]
+[ext_resource type="Texture2D" uid="uid://c0knnlheox85t" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00040.png" id="200_2wmyn"]
+[ext_resource type="Texture2D" uid="uid://r0ssimiyrtum" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00041.png" id="201_rgvq1"]
+[ext_resource type="Texture2D" uid="uid://fwl10lejtur8" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00042.png" id="202_xk0fl"]
+[ext_resource type="Texture2D" uid="uid://dkoyh0a4jm6a1" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00043.png" id="203_cinu2"]
+[ext_resource type="Texture2D" uid="uid://cu30tfsbnab13" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00044.png" id="204_ocih6"]
+[ext_resource type="Texture2D" uid="uid://dpfwwxb1llnb" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00045.png" id="205_qjp1r"]
+[ext_resource type="Texture2D" uid="uid://0x5ff0xxo1nl" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00046.png" id="206_vusjp"]
+[ext_resource type="Texture2D" uid="uid://i2a3e7n0kv4i" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00047.png" id="207_jsn3k"]
+[ext_resource type="Texture2D" uid="uid://c7a5qlt3nea82" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00048.png" id="208_xtjka"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00049.png" id="209_ta46s"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00050.png" id="210_1pcob"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00051.png" id="211_omagc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00052.png" id="212_h6q5r"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00053.png" id="213_rah5s"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00054.png" id="214_gpexl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00055.png" id="215_lwjlb"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00056.png" id="216_2km0y"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00057.png" id="217_iafri"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00058.png" id="218_ymf3k"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00059.png" id="219_tqosw"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00060.png" id="220_l7n65"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00061.png" id="221_dqfqm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00062.png" id="222_n8dey"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00063.png" id="223_8l81s"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00064.png" id="224_5quvf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00065.png" id="225_1lxbu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00066.png" id="226_hxp3w"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00067.png" id="227_3xtgp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00068.png" id="228_mn68j"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00069.png" id="229_qg5gg"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00070.png" id="230_8ov6v"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00071.png" id="231_rn8f8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00072.png" id="232_w88c3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00073.png" id="233_ichuk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00074.png" id="234_p7i80"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00075.png" id="235_vt0cm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00076.png" id="236_7hf3o"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00077.png" id="237_oyeo8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00078.png" id="238_8q8nr"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00079.png" id="239_4fkn4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00080.png" id="240_cbvmp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00081.png" id="241_oj7kt"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00082.png" id="242_4p6dj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00083.png" id="243_e3gvq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Idle/TreyaPortrait_00084.png" id="244_6jrcl"]
+[ext_resource type="Texture2D" uid="uid://bmeaf8v1yq5pe" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00001.png" id="245_plimx"]
+[ext_resource type="Texture2D" uid="uid://i1oqksv3ce4b" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00002.png" id="246_yy4bl"]
+[ext_resource type="Texture2D" uid="uid://bqyu8u36ggb1y" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00003.png" id="247_ntp32"]
+[ext_resource type="Texture2D" uid="uid://dypwnc65okjqg" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00004.png" id="248_h41v3"]
+[ext_resource type="Texture2D" uid="uid://b4dpu2si3uuqs" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00005.png" id="249_mecet"]
+[ext_resource type="Texture2D" uid="uid://bkxjeejcvwlux" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00006.png" id="250_premg"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00007.png" id="251_lfl5f"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00008.png" id="252_4ermx"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00009.png" id="253_xahbc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00010.png" id="254_1voy0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00011.png" id="255_2on2r"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaSerious/Intro/TreyaPortrait_00012.png" id="256_kss8i"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00015.png" id="257_y5nef"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00016.png" id="258_csxm7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00017.png" id="259_8v1gs"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00018.png" id="260_lt3ks"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00019.png" id="261_txly7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00020.png" id="262_svw1d"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00021.png" id="263_bkk6s"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00022.png" id="264_g8w1u"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00023.png" id="265_ti6xy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00024.png" id="266_4oskv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00025.png" id="267_r6ygc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00026.png" id="268_04n3m"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00027.png" id="269_gwokm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00028.png" id="270_hdgiy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00029.png" id="271_sv2b5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00030.png" id="272_p7i7x"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00031.png" id="273_87k1a"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00032.png" id="274_4q2dh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00033.png" id="275_lr8no"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00034.png" id="276_efgv7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00035.png" id="277_eeg43"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00036.png" id="278_2n6vp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00037.png" id="279_tmsyk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00038.png" id="280_o1jds"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00039.png" id="281_30kpu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00040.png" id="282_tyisj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00041.png" id="283_tp162"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00042.png" id="284_dhek1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00043.png" id="285_nsx1h"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00044.png" id="286_728ua"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00045.png" id="287_sp56n"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00046.png" id="288_itvvy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00047.png" id="289_lpj21"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00048.png" id="290_2aupv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00049.png" id="291_y4qr4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00050.png" id="292_nq36a"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00051.png" id="293_7kp7f"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00052.png" id="294_gsitm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00053.png" id="295_i66i7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00054.png" id="296_5vyr6"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00055.png" id="297_x3lo7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00056.png" id="298_uhsrq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00057.png" id="299_kgilv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00058.png" id="300_gpwhb"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00059.png" id="301_ss1qi"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00060.png" id="302_ttvlr"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00061.png" id="303_jdt3x"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00062.png" id="304_xsxh3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00063.png" id="305_ug578"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00064.png" id="306_cluas"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00065.png" id="307_r3fs6"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00066.png" id="308_0w023"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00067.png" id="309_uytyt"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00068.png" id="310_51xjl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00069.png" id="311_7lj18"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00070.png" id="312_a44tu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00071.png" id="313_yvk6e"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00072.png" id="314_asu3j"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00073.png" id="315_yauhm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00074.png" id="316_wlosm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00075.png" id="317_cqll0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00076.png" id="318_8768d"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00077.png" id="319_v5phs"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00078.png" id="320_grgao"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00079.png" id="321_17yad"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00080.png" id="322_layos"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00081.png" id="323_37b4j"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00082.png" id="324_5mnb6"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00083.png" id="325_6vurq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Idle/TreyaPortrait_00084.png" id="326_l6lrc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00001.png" id="327_ptkcd"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00002.png" id="328_05j6b"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00003.png" id="329_lsfyy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00004.png" id="330_3asxk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00005.png" id="331_7o6sa"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00006.png" id="332_xy4v2"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00007.png" id="333_7f3uc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00008.png" id="334_xulwy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00009.png" id="335_wiqcv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00010.png" id="336_o742e"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00011.png" id="337_0fom0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaDizzy/Intro/TreyaPortrait_00012.png" id="338_00656"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00012.png" id="339_j6bbi"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00013.png" id="340_dyt85"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00014.png" id="341_fgohg"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00015.png" id="342_b3m4p"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00016.png" id="343_heuf1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00017.png" id="344_m0o00"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00018.png" id="345_6fgp3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00019.png" id="346_flget"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00020.png" id="347_ecmf0"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00021.png" id="348_dnmrj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00022.png" id="349_rbsjm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00023.png" id="350_dy6gt"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00024.png" id="351_b2fit"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00025.png" id="352_maul8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00026.png" id="353_13twk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00027.png" id="354_7re84"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00028.png" id="355_1rp0p"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00029.png" id="356_3lxpp"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00030.png" id="357_l34ce"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00031.png" id="358_x6tuo"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00032.png" id="359_gbsqo"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00033.png" id="360_of2v7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00034.png" id="361_5htol"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00035.png" id="362_mc2pv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00036.png" id="363_a7qtf"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00037.png" id="364_ygaky"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00038.png" id="365_gmx8i"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00039.png" id="366_llli1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00040.png" id="367_67bdq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00041.png" id="368_xhrh7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00042.png" id="369_do7k7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00043.png" id="370_5t6g8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00044.png" id="371_gqw0u"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00045.png" id="372_sq1mg"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00046.png" id="373_moa8b"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00047.png" id="374_0qwb7"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00048.png" id="375_7x3ko"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00049.png" id="376_1jo6i"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00050.png" id="377_1fqmh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00051.png" id="378_vn3y5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00052.png" id="379_ywx1i"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00053.png" id="380_r4eg2"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00054.png" id="381_kk3qv"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00055.png" id="382_hp711"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00056.png" id="383_6uwo1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00057.png" id="384_t67sk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00058.png" id="385_cqq2y"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00059.png" id="386_g0i48"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00060.png" id="387_xctjj"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00061.png" id="388_fqpm8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00062.png" id="389_4hwe3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00063.png" id="390_4fdc4"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00064.png" id="391_642mm"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00065.png" id="392_j3b0v"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00066.png" id="393_t144p"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00067.png" id="394_7ggn3"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00068.png" id="395_g3r7e"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00069.png" id="396_6y2pw"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00070.png" id="397_pvgu5"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00071.png" id="398_26qmh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00072.png" id="399_5x5kl"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00073.png" id="400_1xwfy"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00074.png" id="401_pdviq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00075.png" id="402_hsp8f"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00076.png" id="403_fm3tq"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00077.png" id="404_12tsc"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00078.png" id="405_lg6a1"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00079.png" id="406_r4cnh"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00080.png" id="407_17cgr"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00081.png" id="408_6a2yk"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00082.png" id="409_1aqog"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00083.png" id="410_4fcrw"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/idle/TreyaPortrait_00084.png" id="411_rto3x"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00001.png" id="412_q3q4p"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00002.png" id="413_afu3h"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00003.png" id="414_ffqpe"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00004.png" id="415_s25n8"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00005.png" id="416_bfpme"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00006.png" id="417_fve0q"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00007.png" id="418_6kj1g"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00008.png" id="419_lss12"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00009.png" id="420_cr0yg"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00010.png" id="421_65bfu"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00011.png" id="422_ju2ed"]
+[ext_resource type="Texture2D" path="res://Assets/Portraits/TreyaFurious/intro/TreyaPortrait_00012.png" id="423_7vfam"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2yq5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2hor4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gisua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ubup3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1gfs1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q3u6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_suo7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7pwvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q8qie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kjx26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_s5bbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dud2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p7nlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_naodf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_q1xtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ja4of")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uxn68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_nd167")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_csrj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_g5ngj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_42ujy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_38to1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1l8kv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_lrjsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_dhok5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_rhblj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_rq4ey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_xvd2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_wljl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_sn7ie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_my6fp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_nll0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_fo1sv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ot56n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_12yvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_e6ubn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_3csdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_5s7n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_nsr1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_1rctr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_0010q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_g8pf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_tngg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_kkq1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_t3377")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_gq0r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_2wigm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_qswcs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_cmwww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_wobjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_j3qo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_j7tux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_ofc7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_tso43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_nqnrh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_8qgaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_xbgv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_ixxuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_s8140")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_gcsu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_xtgyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_68j7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_x8r4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_hdvur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_ervcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_vt407")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_owgia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_iw4t8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_uuxsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_cpjvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_rhiy7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_jm8pu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_6nigm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_uwlw4")
+}],
+"loop": true,
+"name": &"ConfusedIdle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("75_4lc0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_sq4hu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_ra584")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_xhuxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_nng3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_lvpv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_gwany")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_g4oae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_cgjp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_fassc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_skihd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_3tdpm")
+}],
+"loop": true,
+"name": &"ConfusedIn",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("86_3tdpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_skihd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_fassc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_cgjp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_g4oae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_gwany")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_lvpv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_nng3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_xhuxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_ra584")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_sq4hu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_4lc0t")
+}],
+"loop": true,
+"name": &"ConfusedOut",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("87_2gh30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_fkokr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_qvn0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_x7pjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_mbhrq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_0lk86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_mlsvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_3qua7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_7r6la")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_i4ci5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_s16yw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_ppe60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_366wf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_6y8xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_7uyf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_cbuqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_457nn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_4wov4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_aqqw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_pcywj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_odwyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_kh8fa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_5pu7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_gtpfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_txvgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_8q4cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_482nx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_sywr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_ok58d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_k3sb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_2ng44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_50ulo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_qr5ru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_53rds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_8epge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_72alo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_vnpxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_pgocf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_eovlc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_jofeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_iuscc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_kxxp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_r2kur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_63fqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_lt6e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_qt7w5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_sanak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_bisis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_716hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_xt74n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_tajsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_vrhk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_jt6ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_amgj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_xd6pf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_dufmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_jy2au")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_cy38r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_2hl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_74g13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_1igdp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_to4pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_ipqmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_0ynmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_ypcyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_f2pou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_f6wm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_jcgvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_g4v0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_vb33k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_lxgh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_77ivj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_6bp7j")
+}],
+"loop": true,
+"name": &"HappyIdle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("160_syfu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_m8aqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_tt42c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_pxtpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_nvhbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_83ht3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_duisn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_kklns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_3wekk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_fx5i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_nlqgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_pc1po")
+}],
+"loop": false,
+"name": &"HappyIn",
+"speed": 48.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("171_pc1po")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_nlqgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_fx5i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_3wekk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_kklns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_duisn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_83ht3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_nvhbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_pxtpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_tt42c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_m8aqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_syfu1")
+}],
+"loop": false,
+"name": &"HappyOut",
+"speed": 48.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("172_yf5l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_po77o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_xowt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_atbjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_n16dv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_uxd6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_fpfde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_jawq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_8kuil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_7ljpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_uhgel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_bm77k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_umlxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_1dpal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_pdi1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_3n6vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_4b3sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_nps44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_e032w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_2te6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_j0qy8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_cakhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_oyqwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_onpxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_dhmbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_nwgde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_va50w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_lom4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_2wmyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_rgvq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("202_xk0fl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("203_cinu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("204_ocih6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("205_qjp1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("206_vusjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("207_jsn3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("208_xtjka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_ta46s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("210_1pcob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_omagc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("212_h6q5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("213_rah5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("214_gpexl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("215_lwjlb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_2km0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_iafri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_ymf3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("219_tqosw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("220_l7n65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("221_dqfqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("222_n8dey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("223_8l81s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_5quvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_1lxbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_hxp3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_3xtgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_mn68j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("229_qg5gg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("230_8ov6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("231_rn8f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("232_w88c3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("233_ichuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("234_p7i80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("235_vt0cm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("236_7hf3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("237_oyeo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("238_8q8nr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("239_4fkn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("240_cbvmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("241_oj7kt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("242_4p6dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("243_e3gvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("244_6jrcl")
+}],
+"loop": true,
+"name": &"SeriousIdle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("245_plimx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("246_yy4bl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("247_ntp32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("248_h41v3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("249_mecet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("250_premg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("251_lfl5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("252_4ermx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("253_xahbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("254_1voy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("255_2on2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("256_kss8i")
+}],
+"loop": false,
+"name": &"SeriousIn",
+"speed": 48.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("256_kss8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("255_2on2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("254_1voy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("253_xahbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("252_4ermx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("251_lfl5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("250_premg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("249_mecet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("248_h41v3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("247_ntp32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("246_yy4bl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("245_plimx")
+}],
+"loop": false,
+"name": &"SeriousOut",
+"speed": 48.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("257_y5nef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("258_csxm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("259_8v1gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("260_lt3ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("261_txly7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("262_svw1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("263_bkk6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("264_g8w1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("265_ti6xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("266_4oskv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("267_r6ygc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("268_04n3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("269_gwokm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("270_hdgiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("271_sv2b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("272_p7i7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("273_87k1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("274_4q2dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("275_lr8no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("276_efgv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("277_eeg43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("278_2n6vp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("279_tmsyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("280_o1jds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("281_30kpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("282_tyisj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("283_tp162")
+}, {
+"duration": 1.0,
+"texture": ExtResource("284_dhek1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("285_nsx1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("286_728ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("287_sp56n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("288_itvvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("289_lpj21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("290_2aupv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("291_y4qr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("292_nq36a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("293_7kp7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("294_gsitm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("295_i66i7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("296_5vyr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("297_x3lo7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("298_uhsrq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("299_kgilv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("300_gpwhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("301_ss1qi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("302_ttvlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("303_jdt3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("304_xsxh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("305_ug578")
+}, {
+"duration": 1.0,
+"texture": ExtResource("306_cluas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("307_r3fs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("308_0w023")
+}, {
+"duration": 1.0,
+"texture": ExtResource("309_uytyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("310_51xjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("311_7lj18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("312_a44tu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("313_yvk6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("314_asu3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("315_yauhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("316_wlosm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("317_cqll0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("318_8768d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("319_v5phs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("320_grgao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("321_17yad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("322_layos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("323_37b4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("324_5mnb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("325_6vurq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("326_l6lrc")
+}],
+"loop": true,
+"name": &"TreyaDizziIdle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("327_ptkcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("328_05j6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("329_lsfyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("330_3asxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("331_7o6sa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("332_xy4v2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("333_7f3uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("334_xulwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("335_wiqcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("336_o742e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("337_0fom0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("338_00656")
+}],
+"loop": true,
+"name": &"TreyaDizzyIn",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("338_00656")
+}, {
+"duration": 1.0,
+"texture": ExtResource("337_0fom0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("336_o742e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("335_wiqcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("334_xulwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("333_7f3uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("332_xy4v2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("331_7o6sa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("330_3asxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("329_lsfyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("328_05j6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("327_ptkcd")
+}],
+"loop": true,
+"name": &"TreyaDizzyOut",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("339_j6bbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("340_dyt85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("341_fgohg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("342_b3m4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("343_heuf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("344_m0o00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("345_6fgp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("346_flget")
+}, {
+"duration": 1.0,
+"texture": ExtResource("347_ecmf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("348_dnmrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("349_rbsjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("350_dy6gt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("351_b2fit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("352_maul8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("353_13twk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("354_7re84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("355_1rp0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("356_3lxpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("357_l34ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("358_x6tuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("359_gbsqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("360_of2v7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("361_5htol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("362_mc2pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("363_a7qtf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("364_ygaky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("365_gmx8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("366_llli1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("367_67bdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("368_xhrh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("369_do7k7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("370_5t6g8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("371_gqw0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("372_sq1mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("373_moa8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("374_0qwb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("375_7x3ko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("376_1jo6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("377_1fqmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("378_vn3y5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("379_ywx1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("380_r4eg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("381_kk3qv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("382_hp711")
+}, {
+"duration": 1.0,
+"texture": ExtResource("383_6uwo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("384_t67sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("385_cqq2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("386_g0i48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("387_xctjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("388_fqpm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("389_4hwe3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("390_4fdc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("391_642mm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("392_j3b0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("393_t144p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("394_7ggn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("395_g3r7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("396_6y2pw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("397_pvgu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("398_26qmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("399_5x5kl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("400_1xwfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("401_pdviq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("402_hsp8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("403_fm3tq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("404_12tsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("405_lg6a1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("406_r4cnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("407_17cgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("408_6a2yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("409_1aqog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("410_4fcrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("411_rto3x")
+}],
+"loop": true,
+"name": &"TreyaFuriousIdle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("412_q3q4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("413_afu3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("414_ffqpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("415_s25n8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("416_bfpme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("417_fve0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("418_6kj1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("419_lss12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("420_cr0yg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("421_65bfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("422_ju2ed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("423_7vfam")
+}],
+"loop": true,
+"name": &"TreyaFuriousIn",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("423_7vfam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("422_ju2ed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("421_65bfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("420_cr0yg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("419_lss12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("418_6kj1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("417_fve0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("416_bfpme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("415_s25n8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("414_ffqpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("413_afu3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("412_q3q4p")
+}],
+"loop": true,
+"name": &"TreyaFuriousOut",
+"speed": 24.0
+}]
+
+[node name="TreyaActor" type="Control" unique_id=299172780 node_paths=PackedStringArray("animateSprites")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_lf5bc")
+animateSprites = NodePath("AnimatedSprite2D")
+defaultEmotion = "Serious"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1400432990]
+sprite_frames = SubResource("SpriteFrames_2yq5m")
+animation = &"TreyaFuriousOut"
+frame = 10
+frame_progress = 0.1333435
