@@ -54,7 +54,7 @@ public partial class CharacterActor : Control
 
     void SetDefaultAnimation(string defaultAnimation)
     {
-        SetEmotionImmediate(defaultAnimation);
+        //PlayEmotion(defaultAnimation);
     }
 
     /// <summary>

@@ -62,6 +62,7 @@ public partial class CameraStage : Node
 
         Vector2 screenCenter = layerDialogBox.Size * 0.5f;
         Vector2 targetPosition = screenCenter - zoomPosition * zoom;
+        targetPosition += new Vector2(0, 100);
 
         Tween tween = CreateTween();
         tween.SetParallel();
@@ -84,7 +85,7 @@ public partial class CameraStage : Node
         tween.SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.InOut);
 
-        tween.TweenProperty(layerDialogBox, "pivot_offset", newPosition, 0.2f);
+            tween.TweenProperty(layerDialogBox, "position", Vector2.Zero, 0.2f);
         tween.SetParallel().TweenProperty(layerDialogBox, "scale", new Vector2(1f, 1f), 0.2f);
 
         tween.Finished += ActionBus.ActionFinished;

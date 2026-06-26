@@ -14,11 +14,8 @@ public partial class FeedBackUi : Control
         if (Instance == this) Instance = null;
     }
 
-    [Export] HBoxContainer toastContainer;
-    [Export] Label feedbackToastLeft;
-    [Export] Label feedbackToastRight;
-    [Export] TextureRect inputIcon;
     [Export] float offSetAnimation = 40;
+    [Export] PackedScene FeeedbackToast;
 
     bool isToastEnabled = false;
 
@@ -31,22 +28,40 @@ public partial class FeedBackUi : Control
     UiPosition pendingPosition;
     bool hasPending;
 
+    FeedbackToast toastInstance;
+
+    FeedbackToast toastContainer => toastInstance;
+    Label         feedbackToastLeft  => toastInstance?.LeftLabel;
+    Label         feedbackToastRight => toastInstance?.RightLabel;
+    TextureRect   inputIcon          => toastInstance?.InputIcon;
+
     [Export] Dictionary<string, Texture2D> inputIcons;
     Dictionary<string, string> keysActionName = new()
     {
         { "interact", "ACTION_INTERACT" },
-        { "drag", "ACTION_DRAG"},
-        { "zoom", "ACTION_ZOOM"},
-        { "unZoom", "ACTION_UNZOOM"},
-
+        { "drag",     "ACTION_DRAG"     },
+        { "zoom",     "ACTION_ZOOM"     },
+        { "unZoom",   "ACTION_UNZOOM"   },
     };
 
     public override void _Ready()
     {
         TranslationServer.SetLocale("es");
 
+        if (FeeedbackToast != null)
+        {
+            toastInstance = FeeedbackToast.Instantiate<FeedbackToast>();
+            var canvasLayer = GetNode<CanvasLayer>("CLFeedbackUi");
+            canvasLayer.AddChild(toastInstance);
+        }
+        else
+        {
+            GD.PushError("[FeedBackUi] La PackedScene 'FeeedbackToast' no está asignada en el inspector.");
+            return;
+        }
+
         toastContainer.Hide();
-        toastContainer.Modulate = toastContainer.Modulate with {A = 0};
+        toastContainer.Modulate = toastContainer.Modulate with { A = 0 };
 
         CallDeferred(nameof(InitBasePosition));
     }
@@ -70,26 +85,26 @@ public partial class FeedBackUi : Control
                 case InputEventMouseButton mouseEvent:
                     return mouseEvent.ButtonIndex switch
                     {
-                        MouseButton.Left => "MOUSE_LEFT",
-                        MouseButton.Right => "MOUSE_RIGHT",
-                        MouseButton.Middle => "MOUSE_MIDDLE",
-                        MouseButton.WheelUp => "MOUSE_WHEEL_UP",
-                        MouseButton.WheelDown => "MOUSE_WHEEL_DOWN",
-                        _ => $"MOUSE_{mouseEvent.ButtonIndex}"
+                        MouseButton.Left       => "MOUSE_LEFT",
+                        MouseButton.Right      => "MOUSE_RIGHT",
+                        MouseButton.Middle     => "MOUSE_MIDDLE",
+                        MouseButton.WheelUp    => "MOUSE_WHEEL_UP",
+                        MouseButton.WheelDown  => "MOUSE_WHEEL_DOWN",
+                        _                      => $"MOUSE_{mouseEvent.ButtonIndex}"
                     };
             }
         }
 
         return null;
     }
-    
+
     public void SetInteractionPrompt(string action, UiPosition uiPosition = UiPosition.Down)
     {
         if (isToastEnabled)
         {
-            pendingAction = action;
+            pendingAction   = action;
             pendingPosition = uiPosition;
-            hasPending = true;
+            hasPending      = true;
 
             StartFadeOutAnimation(OnFadeOutFinished);
             return;
@@ -115,9 +130,7 @@ public partial class FeedBackUi : Control
     {
         var events = InputMap.ActionGetEvents(action);
 
-        return events.Count > 0
-            ? events[0]
-            : null;
+        return events.Count > 0 ? events[0] : null;
     }
 
     void StartFadeOnAnimation(UiPosition uiPosition = UiPosition.Down)
@@ -127,16 +140,11 @@ public partial class FeedBackUi : Control
         float screenMargin = 20f;
 
         Vector2 finalPosition = toastContainer.Position;
-
-        finalPosition.Y += uiPosition == UiPosition.Down
-            ? -screenMargin
-            : screenMargin;
+        finalPosition.Y += uiPosition == UiPosition.Down ? -screenMargin : screenMargin;
 
         Vector2 startPosition = finalPosition + new Vector2(
             0,
-            uiPosition == UiPosition.Down
-                ? -offSetAnimation
-                : offSetAnimation
+            uiPosition == UiPosition.Down ? -offSetAnimation : offSetAnimation
         );
 
         toastContainer.Position = startPosition;
@@ -156,19 +164,16 @@ public partial class FeedBackUi : Control
 
     public void StartFadeOutAnimation(Action callback = null)
     {
-        if(!isToastEnabled) return;
+        if (!isToastEnabled) return;
 
         currentTween?.Kill();
 
         Vector2 finalPosition = toastContainer.Position + new Vector2(
             0,
-            actualPosition == UiPosition.Down
-                ? -offSetAnimation
-                : offSetAnimation
+            actualPosition == UiPosition.Down ? -offSetAnimation : offSetAnimation
         );
 
         currentTween = CreateTween();
-
         currentTween.SetEase(Tween.EaseType.Out);
         currentTween.SetTrans(Tween.TransitionType.Quint);
         currentTween.SetParallel();
@@ -176,10 +181,7 @@ public partial class FeedBackUi : Control
         currentTween.TweenProperty(toastContainer, "position", finalPosition, 0.5f);
         currentTween.TweenProperty(toastContainer, "modulate:a", 0.0f, 0.5f);
 
-        currentTween.Finished += () =>
-        {
-            callback?.Invoke();
-        };
+        currentTween.Finished += () => callback?.Invoke();
     }
 
     void ShowToast(string action, UiPosition uiPosition)
@@ -197,21 +199,30 @@ public partial class FeedBackUi : Control
 
         toastContainer.Show();
 
-        feedbackToastLeft.Text = $"{Tr("TEXT_PRESS").ToUpper()}";
-        inputIcon.Texture = icon;
-        feedbackToastRight.Text = $"{Tr("TEXT_FOR").ToUpper()} {Tr(keyAction).ToUpper()}";
-
+        // Usar el método Setup del toast en lugar de asignar propiedades individualmente
+        toastInstance.Setup(
+            $"{Tr("TEXT_PRESS").ToUpper()}",
+            icon,
+            $"{Tr("TEXT_FOR").ToUpper()} {Tr(keyAction).ToUpper()}"
+        );
 
         SetTextPosition(uiPosition);
         StartFadeOnAnimation(uiPosition);
-        
+
         actualPosition = uiPosition;
         isToastEnabled = true;
     }
 
     void SetTextPosition(UiPosition uiPosition)
     {
-        LayoutPreset layoutPreset = (uiPosition == UiPosition.Down) ? LayoutPreset.CenterBottom : LayoutPreset.CenterTop;
+        var layoutPreset = uiPosition switch
+        {
+            UiPosition.Down => LayoutPreset.CenterBottom,
+            UiPosition.Top => LayoutPreset.CenterTop,
+            UiPosition.TopLeft => LayoutPreset.TopLeft,
+            _ => LayoutPreset.CenterBottom,
+        };
+        
         toastContainer.SetAnchorsAndOffsetsPreset(layoutPreset);
         toastContainer.QueueSort();
     }
@@ -219,19 +230,16 @@ public partial class FeedBackUi : Control
     public override void _Input(InputEvent input)
     {
         if (input.IsActionPressed("testAction"))
-        {
             SetInteractionPrompt("interact", UiPosition.Down);
-        }
 
         if (input.IsActionPressed("testDesaction"))
-        {
             StartFadeOutAnimation();
-        }
     }
 }
 
 public enum UiPosition
 {
     Top,
-    Down
+    Down,
+    TopLeft
 }

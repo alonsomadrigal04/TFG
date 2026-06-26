@@ -19,6 +19,7 @@ public partial class ChoiceMaker : Node
     [Export] HBoxContainer optionsContainer;
     [Export] ShaderMaterial optionShader;
     [Export] int separation;
+    const float MaxSizeButton = 400f;
 
     [ExportGroup("Animated Objects")]
     [Export] ColorRect shaderBack;
@@ -159,6 +160,8 @@ public partial class ChoiceMaker : Node
         const float spacing = 40f;
         float totalSpacing = spacing * (totalOptions - 1);
         float availableWidth = optionsContainer.Size.X - totalSpacing;
+        if(availableWidth > MaxSizeButton)
+            return MaxSizeButton;
         return availableWidth / totalOptions;
     }
 

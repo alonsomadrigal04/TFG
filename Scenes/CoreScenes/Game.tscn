@@ -102,7 +102,6 @@ process_mode = 1
 [node name="GameManager" type="Node" parent="." unique_id=1706368616 node_paths=PackedStringArray("pauseMenu", "screenTransition", "safeScreen", "chapterBehaviour", "audioManager")]
 process_mode = 3
 script = ExtResource("1_gl6un")
-enabledDebugMode = true
 debugDialogName = "TestZooms"
 firstEnvironment = ExtResource("4_fgofq")
 dialogManagerPath = NodePath("../DialogManager")
