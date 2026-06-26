@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://im34mia064nu"
-valid=false
+path="res://.godot/imported/SmallRock1.blend-4419345741b404141e9fc7ed26c2e34e.scn"
 
 [deps]
 
 source_file="res://Assets/3D/stone-pack/SmallRock1.blend"
+dest_files=["res://.godot/imported/SmallRock1.blend-4419345741b404141e9fc7ed26c2e34e.scn"]
 
 [params]
 

@@ -43,6 +43,11 @@ public partial class CharacterActor : Control
         isTransitioning = false;
     }
 
+    public override void _Ready()
+    {
+        
+    }
+
     /// <summary>
     /// Instantly sets the current idle animation without transitions.
     /// </summary>
@@ -146,12 +151,13 @@ public partial class CharacterActor : Control
             .SetEase(Tween.EaseType.InOut);
         Vector2 spriteScale = animateSprites.Scale;
 
-        tween.TweenProperty(animateSprites, "scale", new Vector2(0f, spriteScale.Y), half);
+        tween.TweenProperty(animateSprites, "scale", new Vector2(0.05f, spriteScale.Y), half);
 
         tween.TweenCallback(Callable.From(() =>
         {
             isFlipped = !isFlipped;
             animateSprites.FlipH = isFlipped;
+            GD.Print(isFlipped, animateSprites.FlipH);
         }));
 
         tween.TweenProperty(animateSprites, "scale", spriteScale, half);

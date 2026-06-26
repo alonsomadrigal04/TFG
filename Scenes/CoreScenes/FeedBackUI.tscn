@@ -17,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(624, 360)
 size_flags_horizontal = 4
+mouse_filter = 2
 script = ExtResource("1_8unnm")
 toastContainer = NodePath("CLFeedbackUi/FeedbackToast")
 feedbackToastLeft = NodePath("CLFeedbackUi/FeedbackToast/LeftLabel")

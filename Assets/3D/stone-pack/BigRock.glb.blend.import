@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c2da7lr1nrude"
-valid=false
+path="res://.godot/imported/BigRock.glb.blend-60c37541f456931a7728da32aabc8bed.scn"
 
 [deps]
 
 source_file="res://Assets/3D/stone-pack/BigRock.glb.blend"
+dest_files=["res://.godot/imported/BigRock.glb.blend-60c37541f456931a7728da32aabc8bed.scn"]
 
 [params]
 
